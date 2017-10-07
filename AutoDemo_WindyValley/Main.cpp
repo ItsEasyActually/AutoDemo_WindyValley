@@ -9,6 +9,8 @@
 #include "Sirusi_Objects.h"
 #include "Grass_Objects.h"
 #include "Pole_Objects.h"
+#include "IDai_Objects.h"
+#include "IHas_Objects.h"
 #include "Act1.h"
 #include "Act2.h"
 #include "Act3.h"
@@ -493,7 +495,7 @@ void __cdecl Grass1_Display(ObjectMaster *a2)
 	{
 		njRotateY(0, (unsigned __int16)v4);
 	}
-	sub_405450(&action_Grass1_Action, grassFrame, 1.0);
+	njAction(&action_Grass1_Action, grassFrame);
 	njPopMatrix(1u);
 }
 
@@ -577,8 +579,6 @@ void __cdecl Grass2(ObjectMaster *a1)
 	}
 }
 
-
-
 //Pole Object Functions
 void __cdecl Load_Pole1(ObjectMaster *a1)
 {
@@ -601,6 +601,175 @@ void __cdecl Load_Pole2(ObjectMaster *a1)
 
 	v1 = a1->Data1;
 	v1->Object = &Object_Pole2;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+//I Dai/I Has Object Functions
+void __cdecl Load_IDai1(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Dai1;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+void __cdecl Load_IDai2(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Dai2;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+void __cdecl Load_IDai3(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Dai3;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+void __cdecl Load_IDai4(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Dai4;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+void __cdecl Load_IDai5(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Dai5;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+void __cdecl Load_IDai6(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Dai6;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+void __cdecl Load_IDai7(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Dai7;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+void __cdecl Load_IDai8(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Dai8;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+void __cdecl Load_IDai9(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Dai9;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+void __cdecl Load_IHas14(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Has14;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+void __cdecl Load_IHas15(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Has15;
+	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+	v3->scl[0] = 1.0f;
+	v3->scl[1] = 1.0f;
+	v3->scl[2] = 1.0f;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+}
+
+void __cdecl Load_IHas16(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &I_Has16;
 	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
 	v3->scl[0] = 1.0f;
 	v3->scl[1] = 1.0f;
@@ -677,18 +846,18 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, Rock2, "ROCK 2 " } /* "ROCK 2 " */,						//40
 	{ 2, 3, 0, 0, 0, Rock3, "ROCK 3 " } /* "ROCK 3 " */,						//41
 	{ 2, 3, 0, 0, 0, Rock5, "ROCK 5 " } /* "ROCK 5 " */,						//42
-	{ 6, 3, 0, 0, 0, NullFunction, "I DAI 1" } /* "I DAI 1" */,					//43
-	{ 6, 3, 0, 0, 0, NullFunction, "I DAI 2" } /* "I DAI 2" */,					//44
-	{ 6, 3, 0, 0, 0, NullFunction, "I DAI 3" } /* "I DAI 3" */,					//45
-	{ 6, 3, 0, 0, 0, NullFunction, "I DAI 4" } /* "I DAI 4" */,					//46
-	{ 6, 3, 0, 0, 0, NullFunction, "I DAI 5" } /* "I DAI 5" */,					//47
-	{ 6, 3, 0, 0, 0, NullFunction, "I DAI 6" } /* "I DAI 6" */,					//48
-	{ 6, 3, 0, 0, 0, NullFunction, "I DAI 7" } /* "I DAI 7" */,					//49
-	{ 6, 3, 0, 0, 0, NullFunction, "I DAI 8" } /* "I DAI 8" */,					//4A
-	{ 6, 3, 0, 0, 0, NullFunction, "I DAI 9" } /* "I DAI 9" */,					//4B
-	{ 6, 3, 0, 0, 0, NullFunction, "I HAS14" } /* "I HAS14" */,					//4C
-	{ 6, 3, 0, 0, 0, NullFunction, "I HAS15" } /* "I HAS15" */,					//4D
-	{ 6, 3, 0, 0, 0, NullFunction, "I HAS16" } /* "I HAS16" */,					//4E
+	{ 6, 3, 0, 0, 0, Load_IDai1, "I DAI 1" } /* "I DAI 1" */,					//43
+	{ 6, 3, 0, 0, 0, Load_IDai2, "I DAI 2" } /* "I DAI 2" */,					//44
+	{ 6, 3, 0, 0, 0, Load_IDai3, "I DAI 3" } /* "I DAI 3" */,					//45
+	{ 6, 3, 0, 0, 0, Load_IDai4, "I DAI 4" } /* "I DAI 4" */,					//46
+	{ 6, 3, 0, 0, 0, Load_IDai5, "I DAI 5" } /* "I DAI 5" */,					//47
+	{ 6, 3, 0, 0, 0, Load_IDai6, "I DAI 6" } /* "I DAI 6" */,					//48
+	{ 6, 3, 0, 0, 0, Load_IDai7, "I DAI 7" } /* "I DAI 7" */,					//49
+	{ 6, 3, 0, 0, 0, Load_IDai8, "I DAI 8" } /* "I DAI 8" */,					//4A
+	{ 6, 3, 0, 0, 0, Load_IDai9, "I DAI 9" } /* "I DAI 9" */,					//4B
+	{ 6, 3, 0, 0, 0, Load_IHas14, "I HAS14" } /* "I HAS14" */,					//4C
+	{ 6, 3, 0, 0, 0, Load_IHas15, "I HAS15" } /* "I HAS15" */,					//4D
+	{ 6, 3, 0, 0, 0, Load_IHas16, "I HAS16" } /* "I HAS16" */,					//4E
 	{ 2, 3, 0, 0, 0, NullFunction, "I HAS17" } /* "I HAS17" */,					//4F
 	{ 2, 3, 0, 0, 0, NullFunction, "I HAS18" } /* "I HAS18" */,					//50
 	{ 2, 2, 0, 0, 0, NullFunction, "BANEIWA" } /* "BANEIWA" */,					//51
@@ -807,12 +976,13 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 extern "C"
 {
 	__declspec(dllexport) ModInfo SADXModInfo = { ModLoaderVer, &Init, NULL, 0, NULL, 0, NULL, 0, arrayptrandlength(pointers) };
+
 	__declspec(dllexport) void __cdecl OnFrame() 
 	{
 		if (CurrentLevel == 2 && GameState != 16)
 		{
-			if (grassFrame > 30) grassFrame = 0;
-			grassFrame = grassFrame + 0.08f;
+			grassFrame = grassFrame + 1.0f;
+			if (grassFrame > 7) grassFrame = 0;
 		}
 	}
 }

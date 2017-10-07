@@ -143,6 +143,8 @@
     <ClInclude Include="Act3.h" />
     <ClInclude Include="d3d8types.h" />
     <ClInclude Include="Grass_Objects.h" />
+    <ClInclude Include="IDai_Objects.h" />
+    <ClInclude Include="IHas_Objects.h" />
     <ClInclude Include="PathInfo.h" />
     <ClInclude Include="Pole_Objects.h" />
     <ClInclude Include="Rock_Objects.h" />

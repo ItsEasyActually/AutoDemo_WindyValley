@@ -96,6 +96,12 @@
     <ClInclude Include="Act3.h">
       <Filter>Header Files\LandTable</Filter>
     </ClInclude>
+    <ClInclude Include="IDai_Objects.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="IHas_Objects.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
