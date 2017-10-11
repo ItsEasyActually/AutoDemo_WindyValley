@@ -102,6 +102,18 @@
     <ClInclude Include="IHas_Objects.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="IBou-IHah_Objects.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Sara_Objects.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Flower_Objects.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="W_Ki_Objects.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

@@ -142,7 +142,9 @@
     <ClInclude Include="Act2.h" />
     <ClInclude Include="Act3.h" />
     <ClInclude Include="d3d8types.h" />
+    <ClInclude Include="Flower_Objects.h" />
     <ClInclude Include="Grass_Objects.h" />
+    <ClInclude Include="IBou-IHah_Objects.h" />
     <ClInclude Include="IDai_Objects.h" />
     <ClInclude Include="IHas_Objects.h" />
     <ClInclude Include="PathInfo.h" />
@@ -155,6 +157,7 @@
     <ClInclude Include="SADXModLoader.h" />
     <ClInclude Include="SADXStructs.h" />
     <ClInclude Include="SADXVariables.h" />
+    <ClInclude Include="Sara_Objects.h" />
     <ClInclude Include="SBridge.h" />
     <ClInclude Include="Sirusi_Objects.h" />
     <ClInclude Include="StartPos.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="TexLists.h" />
     <ClInclude Include="Trampoline.h" />
     <ClInclude Include="WindyGate.h" />
+    <ClInclude Include="W_Ki_Objects.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

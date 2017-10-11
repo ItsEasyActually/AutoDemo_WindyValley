@@ -2,6 +2,11 @@
 
 #include "SADXModLoader.h"
 
+CollisionData Pole1_Collision[] = {
+	{ 0x300, 77, -7.0, 1.5, -2.5, 3.0, 3.0, 0.0, 0, 0xF000, 0, 0x1200 },
+	{ 0x300, 77, 1.1999999, 4.0, 0.0, 3.3999999, 8.0, 0.0, 0, 0, 0, 0xF800 }
+};
+
 NJS_MATERIAL matlist_00137658[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 22, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 85, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
