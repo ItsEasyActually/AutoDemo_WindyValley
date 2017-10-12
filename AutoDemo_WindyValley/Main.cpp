@@ -52,6 +52,7 @@ FunctionPointer(void, sub_4DFAF0, (ObjectMaster *a1), 0x4DFAF0);
 FunctionPointer(ObjectMaster, DoObjectThing, (ObjectThing *a1, ObjectMaster *a2), 0x40B9D0);
 FunctionPointer(void, sub_4E0050, (ObjectMaster *a1), 0x4E0050);
 FunctionPointer(int, rand, (), 0x6443BF);
+FunctionPointer(void, sub_49CE60, (EntityData1 *a1, int a2), 0x49CE60);
 
 //Usercall and Thiscall Functions
 ThiscallFunctionPointer(void, sub_4E3090, (int _this), 0x4E3090);
@@ -1120,12 +1121,29 @@ void __cdecl Load_Pole1(ObjectMaster *a1)
 
 	v1 = a1->Data1;
 	v1->Object = &Object_Pole1;
-	//v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-	//v3->scl[0] = 1.0f;
-	//v3->scl[1] = 1.0f;
-	//v3->scl[2] = 1.0f;
-	InitCollision(a1, (CollisionData*)&Pole1_Collision, 2, 2u);
-	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+	if (!ClipSetObject(a1))
+	{
+		if (v1->Action)
+		{
+			if (v1->Action == 1)
+			{
+				AddToCollisionList(v1);
+				sub_49CE60(v1, 0);
+			}
+			else
+			{
+				v1->Action = 0;
+			}
+			Basic_Display(a1);
+		}
+		else
+		{
+			InitCollision(a1, (CollisionData*)&Pole1_Collision, 2, 4u);
+			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			v1->Action = 1;
+		}
+		
+	}
 }
 
 void __cdecl Load_Pole2(ObjectMaster *a1)
@@ -1811,6 +1829,8 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteData((int *)0x07E1D90, (int)LengthOfArray(WV3path)); // p2 path for WV3
 	WriteCall((void *)0x4DD8D3, TornadoPosition); // setting the tornado position properly
 	WriteCall((void *)0x4DD7A5, WVSkybox1Position);
+	WriteData((NJS_OBJECT**)0x004DFAC9, &Particle_Tanpopo);
+	WriteData((NJS_OBJECT**)0x004DFCB0, &Particle_Tanpopo);
 
 
 
