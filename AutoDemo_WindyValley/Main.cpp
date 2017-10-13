@@ -39,12 +39,13 @@ struct ObjectThing
 DataPointer(int, MissedFrames, 0x03B1117C);
 DataArray(CollisionData, stru_C67750, 0xC67750, 1);
 DataArray(CollisionData, stru_C673B8, 0xC673B8, 7);
+DataArray(CollisionData, TuriBr2_Collision, 0x00C66FB8, 1);
+DataArray(CollisionData, TuriBr_Collision, 0x00C66F88, 1);
 
 //Additional SADX Functions
 FunctionPointer(NJS_OBJECT*, DynamicCollision, (NJS_OBJECT *a1, ObjectMaster *a2, ColFlags surfaceFlags), 0x49D6C0);
 FunctionPointer(void, sub_407870, (NJS_MODEL_SADX *model, char blend, float radius_scale), 0x407870);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
-FunctionPointer(void, sub_7A6440, (ObjectMaster *a1), 0x7A6440);
 FunctionPointer(void, sub_49CD60, (ObjectMaster *a1), 0x49CD60);
 FunctionPointer(void, sub_49DF70, (ObjectMaster *a1), 0x49DF70);
 FunctionPointer(void, sub_49E170, (ObjectMaster *a1), 0x49E170);
@@ -53,6 +54,9 @@ FunctionPointer(ObjectMaster, DoObjectThing, (ObjectThing *a1, ObjectMaster *a2)
 FunctionPointer(void, sub_4E0050, (ObjectMaster *a1), 0x4E0050);
 FunctionPointer(int, rand, (), 0x6443BF);
 FunctionPointer(void, sub_49CE60, (EntityData1 *a1, int a2), 0x49CE60);
+FunctionPointer(void, sub_7A6440, (ObjectMaster *a1), 0x7A6440);
+FunctionPointer(void, sub_4E0A60, (ObjectMaster *a1), 0x4E0A60);
+
 
 //Usercall and Thiscall Functions
 ThiscallFunctionPointer(void, sub_4E3090, (int _this), 0x4E3090);
@@ -134,36 +138,52 @@ void __cdecl NullFunction(ObjectMaster *a1)
 }
 
 //Standard Display
-void __cdecl Basic_Display(ObjectMaster *a1)
+void __cdecl Basic_Display(ObjectMaster *a2)
 {
 	EntityData1 *v1; // esi@1
-	Angle v2; // eax@3
-	Angle v3; // eax@5
-	Angle v4; // eax@7
+	Angle v2; // eax@2
+	Angle v3; // eax@4
+	Angle v4; // eax@6
 
-	v1 = a1->Data1;
+	v1 = a2->Data1;
 	if (!MissedFrames)
 	{
 		SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
-		v4 = v1->Rotation.z;
-		if (v4)
-		{
-			njRotateZ(0, (unsigned __int16)v4);
-		}
-		v2 = v1->Rotation.x;
+		v2 = v1->Rotation.z;
 		if (v2)
 		{
-			njRotateX(0, (unsigned __int16)v2);
+			njRotateZ(0, (unsigned __int16)v2);
 		}
-		v3 = v1->Rotation.y;
+		v3 = v1->Rotation.x;
 		if (v3)
 		{
-			njRotateY(0, (unsigned __int16)v3);
+			njRotateX(0, (unsigned __int16)v3);
 		}
-		ProcessModelNode_AB_Wrapper(v1->Object, 1.0f);
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		ProcessModelNode_AB_Wrapper(v1->Object, 1.0);
 		njPopMatrix(1u);
+	}
+}
+
+//Standard Main
+void __cdecl Basic_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1; // edi@1
+
+	v1 = a1->Data1;
+	if (!ClipSetObject_Min(a1))
+	{
+		if (!ObjectSelectedDebug(a1))
+		{
+			AddToCollisionList(v1);
+		}
+		Basic_Display(a1);
 	}
 }
 
@@ -379,12 +399,16 @@ void __cdecl SBridg(ObjectMaster *a1)
 	if (a1->Data1->Scale.z < 0)
 	{
 		a1->Data1->LoopData = (Loop*)&LongBridge;
+		InitCollision(a1, (CollisionData*)&TuriBr2_Collision, 1, 4u);
 	}
 	else
 	{
 		a1->Data1->LoopData = (Loop*)&ShortBridge;
+		InitCollision(a1, (CollisionData*)&TuriBr_Collision, 1, 4u);
 	}
+	(a1->Data1->CollisionInfo->Radius) = 500.0f;
 	sub_7A6440(a1);
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))sub_4E0A60;
 }
 
 //Rock Object Functions
@@ -424,53 +448,47 @@ void __cdecl Rock1(ObjectMaster *a1)
 
 void __cdecl Rock2(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
-	v1->Object = &Object_Rock2;
-	if (!ClipSetObject(a1))
+	if (!ObjectSelectedDebug(a1))
 	{
-		v3 = DynamicCollision(&Object_Rock2, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		InitCollision(a1, (CollisionData*)&Rock2_Collision, 1, 4u);
 	}
+	v1->Object = &Object_Rock2;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
 }
 
 void __cdecl Rock3(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
-	v1->Object = &Object_Rock3;
-	if (!ClipSetObject(a1))
+	if (!ObjectSelectedDebug(a1))
 	{
-		v3 = DynamicCollision(&Object_Rock3, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		InitCollision(a1, (CollisionData*)&Rock3_Collision, 1, 4u);
 	}
+	v1->Object = &Object_Rock3;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
 }
 
 void __cdecl Rock5(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
-	v1->Object = &Object_Rock5;
-	if (!ClipSetObject(a1))
+	if (!ObjectSelectedDebug(a1))
 	{
-		v3 = DynamicCollision(&Object_Rock5, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		InitCollision(a1, (CollisionData*)&Rock5_Collision, 3, 4u);
 	}
+	v1->Object = &Object_Rock5;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
 }
 
 //Sirusi Object Functions
@@ -518,6 +536,128 @@ void __cdecl Load_Sirusi4(ObjectMaster *a1)
 	if (!ClipSetObject(a1))
 	{
 		v3 = DynamicCollision(&Collision_Sirusi4, a1, (ColFlags)0x00001001);
+		v3->scl[0] = 1.0f;
+		v3->scl[1] = 1.0f;
+		v3->scl[2] = 1.0f;
+		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+	}
+}
+
+void __cdecl Load_Sirusi5(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	if (!ObjectSelectedDebug(a1))
+	{
+		InitCollision(a1, (CollisionData*)&Sirusi5_Collision, 1, 4u);
+	}
+	v1->Object = &Object_Sirusi5;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+}
+
+void __cdecl Load_Sirusi6(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	if (!ObjectSelectedDebug(a1))
+	{
+		InitCollision(a1, (CollisionData*)&Sirusi6_Collision, 1, 4u);
+	}
+	v1->Object = &Object_Sirusi6;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+}
+
+void __cdecl Load_Sirusi7(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	if (!ObjectSelectedDebug(a1))
+	{
+		InitCollision(a1, (CollisionData*)&Sirusi7_Collision, 1, 4u);
+	}
+	v1->Object = &Object_Sirusi7;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+}
+
+void __cdecl Load_Sirusi8(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	if (!ObjectSelectedDebug(a1))
+	{
+		InitCollision(a1, (CollisionData*)&Sirusi8_Collision, 1, 4u);
+	}
+	v1->Object = &Object_Sirusi8;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+}
+
+void __cdecl Load_Sirusi9(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &Object_Sirusi9;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+}
+
+void __cdecl Load_Siru11(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &Object_Siru11;
+	if (!ClipSetObject(a1))
+	{
+		v3 = DynamicCollision(&Object_LRock, a1, (ColFlags)0x00001001);
+		v3->scl[0] = 1.0f;
+		v3->scl[1] = 1.0f;
+		v3->scl[2] = 1.0f;
+		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+	}
+}
+
+void __cdecl Load_Siru12(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &Object_Siru12;
+	if (!ClipSetObject(a1))
+	{
+		v3 = DynamicCollision(&Object_LRock, a1, (ColFlags)0x00001001);
+		v3->scl[0] = 1.0f;
+		v3->scl[1] = 1.0f;
+		v3->scl[2] = 1.0f;
+		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+	}
+}
+
+void __cdecl Load_Siru13(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &Object_Siru13;
+	if (!ClipSetObject(a1))
+	{
+		v3 = DynamicCollision(&Object_LRock, a1, (ColFlags)0x00001001);
 		v3->scl[0] = 1.0f;
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
@@ -1116,48 +1256,32 @@ void __cdecl Load_WKi2(ObjectMaster *a1)
 //Pole Object Functions
 void __cdecl Load_Pole1(ObjectMaster *a1)
 {
-	//NJS_OBJECT *v3;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
-	v1->Object = &Object_Pole1;
-	if (!ClipSetObject(a1))
+	if (!ObjectSelectedDebug(a1))
 	{
-		if (v1->Action)
-		{
-			if (v1->Action == 1)
-			{
-				AddToCollisionList(v1);
-				sub_49CE60(v1, 0);
-			}
-			else
-			{
-				v1->Action = 0;
-			}
-			Basic_Display(a1);
-		}
-		else
-		{
-			InitCollision(a1, (CollisionData*)&Pole1_Collision, 2, 4u);
-			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			v1->Action = 1;
-		}
-		
+		InitCollision(a1, (CollisionData*)&Pole1_Collision, 2, 4u);
 	}
+	v1->Object = &Object_Pole1;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
 }
 
 void __cdecl Load_Pole2(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
+	if (!ObjectSelectedDebug(a1))
+	{
+		InitCollision(a1, (CollisionData*)&Pole2_Collision, 1, 4u);
+	}
 	v1->Object = &Object_Pole2;
-	v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-	v3->scl[0] = 1.0f;
-	v3->scl[1] = 1.0f;
-	v3->scl[2] = 1.0f;
-	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
 }
 
 //I Dai/I Has Object Functions
@@ -1704,11 +1828,11 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 4, 0, 0, 0, Load_Sirusi2, "SIRUSI2" } /* "SIRUSI2" */,					//2D
 	{ 6, 4, 0, 0, 0, Load_Sirusi3, "SIRUSI3" } /* "SIRUSI3" */,					//2E
 	{ 6, 4, 0, 0, 0, Load_Sirusi4, "SIRUSI4" } /* "SIRUSI4" */,					//2F
-	{ 2, 4, 0, 0, 0, NullFunction, "SIRUSI5" } /* "SIRUSI5" */,					//30
-	{ 2, 4, 0, 0, 0, NullFunction, "SIRUSI6" } /* "SIRUSI6" */,					//31
-	{ 2, 4, 0, 0, 0, NullFunction, "SIRUSI7" } /* "SIRUSI7" */,					//32
-	{ 2, 4, 0, 0, 0, NullFunction, "SIRUSI8" } /* "SIRUSI8" */,					//33
-	{ 2, 4, 0, 0, 0, NullFunction, "SIRUSI9" } /* "SIRUSI9" */,					//34
+	{ 2, 4, 0, 0, 0, Load_Sirusi5, "SIRUSI5" } /* "SIRUSI5" */,					//30
+	{ 2, 4, 0, 0, 0, Load_Sirusi6, "SIRUSI6" } /* "SIRUSI6" */,					//31
+	{ 2, 4, 0, 0, 0, Load_Sirusi7, "SIRUSI7" } /* "SIRUSI7" */,					//32
+	{ 2, 4, 0, 0, 0, Load_Sirusi8, "SIRUSI8" } /* "SIRUSI8" */,					//33
+	{ 2, 4, 0, 0, 0, Load_Sirusi9, "SIRUSI9" } /* "SIRUSI9" */,					//34
 	{ 6, 4, 0, 0, 0, NullFunction, "SIRU 11" } /* "SIRU 11" */,					//35
 	{ 6, 4, 0, 0, 0, NullFunction, "SIRU 12" } /* "SIRU 12" */,					//36
 	{ 6, 4, 0, 0, 0, NullFunction, "SIRU 13" } /* "SIRU 13" */,					//37

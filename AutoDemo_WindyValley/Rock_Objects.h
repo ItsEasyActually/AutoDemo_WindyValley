@@ -2,6 +2,20 @@
 
 #include "SADXModLoader.h"
 
+CollisionData Rock2_Collision[] = {
+	{ 0x300, 77, 0, 0, 0.0, 5.0, 0.0, 5.0, 10.0, 0.0, 0, 0, 0, 0 }
+};
+
+CollisionData Rock3_Collision[] = {
+	{ 0x300, 77, 0, 0, 0.0, 3.0, 0.0, 5.0, 6.0, 0.0, 0, 0, 0, 0 }
+};
+
+CollisionData Rock5_Collision[] = {
+	{ 0x300, 77, 0, 0, 0.0, 2.0, 0.0, 3.0, 4.0, 0.0, 0, 0, 0, 0 },
+	{ 0x300, 77, 0, 0, 1.0, 2.5999999, -2.0, 2.0, 5.1999998, 0.0, 0, 0, 0, 0 },
+	{ 0x300, 77, 0, 0, 1.5, 3.0, -3.0, 1.0, 6.0, 0.0, 0, 0, 0, 0 }
+};
+
 NJS_MATERIAL matlist_0010D5CC[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 94, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 98, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
