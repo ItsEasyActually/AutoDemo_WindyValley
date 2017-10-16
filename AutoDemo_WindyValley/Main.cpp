@@ -388,7 +388,7 @@ void __cdecl WindyGate_Main(ObjectMaster *a1)
 		{
 			v1->Action = 1;
 			a1->DisplaySub = WGate_Display;
-			InitCollision(a1, stru_C673B8, 7, 4u);
+			InitCollision(a1, WGate_Collision, 3, 4u);
 		}
 	}
 }
@@ -501,7 +501,7 @@ void __cdecl Load_Sirusi2(ObjectMaster *a1)
 	v1->Object = &Object_Sirusi2;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Collision_Sirusi2, a1, (ColFlags)0x00001001);
+		v3 = DynamicCollision(&Collision_Sirusi2, a1, (ColFlags)0x40001001);
 		v3->scl[0] = 1.0f;
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
@@ -623,7 +623,7 @@ void __cdecl Load_Siru11(ObjectMaster *a1)
 	v1->Object = &Object_Siru11;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Object_LRock, a1, (ColFlags)0x00001001);
+		v3 = DynamicCollision(&Object_Siru11, a1, (ColFlags)0x00001001);
 		v3->scl[0] = 1.0f;
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
@@ -640,7 +640,7 @@ void __cdecl Load_Siru12(ObjectMaster *a1)
 	v1->Object = &Object_Siru12;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Object_LRock, a1, (ColFlags)0x00001001);
+		v3 = DynamicCollision(&Object_Siru12, a1, (ColFlags)0x00001001);
 		v3->scl[0] = 1.0f;
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
@@ -657,12 +657,27 @@ void __cdecl Load_Siru13(ObjectMaster *a1)
 	v1->Object = &Object_Siru13;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Object_LRock, a1, (ColFlags)0x00001001);
+		v3 = DynamicCollision(&Object_Siru13, a1, (ColFlags)0x00001001);
 		v3->scl[0] = 1.0f;
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 	}
+}
+
+void __cdecl Load_Yaji01(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	if (!ObjectSelectedDebug(a1))
+	{
+		InitCollision(a1, (CollisionData*)&Yaji01_Collision, 1, 4u);
+	}
+	v1->Object = &Object_Yaji01;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
 }
 
 //Grass Object Functions
@@ -1833,10 +1848,10 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 4, 0, 0, 0, Load_Sirusi7, "SIRUSI7" } /* "SIRUSI7" */,					//32
 	{ 2, 4, 0, 0, 0, Load_Sirusi8, "SIRUSI8" } /* "SIRUSI8" */,					//33
 	{ 2, 4, 0, 0, 0, Load_Sirusi9, "SIRUSI9" } /* "SIRUSI9" */,					//34
-	{ 6, 4, 0, 0, 0, NullFunction, "SIRU 11" } /* "SIRU 11" */,					//35
-	{ 6, 4, 0, 0, 0, NullFunction, "SIRU 12" } /* "SIRU 12" */,					//36
-	{ 6, 4, 0, 0, 0, NullFunction, "SIRU 13" } /* "SIRU 13" */,					//37
-	{ 2, 4, 0, 0, 0, NullFunction, "YAJI 01" } /* "YAJI 01" */,					//38
+	{ 6, 4, 0, 0, 0, Load_Siru11, "SIRU 11" } /* "SIRU 11" */,					//35
+	{ 6, 4, 0, 0, 0, Load_Siru12, "SIRU 12" } /* "SIRU 12" */,					//36
+	{ 6, 4, 0, 0, 0, Load_Siru13, "SIRU 13" } /* "SIRU 13" */,					//37
+	{ 2, 4, 0, 0, 0, Load_Yaji01, "YAJI 01" } /* "YAJI 01" */,					//38
 	{ 2, 4, 0, 0, 0, Load_Pole1, "POLE 1 " } /* "POLE 1 " */,					//39
 	{ 2, 4, 0, 0, 0, Load_Pole2, "POLE 2 " } /* "POLE 2 " */,					//3A
 	{ 2, 3, 0, 0, 0, WindyGate_Main, "W GATE " } /* "W GATE " */,				//3B
@@ -1944,6 +1959,15 @@ void WVSkybox1Position()
 	njScale(0, 0.75f, 0.75f, 0.75f);
 }
 
+float E103_PositionData[] = {
+	450.0, -350.0, -2150.0,
+	600.0, -380.0, -2300.0,
+	526.0, -437.0, -2474.0,
+	423.0, -443.0, -2428.0,
+	376.0, -443.0, -2351.0,
+	0.0
+};
+
 void Init(const char *path, const HelperFunctions &helperFunctions)
 {
 	*(float *)0x7E7B04 = 1420.68f; // changing the level trigger height for WV part 2
@@ -1955,6 +1979,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteCall((void *)0x4DD7A5, WVSkybox1Position);
 	WriteData((NJS_OBJECT**)0x004DFAC9, &Particle_Tanpopo);
 	WriteData((NJS_OBJECT**)0x004DFCB0, &Particle_Tanpopo);
+	WriteData((float**)0x004E802D, E103_PositionData);
 
 
 

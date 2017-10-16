@@ -2,6 +2,12 @@
 
 #include "SADXModLoader.h"
 
+CollisionData WGate_Collision[] = {
+	{ 0x300, 77, 0, 0, 0.0, 11.0, 20.0, 4.0, 17.0, 0.0, 0, 0, 0, 0 },
+	{ 0x300, 77, 0, 0, 0.0, 11.0, -20.0, 4.0, 17.0, 0.0, 0, 0, 0, 0 },
+	{ 0, 77, 0, 0, 0.0, 28.0, 0.0, 4.0, 20.0, 0.0, 0x4000, 0, 0, 0 }
+};
+
 NJS_MATERIAL matlist_00126134[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 73, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 71, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
