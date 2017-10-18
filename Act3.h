@@ -30881,7 +30881,7 @@ Sint16 poly_000A0D1A[] = {
 	4, 19, 18, 17, 16,
 	4, 35, 34, 33, 32,
 	4, 39, 37, 38, 36, //New Polygon added!
-	4, 23, 27, 22, 26 //Another New Polygon added!
+	4, 23, 21, 22, 20 //Another New Polygon added!
 };
 
 Sint16 poly_000A0D38[] = {
