@@ -30880,7 +30880,8 @@ Sint16 poly_000A0D1A[] = {
 	4, 3, 2, 1, 0,
 	4, 19, 18, 17, 16,
 	4, 35, 34, 33, 32,
-	4, 39, 37, 38, 36 //New Polygon added!
+	4, 39, 37, 38, 36, //New Polygon added!
+	4, 23, 21, 22, 20 //Another New Polygon added!
 };
 
 Sint16 poly_000A0D38[] = {
@@ -30999,6 +31000,10 @@ NJS_TEX uv_000A0F00[] = {
 	{ 2, -506 },
 	{ 3, 249 }, //New UVs added in for new polygon.
 	{ 506, -504 },
+	{ 506, 253 },
+	{ 2, -506 },
+	{ 3, 249 }, //New UVs added in for new polygon.
+	{ 506, -504 },
 	{ 506, 253 }
 };
 
@@ -31092,7 +31097,7 @@ NJS_MESHSET_SADX meshlist_000A1070[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000A0C70, NULL, NULL, NULL, uv_000A0E00, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 6, poly_000A0C7A, NULL, NULL, NULL, uv_000A0E00, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 11, poly_000A0CB6, NULL, NULL, NULL, uv_000A0E60, NULL }, //The amount of polygons to load has been increased by one.
-	{ NJD_MESHSET_TRIMESH | 3, 4, poly_000A0D1A, NULL, NULL, NULL, uv_000A0F00, NULL }, //The amount of polygons to load has been increased by one.
+	{ NJD_MESHSET_TRIMESH | 3, 5, poly_000A0D1A, NULL, NULL, NULL, uv_000A0F00, NULL }, //The amount of polygons to load has been increased by two.
 	{ NJD_MESHSET_TRIMESH | 4, 4, poly_000A0D38, NULL, NULL, NULL, uv_000A0F30, NULL },
 	{ NJD_MESHSET_TRIMESH | 5, 16, poly_000A0D60, NULL, NULL, NULL, uv_000A0F70, NULL }
 };
@@ -31120,12 +31125,12 @@ NJS_VECTOR vertex_000A1100[] = {
 	{ -5.185455f, 32.0838f, 38.34656f },
 	{ -2.218628f, -20.7362f, -14.87646f }, //20
 	{ 22.79648f, -20.7362f, 24.86133f },
-	{ -1.572815f, 32.0838f, -11.45093f },
-	{ 20.01958f, 32.0838f, 22.75415f },
+	{ -1.572815f, 32.0838f, -11.45093f }, //22 third
+	{ 20.01958f, 32.0838f, 22.75415f }, //23 first
 	{ -26.95645f, -44.10541f, 0.138672f },
 	{ -1.941345f, -44.10541f, 39.87646f },
-	{ 3.781372f, -44.10541f, -18.87646f },
-	{ 28.79648f, -44.10541f, 20.86133f },
+	{ 3.781372f, -44.10541f, -18.87646f }, //26 fourth
+	{ 28.79648f, -44.10541f, 20.86133f }, //27 second
 	{ 17.6797f, 34.3352f, 21.82348f },
 	{ -1.753448f, 34.3352f, -8.96106f },
 	{ -24.43796f, 34.3352f, 5.072144f }, //30
@@ -62196,7 +62201,7 @@ NJS_VECTOR vertex_000DA830[] = {
 	{ 39, 32.23218f, 188 },
 	{ 135, 32.23218f, 187 },
 	{ 211, 32.23218f, 126 },
-	{ 204, 32.23218f, 85 },
+	{ 205, 32.23218f, 85 }, //Bad Vertice. X Pos + 1.
 	{ 199, 32.23218f, -8 },
 	{ 148, 32.23218f, -100 },
 	{ 18, 32.23218f, -125 },
@@ -72401,7 +72406,7 @@ NJS_VECTOR vertex_000EBFA0[] = {
 	{ 163.4639f, -69.78578f, 204.9695f },
 	{ 241.4939f, -69.78578f, 143.586f },
 	{ 233.1706f, -69.78578f, 50.99045f },
-	{ 197.7971f, -69.78578f, -44.72633f },
+	{ 196.7971f, -69.78578f, -43.72633f }, //Bad Vertice. X Pos - 1. Z Pos + 1.
 	{ 127.0499f, -69.78578f, -78.01905f },
 	{ 42.77759f, -69.78578f, -66.57457f },
 	{ -53.20768f, -60.49012f, 60.43746f },
