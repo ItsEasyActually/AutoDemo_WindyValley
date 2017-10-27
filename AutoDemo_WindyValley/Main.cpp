@@ -14,6 +14,7 @@
 #include "Sara_Objects.h"
 #include "Flower_Objects.h"
 #include "W_Ki_Objects.h"
+#include "Propellers.h"
 #include "Act1.h"
 #include "Act2.h"
 #include "Act3.h"
@@ -23,6 +24,7 @@
 //Variables
 static float grassFrame = 0;
 static float treeFrame = 0;
+static float fanSpeed = 0;
 
 //Structs
 struct ObjectThing
@@ -37,6 +39,7 @@ struct ObjectThing
 
 //Additional SADX Variables
 DataPointer(int, MissedFrames, 0x03B1117C);
+DataPointer(int, ClipLevel, 0x03ABDCF0);
 DataArray(CollisionData, stru_C67750, 0xC67750, 1);
 DataArray(CollisionData, stru_C673B8, 0xC673B8, 7);
 DataArray(CollisionData, TuriBr2_Collision, 0x00C66FB8, 1);
@@ -1792,6 +1795,120 @@ void __cdecl Load_SaraS2(ObjectMaster *a1)
 	}
 }
 
+//Dynamic Rotation Objects
+//Propellers
+void __cdecl Prope1_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+	Angle v4; // eax@6
+	Angle v5; // st7@8
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		sub_407870(&Model_Prope1Base, 0, 1.0); //Root Model
+		njPushMatrix(0);
+		njTranslate(0, Object_Prope1Prop.pos[0], Object_Prope1Prop.pos[1], Object_Prope1Prop.pos[2]);
+		v5 = (v1->CharIndex / 360.0) * 65536.0;
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
+		sub_407870(&Model_Prope1Prop, 0, 1.0);
+		njPopMatrix(1u);
+		njPopMatrix(1u);
+	}
+}
+
+void __cdecl Load_Prope1(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+
+	v1 = a1->Data1;
+	if (!ClipSetObject(a1))
+	{
+		if (v1->Action)
+		{
+			if (v1->Action == 1)
+			{
+				v1->CharIndex = 2.5f + v1->CharIndex;
+				Prope1_Display(a1);
+				//AddToCollisionList(v1);
+			}
+		}
+		else
+		{
+			v1->Action = 1;
+			a1->DisplaySub = Prope1_Display;
+			//InitCollision(a1, WGate_Collision, 3, 4u);
+		}
+	}
+}
+
+void __cdecl Prope2_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+	Angle v4; // eax@6
+	double v5; // st7@8
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		sub_407870(&Model_Prope2Base, 0, 1.0); //Root Model
+		njPushMatrix(0);
+		njTranslate(0, Object_Prope2Prop.pos[0], Object_Prope2Prop.pos[1], Object_Prope2Prop.pos[2]);
+		v5 = v1->CharIndex * 65536.0 * 0.002777777777777778;
+		if ((unsigned __int16)(unsigned __int64)v5)
+		{
+			njRotateX(0, (unsigned __int16)(unsigned __int64)v5);
+		}
+		sub_407870(&Model_Prope2Prop, 0, 1.0);
+		njPopMatrix(1u);
+		njPopMatrix(1u);
+	}
+}
+
+void __cdecl Load_Prope2(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+
+	v1 = a1->Data1;
+	if (!ClipSetObject(a1))
+	{
+		if (v1->Action)
+		{
+			if (v1->Action == 1)
+			{
+				v1->CharIndex = fanSpeed;
+				Prope2_Display(a1);
+				//AddToCollisionList(v1);
+			}
+		}
+		else
+		{
+			v1->Action = 1;
+			a1->DisplaySub = Prope2_Display;
+			//InitCollision(a1, WGate_Collision, 3, 4u);
+		}
+	}
+}
+
 
 //SADX Object List for Windy Valley
 ObjectListEntry WindyValleyObjectList_list[] = {
@@ -1820,8 +1937,8 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 2, 0, 0, 0, BLeaf, "B LEAF " } /* "B LEAF " */,						//16
 	{ 2, 2, 0, 0, 0, WcWind, "WC WIND" } /* "WC WIND" */,						//17
 	{ 2, 2, 0, 0, 0, PuWind, "PU WIND" } /* "PU WIND" */,						//18
-	{ 2, 4, 0, 0, 0, NullFunction, "PROPE1 " } /* "PROPE1 " */,					//19
-	{ 2, 4, 0, 0, 0, NullFunction, "PROPE2 " } /* "PROPE2 " */,					//1A
+	{ 2, 4, 0, 0, 0, Load_Prope1, "PROPE1 " } /* "PROPE1 " */,					//19
+	{ 2, 4, 0, 0, 0, Load_Prope2, "PROPE2 " } /* "PROPE2 " */,					//1A
 	{ 2, 4, 0, 0, 0, NullFunction, "PROPE3 " } /* "PROPE3 " */,					//1B
 	{ 2, 5, 0, 0, 0, Load_Flower0, "FLOWER0" } /* "FLOWER0" */,					//1C
 	{ 2, 5, 0, 0, 0, Load_Flower1, "FLOWER1" } /* "FLOWER1" */,					//1D
