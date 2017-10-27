@@ -15,6 +15,7 @@
 #include "Flower_Objects.h"
 #include "W_Ki_Objects.h"
 #include "Propellers.h"
+#include "UnrefencedModels.h"
 #include "Act1.h"
 #include "Act2.h"
 #include "Act3.h"
@@ -1456,6 +1457,23 @@ void __cdecl Load_IDai9(ObjectMaster *a1)
 	}
 }
 
+void __cdecl Load_IDai10(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &Unreferenced01_00106B30;
+	if (!ClipSetObject(a1))
+	{
+		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+		v3->scl[0] = 1.0f;
+		v3->scl[1] = 1.0f;
+		v3->scl[2] = 1.0f;
+		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+	}
+}
+
 void __cdecl Load_IHas14(ObjectMaster *a1)
 {
 	NJS_OBJECT *v3;
@@ -1507,6 +1525,24 @@ void __cdecl Load_IHas16(ObjectMaster *a1)
 	}
 }
 
+void __cdecl Load_IHas19(ObjectMaster *a1)
+{
+	NJS_OBJECT *v3;
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	v1->Object = &Unreferenced02_001149B4;
+	if (!ClipSetObject(a1))
+	{
+		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+		v3->scl[0] = 1.0f;
+		v3->scl[1] = 1.0f;
+		v3->scl[2] = 1.0f;
+		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+	}
+}
+
+
 //I Bou Objects
 void __cdecl Load_IBou01(ObjectMaster *a1)
 {
@@ -1535,6 +1571,26 @@ void __cdecl Load_IBou02(ObjectMaster *a1)
 
 		v1 = a1->Data1;
 		v1->Object = &Object_IBou02;
+		if (!ClipSetObject(a1))
+		{
+			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+			v3->scl[0] = 1.0f;
+			v3->scl[1] = 1.0f;
+			v3->scl[2] = 1.0f;
+			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		}
+	}
+}
+
+
+void __cdecl Load_IBou03(ObjectMaster *a1)
+{
+	{
+		NJS_OBJECT *v3;
+		EntityData1 *v1;
+
+		v1 = a1->Data1;
+		v1->Object = &Unreferenced00_001067D8;
 		if (!ClipSetObject(a1))
 		{
 			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
@@ -1946,8 +2002,8 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 4, 0, 0, 0, Load_WKi1, "W KI1  " } /* "W KI1  " */,					//1F
 	{ 2, 4, 0, 0, 0, Load_WKi2, "W KI2  " } /* "W KI2  " */,					//20
 	{ 2, 5, 0, 0, 0, Load_WKusa1, "W KUSA1" } /* "W KUSA1" */,					//21
-	{ 2, 5, 0, 0, 0, Load_Grass1, "GRASS1 " } /* "GRASS1 " */,						//22
-	{ 2, 5, 0, 0, 0, Load_Grass2, "GRASS2 " } /* "GRASS2 " */,						//23
+	{ 2, 5, 0, 0, 0, Load_Grass1, "GRASS1 " } /* "GRASS1 " */,					//22
+	{ 2, 5, 0, 0, 0, Load_Grass2, "GRASS2 " } /* "GRASS2 " */,					//23
 	{ 2, 5, 0, 0, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,					//24
 	{ 2, 5, 0, 0, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,					//25
 	{ 6, 3, 0, 0, 0, LRock, "L ROCK1" } /* "L ROCK1" */,						//26
@@ -2026,7 +2082,11 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,				//6F
 	{ 2, 3, 0, 0, 0, BoaBoa_Main, "E HEVY " } /* "E HEVY " */,					//70
 	{ 2, 3, 0, 0, 0, Leon_Load, "E LEON " } /* "E LEON " */,					//71
-	{ 2, 3, 0, 0, 0, E103Enemy_Load, "E E-103" } /* "E E-103" */				//72
+	{ 2, 3, 0, 0, 0, E103Enemy_Load, "E E-103" } /* "E E-103" */,				//72
+	//Special unreferenced objects.
+	{ 6, 3, 0, 0, 0, Load_IDai10, "I DAI 10" } /* "I DAI 10" */,				//73
+	{ 6, 3, 0, 0, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,					//74
+	{ 6, 3, 0, 0, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */					//75
 };
 
 ObjectList WindyValleyObjectList = { arraylengthandptrT(WindyValleyObjectList_list, int) };
