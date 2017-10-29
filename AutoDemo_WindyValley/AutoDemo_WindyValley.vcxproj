@@ -166,6 +166,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TexLists.h" />
     <ClInclude Include="Trampoline.h" />
+    <ClInclude Include="UnrefencedModels.h" />
     <ClInclude Include="WindyGate.h" />
     <ClInclude Include="W_Ki_Objects.h" />
   </ItemGroup>

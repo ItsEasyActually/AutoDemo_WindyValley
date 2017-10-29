@@ -24,7 +24,6 @@
 //Variables
 static float grassFrame = 0;
 static float treeFrame = 0;
-static float fanSpeed = 0;
 
 //Structs
 struct ObjectThing
@@ -324,24 +323,24 @@ void __cdecl WGate_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_407870(&attach_00129010, 0, 1.0); //Root Model
+		sub_407870((NJS_MODEL_SADX*)Gate_Root.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, RightPropeller_Model.pos[0], RightPropeller_Model.pos[1], RightPropeller_Model.pos[2]); //Right Propeller
-		v5 = v1->CharIndex * 65536.0 * 0.002777777777777778;
+		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
 			njRotateY(0, v5);
 		}
-		sub_407870(&attach_00128790, 0, 1.0); //Right Propeller
+		sub_407870((NJS_MODEL_SADX*)RightPropeller_Model.model, 0, 1.0); //Right Propeller
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, LeftPropeller_Model.pos[0], LeftPropeller_Model.pos[1], LeftPropeller_Model.pos[2]); //Left Propeller
-		v6 = v1->CharIndex * 65536.0 * 0.002777777777777778;
+		v6 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v6)
 		{
 			njRotateY(0, v6);
 		}
-		sub_407870(&attach_00127D10, 0, 1.0); //Left Propeller
+		sub_407870((NJS_MODEL_SADX*)LeftPropeller_Model.model, 0, 1.0); //Left Propeller
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, TopPropeller_Model.pos[0], TopPropeller_Model.pos[1], TopPropeller_Model.pos[2]); //Top Propeller
@@ -350,7 +349,7 @@ void __cdecl WGate_Display(ObjectMaster *a1)
 		{
 			njRotateZ(0, v7);
 		}
-		sub_407870(&attach_00127290, 0, 1.0); //Top Propeller
+		sub_407870((NJS_MODEL_SADX*)TopPropeller_Model.model, 0, 1.0); //Top Propeller
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -369,11 +368,11 @@ void __cdecl WindyGate_Main(ObjectMaster *a1)
 			{
 				if (v1->Scale.x != 0)
 				{
-					v1->CharIndex = v1->Scale.x + v1->CharIndex;
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
 				}
 				else
 				{
-					v1->CharIndex = 10.0f + v1->CharIndex;
+					*(float*)&v1->CharIndex = 10.0f + *(float*)&v1->CharIndex;
 				}
 				if (v1->Scale.y != 0)
 				{
@@ -1814,15 +1813,15 @@ void __cdecl Prope1_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_407870(&Model_Prope1Base, 0, 1.0); //Root Model
+		sub_407870((NJS_MODEL_SADX*)Object_Prope1Base.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Prope1Prop.pos[0], Object_Prope1Prop.pos[1], Object_Prope1Prop.pos[2]);
-		v5 = (v1->CharIndex / 360.0) * 65536.0;
+		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_407870(&Model_Prope1Prop, 0, 1.0);
+		sub_407870((NJS_MODEL_SADX*)Object_Prope1Prop.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -1839,7 +1838,7 @@ void __cdecl Load_Prope1(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				v1->CharIndex = 2.5f + v1->CharIndex;
+				*(float*)&v1->CharIndex = 2.5f + *(float*)&v1->CharIndex;
 				Prope1_Display(a1);
 				//AddToCollisionList(v1);
 			}
@@ -1857,7 +1856,7 @@ void __cdecl Prope2_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
 	Angle v4; // eax@6
-	double v5; // st7@8
+	Angle v5; // st7@8
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -1870,15 +1869,15 @@ void __cdecl Prope2_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_407870(&Model_Prope2Base, 0, 1.0); //Root Model
+		sub_407870((NJS_MODEL_SADX*)Object_Prope2Base.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Prope2Prop.pos[0], Object_Prope2Prop.pos[1], Object_Prope2Prop.pos[2]);
-		v5 = v1->CharIndex * 65536.0 * 0.002777777777777778;
-		if ((unsigned __int16)(unsigned __int64)v5)
+		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+		if (v5)
 		{
-			njRotateX(0, (unsigned __int16)(unsigned __int64)v5);
+			njRotateX(0, (unsigned __int16)v5);
 		}
-		sub_407870(&Model_Prope2Prop, 0, 1.0);
+		sub_407870((NJS_MODEL_SADX*)Object_Prope2Prop.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -1895,7 +1894,7 @@ void __cdecl Load_Prope2(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				v1->CharIndex = fanSpeed;
+				*(float*)&v1->CharIndex = 2.5f + *(float*)&v1->CharIndex;
 				Prope2_Display(a1);
 				//AddToCollisionList(v1);
 			}
@@ -2027,6 +2026,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, BoaBoa_Main, "E HEVY " } /* "E HEVY " */,					//70
 	{ 2, 3, 0, 0, 0, Leon_Load, "E LEON " } /* "E LEON " */,					//71
 	{ 2, 3, 0, 0, 0, E103Enemy_Load, "E E-103" } /* "E E-103" */				//72
+{ 2, 3, 0, 0, 0, ChaosEmeGoal_WValley_Main, "O KAOSE" } /* "Chaos Emerald */	//73
 };
 
 ObjectList WindyValleyObjectList = { arraylengthandptrT(WindyValleyObjectList_list, int) };
