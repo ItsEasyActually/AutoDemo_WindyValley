@@ -2081,16 +2081,11 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,				//6F
 	{ 2, 3, 0, 0, 0, BoaBoa_Main, "E HEVY " } /* "E HEVY " */,					//70
 	{ 2, 3, 0, 0, 0, Leon_Load, "E LEON " } /* "E LEON " */,					//71
-<<<<<<< HEAD
-	{ 2, 3, 0, 0, 0, E103Enemy_Load, "E E-103" } /* "E E-103" */				//72
-{ 2, 3, 0, 0, 0, ChaosEmeGoal_WValley_Main, "O KAOSE" } /* "Chaos Emerald */	//73
-=======
 	{ 2, 3, 0, 0, 0, E103Enemy_Load, "E E-103" } /* "E E-103" */,				//72
-	//Special unreferenced objects.
-	{ 6, 3, 0, 0, 0, Load_IDai10, "I DAI 10" } /* "I DAI 10" */,				//73
-	{ 6, 3, 0, 0, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,					//74
-	{ 6, 3, 0, 0, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */					//75
->>>>>>> origin/master
+	{ 2, 3, 0, 0, 0, ChaosEmeGoal_WValley_Main, "O KAOSE" } /* "Chaos Emerald */,	//73
+	{ 6, 3, 0, 0, 0, Load_IDai10, "I DAI 10" } /* "I DAI 10" */,				//74
+	{ 6, 3, 0, 0, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,					//75
+	{ 6, 3, 0, 0, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */					//76
 };
 
 ObjectList WindyValleyObjectList = { arraylengthandptrT(WindyValleyObjectList_list, int) };
