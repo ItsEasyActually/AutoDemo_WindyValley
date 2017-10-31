@@ -50,6 +50,7 @@ DataArray(CollisionData, TuriBr_Collision, 0x00C66F88, 1);
 FunctionPointer(NJS_OBJECT*, DynamicCollision, (NJS_OBJECT *a1, ObjectMaster *a2, ColFlags surfaceFlags), 0x49D6C0);
 FunctionPointer(void, sub_407870, (NJS_MODEL_SADX *model, char blend, float radius_scale), 0x407870);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
+FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 FunctionPointer(void, sub_49CD60, (ObjectMaster *a1), 0x49CD60);
 FunctionPointer(void, sub_49DF70, (ObjectMaster *a1), 0x49DF70);
 FunctionPointer(void, sub_49E170, (ObjectMaster *a1), 0x49E170);
@@ -325,7 +326,7 @@ void __cdecl WGate_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_407870((NJS_MODEL_SADX*)Gate_Root.model, 0, 1.0); //Root Model
+		sub_409E70((NJS_MODEL_SADX*)Gate_Root.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, RightPropeller_Model.pos[0], RightPropeller_Model.pos[1], RightPropeller_Model.pos[2]); //Right Propeller
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -333,7 +334,7 @@ void __cdecl WGate_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, v5);
 		}
-		sub_407870((NJS_MODEL_SADX*)RightPropeller_Model.model, 0, 1.0); //Right Propeller
+		sub_409E70((NJS_MODEL_SADX*)RightPropeller_Model.model, 0, 1.0); //Right Propeller
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, LeftPropeller_Model.pos[0], LeftPropeller_Model.pos[1], LeftPropeller_Model.pos[2]); //Left Propeller
@@ -342,7 +343,7 @@ void __cdecl WGate_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, v6);
 		}
-		sub_407870((NJS_MODEL_SADX*)LeftPropeller_Model.model, 0, 1.0); //Left Propeller
+		sub_409E70((NJS_MODEL_SADX*)LeftPropeller_Model.model, 0, 1.0); //Left Propeller
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, TopPropeller_Model.pos[0], TopPropeller_Model.pos[1], TopPropeller_Model.pos[2]); //Top Propeller
@@ -351,7 +352,7 @@ void __cdecl WGate_Display(ObjectMaster *a1)
 		{
 			njRotateZ(0, v7);
 		}
-		sub_407870((NJS_MODEL_SADX*)TopPropeller_Model.model, 0, 1.0); //Top Propeller
+		sub_409E70((NJS_MODEL_SADX*)TopPropeller_Model.model, 0, 1.0); //Top Propeller
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -1876,7 +1877,7 @@ void __cdecl Prope1_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_Prope1Base.model, 0, 1.0); //Root Model
+		sub_409E70((NJS_MODEL_SADX*)Object_Prope1Base.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Prope1Prop.pos[0], Object_Prope1Prop.pos[1], Object_Prope1Prop.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -1884,7 +1885,7 @@ void __cdecl Prope1_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_Prope1Prop.model, 0, 1.0);
+		sub_409E70((NJS_MODEL_SADX*)Object_Prope1Prop.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -1932,7 +1933,7 @@ void __cdecl Prope2_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_Prope2Base.model, 0, 1.0); //Root Model
+		sub_409E70((NJS_MODEL_SADX*)Object_Prope2Base.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Prope2Prop.pos[0], Object_Prope2Prop.pos[1], Object_Prope2Prop.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -1940,7 +1941,7 @@ void __cdecl Prope2_Display(ObjectMaster *a1)
 		{
 			njRotateX(0, (unsigned __int16)v5);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_Prope2Prop.model, 0, 1.0);
+		sub_409E70((NJS_MODEL_SADX*)Object_Prope2Prop.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -1988,7 +1989,7 @@ void __cdecl Prope3_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_Prope3Base.model, 0, 1.0); //Root Model
+		sub_409E70((NJS_MODEL_SADX*)Object_Prope3Base.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Prope3Prop.pos[0], Object_Prope3Prop.pos[1], Object_Prope3Prop.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -1996,7 +1997,7 @@ void __cdecl Prope3_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_Prope3Prop.model, 0, 1.0);
+		sub_409E70((NJS_MODEL_SADX*)Object_Prope3Prop.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -2044,7 +2045,7 @@ void __cdecl PropeA_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_PropABase.model, 0, 1.0); //Root Model
+		sub_409E70((NJS_MODEL_SADX*)Object_PropABase.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_PropAProp.pos[0], Object_PropAProp.pos[1], Object_PropAProp.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -2052,7 +2053,7 @@ void __cdecl PropeA_Display(ObjectMaster *a1)
 		{
 			njRotateX(0, (unsigned __int16)v5);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_PropAProp.model, 0, 1.0);
+		sub_409E70((NJS_MODEL_SADX*)Object_PropAProp.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -2115,29 +2116,29 @@ void __cdecl PropeB_Display(ObjectMaster *a1)
 		}
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeBTopPole.pos[0], (Object_PropeBTopPole.pos[1]), Object_PropeBTopPole.pos[2]);
-		sub_407870((NJS_MODEL_SADX*)Object_PropeBTopPole.model, 0, 1.0); //Root Model
+		sub_409E70((NJS_MODEL_SADX*)Object_PropeBTopPole.model, 0, 1.0); //Root Model
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Object_PropeBTopFans.pos[0], (Object_PropeBTopFans.pos[1] + 15.5), Object_PropeBTopFans.pos[2]);
+		njTranslate(0, Object_PropeBTopFans.pos[0], (Object_PropeBTopFans.pos[1] + 23.5), Object_PropeBTopFans.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
 			njRotateX(0, (unsigned __int16)v5);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_PropeBTopFans.model, 0, 1.0);
+		sub_409E70((NJS_MODEL_SADX*)Object_PropeBTopFans.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeBBotPole.pos[0], (Object_PropeBBotPole.pos[1]), Object_PropeBBotPole.pos[2]);
-		sub_407870((NJS_MODEL_SADX*)Object_PropeBBotPole.model, 0, 1.0); //Root Model
+		sub_409E70((NJS_MODEL_SADX*)Object_PropeBBotPole.model, 0, 1.0); //Root Model
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Object_PropeBBotFans.pos[0], (Object_PropeBBotFans.pos[1] + 8), Object_PropeBBotFans.pos[2]);
+		njTranslate(0, Object_PropeBBotFans.pos[0], (Object_PropeBBotFans.pos[1] + 8.0), Object_PropeBBotFans.pos[2]);
 		v6 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v6)
 		{
 			njRotateX(0, (unsigned __int16)v6);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_PropeBBotFans.model, 0, 1.0);
+		sub_409E70((NJS_MODEL_SADX*)Object_PropeBBotFans.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -2200,7 +2201,7 @@ void __cdecl PropeC_Display(ObjectMaster *a1)
 		}
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeCBar.pos[0], (Object_PropeCBar.pos[1]), Object_PropeCBar.pos[2]);
-		sub_407870((NJS_MODEL_SADX*)Object_PropeCBar.model, 0, 1.0); //Root Model
+		sub_409E70((NJS_MODEL_SADX*)Object_PropeCBar.model, 0, 1.0); //Root Model
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeCFans.pos[0], (Object_PropeCFans.pos[1]+12), Object_PropeCFans.pos[2]);
@@ -2209,7 +2210,7 @@ void __cdecl PropeC_Display(ObjectMaster *a1)
 		{
 			njRotateX(0, (unsigned __int16)v5);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_PropeCFans.model, 0, 1.0);
+		sub_409E70((NJS_MODEL_SADX*)Object_PropeCFans.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -2257,35 +2258,35 @@ void __cdecl Pot01_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_Pot01.model, 0, 1.0); //Root Model
+		sub_409E70((NJS_MODEL_SADX*)Object_Pot01.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
-		njTranslate(0, Object_Pot01Bot.pos[0], (Object_Pot01Bot.pos[1] + 12.5), Object_Pot01Bot.pos[2]);
-		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
-		if (v5)
-		{
-			njRotateY(0, (unsigned __int16)v5);
-		}
-		sub_407870((NJS_MODEL_SADX*)Object_Pot01Bot.model, 0, 1.0);
-		njPopMatrix(1u);
-		njPushMatrix(0);
-		njTranslate(0, Object_Pot01Mid.pos[0], (Object_Pot01Mid.pos[1] + 14.0), Object_Pot01Mid.pos[2]);
-		njRotateY(0, Object_Pot01Mid.ang[1] + 0x1555);
-		v5 = *(float*)&v1->Object * 65536.0 * 0.002777777777777778;
-		if (v5)
-		{
-			njRotateY(0, (unsigned __int16)v5);
-		}
-		sub_407870((NJS_MODEL_SADX*)Object_Pot01Mid.model, 0, 1.0);
-		njPopMatrix(1u);
-		njPushMatrix(0);
-		njTranslate(0, Object_Pot01Top.pos[0], (Object_Pot01Top.pos[1] + 15.5), Object_Pot01Top.pos[2]);
+		njTranslate(0, Object_Pot01Top.pos[0], (Object_Pot01Top.pos[1]), Object_Pot01Top.pos[2]);
 		njRotateY(0, Object_Pot01Top.ang[1] + 0x2AAA);
 		v5 = *(float*)&v1->LoopData * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_Pot01Top.model, 0, 1.0);
+		sub_409E70((NJS_MODEL_SADX*)Object_Pot01Top.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Object_Pot01Mid.pos[0], (Object_Pot01Mid.pos[1]), Object_Pot01Mid.pos[2]);
+		njRotateY(0, Object_Pot01Mid.ang[1] + 0x1555);
+		v5 = *(float*)&v1->Object * 65536.0 * 0.002777777777777778;
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
+		sub_409E70((NJS_MODEL_SADX*)Object_Pot01Mid.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Object_Pot01Bot.pos[0], (Object_Pot01Bot.pos[1]), Object_Pot01Bot.pos[2]);
+		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
+		sub_409E70((NJS_MODEL_SADX*)Object_Pot01Bot.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -2335,15 +2336,15 @@ void __cdecl Pot02_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_Pot02.model, 0, 1.0); //Root Model
+		sub_409E70((NJS_MODEL_SADX*)Object_Pot02.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
-		njTranslate(0, Object_Pot02Fans.pos[0], (Object_Pot02Fans.pos[1] + 7.75), Object_Pot02Fans.pos[2]);
+		njTranslate(0, Object_Pot02Fans.pos[0], (Object_Pot02Fans.pos[1]), Object_Pot02Fans.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_407870((NJS_MODEL_SADX*)Object_Pot02Fans.model, 0, 1.0);
+		sub_409E70((NJS_MODEL_SADX*)Object_Pot02Fans.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -2370,6 +2371,72 @@ void __cdecl Load_Pot02(ObjectMaster *a1)
 			v1->Action = 1;
 			a1->DisplaySub = Pot02_Display;
 			InitCollision(a1, Pot02_Collision, 2, 4u);
+		}
+	}
+}
+
+void __cdecl Prop1_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+	Angle v4; // eax@6
+	Angle v5; // st7@8
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		sub_409E70((NJS_MODEL_SADX*)Object_Prop1.model, 0, 1.0); //Root Model
+		njPushMatrix(0);
+		njTranslate(0, Object_Prop1Top.pos[0], (Object_Prop1Top.pos[1]), Object_Prop1Top.pos[2]);
+		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
+		sub_409E70((NJS_MODEL_SADX*)Object_Prop1Top.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Object_Prop1Bot.pos[0], (Object_Prop1Bot.pos[1]), Object_Prop1Bot.pos[2]);
+		v5 = *(float*)&v1->Object * 65536.0 * 0.002777777777777778;
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
+		sub_409E70((NJS_MODEL_SADX*)Object_Prop1Bot.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPopMatrix(1u);
+	}
+}
+
+void __cdecl Load_Prop1(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+
+	v1 = a1->Data1;
+	if (!ClipSetObject(a1))
+	{
+		if (v1->Action)
+		{
+			if (v1->Action == 1)
+			{
+				*(float*)&v1->CharIndex = 5.0f + *(float*)&v1->CharIndex;
+				*(float*)&v1->Object = -2.5f + *(float*)&v1->Object;
+				Prop1_Display(a1);
+				//AddToCollisionList(v1);
+			}
+		}
+		else
+		{
+			v1->Action = 1;
+			a1->DisplaySub = Prop1_Display;
+			//InitCollision(a1, Pot02_Collision, 2, 4u);
 		}
 	}
 }
@@ -2463,7 +2530,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, NullFunction, "DOME 1 " } /* "DOME 1 " */,					//54
 	{ 2, 3, 0, 0, 0, NullFunction, "DOME 2 " } /* "DOME 2 " */,					//55
 	{ 2, 3, 0, 0, 0, NullFunction, "DOME 3 " } /* "DOME 3 " */,					//56
-	{ 2, 5, 0, 0, 0, NullFunction, "PROP 1 " } /* "PROP 1 " */,					//57
+	{ 2, 5, 0, 0, 0, Load_Prop1, "PROP 1 " } /* "PROP 1 " */,					//57
 	{ 2, 4, 0, 0, 0, Load_PropeA, "PROPE A" } /* "PROPE A" */,					//58
 	{ 2, 4, 0, 0, 0, Load_PropeB, "PROPE B" } /* "PROPE B" */,					//59
 	{ 2, 4, 0, 0, 0, Load_PropeC, "PROPE C" } /* "PROPE C" */,					//5A
