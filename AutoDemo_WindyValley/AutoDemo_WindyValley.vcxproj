@@ -149,6 +149,7 @@
     <ClInclude Include="IHas_Objects.h" />
     <ClInclude Include="PathInfo.h" />
     <ClInclude Include="Pole_Objects.h" />
+    <ClInclude Include="Pot_Objects.h" />
     <ClInclude Include="Propellers.h" />
     <ClInclude Include="Rock_Objects.h" />
     <ClInclude Include="MemAccess.h" />

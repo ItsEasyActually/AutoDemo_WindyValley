@@ -120,6 +120,9 @@
     <ClInclude Include="UnrefencedModels.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Pot_Objects.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
