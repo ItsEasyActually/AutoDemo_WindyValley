@@ -2033,6 +2033,8 @@ void __cdecl PropeA_Display(ObjectMaster *a1)
 	EntityData1 *v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
+	Angle z1;
+	Angle x1;
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -2040,10 +2042,20 @@ void __cdecl PropeA_Display(ObjectMaster *a1)
 		SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		z1 = v1->Rotation.z;
+		if (z1)
+		{
+			njRotateZ(0, (unsigned __int16)z1);
+		}
 		v4 = v1->Rotation.y;
 		if (v4)
 		{
 			njRotateY(0, (unsigned __int16)v4);
+		}
+		x1 = v1->Rotation.x;
+		if (x1)
+		{
+			njRotateX(0, (unsigned __int16)x1);
 		}
 		sub_409E70((NJS_MODEL_SADX*)Object_PropABase.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
@@ -2070,7 +2082,7 @@ void __cdecl Load_PropeA(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 10.0f + *(float*)&v1->CharIndex;
+				*(float*)&v1->CharIndex = 5.0f + *(float*)&v1->CharIndex;
 				PropeA_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2090,8 +2102,6 @@ void __cdecl PropeB_Display(ObjectMaster *a1)
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 	Angle v6;
-	Angle x1;
-	Angle z1;
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -2099,20 +2109,10 @@ void __cdecl PropeB_Display(ObjectMaster *a1)
 		SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
-		z1 = v1->Rotation.z;
-		if (z1)
-		{
-			njRotateZ(0, (unsigned __int16)z1);
-		}
 		v4 = v1->Rotation.y;
 		if (v4)
 		{
 			njRotateY(0, (unsigned __int16)v4);
-		}
-		x1 = v1->Rotation.x;
-		if (x1)
-		{
-			njRotateX(0, (unsigned __int16)x1);
 		}
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeBTopPole.pos[0], (Object_PropeBTopPole.pos[1]), Object_PropeBTopPole.pos[2]);
@@ -2155,7 +2155,7 @@ void __cdecl Load_PropeB(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 2.5f + *(float*)&v1->CharIndex;
+				*(float*)&v1->CharIndex = 10.0f + *(float*)&v1->CharIndex;
 				PropeB_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2175,8 +2175,6 @@ void __cdecl PropeC_Display(ObjectMaster *a1)
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 	Angle v6;
-	Angle x1;
-	Angle z1;
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -2184,20 +2182,10 @@ void __cdecl PropeC_Display(ObjectMaster *a1)
 		SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
-		z1 = v1->Rotation.z;
-		if (z1)
-		{
-			njRotateZ(0, (unsigned __int16)z1);
-		}
 		v4 = v1->Rotation.y;
 		if (v4)
 		{
 			njRotateY(0, (unsigned __int16)v4);
-		}
-		x1 = v1->Rotation.x;
-		if (x1)
-		{
-			njRotateX(0, (unsigned __int16)x1);
 		}
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeCBar.pos[0], (Object_PropeCBar.pos[1]), Object_PropeCBar.pos[2]);
@@ -2227,7 +2215,7 @@ void __cdecl Load_PropeC(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 5.0f + *(float*)&v1->CharIndex;
+				*(float*)&v1->CharIndex = 10.0f + *(float*)&v1->CharIndex;
 				PropeC_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2262,7 +2250,7 @@ void __cdecl Pot01_Display(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslate(0, Object_Pot01Top.pos[0], (Object_Pot01Top.pos[1]), Object_Pot01Top.pos[2]);
 		njRotateY(0, Object_Pot01Top.ang[1] + 0x2AAA);
-		v5 = *(float*)&v1->LoopData * 65536.0 * 0.002777777777777778;
+		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
 			njRotateY(0, (unsigned __int16)v5);
@@ -2281,7 +2269,7 @@ void __cdecl Pot01_Display(ObjectMaster *a1)
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Object_Pot01Bot.pos[0], (Object_Pot01Bot.pos[1]), Object_Pot01Bot.pos[2]);
-		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+		v5 = *(float*)&v1->LoopData * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
 			njRotateY(0, (unsigned __int16)v5);
@@ -2361,7 +2349,7 @@ void __cdecl Load_Pot02(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 5.0f + *(float*)&v1->CharIndex;
+				*(float*)&v1->CharIndex = 10.0f + *(float*)&v1->CharIndex;
 				Pot02_Display(a1);
 				AddToCollisionList(v1);
 			}

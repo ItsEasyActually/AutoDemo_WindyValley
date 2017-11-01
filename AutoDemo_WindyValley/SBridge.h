@@ -572,7 +572,7 @@ NJS_VECTOR normal_00131E88[] = {
 NJS_MODEL_SADX ShortBridge_Model = { vertex_001317C8, normal_00131E88, LengthOfArray<Sint32>(vertex_001317C8), meshlist_001317B0, matlist_001312B0, LengthOfArray<Uint16>(meshlist_001317B0), LengthOfArray<Uint16>(matlist_001312B0),{ 100, 25.63814f, 0 }, 101.5397f, NULL };
 
 NJS_MATERIAL matlist_001325A4[] = {
-	{ { 0xFF5DB2B2 },{ 0x00000000 }, 0, 0, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC }
+	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 0, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
 Sint16 poly_001325B8[] = {
