@@ -2421,7 +2421,7 @@ void __cdecl Load_Prop1(ObjectMaster *a1)
 			if (v1->Action == 1)
 			{
 				*(float*)&v1->CharIndex = 3.7f + *(float*)&v1->CharIndex;
-				*(float*)&v1->Object = -1.2f + *(float*)&v1->Object;
+				*(float*)&v1->Object = -1.0f + *(float*)&v1->Object;
 				Prop1_Display(a1);
 				//AddToCollisionList(v1);
 			}
