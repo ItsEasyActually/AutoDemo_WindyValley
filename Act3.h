@@ -8290,7 +8290,7 @@ NJS_VECTOR normal_0007597C[] = {
 
 NJS_MODEL_SADX attach_00075A3C = { vertex_000758BC, normal_0007597C, LengthOfArray(vertex_000758BC), meshlist_00075874, matlist_000756D0, LengthOfArray(meshlist_00075874), LengthOfArray(matlist_000756D0),{ -1.067162f, 14.40271f, -1.382204f }, 31.61046f, NULL };
 
-NJS_OBJECT object_00075A64 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_BREAK, &attach_00075A3C, 2686, 201, -539, 0, 0, 0, 1.16f, 1, 1.16f, NULL, NULL };
+NJS_OBJECT object_00075A64 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_BREAK, &attach_00075A3C, 2686, 201, -539, 0, 0, 0, 1, 1, 1, NULL, NULL }; //Scale was 1.16f, 1, 1.16f
 
 NJS_MATERIAL matlist_00075A98[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 4, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -8428,7 +8428,7 @@ NJS_VECTOR normal_00075D44[] = {
 
 NJS_MODEL_SADX attach_00075E04 = { vertex_00075C84, normal_00075D44, LengthOfArray(vertex_00075C84), meshlist_00075C3C, matlist_00075A98, LengthOfArray(meshlist_00075C3C), LengthOfArray(matlist_00075A98),{ 0.8331708f, 19.14106f, -1.07616f }, 39.81646f, NULL };
 
-NJS_OBJECT object_00075E2C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_BREAK, &attach_00075E04, 2628, 201, -557, 0, 0, 0, 1.267146f, 1, 1.267146f, NULL, NULL };
+NJS_OBJECT object_00075E2C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_BREAK, &attach_00075E04, 2628, 201, -557, 0, 0, 0, 1, 1, 1, NULL, NULL }; //Scale was 1.267146f, 1, 1.267146f
 
 NJS_MATERIAL matlist_00075E60[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 4, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -8574,7 +8574,7 @@ NJS_VECTOR normal_00076138[] = {
 
 NJS_MODEL_SADX attach_000761F8 = { vertex_00076078, normal_00076138, LengthOfArray(vertex_00076078), meshlist_00076018, matlist_00075E60, LengthOfArray(meshlist_00076018), LengthOfArray(matlist_00075E60),{ -1.381293f, 26.97965f, 0.6450465f }, 61.7212f, NULL };
 
-NJS_OBJECT object_00076220 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_BREAK, &attach_000761F8, 2615, 197, -495, 0, 0, 0, 1.25f, 1, 1.25f, NULL, NULL };
+NJS_OBJECT object_00076220 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_BREAK, &attach_000761F8, 2615, 197, -495, 0, 0, 0, 1, 1, 1, NULL, NULL }; //Scale was 1.25f, 1, 1.25f
 
 NJS_MATERIAL matlist_00076254[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 1, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
