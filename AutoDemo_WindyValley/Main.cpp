@@ -18,7 +18,7 @@
 #include "Tako_W.h"
 #include "Spring_Objects.h"
 #include "W_Ki_Objects.h"
-#include "Dome_Pieces.h"
+#include "Dome_Objects.h"
 #include "Propellers.h"
 #include "Pot_Objects.h"
 #include "UnrefencedModels.h"
@@ -2583,7 +2583,7 @@ void __cdecl Load_Dome1(ObjectMaster *a1)
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Dome1_Display;
-			InitCollision(a1, PropeB_Collision, 5, 4u); //Temporary data. Need to properly implement Dome1's Init Collision.
+			InitCollision(a1, Dome1_Collision, 1, 4u);
 		}
 	}
 }
@@ -2665,7 +2665,7 @@ void __cdecl Load_Dome2(ObjectMaster *a1)
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Dome2_Display;
-			InitCollision(a1, PropeB_Collision, 5, 4u); //Temporary data. Need to properly implement Dome2's Init Collision.
+			InitCollision(a1, Dome2_Collision, 1, 4u);
 		}
 	}
 }
@@ -2759,7 +2759,7 @@ void __cdecl Load_Dome3(ObjectMaster *a1)
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Dome3_Display;
-			InitCollision(a1, PropeB_Collision, 5, 4u); //Temporary data. Need to properly implement Dome3's Init Collision.
+			InitCollision(a1, Dome3_Collision, 1, 4u);
 		}
 	}
 }

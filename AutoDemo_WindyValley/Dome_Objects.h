@@ -2,6 +2,18 @@
 
 #include "SADXModLoader.h"
 
+CollisionData Dome1_Collision[] = {
+	{ 0x300, 77, 0, 0, 0.0, 27.0, 0.0, 17.5, 27.0, 0.0, 0, 0, 0, 0 }
+};
+
+CollisionData Dome2_Collision[] = {
+	{ 0x300, 77, 0, 0, 0.0, 35.0, 0.0, 17.5, 35.0, 0.0, 0, 0, 0, 0 }
+};
+
+CollisionData Dome3_Collision[] = {
+	{ 0x300, 77, 0, 0, 0.0, 43.0, 0.0, 17.5, 43.0, 0.0, 0, 0, 0, 0 }
+};
+
 NJS_MATERIAL matlist_000FF258[] = {
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 88, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 31, NJD_D_100 | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },

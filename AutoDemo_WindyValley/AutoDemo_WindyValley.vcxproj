@@ -142,6 +142,7 @@
     <ClInclude Include="Act2.h" />
     <ClInclude Include="Act3.h" />
     <ClInclude Include="d3d8types.h" />
+    <ClInclude Include="Dome_Objects.h" />
     <ClInclude Include="Flower_Objects.h" />
     <ClInclude Include="Grass_Objects.h" />
     <ClInclude Include="IBou-IHah_Objects.h" />
