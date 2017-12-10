@@ -1570,7 +1570,7 @@ void __cdecl Load_IHas18(ObjectMaster *a1)
 	v1 = a1->Data1;
 	if (!ObjectSelectedDebug(a1))
 	{
-		InitCollision(a1, (CollisionData*)&IHas18_Collision, 2, 4u);
+		InitCollision(a1, (CollisionData*)&IHas18_Collision, 5, 4u);
 	}
 	v1->Object = &I_Has18;
 	a1->MainSub = Basic_Main;
