@@ -221,8 +221,8 @@ void __cdecl Trampoline_Display(ObjectMaster *a2)
 			YScale = -v1->Scale.y;
 			XScale = -v1->Scale.x;
 			njScale(0, XScale, YScale, v3);
-			njScale(0, 1.0, 1.8, 1.0);
-			v6 = VectorMaxAbs(&v1->Scale) * 1.8;
+			njScale(0, 1.0f, 1.8f, 1.0f);
+			v6 = VectorMaxAbs(&v1->Scale) * 1.8f;
 			sub_407870(&attach_00144B74, 1, v6); //Bottom Model
 		}
 		else
@@ -380,7 +380,7 @@ void __cdecl WindyGate_Main(ObjectMaster *a1)
 				}
 				else
 				{
-					*(float*)&v1->CharIndex = 10.0f + *(float*)&v1->CharIndex;
+					*(float*)&v1->CharIndex = 12.0f + *(float*)&v1->CharIndex;
 				}
 				if (v1->Scale.y != 0)
 				{
@@ -388,7 +388,7 @@ void __cdecl WindyGate_Main(ObjectMaster *a1)
 				}
 				else
 				{
-					*(float*)&v1->Object = 10.0f + *(float*)&v1->Object;
+					*(float*)&v1->Object = 12.0f + *(float*)&v1->Object;
 				}
 				WGate_Display(a1);
 				AddToCollisionList(v1);
@@ -698,9 +698,9 @@ void __cdecl Grass1_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	float v4; // ST08_4@5
-	double v5; // st7@5
-	ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
+	//float v4; // ST08_4@5
+	//double v5; // st7@5
+	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -747,9 +747,9 @@ void __cdecl Grass2_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	float v4; // ST08_4@5
-	double v5; // st7@5
-	ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
+	//float v4; // ST08_4@5
+	//double v5; // st7@5
+	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -796,9 +796,9 @@ void __cdecl Grass3_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	float v4; // ST08_4@5
-	double v5; // st7@5
-	ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
+	//float v4; // ST08_4@5
+	//double v5; // st7@5
+	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -845,9 +845,9 @@ void __cdecl Grass4_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	float v4; // ST08_4@5
-	double v5; // st7@5
-	ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
+	//float v4; // ST08_4@5
+	//double v5; // st7@5
+	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -897,7 +897,6 @@ void __cdecl Load_Green0(ObjectMaster *a1)
 	a1->MainSub = Basic_Main;
 	a1->DisplaySub = Basic_Display;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
-		EntityData1 *v1;
 
 	}
 }
@@ -909,9 +908,9 @@ void __cdecl WKusa1_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	float v4; // ST08_4@5
-	double v5; // st7@5
-	ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
+	//float v4; // ST08_4@5
+	//double v5; // st7@5
+	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -959,9 +958,9 @@ void __cdecl Flower0_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	float v4; // ST08_4@5
-	double v5; // st7@5
-	ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
+	//float v4; // ST08_4@5
+	//double v5; // st7@5
+	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -1008,9 +1007,9 @@ void __cdecl Flower1_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	float v4; // ST08_4@5
-	double v5; // st7@5
-	ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
+	//float v4; // ST08_4@5
+	//double v5; // st7@5
+	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -1085,9 +1084,9 @@ void __cdecl Tanpopo_Display(ObjectMaster *a1)
 	Angle v2; // eax@2
 	Angle v3; // eax@4
 	Angle v4; // eax@6
-	EntityData1 *v5; // eax@10
-	Angle v6; // ecx@10
-	Angle v7; // ecx@12
+	//EntityData1 *v5; // eax@10
+	//Angle v6; // ecx@10
+	//Angle v7; // ecx@12
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -1195,9 +1194,9 @@ void __cdecl WKi1_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	float v4; // ST08_4@5
-	double v5; // st7@5
-	ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
+	//float v4; // ST08_4@5
+	//double v5; // st7@5
+	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -1244,9 +1243,9 @@ void __cdecl WKi2_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	float v4; // ST08_4@5
-	double v5; // st7@5
-	ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
+	//float v4; // ST08_4@5
+	//double v5; // st7@5
+	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -1538,6 +1537,7 @@ void __cdecl Load_IHas16(ObjectMaster *a1)
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 	}
 }
+
 
 void __cdecl Load_IHas19(ObjectMaster *a1)
 {
@@ -1908,7 +1908,14 @@ void __cdecl Load_Prope1(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 3.0f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 2.7f + *(float*)&v1->CharIndex;
+				}
 				Prope1_Display(a1);
 				//AddToCollisionList(v1);
 			}
@@ -1964,7 +1971,14 @@ void __cdecl Load_Prope2(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 3.0f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 2.7f + *(float*)&v1->CharIndex;
+				}
 				Prope2_Display(a1);
 				//AddToCollisionList(v1);
 			}
@@ -2020,7 +2034,14 @@ void __cdecl Load_Prope3(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 3.0f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 3.0f + *(float*)&v1->CharIndex;
+				}
 				Prope3_Display(a1);
 				//AddToCollisionList(v1);
 			}
@@ -2086,12 +2107,16 @@ void __cdecl Load_PropeA(ObjectMaster *a1)
 	{
 		if (v1->Action)
 		{
-			if (v1->Action == 1)
-			{
-				*(float*)&v1->CharIndex = 5.0f + *(float*)&v1->CharIndex;
+			if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 5.0f + *(float*)&v1->CharIndex;
+				}
 				PropeA_Display(a1);
 				AddToCollisionList(v1);
-			}
 		}
 		else
 		{
@@ -2125,7 +2150,7 @@ void __cdecl PropeB_Display(ObjectMaster *a1)
 		sub_409E70((NJS_MODEL_SADX*)Object_PropeBTopPole.model, 0, 1.0); //Root Model
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Object_PropeBTopFans.pos[0], (Object_PropeBTopFans.pos[1] + 23.5), Object_PropeBTopFans.pos[2]);
+		njTranslate(0, Object_PropeBTopFans.pos[0], (Object_PropeBTopFans.pos[1] + 23.5f), Object_PropeBTopFans.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
@@ -2138,7 +2163,7 @@ void __cdecl PropeB_Display(ObjectMaster *a1)
 		sub_409E70((NJS_MODEL_SADX*)Object_PropeBBotPole.model, 0, 1.0); //Root Model
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Object_PropeBBotFans.pos[0], (Object_PropeBBotFans.pos[1] + 8.0), Object_PropeBBotFans.pos[2]);
+		njTranslate(0, Object_PropeBBotFans.pos[0], (Object_PropeBBotFans.pos[1] + 8.0f), Object_PropeBBotFans.pos[2]);
 		v6 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v6)
 		{
@@ -2161,7 +2186,14 @@ void __cdecl Load_PropeB(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 8.0f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 7.0f + *(float*)&v1->CharIndex;
+				}
 				PropeB_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2180,7 +2212,7 @@ void __cdecl PropeC_Display(ObjectMaster *a1)
 	EntityData1 *v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
-	Angle v6;
+	//Angle v6;
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -2221,7 +2253,14 @@ void __cdecl Load_PropeC(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 8.0f + *(float*)&v1->CharIndex;
+				if (v1->Scale.y != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.y + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 7.0f + *(float*)&v1->CharIndex;
+				}
 				PropeC_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2255,7 +2294,7 @@ void __cdecl Pot01_Display(ObjectMaster *a1)
 		sub_409E70((NJS_MODEL_SADX*)Object_Pot01.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Pot01Top.pos[0], (Object_Pot01Top.pos[1]), Object_Pot01Top.pos[2]);
-		njRotateY(0, Object_Pot01Top.ang[1] + 0x2AAA);
+		njRotateY(0, Object_Pot01Top.ang[1]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
@@ -2265,7 +2304,7 @@ void __cdecl Pot01_Display(ObjectMaster *a1)
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Object_Pot01Mid.pos[0], (Object_Pot01Mid.pos[1]), Object_Pot01Mid.pos[2]);
-		njRotateY(0, Object_Pot01Mid.ang[1] + 0x1555);
+		njRotateY(0, Object_Pot01Mid.ang[1]);
 		v5 = *(float*)&v1->Object * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
@@ -2297,9 +2336,30 @@ void __cdecl Load_Pot01(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 7.0f + *(float*)&v1->CharIndex; //Top Fan Value
-				*(float*)&v1->Object = 11.0f + *(float*)&v1->Object; //Middle Fan Value
-				*(float*)&v1->LoopData = 15.0f + *(float*)&v1->LoopData; //Bottom Fan Value
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 7.0f + *(float*)&v1->CharIndex; //Top Fan Value
+				}
+				if (v1->Scale.y != 0)
+				{
+					*(float*)&v1->Object = v1->Scale.y + *(float*)&v1->Object;
+				}
+				else
+				{
+					*(float*)&v1->Object = 11.0f + *(float*)&v1->Object; //Middle Fan Value
+				}
+				if (v1->Scale.z != 0)
+				{
+					*(float*)&v1->LoopData = v1->Scale.z + *(float*)&v1->LoopData;
+				}
+				else
+				{
+					*(float*)&v1->LoopData = 15.0f + *(float*)&v1->LoopData; //Bottom Fan Value
+				}
 				Pot01_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2355,7 +2415,14 @@ void __cdecl Load_Pot02(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 10.0f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 10.0f + *(float*)&v1->CharIndex;
+				}
 				Pot02_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2420,8 +2487,22 @@ void __cdecl Load_Prop1(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 5.0f + *(float*)&v1->CharIndex;
-				*(float*)&v1->Object = -1.5f + *(float*)&v1->Object;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 3.7f + *(float*)&v1->CharIndex;
+				}
+				if (v1->Scale.y != 0)
+				{
+					*(float*)&v1->Object = v1->Scale.y + *(float*)&v1->Object;
+				}
+				else
+				{
+					*(float*)&v1->Object = -1.0f + *(float*)&v1->Object;
+				}
 				Prop1_Display(a1);
 				//AddToCollisionList(v1);
 			}
@@ -2455,14 +2536,10 @@ void __cdecl Dome1_Display(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslate(0, Dome_Base.pos[0], (Dome_Base.pos[1]), Dome_Base.pos[2]);
 		v4 = v1->Rotation.y;
-		if (v4)
-		{
-			njRotateY(0, (unsigned __int16)v4);
-		}
 		sub_409E70((NJS_MODEL_SADX*)Dome_Base.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 30.0), Dome_Fan.pos[2]);
+		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 30.0f), Dome_Fan.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
@@ -2471,12 +2548,8 @@ void __cdecl Dome1_Display(ObjectMaster *a1)
 		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Dome_Cap.pos[0], (Dome_Cap.pos[1] + 43.0), Dome_Cap.pos[2]);
+		njTranslate(0, Dome_Cap.pos[0], (Dome_Cap.pos[1] + 43.0f), Dome_Cap.pos[2]);
 		v4 = v1->Rotation.y;
-		if (v4)
-		{
-			njRotateY(0, (unsigned __int16)v4);
-		}
 		sub_409E70((NJS_MODEL_SADX*)Dome_Cap.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
@@ -2494,7 +2567,14 @@ void __cdecl Load_Dome1(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 2.5f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0 && v1->Scale.x > -11 && v1->Scale.x < 11)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
+				}
 				Dome1_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2508,14 +2588,11 @@ void __cdecl Load_Dome1(ObjectMaster *a1)
 	}
 }
 
-void __cdecl Sirusi1_Display(ObjectMaster *a1)
+void __cdecl Dome2_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
-	Angle v6;
-	Angle z1;
-	Angle x1;
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -2523,46 +2600,45 @@ void __cdecl Sirusi1_Display(ObjectMaster *a1)
 		SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
-		z1 = v1->Rotation.z;
-		if (z1)
-		{
-			njRotateZ(0, (unsigned __int16)z1);
-		}
 		v4 = v1->Rotation.y;
 		if (v4)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		x1 = v1->Rotation.x;
-		if (x1)
-		{
-			njRotateX(0, (unsigned __int16)x1);
-		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Sirusi1.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
-		njTranslate(0, Sirusi1_Sign.pos[0], Sirusi1_Sign.pos[1], Sirusi1_Sign.pos[2]);
+		njTranslate(0, Dome_Base.pos[0], (Dome_Base.pos[1]), Dome_Base.pos[2]);
+		sub_409E70((NJS_MODEL_SADX*)Dome_Base.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 30.0f), Dome_Fan.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
-		v6 = *(float*)&v1->Object * 65536.0 * 0.002777777777777778;
-		if (Sirusi1_Sign.ang[0] < 0xE801 && Sirusi1_Sign.ang[0] > 0x1900 && v6)
+		if (v5)
 		{
-			njRotateX(0, (unsigned __int16)v6);
+			njRotateY(0, (unsigned __int16)v5);
 		}
-
-		else if (Sirusi1_Sign.ang[0] > 0x18FF && Sirusi1_Sign.ang[0] < 0xE800 && v5)
+		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Dome_Middle.pos[0], (Dome_Middle.pos[1] + 43.0f), Dome_Middle.pos[2]);
+		sub_409E70((NJS_MODEL_SADX*)Dome_Middle.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 46.0f), Dome_Fan.pos[2]);
+		if (v5)
 		{
-			njRotateX(0, (unsigned __int16)v5);
+			njRotateY(0, (unsigned __int16)v5 + 0x4000);
 		}
-		else if (v5)
-		{
-			njRotateX(0, (unsigned __int16)v5);
-		}
-		sub_409E70((NJS_MODEL_SADX*)Sirusi1_Sign.model, 0, 1.0);
+		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Dome_Cap.pos[0], (Dome_Cap.pos[1] + 59.0f), Dome_Cap.pos[2]);
+		sub_409E70((NJS_MODEL_SADX*)Dome_Cap.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_Sirusi1(ObjectMaster *a1)
+void __cdecl Load_Dome2(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
 
@@ -2573,21 +2649,120 @@ void __cdecl Load_Sirusi1(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = -0.5f + *(float*)&v1->CharIndex;
-				*(float*)&v1->Object = 0.5f + *(float*)&v1->Object;
-				Sirusi1_Display(a1);
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
+				}
+				Dome2_Display(a1);
 				AddToCollisionList(v1);
 			}
 		}
 		else
 		{
 			v1->Action = 1;
-			a1->DisplaySub = Sirusi1_Display;
-			InitCollision(a1, Yaji01_Collision, 2, 4u); //Temporary data. Not...actually sure if Sirusi1 has Init Collision or not.
+			a1->DisplaySub = Dome2_Display;
+			InitCollision(a1, PropeB_Collision, 5, 4u); //Temporary data. Need to properly implement Dome2's Init Collision.
 		}
 	}
 }
 
+void __cdecl Dome3_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+	Angle v4; // eax@6
+	Angle v5; // st7@8
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		njPushMatrix(0);
+		njTranslate(0, Dome_Base.pos[0], (Dome_Base.pos[1]), Dome_Base.pos[2]);
+		sub_409E70((NJS_MODEL_SADX*)Dome_Base.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 30.0f), Dome_Fan.pos[2]);
+		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
+		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Dome_Middle.pos[0], (Dome_Middle.pos[1] + 43.0f), Dome_Middle.pos[2]);
+		sub_409E70((NJS_MODEL_SADX*)Dome_Middle.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 46.0f), Dome_Fan.pos[2]);
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5 + 0x4000);
+		}
+		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Dome_Middle.pos[0], (Dome_Middle.pos[1] + 59.0f), Dome_Middle.pos[2]);
+		sub_409E70((NJS_MODEL_SADX*)Dome_Middle.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 61.0f), Dome_Fan.pos[2]);
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
+		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPushMatrix(0);
+		njTranslate(0, Dome_Cap.pos[0], (Dome_Cap.pos[1] + 74.0f), Dome_Cap.pos[2]);
+		sub_409E70((NJS_MODEL_SADX*)Dome_Cap.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPopMatrix(1u);
+	}
+}
+
+void __cdecl Load_Dome3(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+
+	v1 = a1->Data1;
+	if (!ClipSetObject(a1))
+	{
+		if (v1->Action)
+		{
+			if (v1->Action == 1)
+			{
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
+				}
+				Dome3_Display(a1);
+				AddToCollisionList(v1);
+			}
+		}
+		else
+		{
+			v1->Action = 1;
+			a1->DisplaySub = Dome3_Display;
+			InitCollision(a1, PropeB_Collision, 5, 4u); //Temporary data. Need to properly implement Dome3's Init Collision.
+		}
+	}
+}
 
 
 //SADX Object List for Windy Valley
@@ -2636,7 +2811,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,					//29
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,					//2A
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT2" } /* "T_RAFT2" */,					//2B
-	{ 2, 4, 0, 0, 0, Load_Sirusi1, "SIRUSI1" } /* "SIRUSI1" */,					//2C
+	{ 2, 4, 0, 0, 0, NullFunction, "SIRUSI1" } /* "SIRUSI1" */,					//2C
 	{ 6, 4, 0, 0, 0, Load_Sirusi2, "SIRUSI2" } /* "SIRUSI2" */,					//2D
 	{ 6, 4, 0, 0, 0, Load_Sirusi3, "SIRUSI3" } /* "SIRUSI3" */,					//2E
 	{ 6, 4, 0, 0, 0, Load_Sirusi4, "SIRUSI4" } /* "SIRUSI4" */,					//2F
@@ -2677,8 +2852,8 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 5, 0, 0, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,					//52
 	{ 2, 5, 0, 0, 0, NullFunction, "TAKO W " } /* "TAKO W " */,					//53
 	{ 2, 3, 0, 0, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,					//54
-	{ 2, 3, 0, 0, 0, NullFunction, "DOME 2 " } /* "DOME 2 " */,					//55
-	{ 2, 3, 0, 0, 0, NullFunction, "DOME 3 " } /* "DOME 3 " */,					//56
+	{ 2, 3, 0, 0, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,					//55
+	{ 2, 3, 0, 0, 0, Load_Dome3, "DOME 3 " } /* "DOME 3 " */,					//56
 	{ 2, 5, 0, 0, 0, Load_Prop1, "PROP 1 " } /* "PROP 1 " */,					//57
 	{ 2, 4, 0, 0, 0, Load_PropeA, "PROPE A" } /* "PROPE A" */,					//58
 	{ 2, 4, 0, 0, 0, Load_PropeB, "PROPE B" } /* "PROPE B" */,					//59
@@ -2700,7 +2875,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 0, 0, 0, Load_SaraS1, "SARA S1" } /* "SARA S1" */,					//69
 	{ 6, 3, 0, 0, 0, Load_SaraS2, "SARA S2" } /* "SARA S2" */,					//6A
 	{ 2, 4, 0, 0, 0, NullFunction, "TSPRING" } /* "TSPRING" */,					//6B
-	{ 2, 4, 0, 0, 0, NullFunction, "LAUCHIN" } /* "LAUCHIN" */,					//6C
+	{ 2, 4, 0, 0, 0, Load_Lauchin, "LAUCHIN" } /* "LAUCHIN" */,					//6C
 	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,					//6D
 	{ 7, 3, 0, 0, 0, NullFunction, "WELE   " } /* "WELE   " */,					//6E
 	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,				//6F
@@ -2751,7 +2926,7 @@ const float tornadoLoadDistance = 3102500.0f; // add this above the WV object li
 
 void TornadoPosition()
 {
-	njPushMatrix(NULL); njTranslate(NULL, 649.074f, -203.486f, -196.07);
+	njPushMatrix(NULL); njTranslate(NULL, 649.074f, -203.486f, -196.07f);
 }
 
 void WVSkybox1Position()

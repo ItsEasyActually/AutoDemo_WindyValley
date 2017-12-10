@@ -24751,7 +24751,7 @@ NJS_MATERIAL matlist_00041724[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 6, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 6, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 11, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
-	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 35, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
+	{ { 0xFFFFFFB2 },{ 0x00000000 }, 0, 35, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 25, NJD_D_100 | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 39, NJD_D_100 | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 11, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
@@ -27038,7 +27038,7 @@ NJS_MODEL_SADX attach_0004580C = { vertex_000454DC, normal_00045674, LengthOfArr
 NJS_OBJECT object_00045834 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004580C, 696, -119, -567, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_00045868[] = {
-	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 17, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
+	{ { 0xFFCF8A4D },{ 0x00000000 }, 0, 17, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 17, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 14, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 1, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -27712,7 +27712,7 @@ NJS_MODEL_SADX attach_00046A98 = { vertex_00046240, normal_0004666C, LengthOfArr
 NJS_OBJECT object_00046AC0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00046A98, 929, -345, -517, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_00046AF4[] = {
-	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 0, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
+	{ { 0xFFCF8A4D },{ 0x00000000 }, 0, 0, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 0, NJD_D_100 | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 10, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 1, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -28277,7 +28277,7 @@ NJS_MODEL_SADX attach_00047A90 = { vertex_00047820, normal_00047958, LengthOfArr
 NJS_OBJECT object_00047AB8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00047A90, 966, -36, -934, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_00047AEC[] = {
-	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 37, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
+	{ { 0xFFE5DCEF },{ 0x00000000 }, 0, 37, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 37, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 37, NJD_D_100 | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 36, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -28543,7 +28543,7 @@ NJS_MODEL_SADX attach_00048230 = { vertex_00047E88, normal_0004805C, LengthOfArr
 NJS_OBJECT object_00048258 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00048230, 1102, -130.2674f, -950.5f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_0004828C[] = {
-	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 30, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
+	{ { 0xFFE5DCEF },{ 0x00000000 }, 0, 30, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 30, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 11, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 37, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -29757,7 +29757,7 @@ NJS_MODEL_SADX attach_0004B6B4 = { vertex_0004B384, normal_0004B51C, LengthOfArr
 NJS_OBJECT object_0004B6DC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004B6B4, 379, -679, -1928, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_0004B710[] = {
-	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 1, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
+	{ { 0xFF3DB82F },{ 0x00000000 }, 0, 1, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 1, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 39, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 33, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
@@ -30878,18 +30878,18 @@ NJS_VECTOR vertex_0004CC18[] = {
 	{ -85.28332f, 547.707f, -15.20386f },
 	{ 5.253571f, 565.1904f, -35.26953f },
 	//new vertices
-	{ -127.61947f, 568.9111f, -943.27465f }, //vertice of interest (top)
-	{ -113.65868f, 552.0068f, -976.47125f }, //Vertice of interest (2nd highest)
-	{ -132.91027f, 495.6184f, -975.13293f }, //vertice of interest (3rd highest)
-	{ -122.64362f, 456.497f, -962.92456f }, //70 vertice of interest (4th highest)
-	{ -118.52008f, 414.5773f, -957.31811f }, //vertice of interest (5th highest)
-	{ -123.97826f, 355.8295f, -974.38666f }, //vertice of interest (6th highest)
-	{ -127.45766f, 311.312f, -1007.98022f }, //vertice of interest (7th highest)
-	{ -108.67184f, 263.9164f, -1025.61078f }, //vertice of interest (8th highest)
-	{ -102.00635f, 212.2805f, -1037.47448f }, //vertice of interest (9th highest)
-	{ -93.78143f, 160.56f, -1042.92322f }, //vertice of interest (10th highest)
-	{ -94.29699f, 110.3103f, -1034.12811f }, //vertice of interest (2nd to bottom)
-	{ -110.64984f, -93.9509f, -992.27642f }, //vertice of interest (bottom)
+	{ -77.61947f, 558.9111f, -943.27465f }, //vertice of interest (top)
+	{ -63.65868f, 542.0068f, -976.47125f }, //Vertice of interest (2nd highest)
+	{ -82.91027f, 485.6184f, -975.13293f }, //vertice of interest (3rd highest)
+	{ -72.64362f, 446.497f, -962.92456f }, //70 vertice of interest (4th highest)
+	{ -68.52008f, 404.5773f, -957.31811f }, //vertice of interest (5th highest)
+	{ -73.97826f, 345.8295f, -974.38666f }, //vertice of interest (6th highest)
+	{ -77.45766f, 301.312f, -1007.98022f }, //vertice of interest (7th highest)
+	{ -58.67184f, 253.9164f, -1025.61078f }, //vertice of interest (8th highest)
+	{ -52.00635f, 202.2805f, -1037.47448f }, //vertice of interest (9th highest)
+	{ -43.78143f, 150.56f, -1042.92322f }, //vertice of interest (10th highest)
+	{ -44.29699f, 100.3103f, -1034.12811f }, //vertice of interest (2nd to bottom)
+	{ -60.64984f, -183.9509f, -992.27642f }, //vertice of interest (bottom)
 	//next set, closer to start
 	{ -257.61947f, 498.9111f, -343.27465f }, //vertice of interest (top)
 	{ -313.65868f, 452.0068f, -376.47125f }, //80 Vertice of interest (2nd highest)
