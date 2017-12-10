@@ -2875,7 +2875,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 0, 0, 0, Load_SaraS1, "SARA S1" } /* "SARA S1" */,					//69
 	{ 6, 3, 0, 0, 0, Load_SaraS2, "SARA S2" } /* "SARA S2" */,					//6A
 	{ 2, 4, 0, 0, 0, NullFunction, "TSPRING" } /* "TSPRING" */,					//6B
-	{ 2, 4, 0, 0, 0, Load_Lauchin, "LAUCHIN" } /* "LAUCHIN" */,					//6C
+	{ 2, 4, 0, 0, 0, NullFunction, "LAUCHIN" } /* "LAUCHIN" */,					//6C
 	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,					//6D
 	{ 7, 3, 0, 0, 0, NullFunction, "WELE   " } /* "WELE   " */,					//6E
 	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,				//6F
