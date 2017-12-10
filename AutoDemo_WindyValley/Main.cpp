@@ -63,7 +63,7 @@ FunctionPointer(void, sub_4DFAF0, (ObjectMaster *a1), 0x4DFAF0);
 FunctionPointer(ObjectMaster, DoObjectThing, (ObjectThing *a1, ObjectMaster *a2), 0x40B9D0);
 FunctionPointer(void, sub_4E0050, (ObjectMaster *a1), 0x4E0050);
 FunctionPointer(int, rand, (), 0x6443BF);
-FunctionPointer(void, sub_49CE60, (EntityData1 *a1, int a2), 0x49CE60);
+FunctionPointer(void, sub_49CE60, (EntityData1 *a1, EntityData2 *a2), 0x49CE60);
 FunctionPointer(void, sub_7A6440, (ObjectMaster *a1), 0x7A6440);
 FunctionPointer(void, sub_4E0A60, (ObjectMaster *a1), 0x4E0A60);
 
@@ -2577,13 +2577,14 @@ void __cdecl Load_Dome1(ObjectMaster *a1)
 				}
 				Dome1_Display(a1);
 				AddToCollisionList(v1);
+				sub_49CE60(v1, 0);
 			}
 		}
 		else
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Dome1_Display;
-			InitCollision(a1, Dome1_Collision, 1, 4u);
+			InitCollision(a1, (CollisionData*)&Dome1_Collision, 1, 4u);
 		}
 	}
 }
@@ -2659,13 +2660,14 @@ void __cdecl Load_Dome2(ObjectMaster *a1)
 				}
 				Dome2_Display(a1);
 				AddToCollisionList(v1);
+				sub_49CE60(v1, 0);
 			}
 		}
 		else
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Dome2_Display;
-			InitCollision(a1, Dome2_Collision, 1, 4u);
+			InitCollision(a1, (CollisionData*)&Dome2_Collision, 1, 4u);
 		}
 	}
 }
@@ -2753,13 +2755,14 @@ void __cdecl Load_Dome3(ObjectMaster *a1)
 				}
 				Dome3_Display(a1);
 				AddToCollisionList(v1);
+				sub_49CE60(v1, 0);
 			}
 		}
 		else
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Dome3_Display;
-			InitCollision(a1, Dome3_Collision, 1, 4u);
+			InitCollision(a1, *(CollisionData)&Dome3_Collision, 1, 4u);
 		}
 	}
 }
