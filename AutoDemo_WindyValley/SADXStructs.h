@@ -320,11 +320,12 @@ struct CharObj2
 
 struct CollisionData
 {
-	short field_0;
+	char field_0;
+	char field_1;
 	char field_2;
 	char field_3;
-	int field_4;
-	NJS_VECTOR v;
+	int flags;
+	NJS_VECTOR position;
 	NJS_VECTOR scale;
 	int field_20;
 	Rotation3 rotation;

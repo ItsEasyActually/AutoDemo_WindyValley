@@ -140,6 +140,16 @@ static inline void sub_4DF8B0(int *a1)
 	}
 }
 
+// void __usercall(EntityData1 *a1@<eax>)
+static const void *const sub_4D46C0Ptr = (void*)0x4D46C0;
+static inline void sub_4D46C0(EntityData1 *a1)
+{
+	__asm
+	{
+		mov eax, [a1]
+		call sub_4D46C0Ptr
+	}
+}
 
 //Null Code (Used for debugging purposes)
 void __cdecl NullFunction(ObjectMaster *a1)
@@ -1538,6 +1548,35 @@ void __cdecl Load_IHas16(ObjectMaster *a1)
 	}
 }
 
+void __cdecl Load_IHas17(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	if (!ObjectSelectedDebug(a1))
+	{
+		InitCollision(a1, (CollisionData*)&IHas17_Collision, 2, 4u);
+	}
+	v1->Object = &I_Has17;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+}
+
+void __cdecl Load_IHas18(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+	if (!ObjectSelectedDebug(a1))
+	{
+		InitCollision(a1, (CollisionData*)&IHas18_Collision, 2, 4u);
+	}
+	v1->Object = &I_Has18;
+	a1->MainSub = Basic_Main;
+	a1->DisplaySub = Basic_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+}
 
 void __cdecl Load_IHas19(ObjectMaster *a1)
 {
@@ -2575,16 +2614,16 @@ void __cdecl Load_Dome1(ObjectMaster *a1)
 				{
 					*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
 				}
-				Dome1_Display(a1);
-				AddToCollisionList(v1);
 				sub_49CE60(v1, 0);
+				AddToCollisionList(v1);
+				Dome1_Display(a1);
 			}
 		}
 		else
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Dome1_Display;
-			InitCollision(a1, (CollisionData*)&Dome1_Collision, 1, 4u);
+			InitCollision(a1, Dome1_Collision, 1, 4u);
 		}
 	}
 }
@@ -2658,16 +2697,16 @@ void __cdecl Load_Dome2(ObjectMaster *a1)
 				{
 					*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
 				}
-				Dome2_Display(a1);
 				AddToCollisionList(v1);
 				sub_49CE60(v1, 0);
+				Dome2_Display(a1);
 			}
 		}
 		else
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Dome2_Display;
-			InitCollision(a1, (CollisionData*)&Dome2_Collision, 1, 4u);
+			InitCollision(a1, Dome2_Collision, 1, 4u);
 		}
 	}
 }
@@ -2753,16 +2792,16 @@ void __cdecl Load_Dome3(ObjectMaster *a1)
 				{
 					*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
 				}
-				Dome3_Display(a1);
 				AddToCollisionList(v1);
 				sub_49CE60(v1, 0);
+				Dome3_Display(a1);
 			}
 		}
 		else
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Dome3_Display;
-			InitCollision(a1, *(CollisionData)&Dome3_Collision, 1, 4u);
+			InitCollision(a1, Dome3_Collision, 1, 4u);
 		}
 	}
 }
@@ -2849,8 +2888,8 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 0, 0, 0, Load_IHas14, "I HAS14" } /* "I HAS14" */,					//4C
 	{ 6, 3, 0, 0, 0, Load_IHas15, "I HAS15" } /* "I HAS15" */,					//4D
 	{ 6, 3, 0, 0, 0, Load_IHas16, "I HAS16" } /* "I HAS16" */,					//4E
-	{ 2, 3, 0, 0, 0, NullFunction, "I HAS17" } /* "I HAS17" */,					//4F
-	{ 2, 3, 0, 0, 0, NullFunction, "I HAS18" } /* "I HAS18" */,					//50
+	{ 2, 3, 0, 0, 0, Load_IHas17, "I HAS17" } /* "I HAS17" */,					//4F
+	{ 2, 3, 0, 0, 0, Load_IHas18, "I HAS18" } /* "I HAS18" */,					//50
 	{ 2, 2, 0, 0, 0, NullFunction, "BANEIWA" } /* "BANEIWA" */,					//51
 	{ 2, 5, 0, 0, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,					//52
 	{ 2, 5, 0, 0, 0, NullFunction, "TAKO W " } /* "TAKO W " */,					//53
