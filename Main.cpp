@@ -1908,7 +1908,14 @@ void __cdecl Load_Prope1(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 2.7f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 2.7f + *(float*)&v1->CharIndex;
+				}
 				Prope1_Display(a1);
 				//AddToCollisionList(v1);
 			}
@@ -1964,7 +1971,14 @@ void __cdecl Load_Prope2(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 2.7f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 2.7f + *(float*)&v1->CharIndex;
+				}
 				Prope2_Display(a1);
 				//AddToCollisionList(v1);
 			}
@@ -2020,7 +2034,14 @@ void __cdecl Load_Prope3(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 3.0f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 3.0f + *(float*)&v1->CharIndex;
+				}
 				Prope3_Display(a1);
 				//AddToCollisionList(v1);
 			}
@@ -2086,12 +2107,16 @@ void __cdecl Load_PropeA(ObjectMaster *a1)
 	{
 		if (v1->Action)
 		{
-			if (v1->Action == 1)
-			{
-				*(float*)&v1->CharIndex = 5.0f + *(float*)&v1->CharIndex;
+			if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 5.0f + *(float*)&v1->CharIndex;
+				}
 				PropeA_Display(a1);
 				AddToCollisionList(v1);
-			}
 		}
 		else
 		{
@@ -2161,7 +2186,14 @@ void __cdecl Load_PropeB(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 7.0f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 7.0f + *(float*)&v1->CharIndex;
+				}
 				PropeB_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2221,7 +2253,14 @@ void __cdecl Load_PropeC(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 7.0f + *(float*)&v1->CharIndex;
+				if (v1->Scale.y != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.y + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 7.0f + *(float*)&v1->CharIndex;
+				}
 				PropeC_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2297,9 +2336,30 @@ void __cdecl Load_Pot01(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 7.0f + *(float*)&v1->CharIndex; //Top Fan Value
-				*(float*)&v1->Object = 11.0f + *(float*)&v1->Object; //Middle Fan Value
-				*(float*)&v1->LoopData = 15.0f + *(float*)&v1->LoopData; //Bottom Fan Value
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 7.0f + *(float*)&v1->CharIndex; //Top Fan Value
+				}
+				if (v1->Scale.y != 0)
+				{
+					*(float*)&v1->Object = v1->Scale.y + *(float*)&v1->Object;
+				}
+				else
+				{
+					*(float*)&v1->Object = 11.0f + *(float*)&v1->Object; //Middle Fan Value
+				}
+				if (v1->Scale.z != 0)
+				{
+					*(float*)&v1->LoopData = v1->Scale.z + *(float*)&v1->LoopData;
+				}
+				else
+				{
+					*(float*)&v1->LoopData = 15.0f + *(float*)&v1->LoopData; //Bottom Fan Value
+				}
 				Pot01_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2355,7 +2415,14 @@ void __cdecl Load_Pot02(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 10.0f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 10.0f + *(float*)&v1->CharIndex;
+				}
 				Pot02_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2420,8 +2487,22 @@ void __cdecl Load_Prop1(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 3.7f + *(float*)&v1->CharIndex;
-				*(float*)&v1->Object = -1.0f + *(float*)&v1->Object;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 3.7f + *(float*)&v1->CharIndex;
+				}
+				if (v1->Scale.y != 0)
+				{
+					*(float*)&v1->Object = v1->Scale.y + *(float*)&v1->Object;
+				}
+				else
+				{
+					*(float*)&v1->Object = -1.0f + *(float*)&v1->Object;
+				}
 				Prop1_Display(a1);
 				//AddToCollisionList(v1);
 			}
@@ -2486,7 +2567,14 @@ void __cdecl Load_Dome1(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0 && v1->Scale.x > -11 && v1->Scale.x < 11)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
+				}
 				Dome1_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2561,7 +2649,14 @@ void __cdecl Load_Dome2(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
+				}
 				Dome2_Display(a1);
 				AddToCollisionList(v1);
 			}
@@ -2648,7 +2743,14 @@ void __cdecl Load_Dome3(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
-				*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 1.5f + *(float*)&v1->CharIndex;
+				}
 				Dome3_Display(a1);
 				AddToCollisionList(v1);
 			}
