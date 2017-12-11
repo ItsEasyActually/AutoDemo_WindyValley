@@ -52,7 +52,7 @@ DataArray(CollisionData, TuriBr2_Collision, 0x00C66FB8, 1);
 DataArray(CollisionData, TuriBr_Collision, 0x00C66F88, 1);
 
 //Additional SADX Functions
-FunctionPointer(NJS_OBJECT*, DynamicCollision, (NJS_OBJECT *a1, ObjectMaster *a2, ColFlags surfaceFlags), 0x49D6C0);
+FunctionPointer(NJS_OBJECT *, DynamicCollision, (NJS_OBJECT *a1, ObjectMaster *a2, ColFlags surfaceFlags), 0x49D6C0);
 FunctionPointer(void, sub_407870, (NJS_MODEL_SADX *model, char blend, float radius_scale), 0x407870);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
@@ -436,6 +436,7 @@ void __cdecl LRock(ObjectMaster *a1)
 {
 	NJS_OBJECT *v3;
 	EntityData1 *v1;
+	ColFlags v4;
 
 	v1 = a1->Data1;
 	v1->Object = &Object_LRock;
@@ -445,7 +446,10 @@ void __cdecl LRock(ObjectMaster *a1)
 		v3->scl[0] = 1.0f;
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
+
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -463,6 +467,8 @@ void __cdecl Rock1(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -522,10 +528,15 @@ void __cdecl Load_Sirusi2(ObjectMaster *a1)
 	if (!ClipSetObject(a1))
 	{
 		v3 = DynamicCollision(&Collision_Sirusi2, a1, (ColFlags)0x40001001);
+		v3->ang[0] = v1->Rotation.x *-1.0;
+		v3->ang[1] = v1->Rotation.y;
+		v3->ang[2] = v1->Rotation.z;
 		v3->scl[0] = 1.0f;
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -539,10 +550,15 @@ void __cdecl Load_Sirusi3(ObjectMaster *a1)
 	if (!ClipSetObject(a1))
 	{
 		v3 = DynamicCollision(&Collision_Sirusi3, a1, (ColFlags)0x00001001);
+		v3->ang[0] = v1->Rotation.x *-1.0;
+		v3->ang[1] = v1->Rotation.y;
+		v3->ang[2] = v1->Rotation.z;
 		v3->scl[0] = 1.0f;
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -556,10 +572,15 @@ void __cdecl Load_Sirusi4(ObjectMaster *a1)
 	if (!ClipSetObject(a1))
 	{
 		v3 = DynamicCollision(&Collision_Sirusi4, a1, (ColFlags)0x00001001);
+		v3->ang[0] = v1->Rotation.x *-1.0;
+		v3->ang[1] = v1->Rotation.y;
+		v3->ang[2] = v1->Rotation.z;
 		v3->scl[0] = 1.0f;
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -648,6 +669,8 @@ void __cdecl Load_Siru11(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -665,6 +688,8 @@ void __cdecl Load_Siru12(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -682,6 +707,8 @@ void __cdecl Load_Siru13(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1341,6 +1368,8 @@ void __cdecl Load_IDai1(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1358,6 +1387,8 @@ void __cdecl Load_IDai2(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1375,6 +1406,8 @@ void __cdecl Load_IDai3(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1392,6 +1425,8 @@ void __cdecl Load_IDai4(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1409,6 +1444,8 @@ void __cdecl Load_IDai5(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1426,6 +1463,8 @@ void __cdecl Load_IDai6(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1443,6 +1482,8 @@ void __cdecl Load_IDai7(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1460,6 +1501,8 @@ void __cdecl Load_IDai8(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1477,6 +1520,8 @@ void __cdecl Load_IDai9(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1494,6 +1539,8 @@ void __cdecl Load_IDai10(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1511,6 +1558,8 @@ void __cdecl Load_IHas14(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1528,6 +1577,8 @@ void __cdecl Load_IHas15(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1545,6 +1596,8 @@ void __cdecl Load_IHas16(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1570,7 +1623,7 @@ void __cdecl Load_IHas18(ObjectMaster *a1)
 	v1 = a1->Data1;
 	if (!ObjectSelectedDebug(a1))
 	{
-		InitCollision(a1, (CollisionData*)&IHas18_Collision, 5, 4u);
+		InitCollision(a1, IHas18_Collision, 5, 4u);
 	}
 	v1->Object = &I_Has18;
 	a1->MainSub = Basic_Main;
@@ -1592,6 +1645,8 @@ void __cdecl Load_IHas19(ObjectMaster *a1)
 		v3->scl[1] = 1.0f;
 		v3->scl[2] = 1.0f;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 	}
 }
 
@@ -1612,6 +1667,8 @@ void __cdecl Load_IBou01(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1631,6 +1688,8 @@ void __cdecl Load_IBou02(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1650,6 +1709,8 @@ void __cdecl Load_IBou03(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1670,6 +1731,8 @@ void __cdecl Load_IHah01(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1689,6 +1752,8 @@ void __cdecl Load_IHah02(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1708,6 +1773,8 @@ void __cdecl Load_IHah03(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1727,6 +1794,8 @@ void __cdecl Load_IwaB(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1746,6 +1815,8 @@ void __cdecl Load_Ioiwa01(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1765,6 +1836,8 @@ void __cdecl Load_Ioiwa02(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1784,6 +1857,8 @@ void __cdecl Load_Ioiwa03(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1804,6 +1879,8 @@ void __cdecl Load_SaraB1(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1823,6 +1900,8 @@ void __cdecl Load_SaraB2(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1842,6 +1921,8 @@ void __cdecl Load_SaraM1(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1861,6 +1942,8 @@ void __cdecl Load_SaraM2(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1880,6 +1963,8 @@ void __cdecl Load_SaraS1(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }
@@ -1899,6 +1984,8 @@ void __cdecl Load_SaraS2(ObjectMaster *a1)
 			v3->scl[1] = 1.0f;
 			v3->scl[2] = 1.0f;
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
 		}
 	}
 }

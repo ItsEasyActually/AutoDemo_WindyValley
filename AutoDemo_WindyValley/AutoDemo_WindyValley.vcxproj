@@ -165,6 +165,7 @@
     <ClInclude Include="Sirusi_Objects.h" />
     <ClInclude Include="StartPos.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Tako_W.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TexLists.h" />
     <ClInclude Include="Trampoline.h" />
