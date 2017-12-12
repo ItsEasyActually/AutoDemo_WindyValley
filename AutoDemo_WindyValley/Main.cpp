@@ -434,41 +434,45 @@ void __cdecl SBridg(ObjectMaster *a1)
 //Rock Object Functions
 void __cdecl LRock(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
-	ColFlags v4;
 
 	v1 = a1->Data1;
 	v1->Object = &Object_LRock;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Object_LRock, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
-
+		obj = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+		obj->ang[0] = v1->Object->ang[0];
+		obj->ang[1] = v1->Object->ang[1];
+		obj->ang[2] = v1->Object->ang[2];
+		obj->scl[0] = v1->Object->scl[0];
+		obj->scl[1] = v1->Object->scl[1];
+		obj->scl[2] = v1->Object->scl[2];
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Rock1(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &Object_Rock1;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Object_Rock1, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
+		obj->ang[0] = v1->Object->ang[0];
+		obj->ang[1] = v1->Object->ang[1];
+		obj->ang[2] = v1->Object->ang[2];
+		obj->scl[0] = v1->Object->scl[0];
+		obj->scl[1] = v1->Object->scl[1];
+		obj->scl[2] = v1->Object->scl[2];
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
@@ -520,67 +524,91 @@ void __cdecl Rock5(ObjectMaster *a1)
 //Sirusi Object Functions
 void __cdecl Load_Sirusi2(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &Object_Sirusi2;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Collision_Sirusi2, a1, (ColFlags)0x40001001);
-		v3->ang[0] = v1->Rotation.x *-1.0;
-		v3->ang[1] = v1->Rotation.y;
-		v3->ang[2] = v1->Rotation.z;
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = Collision_Sirusi2.model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_Sirusi3(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &Object_Sirusi3;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Collision_Sirusi3, a1, (ColFlags)0x00001001);
-		v3->ang[0] = v1->Rotation.x *-1.0;
-		v3->ang[1] = v1->Rotation.y;
-		v3->ang[2] = v1->Rotation.z;
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = Collision_Sirusi3.model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_Sirusi4(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &Object_Sirusi4;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Collision_Sirusi4, a1, (ColFlags)0x00001001);
-		v3->ang[0] = v1->Rotation.x *-1.0;
-		v3->ang[1] = v1->Rotation.y;
-		v3->ang[2] = v1->Rotation.z;
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = Collision_Sirusi4.model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
@@ -657,58 +685,91 @@ void __cdecl Load_Sirusi9(ObjectMaster *a1)
 
 void __cdecl Load_Siru11(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &Object_Siru11;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Object_Siru11, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_Siru12(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &Object_Siru12;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Object_Siru12, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.x;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.z;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_Siru13(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &Object_Siru13;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(&Object_Siru13, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
@@ -1356,248 +1417,391 @@ void __cdecl Load_Pole2(ObjectMaster *a1)
 //I Dai/I Has Object Functions
 void __cdecl Load_IDai1(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Dai1;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IDai2(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Dai2;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IDai3(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Dai3;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IDai4(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Dai4;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IDai5(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Dai5;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IDai6(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Dai6;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IDai7(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Dai7;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IDai8(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Dai8;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IDai9(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Dai9;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IDai10(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &Unreferenced01_00106B30;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IHas14(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Has14;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IHas15(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Has15;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
 void __cdecl Load_IHas16(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Has16;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
@@ -1633,20 +1837,31 @@ void __cdecl Load_IHas18(ObjectMaster *a1)
 
 void __cdecl Load_IHas19(ObjectMaster *a1)
 {
-	NJS_OBJECT *v3;
+	NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
 	v1->Object = &Unreferenced02_001149B4;
 	if (!ClipSetObject(a1))
 	{
-		v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-		v3->scl[0] = 1.0f;
-		v3->scl[1] = 1.0f;
-		v3->scl[2] = 1.0f;
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = v1->Rotation.z;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.x;
+		obj->scl[0] = 1.0f;
+		obj->scl[1] = 1.0f;
+		obj->scl[2] = 1.0f;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
@@ -1655,20 +1870,31 @@ void __cdecl Load_IHas19(ObjectMaster *a1)
 void __cdecl Load_IBou01(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_IBou01;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1676,20 +1902,31 @@ void __cdecl Load_IBou01(ObjectMaster *a1)
 void __cdecl Load_IBou02(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_IBou02;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1697,20 +1934,31 @@ void __cdecl Load_IBou02(ObjectMaster *a1)
 void __cdecl Load_IBou03(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Unreferenced00_001067D8;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1719,20 +1967,31 @@ void __cdecl Load_IBou03(ObjectMaster *a1)
 void __cdecl Load_IHah01(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_IHah01;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1740,20 +1999,31 @@ void __cdecl Load_IHah01(ObjectMaster *a1)
 void __cdecl Load_IHah02(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_IHah02;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1761,20 +2031,31 @@ void __cdecl Load_IHah02(ObjectMaster *a1)
 void __cdecl Load_IHah03(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_IHah03;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1782,20 +2063,31 @@ void __cdecl Load_IHah03(ObjectMaster *a1)
 void __cdecl Load_IwaB(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_IwaB;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1803,20 +2095,31 @@ void __cdecl Load_IwaB(ObjectMaster *a1)
 void __cdecl Load_Ioiwa01(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_Ioiwa01;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1824,20 +2127,31 @@ void __cdecl Load_Ioiwa01(ObjectMaster *a1)
 void __cdecl Load_Ioiwa02(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_Ioiwa02;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1845,20 +2159,31 @@ void __cdecl Load_Ioiwa02(ObjectMaster *a1)
 void __cdecl Load_Ioiwa03(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_Ioiwa03;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1867,20 +2192,31 @@ void __cdecl Load_Ioiwa03(ObjectMaster *a1)
 void __cdecl Load_SaraB1(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_SaraB1;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1888,20 +2224,31 @@ void __cdecl Load_SaraB1(ObjectMaster *a1)
 void __cdecl Load_SaraB2(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_SaraB2;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1909,20 +2256,31 @@ void __cdecl Load_SaraB2(ObjectMaster *a1)
 void __cdecl Load_SaraM1(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_SaraM1;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1930,20 +2288,31 @@ void __cdecl Load_SaraM1(ObjectMaster *a1)
 void __cdecl Load_SaraM2(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_SaraM2;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1951,20 +2320,31 @@ void __cdecl Load_SaraM2(ObjectMaster *a1)
 void __cdecl Load_SaraS1(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_SaraS1;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -1972,20 +2352,31 @@ void __cdecl Load_SaraS1(ObjectMaster *a1)
 void __cdecl Load_SaraS2(ObjectMaster *a1)
 {
 	{
-		NJS_OBJECT *v3;
+		NJS_OBJECT *obj;
 		EntityData1 *v1;
 
 		v1 = a1->Data1;
 		v1->Object = &Object_SaraS2;
 		if (!ClipSetObject(a1))
 		{
-			v3 = DynamicCollision(v1->Object, a1, (ColFlags)0x00001001);
-			v3->scl[0] = 1.0f;
-			v3->scl[1] = 1.0f;
-			v3->scl[2] = 1.0f;
+			obj = ObjectArray_GetFreeObject();
+			obj->evalflags = v1->Object->evalflags;
+			obj->model = v1->Object->model;
+			obj->pos[0] = v1->Position.x;
+			obj->pos[1] = v1->Position.y;
+			obj->pos[2] = v1->Position.z;
+			obj->ang[0] = v1->Rotation.z;
+			obj->ang[1] = v1->Rotation.y;
+			obj->ang[2] = v1->Rotation.x;
+			obj->scl[0] = 1.0f;
+			obj->scl[1] = 1.0f;
+			obj->scl[2] = 1.0f;
+			obj->child = 0;
+			obj->sibling = 0;
+			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))OSuimen_Delete;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 		}
 	}
 }
@@ -2893,6 +3284,68 @@ void __cdecl Load_Dome3(ObjectMaster *a1)
 	}
 }
 
+void __cdecl Raft_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+	Angle YAng;
+	float XScale;
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		YAng = v1->Rotation.y;
+		if (YAng)
+		{
+			njRotateY(0, (unsigned __int16)YAng);
+		}
+		XScale = 1.0 + v1->Scale.x;
+		njScale(0, XScale, XScale, XScale);
+		ProcessModelNode_AB_Wrapper(v1->Object, 1.0);
+		njPopMatrix(1u);
+	}
+}
+
+void __cdecl Load_Raft(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+	float ScaleZ;
+	NJS_OBJECT *obj;
+
+	v1 = a1->Data1;
+	if (!ClipSetObject(a1))
+	{
+		ScaleZ = v1->Scale.z;
+		if (ScaleZ >= 0.0)
+		{
+			v1->Object = &Object_Raft2;
+		}
+		else
+		{
+			v1->Object = &Object_Raft3;
+		}
+		obj = ObjectArray_GetFreeObject();
+		obj->evalflags = v1->Object->evalflags;
+		obj->model = v1->Object->model;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
+		obj->ang[0] = 0;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = 0;
+		obj->scl[0] = 1.0f + v1->Scale.x;
+		obj->scl[1] = 1.0f + v1->Scale.x;
+		obj->scl[2] = 1.0f + v1->Scale.x;
+		obj->child = 0;
+		obj->sibling = 0;
+		DynamicCOL_Add(ColFlags_Solid, a1, obj);
+		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Raft_Display;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Raft_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+	}
+}
 
 //SADX Object List for Windy Valley
 ObjectListEntry WindyValleyObjectList_list[] = {
@@ -2935,7 +3388,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 5, 0, 0, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,					//24
 	{ 2, 5, 0, 0, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,					//25
 	{ 6, 3, 0, 0, 0, LRock, "L ROCK1" } /* "L ROCK1" */,						//26
-	{ 6, 3, 0, 0, 0, NullFunction, "RAFT   " } /* "RAFT   " */,					//27
+	{ 6, 3, 0, 0, 0, Load_Raft , "RAFT   " } /* "RAFT   " */,					//27
 	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 2 " } /* "RAFT 2 " */,					//28
 	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,					//29
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,					//2A

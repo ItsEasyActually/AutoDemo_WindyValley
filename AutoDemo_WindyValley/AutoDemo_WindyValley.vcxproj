@@ -152,6 +152,7 @@
     <ClInclude Include="Pole_Objects.h" />
     <ClInclude Include="Pot_Objects.h" />
     <ClInclude Include="Propellers.h" />
+    <ClInclude Include="Raft_Objects.h" />
     <ClInclude Include="Rock_Objects.h" />
     <ClInclude Include="MemAccess.h" />
     <ClInclude Include="ninja.h" />
