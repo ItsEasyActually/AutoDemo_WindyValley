@@ -43,13 +43,22 @@ struct ObjectThing
 	NJS_OBJECT* object;
 };
 
+struct DynamicCOL
+{
+	int Flags;
+	NJS_OBJECT *Model;
+	ObjectMaster *Entity;
+};
+
 //Additional SADX Variables
 DataPointer(int, MissedFrames, 0x03B1117C);
 DataPointer(int, ClipLevel, 0x03ABDCF0);
+DataPointer(int, DynamicCOLCount, 0x03B2D510);
 DataArray(CollisionData, stru_C67750, 0xC67750, 1);
 DataArray(CollisionData, stru_C673B8, 0xC673B8, 7);
 DataArray(CollisionData, TuriBr2_Collision, 0x00C66FB8, 1);
 DataArray(CollisionData, TuriBr_Collision, 0x00C66F88, 1);
+DataArray(DynamicCOL, DynamicCOLArray, 0x03B32D30, 256);
 
 //Additional SADX Functions
 FunctionPointer(NJS_OBJECT *, DynamicCollision, (NJS_OBJECT *a1, ObjectMaster *a2, ColFlags surfaceFlags), 0x49D6C0);
@@ -537,9 +546,9 @@ void __cdecl Load_Sirusi2(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -567,9 +576,9 @@ void __cdecl Load_Sirusi3(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -597,9 +606,9 @@ void __cdecl Load_Sirusi4(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -698,9 +707,9 @@ void __cdecl Load_Siru11(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -758,9 +767,9 @@ void __cdecl Load_Siru13(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -796,9 +805,6 @@ void __cdecl Grass1_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	//float v4; // ST08_4@5
-	//double v5; // st7@5
-	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -825,8 +831,16 @@ void __cdecl Grass1_Display(ObjectMaster *a2)
 		{
 			njRotateY(0, (unsigned __int16)v3);
 		}
-		njAction(&action_Grass1_Action, grassFrame);
+		njAction(&action_Grass1_Action, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
+		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 7.0)
+			{
+				*(float*)&v1->CharIndex = 0.0;
+			}
+		}
 	}
 }
 
@@ -845,9 +859,6 @@ void __cdecl Grass2_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	//float v4; // ST08_4@5
-	//double v5; // st7@5
-	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -874,8 +885,16 @@ void __cdecl Grass2_Display(ObjectMaster *a2)
 		{
 			njRotateY(0, (unsigned __int16)v3);
 		}
-		njAction(&action_Grass2_Action, grassFrame);
+		njAction(&action_Grass2_Action, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
+		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 7.0)
+			{
+				*(float*)&v1->CharIndex = 0.0;
+			}
+		}
 	}
 }
 
@@ -894,9 +913,6 @@ void __cdecl Grass3_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	//float v4; // ST08_4@5
-	//double v5; // st7@5
-	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -923,8 +939,16 @@ void __cdecl Grass3_Display(ObjectMaster *a2)
 		{
 			njRotateY(0, (unsigned __int16)v3);
 		}
-		njAction(&action_Action_Grass3, grassFrame);
+		njAction(&action_Action_Grass3, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
+		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 7.0)
+			{
+				*(float*)&v1->CharIndex = 0.0;
+			}
+		}
 	}
 }
 
@@ -943,9 +967,6 @@ void __cdecl Grass4_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	//float v4; // ST08_4@5
-	//double v5; // st7@5
-	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -972,8 +993,16 @@ void __cdecl Grass4_Display(ObjectMaster *a2)
 		{
 			njRotateY(0, (unsigned __int16)v3);
 		}
-		njAction(&action_Action_Grass4, grassFrame);
+		njAction(&action_Action_Grass4, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
+		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 7.0)
+			{
+				*(float*)&v1->CharIndex = 0.0;
+			}
+		}
 	}
 }
 
@@ -1006,9 +1035,6 @@ void __cdecl WKusa1_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	//float v4; // ST08_4@5
-	//double v5; // st7@5
-	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -1035,8 +1061,16 @@ void __cdecl WKusa1_Display(ObjectMaster *a2)
 		{
 			njRotateY(0, (unsigned __int16)v3);
 		}
-		njAction(&action_Action_WKusa1, grassFrame);
+		njAction(&action_Action_WKusa1, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
+		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 7.0)
+			{
+				*(float*)&v1->CharIndex = 0.0;
+			}
+		}
 	}
 }
 
@@ -1056,9 +1090,6 @@ void __cdecl Flower0_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	//float v4; // ST08_4@5
-	//double v5; // st7@5
-	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -1085,8 +1116,16 @@ void __cdecl Flower0_Display(ObjectMaster *a2)
 		{
 			njRotateY(0, (unsigned __int16)v3);
 		}
-		njAction(&action_Action_Flower0, grassFrame);
+		njAction(&action_Action_Flower0, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
+		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 7.0)
+			{
+				*(float*)&v1->CharIndex = 0.0;
+			}
+		}
 	}
 }
 
@@ -1105,9 +1144,6 @@ void __cdecl Flower1_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	//float v4; // ST08_4@5
-	//double v5; // st7@5
-	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -1134,8 +1170,16 @@ void __cdecl Flower1_Display(ObjectMaster *a2)
 		{
 			njRotateY(0, (unsigned __int16)v3);
 		}
-		njAction(&action_Action_Flower1, grassFrame);
+		njAction(&action_Action_Flower1, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
+		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 7.0)
+			{
+				*(float*)&v1->CharIndex = 0.0;
+			}
+		}
 	}
 }
 
@@ -1292,9 +1336,6 @@ void __cdecl WKi1_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	//float v4; // ST08_4@5
-	//double v5; // st7@5
-	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -1321,8 +1362,16 @@ void __cdecl WKi1_Display(ObjectMaster *a2)
 		{
 			njRotateY(0, (unsigned __int16)v3);
 		}
-		njAction(&action_Action_WKi1, treeFrame);
+		njAction(&action_Action_WKi1, *(float*)&v1->CharIndex);
 		njPopMatrix(1u);
+		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 17.0)
+			{
+				*(float*)&v1->CharIndex = 0.0;
+			}
+		}
 	}
 }
 
@@ -1341,9 +1390,6 @@ void __cdecl WKi2_Display(ObjectMaster *a2)
 	Angle v3; // eax@3
 	Angle v6;
 	Angle v7;
-	//float v4; // ST08_4@5
-	//double v5; // st7@5
-	//ObjectMaster *a2a; // [sp+10h] [bp+4h]@1
 
 	v1 = a2->Data1;
 	a3 = a2;
@@ -1370,8 +1416,16 @@ void __cdecl WKi2_Display(ObjectMaster *a2)
 		{
 			njRotateY(0, (unsigned __int16)v3);
 		}
-		njAction(&action_Action_WKi2, treeFrame);
+		njAction(&action_Action_WKi2, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
+		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 17.0)
+			{
+				*(float*)&v1->CharIndex = 0.0;
+			}
+		}
 	}
 }
 
@@ -1430,9 +1484,9 @@ void __cdecl Load_IDai1(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1460,9 +1514,9 @@ void __cdecl Load_IDai2(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1490,9 +1544,9 @@ void __cdecl Load_IDai3(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1520,9 +1574,9 @@ void __cdecl Load_IDai4(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1550,9 +1604,9 @@ void __cdecl Load_IDai5(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1580,9 +1634,9 @@ void __cdecl Load_IDai6(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1610,9 +1664,9 @@ void __cdecl Load_IDai7(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1640,9 +1694,9 @@ void __cdecl Load_IDai8(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1670,9 +1724,9 @@ void __cdecl Load_IDai9(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1700,9 +1754,9 @@ void __cdecl Load_IDai10(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1730,9 +1784,9 @@ void __cdecl Load_IHas14(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1760,9 +1814,9 @@ void __cdecl Load_IHas15(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1779,6 +1833,9 @@ void __cdecl Load_IHas16(ObjectMaster *a1)
 {
 	NJS_OBJECT *obj;
 	EntityData1 *v1;
+	Angle XAng;
+	Angle YAng;
+	Angle ZAng;
 
 	v1 = a1->Data1;
 	v1->Object = &I_Has16;
@@ -1787,15 +1844,15 @@ void __cdecl Load_IHas16(ObjectMaster *a1)
 		obj = ObjectArray_GetFreeObject();
 		obj->evalflags = v1->Object->evalflags;
 		obj->model = v1->Object->model;
-		obj->pos[0] = v1->Position.x;
-		obj->pos[1] = v1->Position.y;
-		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
-		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
+		obj->ang[0] = v1->Rotation.x;
+		obj->ang[1] = v1->Rotation.y;
+		obj->ang[2] = v1->Rotation.z;
+		obj->pos[0] = v1->Position.x;
+		obj->pos[1] = v1->Position.y;
+		obj->pos[2] = v1->Position.z;
 		obj->child = 0;
 		obj->sibling = 0;
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
@@ -1850,9 +1907,9 @@ void __cdecl Load_IHas19(ObjectMaster *a1)
 		obj->pos[0] = v1->Position.x;
 		obj->pos[1] = v1->Position.y;
 		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.z;
+		obj->ang[0] = v1->Rotation.x;
 		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.x;
+		obj->ang[2] = v1->Rotation.z;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
 		obj->scl[2] = 1.0f;
@@ -1864,7 +1921,6 @@ void __cdecl Load_IHas19(ObjectMaster *a1)
 		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
-
 
 //I Bou Objects
 void __cdecl Load_IBou01(ObjectMaster *a1)
@@ -1883,9 +1939,9 @@ void __cdecl Load_IBou01(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -1915,9 +1971,9 @@ void __cdecl Load_IBou02(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -1947,9 +2003,9 @@ void __cdecl Load_IBou03(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -1980,9 +2036,9 @@ void __cdecl Load_IHah01(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2012,9 +2068,9 @@ void __cdecl Load_IHah02(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2044,9 +2100,9 @@ void __cdecl Load_IHah03(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2076,9 +2132,9 @@ void __cdecl Load_IwaB(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2108,9 +2164,9 @@ void __cdecl Load_Ioiwa01(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2140,9 +2196,9 @@ void __cdecl Load_Ioiwa02(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2172,9 +2228,9 @@ void __cdecl Load_Ioiwa03(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2205,9 +2261,9 @@ void __cdecl Load_SaraB1(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2237,9 +2293,9 @@ void __cdecl Load_SaraB2(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2269,9 +2325,9 @@ void __cdecl Load_SaraM1(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2301,9 +2357,9 @@ void __cdecl Load_SaraM2(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2333,9 +2389,9 @@ void __cdecl Load_SaraS1(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2365,9 +2421,9 @@ void __cdecl Load_SaraS2(ObjectMaster *a1)
 			obj->pos[0] = v1->Position.x;
 			obj->pos[1] = v1->Position.y;
 			obj->pos[2] = v1->Position.z;
-			obj->ang[0] = v1->Rotation.z;
+			obj->ang[0] = v1->Rotation.x;
 			obj->ang[1] = v1->Rotation.y;
-			obj->ang[2] = v1->Rotation.x;
+			obj->ang[2] = v1->Rotation.z;
 			obj->scl[0] = 1.0f;
 			obj->scl[1] = 1.0f;
 			obj->scl[2] = 1.0f;
@@ -2434,14 +2490,12 @@ void __cdecl Load_Prope1(ObjectMaster *a1)
 					*(float*)&v1->CharIndex = 2.7f + *(float*)&v1->CharIndex;
 				}
 				Prope1_Display(a1);
-				//AddToCollisionList(v1);
 			}
 		}
 		else
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Prope1_Display;
-			//InitCollision(a1, WGate_Collision, 3, 4u);
 		}
 	}
 }
