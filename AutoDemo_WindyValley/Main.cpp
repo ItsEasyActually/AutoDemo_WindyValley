@@ -3401,6 +3401,17 @@ void __cdecl Load_Raft(ObjectMaster *a1)
 	}
 }
 
+void __cdecl Load_NextAct(ObjectMaster *a1)
+{
+	{
+		EntityData1 *v1;
+
+		v1 = a1->Data1;
+		IncrementAct(1);
+
+	}
+}
+
 //SADX Object List for Windy Valley
 ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, Ring_Main, "RING   " } /* "RING   " */,					//00
@@ -3521,7 +3532,12 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, ChaosEmeGoal_WValley_Main, "O KAOSE" } /* "Chaos Emerald */,	//73
 	{ 6, 3, 0, 0, 0, Load_IDai10, "I DAI 10" } /* "I DAI 10" */,				//74
 	{ 6, 3, 0, 0, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,					//75
-	{ 6, 3, 0, 0, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */					//76
+	{ 6, 3, 0, 0, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */,					//76
+	//Placeholder slots for possible use of those 3 giant rock models
+	{ 6, 3, 0, 0, 0, NullFunction, "I HAH04" } /* "I HAH04" */,					//77
+	{ 6, 3, 0, 0, 0, NullFunction, "I HAH05" } /* "I HAH05" */,					//78
+	{ 6, 3, 0, 0, 0, NullFunction, "I HAH06" } /* "I HAH06" */,					//79
+	{ 2, 3, 0, 0, 1440000, Load_NextAct, "NEXT ACT" } /* This is a test object */			//7A
 };
 
 ObjectList WindyValleyObjectList = { arraylengthandptrT(WindyValleyObjectList_list, int) };
