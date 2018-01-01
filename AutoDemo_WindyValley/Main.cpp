@@ -59,6 +59,28 @@ DataArray(CollisionData, stru_C673B8, 0xC673B8, 7);
 DataArray(CollisionData, TuriBr2_Collision, 0x00C66FB8, 1);
 DataArray(CollisionData, TuriBr_Collision, 0x00C66F88, 1);
 DataArray(DynamicCOL, DynamicCOLArray, 0x03B32D30, 256);
+DataArray(SkyboxScale, SkyboxScale_Windy1, 0x00AFE924, 3);
+DataArray(SkyboxScale, SkyboxScale_Windy3, 0x00AFE96C, 3);
+DataArray(FogData, FogData_Windy1, 0x00AFEA20, 3);
+DataArray(FogData, FogData_Windy2, 0x00AFEA50, 3);
+DataArray(FogData, FogData_Windy3, 0x00AFEA80, 3);
+DataArray(DrawDistance, DrawDist_WindyValley1, 0x00AFE9D8, 3);
+DataArray(DrawDistance, DrawDist_WindyValley3, 0x00AFEA08, 3);
+DataPointer(NJS_OBJECT, stru_C05E10, 0xC05E10);
+DataPointer(NJS_OBJECT, stru_C06344, 0xC06344);
+DataPointer(NJS_OBJECT, stru_C06450, 0xC06450); //Skybox model pointers
+DataPointer(NJS_OBJECT, stru_C0655C, 0xC0655C);
+
+DataPointer(NJS_OBJECT, stru_C158E0, 0xC158E0);
+DataPointer(NJS_OBJECT, stru_C159FC, 0xC159FC); //These three are models for PuWind, WcWind, and BLeaf
+DataPointer(NJS_OBJECT, stru_C15B2C, 0xC15B2C);
+
+DataPointer(NJS_OBJECT, stru_C06A94, 0xC06A94); //Another skybox model pointer
+DataPointer(float, CurrentFogDist, 0x03ABDC64);
+DataPointer(float, CurrentFogLayer, 0x03ABDC60);
+DataPointer(NJS_VECTOR, CurrentSkybox, 0x03ABDC94);
+DataPointer(NJS_BGRA, CurrentFogColorX, 0x03ABDC68);
+FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
 
 //Additional SADX Functions
 FunctionPointer(NJS_OBJECT *, DynamicCollision, (NJS_OBJECT *a1, ObjectMaster *a2, ColFlags surfaceFlags), 0x49D6C0);
@@ -2704,6 +2726,8 @@ void __cdecl PropeB_Display(ObjectMaster *a1)
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 	Angle v6;
+	Angle v7;
+	Angle v8;
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -2711,17 +2735,27 @@ void __cdecl PropeB_Display(ObjectMaster *a1)
 		SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v8 = v1->Rotation.z;
+		if (v8)
+		{
+			njRotateZ(0, (unsigned __int16)v8);
+		}
 		v4 = v1->Rotation.y;
 		if (v4)
 		{
 			njRotateY(0, (unsigned __int16)v4);
+		}
+		v7 = v1->Rotation.x;
+		if (v7)
+		{
+			njRotateX(0, (unsigned __int16)v7);
 		}
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeBTopPole.pos[0], (Object_PropeBTopPole.pos[1]), Object_PropeBTopPole.pos[2]);
 		sub_409E70((NJS_MODEL_SADX*)Object_PropeBTopPole.model, 0, 1.0); //Root Model
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Object_PropeBTopFans.pos[0], (Object_PropeBTopFans.pos[1] + 23.5f), Object_PropeBTopFans.pos[2]);
+		njTranslate(0, Object_PropeBTopFans.pos[0], (Object_PropeBTopPole.pos[1]), Object_PropeBTopFans.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
@@ -2734,7 +2768,7 @@ void __cdecl PropeB_Display(ObjectMaster *a1)
 		sub_409E70((NJS_MODEL_SADX*)Object_PropeBBotPole.model, 0, 1.0); //Root Model
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Object_PropeBBotFans.pos[0], (Object_PropeBBotFans.pos[1] + 8.0f), Object_PropeBBotFans.pos[2]);
+		njTranslate(0, Object_PropeBBotFans.pos[0], (Object_PropeBBotPole.pos[1]), Object_PropeBBotFans.pos[2]);
 		v6 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v6)
 		{
@@ -2783,7 +2817,8 @@ void __cdecl PropeC_Display(ObjectMaster *a1)
 	EntityData1 *v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
-	//Angle v6;
+	Angle v6;
+	Angle v7;
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -2791,17 +2826,27 @@ void __cdecl PropeC_Display(ObjectMaster *a1)
 		SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v6 = v1->Rotation.z;
+		if (v6)
+		{
+			njRotateZ(0, (unsigned __int16)v6);
+		}
 		v4 = v1->Rotation.y;
 		if (v4)
 		{
 			njRotateY(0, (unsigned __int16)v4);
+		}
+		v7 = v1->Rotation.x;
+		if (v7)
+		{
+			njRotateX(0, (unsigned __int16)v7);
 		}
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeCBar.pos[0], (Object_PropeCBar.pos[1]), Object_PropeCBar.pos[2]);
 		sub_409E70((NJS_MODEL_SADX*)Object_PropeCBar.model, 0, 1.0); //Root Model
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Object_PropeCFans.pos[0], (Object_PropeCFans.pos[1]+12), Object_PropeCFans.pos[2]);
+		njTranslate(0, Object_PropeCFans.pos[0], (Object_PropeCBar.pos[1]), Object_PropeCFans.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
@@ -2850,6 +2895,8 @@ void __cdecl Pot01_Display(ObjectMaster *a1)
 	EntityData1 *v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
+	Angle v6;
+	Angle v7;
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -2857,10 +2904,20 @@ void __cdecl Pot01_Display(ObjectMaster *a1)
 		SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v6 = v1->Rotation.z;
+		if (v6)
+		{
+			njRotateZ(0, (unsigned __int16)v6);
+		}
 		v4 = v1->Rotation.y;
 		if (v4)
 		{
 			njRotateY(0, (unsigned __int16)v4);
+		}
+		v7 = v1->Rotation.x;
+		if (v7)
+		{
+			njRotateX(0, (unsigned __int16)v7);
 		}
 		sub_409E70((NJS_MODEL_SADX*)Object_Pot01.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
@@ -2949,6 +3006,8 @@ void __cdecl Pot02_Display(ObjectMaster *a1)
 	EntityData1 *v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
+	Angle v6;
+	Angle v7;
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -2956,10 +3015,20 @@ void __cdecl Pot02_Display(ObjectMaster *a1)
 		SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v6 = v1->Rotation.z;
+		if (v6)
+		{
+			njRotateZ(0, (unsigned __int16)v6);
+		}
 		v4 = v1->Rotation.y;
 		if (v4)
 		{
 			njRotateY(0, (unsigned __int16)v4);
+		}
+		v7 = v1->Rotation.x;
+		if (v7)
+		{
+			njRotateX(0, (unsigned __int16)v7);
 		}
 		sub_409E70((NJS_MODEL_SADX*)Object_Pot02.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
