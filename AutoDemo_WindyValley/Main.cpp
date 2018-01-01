@@ -27,6 +27,7 @@
 #include "Act3.h"
 #include "PathInfo.h"
 #include "StartPos.h"
+#include "WCWind_PuWind_BLeaf_Model.h"
 
 //Variables
 static float grassFrame = 0;
@@ -3677,6 +3678,10 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteData((NJS_OBJECT**)0x004DFAC9, &Particle_Tanpopo);
 	WriteData((NJS_OBJECT**)0x004DFCB0, &Particle_Tanpopo);
 	WriteData((float**)0x004E802D, E103_PositionData);
+	
+	*(NJS_OBJECT*)0xC158E0 = Object_Leaf; //WcWind/PuWind/Bleaf
+	*(NJS_OBJECT*)0xC159FC = Object_Leaf; //WcWind/PuWind/Bleaf
+	*(NJS_OBJECT*)0xC15B2C = Object_Leaf; //WcWind/PuWind/Bleaf
 
 
 
