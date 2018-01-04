@@ -28,6 +28,7 @@
 #include "PathInfo.h"
 #include "StartPos.h"
 #include "WCWind_PuWind_BLeaf_Model.h"
+#include "Bridge_Pole.h"
 
 //Variables
 static float grassFrame = 0;
@@ -3482,6 +3483,81 @@ void __cdecl Load_NextAct(ObjectMaster *a1)
 	}
 }
 
+void __cdecl BrPole_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+	Angle v4; // eax@6
+	Angle v5; // st7@8
+	Angle v6;
+	Angle v7;
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v6 = v1->Rotation.z;
+		if (v6)
+		{
+			njRotateZ(0, (unsigned __int16)v6);
+		}
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		v7 = v1->Rotation.x;
+		if (v7)
+		{
+			njRotateX(0, (unsigned __int16)v7);
+		}
+		sub_409E70((NJS_MODEL_SADX*)Object_BrPole.model, 0, 1.0); //Root Model
+		njPushMatrix(0);
+		njTranslate(0, Object_BrPoleFan.pos[0], (Object_BrPoleFan.pos[1]), Object_BrPoleFan.pos[2]);
+		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
+		sub_409E70((NJS_MODEL_SADX*)Object_BrPoleFan.model, 0, 1.0);
+		njPopMatrix(1u);
+		njPopMatrix(1u);
+	}
+}
+
+void __cdecl Load_BrPole(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+
+	v1 = a1->Data1;
+	if (!ClipSetObject(a1))
+	{
+		if (v1->Action)
+		{
+			if (v1->Action == 1)
+			{
+				if (v1->Scale.x != 0)
+				{
+					*(float*)&v1->CharIndex = v1->Scale.x + *(float*)&v1->CharIndex;
+				}
+				else
+				{
+					*(float*)&v1->CharIndex = 9.5f + *(float*)&v1->CharIndex;
+				}
+				BrPole_Display(a1);
+				AddToCollisionList(v1);
+			}
+		}
+		else
+		{
+			v1->Action = 1;
+			a1->DisplaySub = BrPole_Display;
+			InitCollision(a1, BrPole_Collision, 1, 4u);
+		}
+	}
+}
+
 //SADX Object List for Windy Valley
 ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, Ring_Main, "RING   " } /* "RING   " */,					//00
@@ -3607,7 +3683,8 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 0, 0, 0, NullFunction, "I HAH04" } /* "I HAH04" */,					//77
 	{ 6, 3, 0, 0, 0, NullFunction, "I HAH05" } /* "I HAH05" */,					//78
 	{ 6, 3, 0, 0, 0, NullFunction, "I HAH06" } /* "I HAH06" */,					//79
-	{ 2, 3, 0, 0, 1440000, Load_NextAct, "NEXT ACT" } /* This is a test object */			//7A
+	{ 2, 3, 0, 0, 1440000, Load_NextAct, "NEXT ACT" } /* This is a test object */,			//7A
+	{ 6, 3, 0, 0, 0, Load_BrPole, "BRPOLE" } /* "BRPOLE" */,					//7B
 };
 
 ObjectList WindyValleyObjectList = { arraylengthandptrT(WindyValleyObjectList_list, int) };
