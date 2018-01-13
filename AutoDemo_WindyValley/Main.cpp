@@ -264,7 +264,7 @@ void __cdecl Trampoline_Display(ObjectMaster *a2)
 			YScale = -v1->Scale.y;
 			XScale = -v1->Scale.x;
 			njScale(0, XScale, YScale, v3);
-			njScale(0, 1.0f, 1.8f, 1.0f);
+			njScale(0, 1.0f, 2.8f, 1.0f);
 			v6 = VectorMaxAbs(&v1->Scale) * 1.8f;
 			sub_407870(&attach_001448A0, 1, v6); //Top Model
 		}
