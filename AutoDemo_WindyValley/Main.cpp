@@ -266,14 +266,14 @@ void __cdecl Trampoline_Display(ObjectMaster *a2)
 			njScale(0, XScale, YScale, v3);
 			njScale(0, 1.0f, 1.8f, 1.0f);
 			v6 = VectorMaxAbs(&v1->Scale) * 1.8f;
-			sub_407870(&attach_00144B74, 1, v6); //Bottom Model
+			sub_407870(&attach_001448A0, 1, v6); //Top Model
 		}
 		else
 		{
-			njTranslate(0, TrampolineMesh_Top.pos[0], TrampolineMesh_Top.pos[1], TrampolineMesh_Top.pos[2]); //Top Model
+			njTranslate(0, TrampolineMesh_Bottom.pos[0], TrampolineMesh_Bottom.pos[1], TrampolineMesh_Bottom.pos[2]); //Bottom Model
 			njScale(0, v1->Scale.x, v1->Scale.y, v1->Scale.z);
 			ZScale = VectorMaxAbs(&v1->Scale);
-			sub_407870(&attach_001448A0, 1, ZScale); //Top Model
+			sub_407870(&attach_00144B74, 1, ZScale); //Bottom Model
 		}
 		njPopMatrix(1u);
 		sub_407A00(&attach_001454A0, 1.0); //Full Model
