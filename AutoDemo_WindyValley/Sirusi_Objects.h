@@ -3,8 +3,12 @@
 #include "SADXModLoader.h"
 
 //Collision Info
+CollisionData Sirusi1_Collision[] = {
+	{ 0, 6, 0x77, 0, 0, 1.0, 11.0, 0.0, 4.0, 0.0, 0.0, 0, 0, 0, 0 }
+};
+
 CollisionData Sirusi5_Collision[] = {
-	{ 0, 3, 0x77, 0, 0, 0.0, 1.0, 0.0, 7.8999996, 8.5, 0.0, 0, 0, 0, 0}
+	{ 0, 3, 0x77, 0, 0, 0.0, 1.0, 0.0, 7.8999996, 8.5, 0.0, 0, 0, 0, 0 }
 };
 
 CollisionData Sirusi6_Collision[] = {
@@ -28,6 +32,7 @@ NJS_MATERIAL matlist_0012B3A4[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 14, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 106, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
+
 
 Sint16 poly_0012B3CC[] = {
 	17, 16, 15
@@ -394,6 +399,34 @@ NJS_VECTOR normal_0012BBDC[] = {
 NJS_MODEL_SADX attach_0012BCD8 = { vertex_0012BAE0, normal_0012BBDC, LengthOfArray<Sint32>(vertex_0012BAE0), meshlist_0012BA68, matlist_0012B854, LengthOfArray<Uint16>(meshlist_0012BA68), LengthOfArray<Uint16>(matlist_0012B854),{ 2.278302f, 8.605138f, -0.08141299f }, 8.730005f, NULL };
 
 NJS_OBJECT Object_Sirusi1 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL, &attach_0012BCD8, 0, 0, 0, 0, 0, 0, 1, 1, 1, &Sirusi1_Sign, NULL };
+
+NJS_MKEY_A Sirusi1_Action_1_rot[] = {
+	{ 0, 0, 0, 0 },
+	{ 2, 0x800, 0, 0 },
+	{ 4, 0xF00, 0, 0 },
+	{ 9, 0x1900, 0, 0 },
+	{ 16, 0x2000, 0, 0 },
+	{ 23, 0x1900, 0, 0 },
+	{ 28, 0xF00, 0, 0 },
+	{ 31, 0x800, 0, 0 },
+	{ 33, 0, 0, 0 },
+	{ 34, 0xF900, 0, 0 },
+	{ 37, 0xF100, 0, 0 },
+	{ 43, 0xE700, 0, 0 },
+	{ 50, 0xE000, 0, 0 },
+	{ 57, 0xE700, 0, 0 },
+	{ 63, 0xF100, 0, 0 },
+	{ 65, 0xF900, 0, 0 }
+};
+
+NJS_MDATA2 Sirusi1_Action_mdat[] = {
+	{ NULL, NULL, 0, 0 },
+	{ NULL, Sirusi1_Action_1_rot, 0, LengthOfArray<Uint32>(Sirusi1_Action_1_rot) }
+};
+
+NJS_MOTION Sirusi1_Action = { Sirusi1_Action_mdat, 66, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+
+NJS_ACTION action_Sirusi1_Action = { &Object_Sirusi1, &Sirusi1_Action };
 
 
 NJS_MATERIAL matlist_001200EC[] = {
