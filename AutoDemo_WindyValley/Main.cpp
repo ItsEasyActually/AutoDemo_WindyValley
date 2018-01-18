@@ -555,6 +555,78 @@ void __cdecl Rock5(ObjectMaster *a1)
 }
 
 //Sirusi Object Functions
+void __cdecl Sirusi1_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+	Angle v4; // eax@6
+	Angle v5; // st7@8
+	Angle v6;
+	Angle z1;
+	Angle x1;
+
+	v1 = a1->Data1;
+	if ( !MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		z1 = v1->Rotation.z;
+		if (z1)
+		{
+			njRotateZ(0, (unsigned __int16)z1);
+		}
+		x1 = v1->Rotation.x;
+		if (x1)
+		{
+			njRotateX(0, (unsigned __int16)x1);
+		}
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		njAction(&action_Sirusi1_Action, *(float *)&v1->CharIndex);
+
+		njPopMatrix(1u);
+
+		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 66.0)
+			{
+				*(float*)&v1->CharIndex = 0.0;
+			}
+		}
+	}
+}
+
+void __cdecl Load_Sirusi1(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+
+	v1 = a1->Data1;
+	if (!ClipSetObject(a1))
+	{
+		if (v1->Action)
+		{
+			if (v1->Action == 1)
+			{
+				AddToCollisionList(v1);
+				sub_49CE60(v1, 0);
+				Sirusi1_Display(a1);
+			}
+		}
+		else
+		{
+			v1->Action = 1;
+
+			a1->DisplaySub = Sirusi1_Display;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+			InitCollision(a1, Sirusi1_Collision, 1, 4u);
+		}
+	}
+}
+
 void __cdecl Load_Sirusi2(ObjectMaster *a1)
 {
 	NJS_OBJECT *obj;
@@ -3604,7 +3676,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,					//29
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,					//2A
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT2" } /* "T_RAFT2" */,					//2B
-	{ 2, 4, 0, 0, 0, NullFunction, "SIRUSI1" } /* "SIRUSI1" */,					//2C
+	{ 2, 4, 0, 0, 0, Load_Sirusi1, "SIRUSI1" } /* "SIRUSI1" */,					//2C
 	{ 6, 4, 0, 0, 0, Load_Sirusi2, "SIRUSI2" } /* "SIRUSI2" */,					//2D
 	{ 6, 4, 0, 0, 0, Load_Sirusi3, "SIRUSI3" } /* "SIRUSI3" */,					//2E
 	{ 6, 4, 0, 0, 0, Load_Sirusi4, "SIRUSI4" } /* "SIRUSI4" */,					//2F
