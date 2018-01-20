@@ -22,6 +22,9 @@
     <Filter Include="Header Files\LandTable">
       <UniqueIdentifier>{75a39e05-77fd-4770-a4b5-c1dec2ed3f31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Skybox">
+      <UniqueIdentifier>{9d0a744f-8e5e-4d04-b1dc-0352a9b978fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -131,6 +134,15 @@
     </ClInclude>
     <ClInclude Include="Raft_Objects.h">
       <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox01.h">
+      <Filter>Header Files\Skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox02.h">
+      <Filter>Header Files\Skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox03.h">
+      <Filter>Header Files\Skybox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

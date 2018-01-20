@@ -164,6 +164,9 @@
     <ClInclude Include="Sara_Objects.h" />
     <ClInclude Include="SBridge.h" />
     <ClInclude Include="Sirusi_Objects.h" />
+    <ClInclude Include="Skybox01.h" />
+    <ClInclude Include="Skybox02.h" />
+    <ClInclude Include="Skybox03.h" />
     <ClInclude Include="StartPos.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Tako_W.h" />

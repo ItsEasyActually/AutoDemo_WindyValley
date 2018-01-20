@@ -139,6 +139,31 @@ NJS_TEXNAME WINDY03_texlist_entries[] = {
 
 NJS_TEXLIST WINDY03_texlist = { arrayptrandlength(WINDY03_texlist_entries) };
 
+NJS_TEXNAME WINDY01_SKY01_texnames[] = {
+	{ "s_wt28" },
+	{ "wv_nbg" },
+	{ "s_wt32" },
+	{ "sw_nbg2" },
+};
+
+NJS_TEXLIST WINDY_BACK = { arrayptrandlength(WINDY01_SKY01_texnames) };
+
+NJS_TEXNAME WINDY02_SKY01_texnames[] = {
+	{ "tatu50" },
+	{ "tatu61" },
+	{ "tatu62" },
+};
+
+NJS_TEXLIST WINDY_BACK2 = { arrayptrandlength(WINDY02_SKY01_texnames) };
+
+NJS_TEXNAME WINDY03_SKY01_texnames[] = {
+	{ "Sora96" },
+	{ "Sora62" },
+};
+
+NJS_TEXLIST WINDY_BACK3 = { arrayptrandlength(WINDY03_SKY01_texnames) };
+
+
 PVMEntry WindyValleyObjectTextures[] = {
 	{ "OBJ_WINDY", (TexList *)0xC055D4 },
 	{ "WINDY_E103", (TexList *)0xC409A4 },
