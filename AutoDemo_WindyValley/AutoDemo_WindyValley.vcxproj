@@ -35,7 +35,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140_xp</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -112,11 +112,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AUTODEMO_WINDYVALLEY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)sadx-mod-loader\SADXModLoader\include;$(SolutionDir)sadx-mod-loader\mod-loader-common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>../bin/ModLoaderCommon.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,26 +143,21 @@
     <ClInclude Include="Act1.h" />
     <ClInclude Include="Act2.h" />
     <ClInclude Include="Act3.h" />
-    <ClInclude Include="d3d8types.h" />
+    <ClInclude Include="BaneIwa.h" />
+    <ClInclude Include="Bridge_Pole.h" />
     <ClInclude Include="Dome_Objects.h" />
     <ClInclude Include="Flower_Objects.h" />
     <ClInclude Include="Grass_Objects.h" />
     <ClInclude Include="IBou-IHah_Objects.h" />
     <ClInclude Include="IDai_Objects.h" />
     <ClInclude Include="IHas_Objects.h" />
+    <ClInclude Include="Leaf_Models.h" />
     <ClInclude Include="PathInfo.h" />
     <ClInclude Include="Pole_Objects.h" />
     <ClInclude Include="Pot_Objects.h" />
     <ClInclude Include="Propellers.h" />
     <ClInclude Include="Raft_Objects.h" />
     <ClInclude Include="Rock_Objects.h" />
-    <ClInclude Include="MemAccess.h" />
-    <ClInclude Include="ninja.h" />
-    <ClInclude Include="SADXEnums.h" />
-    <ClInclude Include="SADXFunctions.h" />
-    <ClInclude Include="SADXModLoader.h" />
-    <ClInclude Include="SADXStructs.h" />
-    <ClInclude Include="SADXVariables.h" />
     <ClInclude Include="Sara_Objects.h" />
     <ClInclude Include="SBridge.h" />
     <ClInclude Include="Sirusi_Objects.h" />
@@ -174,6 +171,7 @@
     <ClInclude Include="TexLists.h" />
     <ClInclude Include="Trampoline.h" />
     <ClInclude Include="UnrefencedModels.h" />
+    <ClInclude Include="Wele.h" />
     <ClInclude Include="WindyGate.h" />
     <ClInclude Include="W_Ki_Objects.h" />
   </ItemGroup>

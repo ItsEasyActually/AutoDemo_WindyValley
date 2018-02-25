@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 
 CollisionData BrPole_Collision[] = {
 	{ 0, 6, 0x77, 0, 0, 0.0, 27.0, 0.0, 1.5, 20.0, 0.0, 0, 0, 0, 0 }

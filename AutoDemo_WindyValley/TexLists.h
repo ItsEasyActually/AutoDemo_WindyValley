@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 
 NJS_TEXNAME WINDY01_texlist_entries[] = {
 	{ "S_wt12" },

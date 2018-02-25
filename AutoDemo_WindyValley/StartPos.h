@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 
 StartPosition sonicWindyValley0 = { LevelIDs_WindyValley, 0,{ 256, 60, -885 }, 0 };
 StartPosition sonicWindyValley1 = { LevelIDs_WindyValley, 1,{ 694, -113, -205 }, 0x8000 };

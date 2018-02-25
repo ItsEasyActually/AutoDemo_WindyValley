@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 
 CollisionData Dome1_Collision[] = {
 	{ 0, 6, 0x77, 0, 0, 0.0, 27.0, 0.0, 17.5, 27.0, 0.0, 0, 0, 0, 0 }

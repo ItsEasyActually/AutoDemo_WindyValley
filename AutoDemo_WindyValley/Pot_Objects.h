@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 
 CollisionData Pot01_Collision[] = {
 	{ 0, 3, 0x77, 0, 0, 0.0, 8.0, 0.0, 1.0, 8.0, 0.0, 0, 0, 0, 0 },

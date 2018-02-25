@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 
 /*CollisionData Prop1_Collision[] = {
 	{ 0, 6, 0x77, 0, 0, 0.0, -12.5, 0.0, 10.0, 10.0, 0.0, 0, 0, 0, 0 }

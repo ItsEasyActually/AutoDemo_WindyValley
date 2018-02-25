@@ -1,34 +1,43 @@
 //This is a mod.
 
+#include <SADXModLoader.h>
 #include "stdafx.h"
-#include "Trampoline.h"
-#include "WindyGate.h"
-#include "SBridge.h"
-#include "Rock_Objects.h"
-#include "Sirusi_Objects.h"
-#include "Grass_Objects.h"
-#include "Pole_Objects.h"
-#include "IDai_Objects.h"
-#include "IHas_Objects.h"
-#include "IBou-IHah_Objects.h"
-#include "Sara_Objects.h"
-#include "Flower_Objects.h"
-#include "Raft_Objects.h"
-#include "Wele.h"
-#include "Tako_W.h"
-#include "Spring_Objects.h"
-#include "W_Ki_Objects.h"
-#include "Dome_Objects.h"
-#include "Propellers.h"
-#include "Pot_Objects.h"
-#include "UnrefencedModels.h"
+
+//LandTable Headers
 #include "Act1.h"
 #include "Act2.h"
 #include "Act3.h"
+
+//Stage Info Headers
 #include "PathInfo.h"
 #include "StartPos.h"
-#include "WCWind_PuWind_BLeaf_Model.h"
-#include "Bridge_Pole.h"
+#include "TexLists.h"
+#include "Tornado_Models.h"
+
+//Object Headers
+#include "BaneIwa.h"
+#include "Bridge_Pole.h" //new object
+#include "Dome_Objects.h"
+#include "Flower_Objects.h"
+#include "Grass_Objects.h"
+#include "IBou-IHah_Objects.h"
+#include "IDai_Objects.h"
+#include "IHas_Objects.h"
+#include "Leaf_Models.h"
+#include "Pole_Objects.h"
+#include "Pot_Objects.h"
+#include "Propellers.h"
+#include "Raft_Objects.h"
+#include "Rock_Objects.h"
+#include "SBridge.h"
+#include "Sara_Objects.h"
+#include "Sirusi_Objects.h"
+#include "Tako_W.h"
+#include "Trampoline.h"
+#include "UnrefencedModels.h" //Misc. Unused objects.
+#include "W_Ki_Objects.h"
+#include "Wele.h"
+#include "WindyGate.h"
 
 //Variables
 static float grassFrame = 0;
@@ -99,6 +108,7 @@ FunctionPointer(int, rand, (), 0x6443BF);
 FunctionPointer(void, sub_49CE60, (EntityData1 *a1, EntityData2 *a2), 0x49CE60);
 FunctionPointer(void, sub_7A6440, (ObjectMaster *a1), 0x7A6440);
 FunctionPointer(void, sub_4E0A60, (ObjectMaster *a1), 0x4E0A60);
+FunctionPointer(void, InitCollision, (ObjectMaster *obj, CollisionData *collisionArray, int count, unsigned __int8 list), 0x0041CAF0);
 
 
 //Usercall and Thiscall Functions

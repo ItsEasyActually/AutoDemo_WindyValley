@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 
 CollisionData WGate_Collision[] = {
 	{ 0, 6, 0x77, 0, 0, 0.0, 11.0, 20.0, 4.0, 17.0, 0.0, 0, 0, 0, 0 },

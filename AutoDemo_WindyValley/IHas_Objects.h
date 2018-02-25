@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 
 CollisionData IHas17_Collision[] = {
 	{ 0, 6, 0x77, 0, 0, 0.0, 4.0, 0.0, 7.0, 8.0, 0.0, 0, 0, 0, 0 },

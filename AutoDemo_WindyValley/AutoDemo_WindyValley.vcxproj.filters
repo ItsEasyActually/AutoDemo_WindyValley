@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\ModLoader">
-      <UniqueIdentifier>{540cb597-76b1-4667-bfd8-481fa9026f82}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Objects">
       <UniqueIdentifier>{1a837688-ba2d-4a1d-8090-e3b624018d27}</UniqueIdentifier>
     </Filter>
@@ -35,30 +32,6 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SADXStructs.h">
-      <Filter>Header Files\ModLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="MemAccess.h">
-      <Filter>Header Files\ModLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="SADXFunctions.h">
-      <Filter>Header Files\ModLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="SADXEnums.h">
-      <Filter>Header Files\ModLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="ninja.h">
-      <Filter>Header Files\ModLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="d3d8types.h">
-      <Filter>Header Files\ModLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="SADXVariables.h">
-      <Filter>Header Files\ModLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="SADXModLoader.h">
-      <Filter>Header Files\ModLoader</Filter>
     </ClInclude>
     <ClInclude Include="Trampoline.h">
       <Filter>Header Files\Objects</Filter>
@@ -143,6 +116,18 @@
     </ClInclude>
     <ClInclude Include="Skybox03.h">
       <Filter>Header Files\Skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="BaneIwa.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Leaf_Models.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Wele.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge_Pole.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

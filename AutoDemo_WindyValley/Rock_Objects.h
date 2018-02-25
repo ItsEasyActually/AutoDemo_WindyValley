@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 
 CollisionData Rock2_Collision[] = {
 	{ 0, 0, 0x77, 0, 0, 0.0, 5.0, 0.0, 5.0, 10.0, 0.0, 0, 0, 0, 0 }

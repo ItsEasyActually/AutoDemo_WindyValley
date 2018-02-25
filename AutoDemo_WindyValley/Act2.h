@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 #include "TexLists.h"
 
 NJS_MATERIAL matlist_001A23AC[] = {

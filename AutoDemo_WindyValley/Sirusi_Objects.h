@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 
 //Collision Info
 CollisionData Sirusi1_Collision[] = {

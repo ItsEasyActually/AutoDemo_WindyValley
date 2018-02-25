@@ -1,6 +1,4 @@
-#pragma once
-
-#include "SADXModLoader.h"
+#include <SADXModLoader.h>
 
 Loop PathList_WindyValley0_0_Entries[] = {
 	{ 0, 0, 0.676505f,{ 890.922f, -162.693f, -255.052f } },
