@@ -54,29 +54,16 @@ struct ObjectThing
 	NJS_OBJECT* object;
 };
 
-struct DynamicCOL
-{
-	int Flags;
-	NJS_OBJECT *Model;
-	ObjectMaster *Entity;
-};
-
 //Additional SADX Variables
-DataPointer(int, MissedFrames, 0x03B1117C);
-DataPointer(int, ClipLevel, 0x03ABDCF0);
-DataPointer(int, DynamicCOLCount, 0x03B2D510);
 DataArray(CollisionData, stru_C67750, 0xC67750, 1);
 DataArray(CollisionData, stru_C673B8, 0xC673B8, 7);
 DataArray(CollisionData, TuriBr2_Collision, 0x00C66FB8, 1);
 DataArray(CollisionData, TuriBr_Collision, 0x00C66F88, 1);
-DataArray(DynamicCOL, DynamicCOLArray, 0x03B32D30, 256);
 DataArray(SkyboxScale, SkyboxScale_Windy1, 0x00AFE924, 3);
 DataArray(SkyboxScale, SkyboxScale_Windy3, 0x00AFE96C, 3);
 DataArray(FogData, FogData_Windy1, 0x00AFEA20, 3);
 DataArray(FogData, FogData_Windy2, 0x00AFEA50, 3);
 DataArray(FogData, FogData_Windy3, 0x00AFEA80, 3);
-DataArray(DrawDistance, DrawDist_WindyValley1, 0x00AFE9D8, 3);
-DataArray(DrawDistance, DrawDist_WindyValley3, 0x00AFEA08, 3);
 DataPointer(NJS_OBJECT, stru_C05E10, 0xC05E10);
 DataPointer(NJS_OBJECT, stru_C06344, 0xC06344);
 DataPointer(NJS_OBJECT, stru_C06450, 0xC06450); //Skybox model pointers
