@@ -22,6 +22,9 @@
     <Filter Include="Header Files\Skybox">
       <UniqueIdentifier>{9d0a744f-8e5e-4d04-b1dc-0352a9b978fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\external">
+      <UniqueIdentifier>{72d2f9a4-a294-4596-99b2-5ea3b5624968}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -58,9 +61,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StartPos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TexLists.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Act1.h">
@@ -139,6 +139,12 @@
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sadx-mod-loader\mod-loader-common\ModLoaderCommon\TextConv.cpp">
+      <Filter>Source Files\external</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sadx-mod-loader\mod-loader-common\ModLoaderCommon\IniFile.cpp">
+      <Filter>Source Files\external</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

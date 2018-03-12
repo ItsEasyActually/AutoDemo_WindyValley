@@ -38,8 +38,6 @@ struct BridgeThing
 	float* FloatArray;
 };
 
-DataPointer(NJS_TEXLIST, OBJ_WINDY_TEXLIST, 0x00C055D4);
-
 float BridgeFloats[] = {
 	{ 170.0f },
 	{ 2.5f },

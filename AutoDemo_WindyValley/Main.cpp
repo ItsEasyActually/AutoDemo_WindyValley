@@ -1,7 +1,8 @@
 //This is a mod.
+#include "stdafx.h"
 
 #include <SADXModLoader.h>
-#include "stdafx.h"
+#include "IniFile.hpp"
 
 //LandTable Headers
 #include "Act1.h"
@@ -11,7 +12,6 @@
 //Stage Info Headers
 #include "PathInfo.h"
 #include "StartPos.h"
-#include "TexLists.h"
 #include "Tornado_Models.h"
 
 //Object Headers
@@ -39,9 +39,12 @@
 #include "Wele.h"
 #include "WindyGate.h"
 
+#define ReplaceSETFile(a)  helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" a "_AD.BIN");
+
 //Variables
 static float grassFrame = 0;
 static float treeFrame = 0;
+static bool ADSetFile = true;
 
 //Structs
 struct ObjectThing
@@ -91,7 +94,7 @@ FunctionPointer(void, sub_49E170, (ObjectMaster *a1), 0x49E170);
 FunctionPointer(void, sub_4DFAF0, (ObjectMaster *a1), 0x4DFAF0);
 FunctionPointer(ObjectMaster, DoObjectThing, (ObjectThing *a1, ObjectMaster *a2), 0x40B9D0);
 FunctionPointer(void, sub_4E0050, (ObjectMaster *a1), 0x4E0050);
-FunctionPointer(int, rand, (), 0x6443BF);
+//FunctionPointer(int, rand, (), 0x6443BF);
 FunctionPointer(void, sub_49CE60, (EntityData1 *a1, EntityData2 *a2), 0x49CE60);
 FunctionPointer(void, sub_7A6440, (ObjectMaster *a1), 0x7A6440);
 FunctionPointer(void, sub_4E0A60, (ObjectMaster *a1), 0x4E0A60);
@@ -3629,131 +3632,135 @@ void __cdecl Load_BrPole(ObjectMaster *a1)
 
 //SADX Object List for Windy Valley
 ObjectListEntry WindyValleyObjectList_list[] = {
-	{ 2, 3, 0, 0, 0, Ring_Main, "RING   " } /* "RING   " */,					//00
-	{ 2, 2, 0, 0, 0, Spring_Main, "SPRING " } /* "SPRING " */,					//01
-	{ 2, 2, 0, 0, 0, SpringB_Main, "SPRINGB" } /* "SPRINGB" */,					//02
-	{ 3, 3, 0, 0, 0, DashPanel_Main, "O AXPNL" } /* "O AXPNL" */,				//03
-	{ 6, 3, 0, 0, 0, SwingSpikeBall_Load, "O IRONB" } /* "O IRONB" */,			//04
-	{ 2, 3, 0, 0, 0, FallingSpikeBall_Load, "O FeBJG" } /* "O FeBJG" */,		//05
-	{ 2, 3, 0, 0, 0, Spikes_Main, "O TOGE" } /* "O TOGE" */,					//06
-	{ 3, 3, 0, 0, 0, EmeraldPiece_Load, "O EME P" } /* "O EME P" */,			//07	
-	{ 2, 3, 0, 0, 0, Capsule_Load, "O RELEASE" } /* "O RELEASE" */,				//08
-	{ 6, 3, 0, 0, 0, Switch_Main, "O SWITCH" } /* "O SWITCH" */,				//09
-	{ 10, 3, 0, 0, 0, Weed_Main, "CMN KUSA" } /* "CMN KUSA" */,					//0A
-	{ 6, 3, 0, 0, 0, DashHoop_Main, "CMN_DRING" } /* "CMN_DRING" */,			//0B
-	{ 2, 3, 0, 0, 0, Balloon_Main, "O BALOON" } /* "O BALOON" */,				//0C
-	{ 2, 3, 0, 0, 0, ItemBox_Main, "O ITEMBOX" } /* "O ITEMBOX" */,				//0D
-	{ 6, 2, 0, 0, 0, RocketH_Main, "Rocket H" } /* "Rocket H" */,				//0E
-	{ 6, 2, 0, 0, 0, RocketHS_Main, "Rocket HS" } /* "Rocket HS" */,			//0F
-	{ 6, 2, 0, 0, 0, RocketV_Main, "Rocket V" } /* "Rocket V" */,				//10
-	{ 6, 2, 0, 0, 0, RocketVS_Main, "Rocket VS" } /* "Rocket VS" */,			//11
-	{ 2, 2, 1, 4000000, 0, JumpPanel_Load, "O JPanel" } /* "O JPanel" */,		//12
-	{ 15, 3, 0, 0, 0, CheckPoint_Main, "O Save Point" } /* "O Save Point" */,	//13
-	{ 2, 3, 0, 0, 0, Wall_Main, "WALL   " } /* "WALL   " */,					//14
-	{ 3, 2, 0, 0, 0, Trampoline_Main, "TRAMPOL" } /* "TRAMPOL" */,				//15
-	{ 2, 2, 0, 0, 0, BLeaf, "B LEAF " } /* "B LEAF " */,						//16
-	{ 2, 2, 0, 0, 0, WcWind, "WC WIND" } /* "WC WIND" */,						//17
-	{ 2, 2, 0, 0, 0, PuWind, "PU WIND" } /* "PU WIND" */,						//18
-	{ 2, 4, 0, 0, 0, Load_Prope1, "PROPE1 " } /* "PROPE1 " */,					//19
-	{ 2, 4, 0, 0, 0, Load_Prope2, "PROPE2 " } /* "PROPE2 " */,					//1A
-	{ 2, 4, 0, 0, 0, Load_Prope3, "PROPE3 " } /* "PROPE3 " */,					//1B
-	{ 2, 5, 0, 0, 0, Load_Flower0, "FLOWER0" } /* "FLOWER0" */,					//1C
-	{ 2, 5, 0, 0, 0, Load_Flower1, "FLOWER1" } /* "FLOWER1" */,					//1D
-	{ 2, 5, 0, 0, 0, Load_Green0, "GREEN 0" } /* "GREEN 0" */,					//1E
-	{ 2, 4, 0, 0, 0, Load_WKi1, "W KI1  " } /* "W KI1  " */,					//1F
-	{ 2, 4, 0, 0, 0, Load_WKi2, "W KI2  " } /* "W KI2  " */,					//20
-	{ 2, 5, 0, 0, 0, Load_WKusa1, "W KUSA1" } /* "W KUSA1" */,					//21
-	{ 2, 5, 0, 0, 0, Load_Grass1, "GRASS1 " } /* "GRASS1 " */,					//22
-	{ 2, 5, 0, 0, 0, Load_Grass2, "GRASS2 " } /* "GRASS2 " */,					//23
-	{ 2, 5, 0, 0, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,					//24
-	{ 2, 5, 0, 0, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,					//25
-	{ 6, 3, 0, 0, 0, LRock, "L ROCK1" } /* "L ROCK1" */,						//26
-	{ 6, 3, 0, 0, 0, Load_Raft , "RAFT   " } /* "RAFT   " */,					//27
-	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 2 " } /* "RAFT 2 " */,					//28
-	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,					//29
-	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,					//2A
-	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT2" } /* "T_RAFT2" */,					//2B
-	{ 2, 4, 0, 0, 0, Load_Sirusi1, "SIRUSI1" } /* "SIRUSI1" */,					//2C
-	{ 6, 4, 0, 0, 0, Load_Sirusi2, "SIRUSI2" } /* "SIRUSI2" */,					//2D
-	{ 6, 4, 0, 0, 0, Load_Sirusi3, "SIRUSI3" } /* "SIRUSI3" */,					//2E
-	{ 6, 4, 0, 0, 0, Load_Sirusi4, "SIRUSI4" } /* "SIRUSI4" */,					//2F
-	{ 2, 4, 0, 0, 0, Load_Sirusi5, "SIRUSI5" } /* "SIRUSI5" */,					//30
-	{ 2, 4, 0, 0, 0, Load_Sirusi6, "SIRUSI6" } /* "SIRUSI6" */,					//31
-	{ 2, 4, 0, 0, 0, Load_Sirusi7, "SIRUSI7" } /* "SIRUSI7" */,					//32
-	{ 2, 4, 0, 0, 0, Load_Sirusi8, "SIRUSI8" } /* "SIRUSI8" */,					//33
-	{ 2, 4, 0, 0, 0, Load_Sirusi9, "SIRUSI9" } /* "SIRUSI9" */,					//34
-	{ 6, 4, 0, 0, 0, Load_Siru11, "SIRU 11" } /* "SIRU 11" */,					//35
-	{ 6, 4, 0, 0, 0, Load_Siru12, "SIRU 12" } /* "SIRU 12" */,					//36
-	{ 6, 4, 0, 0, 0, Load_Siru13, "SIRU 13" } /* "SIRU 13" */,					//37
-	{ 2, 4, 0, 0, 0, Load_Yaji01, "YAJI 01" } /* "YAJI 01" */,					//38
-	{ 2, 4, 0, 0, 0, Load_Pole1, "POLE 1 " } /* "POLE 1 " */,					//39
-	{ 2, 4, 0, 0, 0, Load_Pole2, "POLE 2 " } /* "POLE 2 " */,					//3A
-	{ 2, 3, 0, 0, 0, WindyGate_Main, "W GATE " } /* "W GATE " */,				//3B
-	{ 2, 3, 0, 0, 0, WindyGate_Main, "W GATE2" } /* "W GATE2" */,				//3C
-	{ 2, 3, 0, 0, 0, Load_Pot01, "POT01  " } /* "POT01  " */,					//3D
-	{ 2, 3, 0, 0, 0, Load_Pot02, "POT02  " } /* "POT02  " */,					//3E
-	{ 6, 3, 0, 0, 0, Rock1, "ROCK 1 " } /* "ROCK 1 " */,						//3F
-	{ 2, 3, 0, 0, 0, Rock2, "ROCK 2 " } /* "ROCK 2 " */,						//40
-	{ 2, 3, 0, 0, 0, Rock3, "ROCK 3 " } /* "ROCK 3 " */,						//41
-	{ 2, 3, 0, 0, 0, Rock5, "ROCK 5 " } /* "ROCK 5 " */,						//42
-	{ 6, 3, 0, 0, 0, Load_IDai1, "I DAI 1" } /* "I DAI 1" */,					//43
-	{ 6, 3, 0, 0, 0, Load_IDai2, "I DAI 2" } /* "I DAI 2" */,					//44
-	{ 6, 3, 0, 0, 0, Load_IDai3, "I DAI 3" } /* "I DAI 3" */,					//45
-	{ 6, 3, 0, 0, 0, Load_IDai4, "I DAI 4" } /* "I DAI 4" */,					//46
-	{ 6, 3, 0, 0, 0, Load_IDai5, "I DAI 5" } /* "I DAI 5" */,					//47
-	{ 6, 3, 0, 0, 0, Load_IDai6, "I DAI 6" } /* "I DAI 6" */,					//48
-	{ 6, 3, 0, 0, 0, Load_IDai7, "I DAI 7" } /* "I DAI 7" */,					//49
-	{ 6, 3, 0, 0, 0, Load_IDai8, "I DAI 8" } /* "I DAI 8" */,					//4A
-	{ 6, 3, 0, 0, 0, Load_IDai9, "I DAI 9" } /* "I DAI 9" */,					//4B
-	{ 6, 3, 0, 0, 0, Load_IHas14, "I HAS14" } /* "I HAS14" */,					//4C
-	{ 6, 3, 0, 0, 0, Load_IHas15, "I HAS15" } /* "I HAS15" */,					//4D
-	{ 6, 3, 0, 0, 0, Load_IHas16, "I HAS16" } /* "I HAS16" */,					//4E
-	{ 2, 3, 0, 0, 0, Load_IHas17, "I HAS17" } /* "I HAS17" */,					//4F
-	{ 2, 3, 0, 0, 0, Load_IHas18, "I HAS18" } /* "I HAS18" */,					//50
-	{ 2, 2, 0, 0, 0, NullFunction, "BANEIWA" } /* "BANEIWA" */,					//51
-	{ 2, 5, 0, 0, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,					//52
-	{ 2, 5, 0, 0, 0, NullFunction, "TAKO W " } /* "TAKO W " */,					//53
-	{ 2, 3, 0, 0, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,					//54
-	{ 2, 3, 0, 0, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,					//55
-	{ 2, 3, 0, 0, 0, Load_Dome3, "DOME 3 " } /* "DOME 3 " */,					//56
-	{ 2, 5, 0, 0, 0, Load_Prop1, "PROP 1 " } /* "PROP 1 " */,					//57
-	{ 2, 4, 0, 0, 0, Load_PropeA, "PROPE A" } /* "PROPE A" */,					//58
-	{ 2, 4, 0, 0, 0, Load_PropeB, "PROPE B" } /* "PROPE B" */,					//59
-	{ 2, 4, 0, 0, 0, Load_PropeC, "PROPE C" } /* "PROPE C" */,					//5A
-	{ 6, 3, 0, 0, 0, Load_IwaB, "IWA B  " } /* "IWA B  " */,					//5B
-	{ 2, 5, 0, 0, 0, Load_PinkF, "PINK F " } /* "PINK F " */,					//5C
-	{ 6, 3, 0, 0, 0, Load_IBou01, "I BOU01" } /* "I BOU01" */,					//5D
-	{ 6, 3, 0, 0, 0, Load_IBou02, "I BOU02" } /* "I BOU02" */,					//5E
-	{ 6, 3, 0, 0, 0, Load_IHah01, "I HAH01" } /* "I HAH01" */,					//5F
-	{ 6, 3, 0, 0, 0, Load_IHah02, "I HAH02" } /* "I HAH02" */,					//60
-	{ 6, 3, 0, 0, 0, Load_IHah03, "I HAH03" } /* "I HAH03" */,					//61
-	{ 6, 3, 0, 0, 0, Load_Ioiwa01, "IOIWA01" } /* "IOIWA01" */,					//62
-	{ 6, 3, 0, 0, 0, Load_Ioiwa02, "IOIWA02" } /* "IOIWA02" */,					//63
-	{ 6, 3, 0, 0, 0, Load_Ioiwa03, "IOIWA03" } /* "IOIWA03" */,					//64
-	{ 6, 3, 0, 0, 0, Load_SaraB1, "SARA B1" } /* "SARA B1" */,					//65
-	{ 6, 3, 0, 0, 0, Load_SaraB2, "SARA B2" } /* "SARA B2" */,					//66
-	{ 6, 3, 0, 0, 0, Load_SaraM1, "SARA M1" } /* "SARA M1" */,					//67
-	{ 6, 3, 0, 0, 0, Load_SaraM2, "SARA M2" } /* "SARA M2" */,					//68
-	{ 6, 3, 0, 0, 0, Load_SaraS1, "SARA S1" } /* "SARA S1" */,					//69
-	{ 6, 3, 0, 0, 0, Load_SaraS2, "SARA S2" } /* "SARA S2" */,					//6A
-	{ 2, 4, 0, 0, 0, NullFunction, "TSPRING" } /* "TSPRING" */,					//6B
-	{ 2, 4, 0, 0, 0, NullFunction, "LAUCHIN" } /* "LAUCHIN" */,					//6C
-	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,					//6D
-	{ 7, 3, 0, 0, 0, NullFunction, "WELE   " } /* "WELE   " */,					//6E
-	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,				//6F
-	{ 2, 3, 0, 0, 0, BoaBoa_Main, "E HEVY " } /* "E HEVY " */,					//70
-	{ 2, 3, 0, 0, 0, Leon_Load, "E LEON " } /* "E LEON " */,					//71
-	{ 2, 3, 0, 0, 0, E103Enemy_Load, "E E-103" } /* "E E-103" */,				//72
+	{ 2, 3, 0, 0, 0, Ring_Main, "RING   " } /* "RING   " */,						//00
+	{ 2, 2, 0, 0, 0, Spring_Main, "SPRING " } /* "SPRING " */,						//01
+	{ 2, 2, 0, 0, 0, SpringB_Main, "SPRINGB" } /* "SPRINGB" */,						//02
+	{ 3, 3, 0, 0, 0, DashPanel_Main, "O AXPNL" } /* "O AXPNL" */,					//03
+	{ 6, 3, 0, 0, 0, SwingSpikeBall_Load, "O IRONB" } /* "O IRONB" */,				//04
+	{ 2, 3, 0, 0, 0, FallingSpikeBall_Load, "O FeBJG" } /* "O FeBJG" */,			//05
+	{ 2, 3, 0, 0, 0, Spikes_Main, "O TOGE" } /* "O TOGE" */,						//06
+	{ 3, 3, 0, 0, 0, EmeraldPiece_Load, "O EME P" } /* "O EME P" */,				//07	
+	{ 2, 3, 0, 0, 0, Capsule_Load, "O RELEASE" } /* "O RELEASE" */,					//08
+	{ 6, 3, 0, 0, 0, Switch_Main, "O SWITCH" } /* "O SWITCH" */,					//09
+	{ 10, 3, 0, 0, 0, Weed_Main, "CMN KUSA" } /* "CMN KUSA" */,						//0A
+	{ 6, 3, 0, 0, 0, DashHoop_Main, "CMN_DRING" } /* "CMN_DRING" */,				//0B
+	{ 2, 3, 0, 0, 0, Balloon_Main, "O BALOON" } /* "O BALOON" */,					//0C
+	{ 2, 3, 0, 0, 0, ItemBox_Main, "O ITEMBOX" } /* "O ITEMBOX" */,					//0D
+	{ 6, 2, 0, 0, 0, RocketH_Main, "Rocket H" } /* "Rocket H" */,					//0E
+	{ 6, 2, 0, 0, 0, RocketHS_Main, "Rocket HS" } /* "Rocket HS" */,				//0F
+	{ 6, 2, 0, 0, 0, RocketV_Main, "Rocket V" } /* "Rocket V" */,					//10
+	{ 6, 2, 0, 0, 0, RocketVS_Main, "Rocket VS" } /* "Rocket VS" */,				//11
+	{ 2, 2, 1, 4000000, 0, JumpPanel_Load, "O JPanel" } /* "O JPanel" */,			//12
+	{ 15, 3, 0, 0, 0, CheckPoint_Main, "O Save Point" } /* "O Save Point" */,		//13
+	{ 2, 3, 0, 0, 0, Wall_Main, "WALL   " } /* "WALL   " */,						//14
+	{ 3, 2, 0, 0, 0, Trampoline_Main, "TRAMPOL" } /* "TRAMPOL" */,					//15
+	{ 2, 2, 0, 0, 0, BLeaf, "B LEAF " } /* "B LEAF " */,							//16
+	{ 2, 2, 0, 0, 0, WcWind, "WC WIND" } /* "WC WIND" */,							//17
+	{ 2, 2, 0, 0, 0, PuWind, "PU WIND" } /* "PU WIND" */,							//18
+	{ 2, 4, 0, 0, 0, Load_Prope1, "PROPE1 " } /* "PROPE1 " */,						//19
+	{ 2, 4, 0, 0, 0, Load_Prope2, "PROPE2 " } /* "PROPE2 " */,						//1A
+	{ 2, 4, 0, 0, 0, Load_Prope3, "PROPE3 " } /* "PROPE3 " */,						//1B
+	{ 2, 5, 0, 0, 0, Load_Flower0, "FLOWER0" } /* "FLOWER0" */,						//1C
+	{ 2, 5, 0, 0, 0, Load_Flower1, "FLOWER1" } /* "FLOWER1" */,						//1D
+	{ 2, 5, 0, 0, 0, Load_Green0, "GREEN 0" } /* "GREEN 0" */,						//1E
+	{ 2, 4, 0, 0, 0, Load_WKi1, "W KI1  " } /* "W KI1  " */,						//1F
+	{ 2, 4, 0, 0, 0, Load_WKi2, "W KI2  " } /* "W KI2  " */,						//20
+	{ 2, 5, 0, 0, 0, Load_WKusa1, "W KUSA1" } /* "W KUSA1" */,						//21
+	{ 2, 5, 0, 0, 0, Load_Grass1, "GRASS1 " } /* "GRASS1 " */,						//22
+	{ 2, 5, 0, 0, 0, Load_Grass2, "GRASS2 " } /* "GRASS2 " */,						//23
+	{ 2, 5, 0, 0, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
+	{ 2, 5, 0, 0, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
+	{ 6, 3, 0, 0, 0, LRock, "L ROCK1" } /* "L ROCK1" */,							//26
+	{ 6, 3, 0, 0, 0, Load_Raft , "RAFT   " } /* "RAFT   " */,						//27
+	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 2 " } /* "RAFT 2 " */,						//28
+	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,						//29
+	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,						//2A
+	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT2" } /* "T_RAFT2" */,						//2B
+	{ 2, 4, 0, 0, 0, Load_Sirusi1, "SIRUSI1" } /* "SIRUSI1" */,						//2C
+	{ 6, 4, 0, 0, 0, Load_Sirusi2, "SIRUSI2" } /* "SIRUSI2" */,						//2D
+	{ 6, 4, 0, 0, 0, Load_Sirusi3, "SIRUSI3" } /* "SIRUSI3" */,						//2E
+	{ 6, 4, 0, 0, 0, Load_Sirusi4, "SIRUSI4" } /* "SIRUSI4" */,						//2F
+	{ 2, 4, 0, 0, 0, Load_Sirusi5, "SIRUSI5" } /* "SIRUSI5" */,						//30
+	{ 2, 4, 0, 0, 0, Load_Sirusi6, "SIRUSI6" } /* "SIRUSI6" */,						//31
+	{ 2, 4, 0, 0, 0, Load_Sirusi7, "SIRUSI7" } /* "SIRUSI7" */,						//32
+	{ 2, 4, 0, 0, 0, Load_Sirusi8, "SIRUSI8" } /* "SIRUSI8" */,						//33
+	{ 2, 4, 0, 0, 0, Load_Sirusi9, "SIRUSI9" } /* "SIRUSI9" */,						//34
+	{ 6, 4, 0, 0, 0, Load_Siru11, "SIRU 11" } /* "SIRU 11" */,						//35
+	{ 6, 4, 0, 0, 0, Load_Siru12, "SIRU 12" } /* "SIRU 12" */,						//36
+	{ 6, 4, 0, 0, 0, Load_Siru13, "SIRU 13" } /* "SIRU 13" */,						//37
+	{ 2, 4, 0, 0, 0, Load_Yaji01, "YAJI 01" } /* "YAJI 01" */,						//38
+	{ 2, 4, 0, 0, 0, Load_Pole1, "POLE 1 " } /* "POLE 1 " */,						//39
+	{ 2, 4, 0, 0, 0, Load_Pole2, "POLE 2 " } /* "POLE 2 " */,						//3A
+	{ 2, 3, 0, 0, 0, WindyGate_Main, "W GATE " } /* "W GATE " */,					//3B
+	{ 2, 3, 0, 0, 0, WindyGate_Main, "W GATE2" } /* "W GATE2" */,					//3C
+	{ 2, 3, 0, 0, 0, Load_Pot01, "POT01  " } /* "POT01  " */,						//3D
+	{ 2, 3, 0, 0, 0, Load_Pot02, "POT02  " } /* "POT02  " */,						//3E
+	{ 6, 3, 0, 0, 0, Rock1, "ROCK 1 " } /* "ROCK 1 " */,							//3F
+	{ 2, 3, 0, 0, 0, Rock2, "ROCK 2 " } /* "ROCK 2 " */,							//40
+	{ 2, 3, 0, 0, 0, Rock3, "ROCK 3 " } /* "ROCK 3 " */,							//41
+	{ 2, 3, 0, 0, 0, Rock5, "ROCK 5 " } /* "ROCK 5 " */,							//42
+	{ 6, 3, 0, 0, 0, Load_IDai1, "I DAI 1" } /* "I DAI 1" */,						//43
+	{ 6, 3, 0, 0, 0, Load_IDai2, "I DAI 2" } /* "I DAI 2" */,						//44
+	{ 6, 3, 0, 0, 0, Load_IDai3, "I DAI 3" } /* "I DAI 3" */,						//45
+	{ 6, 3, 0, 0, 0, Load_IDai4, "I DAI 4" } /* "I DAI 4" */,						//46
+	{ 6, 3, 0, 0, 0, Load_IDai5, "I DAI 5" } /* "I DAI 5" */,						//47
+	{ 6, 3, 0, 0, 0, Load_IDai6, "I DAI 6" } /* "I DAI 6" */,						//48
+	{ 6, 3, 0, 0, 0, Load_IDai7, "I DAI 7" } /* "I DAI 7" */,						//49
+	{ 6, 3, 0, 0, 0, Load_IDai8, "I DAI 8" } /* "I DAI 8" */,						//4A
+	{ 6, 3, 0, 0, 0, Load_IDai9, "I DAI 9" } /* "I DAI 9" */,						//4B
+	{ 6, 3, 0, 0, 0, Load_IHas14, "I HAS14" } /* "I HAS14" */,						//4C
+	{ 6, 3, 0, 0, 0, Load_IHas15, "I HAS15" } /* "I HAS15" */,						//4D
+	{ 6, 3, 0, 0, 0, Load_IHas16, "I HAS16" } /* "I HAS16" */,						//4E
+	{ 2, 3, 0, 0, 0, Load_IHas17, "I HAS17" } /* "I HAS17" */,						//4F
+	{ 2, 3, 0, 0, 0, Load_IHas18, "I HAS18" } /* "I HAS18" */,						//50
+	{ 2, 2, 0, 0, 0, NullFunction, "BANEIWA" } /* "BANEIWA" */,						//51
+	{ 2, 5, 0, 0, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,						//52
+	{ 2, 5, 0, 0, 0, NullFunction, "TAKO W " } /* "TAKO W " */,						//53
+	{ 2, 3, 0, 0, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54
+	{ 2, 3, 0, 0, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,						//55
+	{ 2, 3, 0, 0, 0, Load_Dome3, "DOME 3 " } /* "DOME 3 " */,						//56
+	{ 2, 5, 0, 0, 0, Load_Prop1, "PROP 1 " } /* "PROP 1 " */,						//57
+	{ 2, 4, 0, 0, 0, Load_PropeA, "PROPE A" } /* "PROPE A" */,						//58
+	{ 2, 4, 0, 0, 0, Load_PropeB, "PROPE B" } /* "PROPE B" */,						//59
+	{ 2, 4, 0, 0, 0, Load_PropeC, "PROPE C" } /* "PROPE C" */,						//5A
+	{ 6, 3, 0, 0, 0, Load_IwaB, "IWA B  " } /* "IWA B  " */,						//5B
+	{ 2, 5, 0, 0, 0, Load_PinkF, "PINK F " } /* "PINK F " */,						//5C
+	{ 6, 3, 0, 0, 0, Load_IBou01, "I BOU01" } /* "I BOU01" */,						//5D
+	{ 6, 3, 0, 0, 0, Load_IBou02, "I BOU02" } /* "I BOU02" */,						//5E
+	{ 6, 3, 0, 0, 0, Load_IHah01, "I HAH01" } /* "I HAH01" */,						//5F
+	{ 6, 3, 0, 0, 0, Load_IHah02, "I HAH02" } /* "I HAH02" */,						//60
+	{ 6, 3, 0, 0, 0, Load_IHah03, "I HAH03" } /* "I HAH03" */,						//61
+	{ 6, 3, 0, 0, 0, Load_Ioiwa01, "IOIWA01" } /* "IOIWA01" */,						//62
+	{ 6, 3, 0, 0, 0, Load_Ioiwa02, "IOIWA02" } /* "IOIWA02" */,						//63
+	{ 6, 3, 0, 0, 0, Load_Ioiwa03, "IOIWA03" } /* "IOIWA03" */,						//64
+	{ 6, 3, 0, 0, 0, Load_SaraB1, "SARA B1" } /* "SARA B1" */,						//65
+	{ 6, 3, 0, 0, 0, Load_SaraB2, "SARA B2" } /* "SARA B2" */,						//66
+	{ 6, 3, 0, 0, 0, Load_SaraM1, "SARA M1" } /* "SARA M1" */,						//67
+	{ 6, 3, 0, 0, 0, Load_SaraM2, "SARA M2" } /* "SARA M2" */,						//68
+	{ 6, 3, 0, 0, 0, Load_SaraS1, "SARA S1" } /* "SARA S1" */,						//69
+	{ 6, 3, 0, 0, 0, Load_SaraS2, "SARA S2" } /* "SARA S2" */,						//6A
+	{ 2, 4, 0, 0, 0, NullFunction, "TSPRING" } /* "TSPRING" */,						//6B
+	{ 2, 4, 0, 0, 0, NullFunction, "LAUCHIN" } /* "LAUCHIN" */,						//6C
+	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,						//6D
+	{ 7, 3, 0, 0, 0, NullFunction, "WELE   " } /* "WELE   " */,						//6E
+	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,					//6F
+	{ 2, 3, 0, 0, 0, BoaBoa_Main, "E HEVY " } /* "E HEVY " */,						//70
+	{ 2, 3, 0, 0, 0, Leon_Load, "E LEON " } /* "E LEON " */,						//71
+	{ 2, 3, 0, 0, 0, E103Enemy_Load, "E E-103" } /* "E E-103" */,					//72
 	{ 2, 3, 0, 0, 0, ChaosEmeGoal_WValley_Main, "O KAOSE" } /* "Chaos Emerald */,	//73
-	{ 6, 3, 0, 0, 0, Load_IDai10, "I DAI 10" } /* "I DAI 10" */,				//74
-	{ 6, 3, 0, 0, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,					//75
-	{ 6, 3, 0, 0, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */,					//76
+	{ 6, 3, 0, 0, 0, Load_IDai10, "I DAI 10" } /* "I DAI 10" */,					//74
+	{ 6, 3, 0, 0, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,						//75
+	{ 6, 3, 0, 0, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */,						//76
 	//Placeholder slots for possible use of those 3 giant rock models
-	{ 6, 3, 0, 0, 0, NullFunction, "I HAH04" } /* "I HAH04" */,					//77
-	{ 6, 3, 0, 0, 0, NullFunction, "I HAH05" } /* "I HAH05" */,					//78
-	{ 6, 3, 0, 0, 0, NullFunction, "I HAH06" } /* "I HAH06" */,					//79
-	{ 2, 3, 0, 0, 1440000, Load_NextAct, "NEXT ACT" } /* This is a test object */,			//7A
-	{ 6, 3, 0, 0, 0, Load_BrPole, "BRPOLE" } /* "BRPOLE" */,					//7B
+	{ 6, 3, 0, 0, 0, NullFunction, "I HAH04" } /* "I HAH04" */,						//77
+	{ 6, 3, 0, 0, 0, NullFunction, "I HAH05" } /* "I HAH05" */,						//78
+	{ 6, 3, 0, 0, 0, NullFunction, "I HAH06" } /* "I HAH06" */,						//79
+	{ 2, 3, 0, 0, 1440000, Load_NextAct, "NEXT ACT" } /* This is a test object */,	//7A
+	{ 6, 3, 0, 0, 0, Load_BrPole, "BRPOLE" } /* "BRPOLE" */,						//7B
+	{ 2, 2, 0, 0, 0, CSphere, "C SPHERE" } /* "C SPHERE" */,						//7C
+	{ 2, 2, 0, 0, 0, ColCylinder_Main, "C CYLINDER" } /* "C CYLINDER" */,			//7D
+	{ 2, 2, 0, 0, 0, ColCube_Main, "C CUBE" } /* "C CUBE" */,						//7E
+	{ 2, 2, 0, 0, 0, TikalHint_Load, "O TIKAL" } /* "O TIKAL" */,					//7F
 };
 
 ObjectList WindyValleyObjectList = { arraylengthandptrT(WindyValleyObjectList_list, int) };
@@ -3771,18 +3778,14 @@ TrialLevelList BigActionStages = { arrayptrandlength(BigActionStages_list) };
 
 PointerInfo pointers[] = {
 	ptrdecl(0x97DA48, &landtable_008051E0),
-	ptrdecl(0x90F01C, &WindyValley1Textures),
 	ptrdecl(0xBFD820, &WindyValley1DeathZones),
 	ptrdecl(0x97DA4C, &landtable_008046C0),
-	ptrdecl(0x90F020, &WindyValley2Textures),
 	ptrdecl(0xBFD824, &WindyValley2DeathZones),
 	ptrdecl(0x97DA50, &landtable_0080433C),
-	ptrdecl(0x90F024, &WindyValley3Textures),
 	ptrdecl(0xBFD828, &WindyValley3DeathZones),
 	ptrdecl(0x974B38, &WindyValleyObjectList),
 	ptrdecl(0x974B3C, &WindyValleyObjectList),
 	ptrdecl(0x974B40, &WindyValleyObjectList),
-	ptrdecl(0x90EB70, &WindyValleyObjectTextures),
 	ptrdecl(0x91C0B8, &WV3path),
 	ptrdecl(0x91C0BC, &WV3path)
 };
@@ -3814,6 +3817,16 @@ float E103_PositionData[] = {
 
 void Init(const char *path, const HelperFunctions &helperFunctions)
 {
+	const IniFile *config = new IniFile(std::string(path) + "\\config.ini");
+	ADSetFile = config->getBool("Options", "ADSetFile", false);
+	if (ADSetFile)
+	{
+		ReplaceSETFile("SET0200S", "SET0200S_AD");
+		ReplaceSETFile("SET0201S", "SET0201S_AD");
+		ReplaceSETFile("SET0202S", "SET0202S_AD");
+	}
+	delete config;
+
 	*(float *)0x7E7B04 = 1420.68f; // changing the level trigger height for WV part 2
 	WriteData((float *)0x4DE8F6, 436.785f); // x component of tornado target.
 	WriteData((float *)0x4DE906, -2305.471f); // z component of tornado target.
@@ -3824,6 +3837,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteData((NJS_OBJECT**)0x004DFAC9, &Particle_Tanpopo);
 	WriteData((NJS_OBJECT**)0x004DFCB0, &Particle_Tanpopo);
 	WriteData((float**)0x004E802D, E103_PositionData);
+	
 	
 	*(NJS_OBJECT*)0xC158E0 = Object_Leaf; //WcWind/PuWind/Bleaf
 	*(NJS_OBJECT*)0xC159FC = Object_Leaf; //WcWind/PuWind/Bleaf
@@ -3852,6 +3866,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 extern "C"
 {
 	__declspec(dllexport) ModInfo SADXModInfo = { ModLoaderVer, &Init, NULL, 0, NULL, 0, NULL, 0, arrayptrandlength(pointers) };
+
 
 	__declspec(dllexport) void __cdecl OnFrame() 
 	{
