@@ -1,4 +1,5 @@
-#include <SADXModLoader.h>
+#include "SADXModLoader.h"
+#include "TexLists.h"
 
 NJS_MATERIAL matlist_001A23AC[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 0, NJD_D_100 | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -451,7 +452,7 @@ NJS_VECTOR normal_001AD85C[] = {
 
 NJS_MODEL_SADX attach_001ADBBC = { vertex_001AD4FC, normal_001AD85C, LengthOfArray(vertex_001AD4FC), meshlist_001AD4E4, matlist_001AD318, LengthOfArray(meshlist_001AD4E4), LengthOfArray(matlist_001AD318),{ 1.037949f, -27.37292f, 44.7402f }, 74.74889f, NULL };
 
-NJS_OBJECT object_001ADBE4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001ADBBC, 650, 1042.76f, -199, 0, 0, 0, 1, 1, 1, NULL, NULL };
+NJS_OBJECT object_001ADBE4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001ADBBC, 650, 1042, -199, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_001A4EB8[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 17, NJD_D_100 | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -5920,7 +5921,7 @@ NJS_VECTOR normal_001A44F4[] = {
 
 NJS_MODEL_SADX attach_001A4E3C = { vertex_001A3BAC, normal_001A44F4, LengthOfArray(vertex_001A3BAC), meshlist_001A3B64, matlist_001A2A24, LengthOfArray(meshlist_001A3B64), LengthOfArray(matlist_001A2A24),{ 3.324132f, -33.85713f, 43.82579f }, 73.54158f, NULL };
 
-NJS_OBJECT object_001A4E64 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001A4E3C, 650, 1042.76f, -199, 0, 0, 0, 1, 1, 1, NULL, NULL };
+NJS_OBJECT object_001A4E64 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001A4E3C, 650, 1042, -199, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_001A580C[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 20, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -7317,7 +7318,7 @@ NJS_VECTOR normal_001AD064[] = {
 
 NJS_MODEL_SADX attach_001AD2BC = { vertex_001ACE0C, normal_001AD064, LengthOfArray(vertex_001ACE0C), meshlist_001ACD64, matlist_001AC7FC, LengthOfArray(meshlist_001ACD64), LengthOfArray(matlist_001AC7FC),{ -0.906253f, 1.652545f, 2.796524f }, 41.84375f, NULL };
 
-NJS_OBJECT object_001AD2E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001AD2BC, 705.1492f, 1036.755f, -208.7243f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+NJS_OBJECT object_001AD2E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001AD2BC, 705.1492f, 1035.995f, -208.7243f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_001A8924[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 22, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -8283,7 +8284,7 @@ NJS_VECTOR normal_8D4C16DD0910B7198F0[] = {
 
 COL collist_00804360[] = {
 	{ { 651.1541f, 702.2967f, -230.4027f }, 69.99976f, 0, 0, &object_001A29D0, 0, 0x80000001 },
-	{ { 653.1829f, 1010.8f, -156.2757f }, 72.72834f, 0, 0, &object_001ADBE4, 0, 1 },
+	{ { 653.1829f, 1010.04f, -156.2757f }, 72.72834f, 0, 0, &object_001ADBE4, 0, 1 },
 	{ { 662.2734f, 712.8961f, -264.5483f }, 29.24361f, 0, 0, &object_001A57A0, 0, 0x80000000 },
 	{ { 668.1266f, 721.2125f, -268.1798f }, 28.57856f, 0, 0, &object_001A234C, 0, 1 },
 	{ { 620.3152f, -21.85193f, -177.0381f }, 76.05766f, 0, 0, &object_001A88B8, 0, 0x80000001 },
@@ -8294,16 +8295,23 @@ COL collist_00804360[] = {
 	{ { 651.8505f, 664.3476f, -191.0849f }, 874.9756f, 0, 0, &object_8D16A4A17F1F7A4389C, 0, 0x00001041 },
 	{ { 599.6726f, -8.826066f, -190.0511f }, 28.32903f, 0, 0, &object_8D16A4A181DC6D960BD, 0, 1 },
 	{ { 663.0854f, -182.3251f, -216.8751f }, 102.7095f, 0, 0, &object_8D16A4A1820E7F0DB55, 0, 1 },
-	{ { 653.3232f, 1008.903f, -155.1742f }, 73.54235f, 0, 0, &object_001A4E64, 0, 0x80000000 },
+	{ { 653.3232f, 1008.142f, -155.1742f }, 73.54263f, 0, 0, &object_001A4E64, 0, 0x80000000 },
 	{ { 693.6099f, -256.547f, -214.2089f }, 62.75165f, 0, 0, &object_001A6198, 0, 0x80000001 },
 	{ { 666.6911f, -183.5234f, -221.6071f }, 83.50738f, 0, 0, &object_001A70FC, 0, 0x80000000 },
-	{ { 704.2427f, 1038.407f, -205.9278f }, 41.84375f, 0, 0, &object_001AD2E4, 0, 0x80000001 },
+	{ { 704.2427f, 1037.648f, -205.9278f }, 41.8436f, 0, 0, &object_001AD2E4, 0, 0x80000001 },
 	{ { 600.3745f, -9.637774f, -188.8645f }, 27.09548f, 0, 0, &object_001A91F4, 0, 0x80000000 },
 	{ { 636.8798f, 156.9151f, -260.6076f }, 26.2201f, 0, 0, &object_001A9A30, 0, 0x80000001 },
 	{ { 603.7918f, 349.0829f, -178.4237f }, 33.62871f, 0, 0, &object_001AA740, 0, 0x80000001 }
 };
 
-LandTable landtable_008046C0 = { LengthOfArray(collist_00804360), 0, 0xC, 3000, collist_00804360, NULL, NULL, &WINDY02_TEXLIST, 0, 0 };
+LandTable landtable_008046C0 = { LengthOfArray(collist_00804360), 0, 0xC, 3000, collist_00804360, NULL, NULL, &WINDY02_texlist, 0, 0 };
+
+
+PVMEntry WindyValley2Textures_list[] = {
+	{ "WINDY02", &WINDY02_texlist }
+};
+
+LevelPVMList WindyValley2Textures = { levelact(LevelIDs_WindyValley, 1), arraylengthandptr(WindyValley2Textures_list) };
 
 Sint16 poly_007FD264[] = {
 	0, 1, 3, 2
