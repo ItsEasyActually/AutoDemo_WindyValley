@@ -1,5 +1,4 @@
 #include "SADXModLoader.h"
-#include "TexLists.h"
 
 NJS_MATERIAL matlist_0006700C[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 18, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -85050,14 +85049,7 @@ COL collist_00802BC0[] = {
 	{ { -1311.235f, -1796.315f, -2781.594f }, 510.6809f, 0x438EB685, 0x43BC3DFB, &object_000F3E28, 0, 0x80000001 },
 	{ { -1336.914f, -1725.964f, -3164.212f }, 467.991f, 0x438EB685, 0x42E6473F, &object_000F42FC, 0, 0x80000001 }
 };
-LandTable landtable_0080433C = { LengthOfArray(collist_00802BC0), 0, 0xC, 3000, collist_00802BC0, NULL, NULL, &WINDY03_texlist, 0, 0 };
-
-
-PVMEntry WindyValley3Textures_list[] = {
-	{ "WINDY03", &WINDY03_texlist }
-};
-
-LevelPVMList WindyValley3Textures = { levelact(LevelIDs_WindyValley, 2), arraylengthandptr(WindyValley3Textures_list) };
+LandTable landtable_0080433C = { LengthOfArray(collist_00802BC0), 0, 0xC, 3000, collist_00802BC0, NULL, NULL, &WINDY03_TEXLIST, 0, 0 };
 
 Sint16 poly_007FD35C[] = {
 	4, 0, 1
