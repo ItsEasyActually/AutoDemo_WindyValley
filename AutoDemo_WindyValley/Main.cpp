@@ -3752,15 +3752,17 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 0, 0, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,						//75
 	{ 6, 3, 0, 0, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */,						//76
 	//Placeholder slots for possible use of those 3 giant rock models
-	{ 6, 3, 0, 0, 0, NullFunction, "I HAH04" } /* "I HAH04" */,						//77
-	{ 6, 3, 0, 0, 0, NullFunction, "I HAH05" } /* "I HAH05" */,						//78
-	{ 6, 3, 0, 0, 0, NullFunction, "I HAH06" } /* "I HAH06" */,						//79
+	{ 6, 3, 1, 40000000, 0, NullFunction, "I HAH04" } /* "I HAH04" */,						//77
+	{ 6, 3, 1, 40000000, 0, NullFunction, "I HAH05" } /* "I HAH05" */,						//78
+	{ 6, 3, 1, 40000000, 0, NullFunction, "I HAH06" } /* "I HAH06" */,						//79
 	{ 2, 3, 0, 0, 1440000, Load_NextAct, "NEXT ACT" } /* This is a test object */,	//7A
-	{ 6, 3, 0, 0, 0, Load_BrPole, "BRPOLE" } /* "BRPOLE" */,						//7B
+	{ 6, 3, 1, 1000000, 0, Load_BrPole, "BRPOLE" } /* "BRPOLE" */,						//7B
+	{ 6, 3, 1, 4000000, 0, NullFunction, "WGEAR" } /* "WGEAR" */,					//7C
+	{ 6, 3, 1, 4000000, 0, NullFunction, "WBOLT" } /* "WBOLT" */,					//7D
 	{ 2, 2, 0, 0, 0, CSphere, "C SPHERE" } /* "C SPHERE" */,						//7C
 	{ 2, 2, 0, 0, 0, ColCylinder_Main, "C CYLINDER" } /* "C CYLINDER" */,			//7D
 	{ 2, 2, 0, 0, 0, ColCube_Main, "C CUBE" } /* "C CUBE" */,						//7E
-	{ 2, 2, 0, 0, 0, TikalHint_Load, "O TIKAL" } /* "O TIKAL" */,					//7F
+	{ 2, 2, 0, 0, 0, TikalHint_Load, "O TIKAL" } /* "O TIKAL" */					//7F
 };
 
 ObjectList WindyValleyObjectList = { arraylengthandptrT(WindyValleyObjectList_list, int) };
