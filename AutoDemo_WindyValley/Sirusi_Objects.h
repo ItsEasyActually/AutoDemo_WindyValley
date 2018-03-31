@@ -400,21 +400,36 @@ NJS_OBJECT Object_Sirusi1 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_U
 
 NJS_MKEY_A Sirusi1_Action_1_rot[] = {
 	{ 0, 0, 0, 0 },
-	{ 2, 0x800, 0, 0 },
-	{ 4, 0xF00, 0, 0 },
-	{ 9, 0x1900, 0, 0 },
-	{ 16, 0x2000, 0, 0 },
-	{ 23, 0x1900, 0, 0 },
-	{ 28, 0xF00, 0, 0 },
-	{ 31, 0x800, 0, 0 },
-	{ 33, 0, 0, 0 },
-	{ 34, 0xF900, 0, 0 },
-	{ 37, 0xF100, 0, 0 },
-	{ 43, 0xE700, 0, 0 },
-	{ 50, 0xE000, 0, 0 },
-	{ 57, 0xE700, 0, 0 },
-	{ 63, 0xF100, 0, 0 },
-	{ 65, 0xF900, 0, 0 }
+	{ 1, 0x800, 0, 0 },
+	{ 2, 0x1500, 0, 0 },
+	{ 3, 0x1A00, 0, 0 },
+	{ 4, 0x1D00, 0, 0 },
+	{ 5, 0x1F00, 0, 0 },
+	{ 6, 0x1F50, 0, 0 },
+	{ 7, 0x2000, 0, 0 },
+	{ 8, 0x2000, 0, 0 },
+	{ 9, 0x1F50, 0, 0 },
+	{ 10, 0x1F00, 0, 0 },
+	{ 11, 0x1D00, 0, 0 },
+	{ 12, 0x1A00, 0, 0 },
+	{ 13, 0x1500, 0, 0 },
+	{ 14, 0x800, 0, 0 },
+	{ 15, 0, 0, 0 },
+	{ 16, -0x800, 0, 0 },
+	{ 17, -0x1500, 0, 0 },
+	{ 18, -0x1A00, 0, 0 },
+	{ 19, -0x1D00, 0, 0 },
+	{ 20, -0x1F00, 0, 0 },
+	{ 21, -0x1F50, 0, 0 },
+	{ 22, -0x2000, 0, 0 },	
+	{ 23, -0x2000, 0, 0 },
+	{ 24, -0x1F50, 0, 0 },
+	{ 25, -0x1F00, 0, 0 },
+	{ 26, -0x1D00, 0, 0 },
+	{ 27, -0x1A00, 0, 0 },
+	{ 28, -0x1500, 0, 0 },
+	{ 29, -0x800, 0, 0 },
+	{ 30, 0, 0, 0 }
 };
 
 NJS_MDATA2 Sirusi1_Action_mdat[] = {
@@ -422,7 +437,7 @@ NJS_MDATA2 Sirusi1_Action_mdat[] = {
 	{ NULL, Sirusi1_Action_1_rot, 0, LengthOfArray<Uint32>(Sirusi1_Action_1_rot) }
 };
 
-NJS_MOTION Sirusi1_Action = { Sirusi1_Action_mdat, 66, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+NJS_MOTION Sirusi1_Action = { Sirusi1_Action_mdat, 31, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 NJS_ACTION action_Sirusi1_Action = { &Object_Sirusi1, &Sirusi1_Action };
 

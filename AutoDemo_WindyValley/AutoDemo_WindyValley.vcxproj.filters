@@ -25,6 +25,9 @@
     <Filter Include="Source Files\external">
       <UniqueIdentifier>{72d2f9a4-a294-4596-99b2-5ea3b5624968}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Addons">
+      <UniqueIdentifier>{f8eba3b4-4b6d-4b33-ae09-077c57669334}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -129,6 +132,9 @@
     <ClInclude Include="Bridge_Pole.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="set.h">
+      <Filter>Header Files\Addons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -144,6 +150,9 @@
       <Filter>Source Files\external</Filter>
     </ClCompile>
     <ClCompile Include="..\sadx-mod-loader\mod-loader-common\ModLoaderCommon\IniFile.cpp">
+      <Filter>Source Files\external</Filter>
+    </ClCompile>
+    <ClCompile Include="set.cpp">
       <Filter>Source Files\external</Filter>
     </ClCompile>
   </ItemGroup>

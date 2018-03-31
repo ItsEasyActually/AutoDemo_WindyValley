@@ -3,6 +3,7 @@
 
 #include <SADXModLoader.h>
 #include "IniFile.hpp"
+#include "set.h"
 
 //LandTable Headers
 #include "Act1.h"
@@ -39,11 +40,10 @@
 #include "Wele.h"
 #include "WindyGate.h"
 
-#define ReplaceSETFile(a)  helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" a "_AD.BIN");
+#define ReplaceSETFile(a) helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" a "_AD.BIN");
+#define ReplacePVMFile(a) helperFunctions.ReplaceFile("system\\" a ".PVM", "system\\" a "_AD.PVM");
 
 //Variables
-static float grassFrame = 0;
-static float treeFrame = 0;
 static bool ADSetFile = true;
 
 //Structs
@@ -239,6 +239,8 @@ void __cdecl Basic_Main(ObjectMaster *a1)
 		Basic_Display(a1);
 	}
 }
+
+//Test Collision
 
 //Trampoline Code
 void __cdecl Trampoline_Display(ObjectMaster *a2)
@@ -591,8 +593,8 @@ void __cdecl Sirusi1_Display(ObjectMaster *a1)
 
 		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
 		{
-			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			if (*(float*)&v1->CharIndex >= 66.0)
+			*(float*)&v1->CharIndex = 0.75f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 31.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
 			}
@@ -1287,14 +1289,57 @@ void __cdecl Load_Flower1(ObjectMaster *a1)
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
 }
 
+void __cdecl PinkF_Display(ObjectMaster *a2)
+{
+	EntityData1 *v1; // esi@1
+	ObjectMaster *a3; // ST08_4@1
+	Angle v3; // eax@3
+	Angle v6;
+	Angle v7;
+
+	v1 = a2->Data1;
+	a3 = a2;
+	if (!ClipSetObject(a3) && !MissedFrames)
+	{
+		v1->Scale.x = 1.0;
+		v1->Scale.y = 1.0;
+		v1->Scale.z = 1.0;
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v6 = v1->Rotation.z;
+		if (v6)
+		{
+			njRotateZ(0, (unsigned __int16)v6);
+		}
+		v7 = v1->Rotation.x;
+		if (v7)
+		{
+			njRotateX(0, (unsigned __int16)v7);
+		}
+		v3 = v1->Rotation.y;
+		if (v3)
+		{
+			njRotateY(0, (unsigned __int16)v3);
+		}
+		njAction(&PinkF_Anim, *(float *)&v1->CharIndex);
+		njPopMatrix(1u);
+		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 7.0)
+			{
+				*(float*)&v1->CharIndex = 0.0;
+			}
+		}
+	}
+}
+
 void __cdecl Load_PinkF(ObjectMaster *a1)
 {
-	EntityData1 *v1;
-
-	v1 = a1->Data1;
-	v1->Object = &Object_PinkF;
-	a1->MainSub = Basic_Main;
-	a1->DisplaySub = Basic_Display;
+	a1->MainSub = PinkF_Display;
+	a1->DisplaySub = PinkF_Display;
+	a1->Data1->Action = 0;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
 }
 
@@ -1938,7 +1983,7 @@ void __cdecl Load_IHas16(ObjectMaster *a1)
 	if (!ClipSetObject(a1))
 	{
 		obj = ObjectArray_GetFreeObject();
-		obj->evalflags = v1->Object->evalflags;
+		obj->evalflags = 0;
 		obj->model = v1->Object->model;
 		obj->scl[0] = 1.0f;
 		obj->scl[1] = 1.0f;
@@ -3481,6 +3526,8 @@ void __cdecl Load_Dome3(ObjectMaster *a1)
 	}
 }
 
+
+//Raft Objects
 void __cdecl Raft_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1;
@@ -3755,7 +3802,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 0, 0, 0, NullFunction, "I HAH04" } /* "I HAH04" */,						//77
 	{ 6, 3, 0, 0, 0, NullFunction, "I HAH05" } /* "I HAH05" */,						//78
 	{ 6, 3, 0, 0, 0, NullFunction, "I HAH06" } /* "I HAH06" */,						//79
-	{ 2, 3, 0, 0, 1440000, Load_NextAct, "NEXT ACT" } /* This is a test object */,	//7A
+	{ 2, 2, 0, 0, 0, NextAct_Main, "NEXT ACT" } /* This is a test object */,	//7A
 	{ 6, 3, 0, 0, 0, Load_BrPole, "BRPOLE" } /* "BRPOLE" */,						//7B
 	{ 2, 2, 0, 0, 0, CSphere, "C SPHERE" } /* "C SPHERE" */,						//7C
 	{ 2, 2, 0, 0, 0, ColCylinder_Main, "C CYLINDER" } /* "C CYLINDER" */,			//7D
@@ -3817,6 +3864,29 @@ float E103_PositionData[] = {
 
 void Init(const char *path, const HelperFunctions &helperFunctions)
 {
+	set_init();
+
+	if (helperFunctions.Version < 6) {
+		PrintDebug("Your ModLoader is out of date.\n Please update to use this mod!");
+	};
+
+	ReplacePVMFile("WINDY01_DC", "WINDY01_AD");
+	ReplacePVMFile("WINDY02_DC", "WINDY02_AD");
+	ReplacePVMFile("WINDY03_DC", "WINDY03_AD");
+	ReplacePVMFile("WINDY_BACK_DC", "WINDY_BACK_AD");
+	ReplacePVMFile("WINDY_BACK2_DC", "WINDY_BACK2_AD");
+	ReplacePVMFile("WINDY_BACK3_DC", "WINDY_BACK3_AD");
+	ReplacePVMFile("OBJ_WINDY_DC", "OBJ_WINDY_AD");
+	ReplacePVMFile("WINDY_E103_DC", "WINDY_E103_AD");
+	ReplacePVMFile("WINDY01", "WINDY01_AD");
+	ReplacePVMFile("WINDY02", "WINDY02_AD");
+	ReplacePVMFile("WINDY03", "WINDY03_AD");
+	ReplacePVMFile("WINDY_BACK", "WINDY_BACK_AD");
+	ReplacePVMFile("WINDY_BACK2", "WINDY_BACK2_AD");
+	ReplacePVMFile("WINDY_BACK3", "WINDY_BACK3_AD");
+	ReplacePVMFile("OBJ_WINDY", "OBJ_WINDY_AD");
+	ReplacePVMFile("WINDY_E103", "WINDY_E103_AD");
+
 	const IniFile *config = new IniFile(std::string(path) + "\\config.ini");
 	ADSetFile = config->getBool("Options", "ADSetFile", false);
 	if (ADSetFile)
@@ -3866,16 +3936,4 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 extern "C"
 {
 	__declspec(dllexport) ModInfo SADXModInfo = { ModLoaderVer, &Init, NULL, 0, NULL, 0, NULL, 0, arrayptrandlength(pointers) };
-
-
-	__declspec(dllexport) void __cdecl OnFrame() 
-	{
-		if (CurrentLevel == 2 && GameState != 16)
-		{
-			grassFrame = grassFrame + 1.0f;
-			if (grassFrame > 7) grassFrame = 0;
-			treeFrame = treeFrame + 1.0f;
-			if (treeFrame > 17) treeFrame = 0;
-		}
-	}
 }

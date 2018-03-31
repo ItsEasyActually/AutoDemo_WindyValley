@@ -1173,3 +1173,32 @@ NJS_VECTOR normal_0010585C[] = {
 NJS_MODEL_SADX attach_001059DC = { vertex_001056DC, normal_0010585C, LengthOfArray<Sint32>(vertex_001056DC), meshlist_001056C4, matlist_001055F0, LengthOfArray<Uint16>(meshlist_001056C4), LengthOfArray<Uint16>(matlist_001055F0),{ 0.380386f, 0.23368f, -0.068444f }, 3.064994f, NULL };
 
 NJS_OBJECT Object_PinkF = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL, &attach_001059DC, 0, 0, 0, 0, 0, 0, 1, 1, 1, &object_001055BC, NULL };
+
+NJS_MKEY_A PinkF_Flower1Rot[] = {
+	{ 0, 0, 0, 0 },
+	{ 3, 0x23A, 0, 0 },
+	{ 7, 0x52, 0, 0 },
+};
+
+NJS_MKEY_A PinkF_Flower2Rot[] = {
+	{ 0, 0, 0, 0 },
+	{ 3, 0, 0, 0x25A },
+	{ 7, 0, 0, 0x7A },
+};
+
+NJS_MKEY_A PinkF_Flower3Rot[] = {
+	{ 0, 0, 0, 0 },
+	{ 3, 0x168, 0, 0x23D },
+	{ 7, 0x8D, 0, 0x6A },
+};
+
+NJS_MDATA2 PinkF_Rotation[] = {
+	{ NULL, NULL, 0, 0 },
+	{ NULL, PinkF_Flower1Rot, 0, LengthOfArray<Uint32>(PinkF_Flower1Rot) },
+	{ NULL, PinkF_Flower2Rot, 0, LengthOfArray<Uint32>(PinkF_Flower2Rot) },
+	{ NULL, PinkF_Flower3Rot, 0, LengthOfArray<Uint32>(PinkF_Flower3Rot) }
+};
+
+NJS_MOTION PinkF_Action = { PinkF_Rotation, 8, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+
+NJS_ACTION PinkF_Anim = { &Object_PinkF, &PinkF_Action };

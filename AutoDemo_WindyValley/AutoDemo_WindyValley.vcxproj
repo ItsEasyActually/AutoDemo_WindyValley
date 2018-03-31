@@ -162,6 +162,7 @@
     <ClInclude Include="Rock_Objects.h" />
     <ClInclude Include="Sara_Objects.h" />
     <ClInclude Include="SBridge.h" />
+    <ClInclude Include="set.h" />
     <ClInclude Include="Sirusi_Objects.h" />
     <ClInclude Include="Skybox01.h" />
     <ClInclude Include="Skybox02.h" />
@@ -194,6 +195,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="set.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
