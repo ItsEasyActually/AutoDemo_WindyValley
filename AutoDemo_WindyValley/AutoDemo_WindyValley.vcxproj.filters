@@ -28,6 +28,9 @@
     <Filter Include="Header Files\Addons">
       <UniqueIdentifier>{f8eba3b4-4b6d-4b33-ae09-077c57669334}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Functions">
+      <UniqueIdentifier>{45602f73-daa4-4e3f-bbd0-8d7aeb97956c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -57,9 +60,6 @@
     <ClInclude Include="Grass_Objects.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Pole_Objects.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="PathInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -78,9 +78,6 @@
     <ClInclude Include="IDai_Objects.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="IHas_Objects.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="IBou-IHah_Objects.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
@@ -94,9 +91,6 @@
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Propellers.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="UnrefencedModels.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Pot_Objects.h">
@@ -135,6 +129,18 @@
     <ClInclude Include="set.h">
       <Filter>Header Files\Addons</Filter>
     </ClInclude>
+    <ClInclude Include="AdditionalVariables.h">
+      <Filter>Header Files\Addons</Filter>
+    </ClInclude>
+    <ClInclude Include="Functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pole_Objects.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Tanpopo_Object.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -154,6 +160,42 @@
     </ClCompile>
     <ClCompile Include="set.cpp">
       <Filter>Source Files\external</Filter>
+    </ClCompile>
+    <ClCompile Include="Basic_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="UserCall_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Sirusi_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Foliage_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Pole_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Fan_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Raft_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Misc_Function.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Debris_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Pedestal_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Sara_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

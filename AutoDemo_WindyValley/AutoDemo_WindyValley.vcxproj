@@ -145,17 +145,18 @@
     <ClInclude Include="Act1.h" />
     <ClInclude Include="Act2.h" />
     <ClInclude Include="Act3.h" />
+    <ClInclude Include="AdditionalVariables.h" />
     <ClInclude Include="BaneIwa.h" />
+    <ClInclude Include="Functions.h" />
     <ClInclude Include="Bridge_Pole.h" />
     <ClInclude Include="Dome_Objects.h" />
     <ClInclude Include="Flower_Objects.h" />
     <ClInclude Include="Grass_Objects.h" />
     <ClInclude Include="IBou-IHah_Objects.h" />
     <ClInclude Include="IDai_Objects.h" />
-    <ClInclude Include="IHas_Objects.h" />
+    <ClInclude Include="Pole_Objects.h" />
     <ClInclude Include="Leaf_Models.h" />
     <ClInclude Include="PathInfo.h" />
-    <ClInclude Include="Pole_Objects.h" />
     <ClInclude Include="Pot_Objects.h" />
     <ClInclude Include="Propellers.h" />
     <ClInclude Include="Raft_Objects.h" />
@@ -170,9 +171,9 @@
     <ClInclude Include="StartPos.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Tako_W.h" />
+    <ClInclude Include="Tanpopo_Object.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Trampoline.h" />
-    <ClInclude Include="UnrefencedModels.h" />
     <ClInclude Include="Wele.h" />
     <ClInclude Include="WindyGate.h" />
     <ClInclude Include="W_Ki_Objects.h" />
@@ -180,6 +181,10 @@
   <ItemGroup>
     <ClCompile Include="..\sadx-mod-loader\mod-loader-common\ModLoaderCommon\IniFile.cpp" />
     <ClCompile Include="..\sadx-mod-loader\mod-loader-common\ModLoaderCommon\TextConv.cpp" />
+    <ClCompile Include="Basic_Functions.cpp" />
+    <ClCompile Include="Debris_Functions.cpp" />
+    <ClCompile Include="Fan_Functions.cpp" />
+    <ClCompile Include="Foliage_Functions.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
@@ -195,13 +200,21 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Pedestal_Functions.cpp" />
+    <ClCompile Include="Pole_Functions.cpp" />
+    <ClCompile Include="Raft_Functions.cpp" />
+    <ClCompile Include="Rock_Functions.cpp" />
+    <ClCompile Include="Sara_Functions.cpp" />
     <ClCompile Include="set.cpp" />
+    <ClCompile Include="Sirusi_Functions.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Misc_Function.cpp" />
+    <ClCompile Include="UserCall_Functions.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
