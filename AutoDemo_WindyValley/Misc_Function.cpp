@@ -70,6 +70,10 @@ void __cdecl Trampoline_Main(ObjectMaster *a1)
 			Trampoline_Display(a1);
 			break;
 		case 1:
+			Trampolineheight = 10.0f;
+			Trampolineheightsecond = 11.0f;
+			Trampolineheightthird = 16.0f;
+			Trampolineheightfourth = 12.0f;
 			sub_4E2D30((int)a1);
 			AddToCollisionList(v1);
 			Trampoline_Display(a1);
@@ -77,17 +81,49 @@ void __cdecl Trampoline_Main(ObjectMaster *a1)
 		case 3:
 			if (v1->NextAction == 1)
 			{
+				Trampolineheight = 10.0f;
+				Trampolineheightsecond = 11.0f;
+				Trampolineheightthird = 16.0f;
+				Trampolineheightfourth = 12.0f;
 				sub_4E2CC0((int)a1);
+				Trampolineheight = 19.0f;
+				Trampolineheightsecond = 20.0f;
+				Trampolineheightthird = 25.0f;
+				Trampolineheightfourth = 21.0f;
 			}
+			Trampolineheight = 10.0f;
+			Trampolineheightsecond = 11.0f;
+			Trampolineheightthird = 16.0f;
+			Trampolineheightfourth = 12.0f;
 			sub_4E2DC0((int)v1);
+			Trampolineheight = 19.0f;
+			Trampolineheightsecond = 20.0f;
+			Trampolineheightthird = 25.0f;
+			Trampolineheightfourth = 21.0f;
 			Trampoline_Display(a1);
 			break;
 		case 4:
 			if (v1->NextAction == 1)
 			{
+				Trampolineheight = 10.0f;
+				Trampolineheightsecond = 11.0f;
+				Trampolineheightthird = 16.0f;
+				Trampolineheightfourth = 12.0f;
 				sub_4E2CC0((int)a1);
+				Trampolineheight = 19.0f;
+				Trampolineheightsecond = 20.0f;
+				Trampolineheightthird = 25.0f;
+				Trampolineheightfourth = 21.0f;
 			}
+			Trampolineheight = 10.0f;
+			Trampolineheightsecond = 11.0f;
+			Trampolineheightthird = 16.0f;
+			Trampolineheightfourth = 12.0f;
 			sub_4E2EC0((int)v1);
+			Trampolineheight = 19.0f;
+			Trampolineheightsecond = 20.0f;
+			Trampolineheightthird = 25.0f;
+			Trampolineheightfourth = 21.0f;
 			Trampoline_Display(a1);
 			break;
 		case 5:
@@ -95,7 +131,15 @@ void __cdecl Trampoline_Main(ObjectMaster *a1)
 			{
 				sub_4E2CC0((int)a1);
 			}
+			Trampolineheight = 10.0f;
+			Trampolineheightsecond = 11.0f;
+			Trampolineheightthird = 16.0f;
+			Trampolineheightfourth = 12.0f;
 			sub_4E3090((int)v1);
+			Trampolineheight = 19.0f;
+			Trampolineheightsecond = 20.0f;
+			Trampolineheightthird = 25.0f;
+			Trampolineheightfourth = 21.0f;
 			Trampoline_Display(a1);
 			break;
 		case 6:
