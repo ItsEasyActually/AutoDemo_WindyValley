@@ -64,6 +64,6 @@ void __cdecl Load_Raft(ObjectMaster *a1)
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Raft_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Raft_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
 	}
 }

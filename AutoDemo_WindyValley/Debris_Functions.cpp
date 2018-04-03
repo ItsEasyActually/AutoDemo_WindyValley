@@ -33,7 +33,7 @@ void __cdecl Load_IBou01(ObjectMaster *a1)
 			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
 		}
 	}
 }
@@ -65,7 +65,7 @@ void __cdecl Load_IBou02(ObjectMaster *a1)
 			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
 		}
 	}
 }
@@ -97,7 +97,7 @@ void __cdecl Load_IBou03(ObjectMaster *a1)
 			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
 		}
 	}
 }
@@ -130,7 +130,7 @@ void __cdecl Load_IHah01(ObjectMaster *a1)
 			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
 		}
 	}
 }
@@ -162,7 +162,7 @@ void __cdecl Load_IHah02(ObjectMaster *a1)
 			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
 		}
 	}
 }
@@ -194,7 +194,7 @@ void __cdecl Load_IHah03(ObjectMaster *a1)
 			DynamicCOL_Add(ColFlags_Solid, a1, obj);
 			a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 			a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
 		}
 	}
 }

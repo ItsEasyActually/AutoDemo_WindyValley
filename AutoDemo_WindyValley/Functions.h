@@ -13,6 +13,7 @@ extern inline void sub_4D46C0(EntityData1 *a1);
 void __cdecl NullFunction(ObjectMaster *a1);
 void __cdecl Basic_Display(ObjectMaster *a2);
 void __cdecl Basic_Main(ObjectMaster *a1);
+void __cdecl DeleteDynamicCollision(ObjectMaster *a1);
 
 //Misc Functions
 void __cdecl Trampoline_Main(ObjectMaster *a1);

@@ -57,3 +57,17 @@ void __cdecl Basic_Main(ObjectMaster *a1)
 		Basic_Display(a1);
 	}
 }
+
+//Standard Delete Dynamic
+void __cdecl DeleteDynamicCollision(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+
+	v1 = a1->Data1;
+	if (v1->Object)
+	{
+		DynamicCOL_Remove(a1, v1->Object);
+		ObjectArray_Remove(v1->Object);
+		v1->Object = 0;
+	}
+}
