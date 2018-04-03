@@ -61,7 +61,7 @@ void __cdecl Load_IHas14(ObjectMaster *a1)
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynCol;
 	}
 }
 
@@ -91,7 +91,7 @@ void __cdecl Load_IHas15(ObjectMaster *a1)
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynCol;
 	}
 }
 
@@ -124,7 +124,7 @@ void __cdecl Load_IHas16(ObjectMaster *a1)
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynCol;
 	}
 }
 
@@ -184,6 +184,6 @@ void __cdecl Load_IHas19(ObjectMaster *a1)
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynCol;
 	}
 }

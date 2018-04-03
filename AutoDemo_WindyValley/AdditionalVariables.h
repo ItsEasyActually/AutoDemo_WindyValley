@@ -53,6 +53,7 @@ FunctionPointer(void, sub_49CE60, (EntityData1 *a1, EntityData2 *a2), 0x49CE60);
 FunctionPointer(void, sub_7A6440, (ObjectMaster *a1), 0x7A6440);
 FunctionPointer(void, sub_4E0A60, (ObjectMaster *a1), 0x4E0A60);
 FunctionPointer(void, InitCollision, (ObjectMaster *obj, CollisionData *collisionArray, int count, unsigned __int8 list), 0x0041CAF0);
+FunctionPointer(void, DeleteDynCol, (ObjectMaster *entity), 0x005D43C0);
 
 
 //Usercall and Thiscall Functions
