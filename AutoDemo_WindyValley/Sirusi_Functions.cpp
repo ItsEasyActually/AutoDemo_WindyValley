@@ -103,7 +103,7 @@ void __cdecl Load_Sirusi2(ObjectMaster *a1)
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynCol;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
@@ -133,7 +133,7 @@ void __cdecl Load_Sirusi3(ObjectMaster *a1)
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynCol;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
@@ -163,7 +163,7 @@ void __cdecl Load_Sirusi4(ObjectMaster *a1)
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynCol;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
@@ -264,7 +264,7 @@ void __cdecl Load_Siru11(ObjectMaster *a1)
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynCol;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
@@ -294,7 +294,7 @@ void __cdecl Load_Siru12(ObjectMaster *a1)
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynCol;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
@@ -324,7 +324,7 @@ void __cdecl Load_Siru13(ObjectMaster *a1)
 		DynamicCOL_Add(ColFlags_Solid, a1, obj);
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynCol;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
 	}
 }
 
