@@ -38,6 +38,11 @@ DataPointer(NJS_VECTOR, CurrentSkybox, 0x03ABDC94);
 DataPointer(NJS_BGRA, CurrentFogColorX, 0x03ABDC68);
 FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
 
+DataPointer(float, Trampolineheight, 0x007DF2E8);
+DataPointer(float, Trampolineheightsecond, 0x007DEBE0); //These are floats for the trampoline bounce height
+DataPointer(float, Trampolineheightthird, 0x007DF1B0);
+DataPointer(float, Trampolineheightfourth, 0x007E0B1C);
+
 //Additional SADX Functions
 FunctionPointer(void, sub_407870, (NJS_MODEL_SADX *model, char blend, float radius_scale), 0x407870);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
