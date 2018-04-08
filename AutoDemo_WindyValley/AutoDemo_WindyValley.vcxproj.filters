@@ -114,9 +114,6 @@
     <ClInclude Include="Skybox03.h">
       <Filter>Header Files\Skybox</Filter>
     </ClInclude>
-    <ClInclude Include="BaneIwa.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Leaf_Models.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
@@ -139,6 +136,9 @@
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Tanpopo_Object.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Spring_Objects.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
@@ -195,6 +195,9 @@
       <Filter>Source Files\Functions</Filter>
     </ClCompile>
     <ClCompile Include="Sara_Functions.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="BaneIwa_Function.cpp">
       <Filter>Source Files\Functions</Filter>
     </ClCompile>
   </ItemGroup>

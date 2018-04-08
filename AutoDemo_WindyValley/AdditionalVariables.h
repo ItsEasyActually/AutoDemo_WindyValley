@@ -59,6 +59,10 @@ FunctionPointer(void, sub_7A6440, (ObjectMaster *a1), 0x7A6440);
 FunctionPointer(void, sub_4E0A60, (ObjectMaster *a1), 0x4E0A60);
 FunctionPointer(void, InitCollision, (ObjectMaster *obj, CollisionData *collisionArray, int count, unsigned __int8 list), 0x0041CAF0);
 FunctionPointer(void, DeleteDynCol, (ObjectMaster *entity), 0x005D43C0);
+FunctionPointer(void, sub_4413E0, (unsigned __int8 a1, int a2, int a3, __int16 a4), 0x4413E0);
+FunctionPointer(void, sub_441990, (unsigned __int8 a1, float *a2), 0x441990);
+FunctionPointer(void *, sub_41CBC0, (EntityData1 *a1), 0x41CBC0);
+FunctionPointer(void, sub_46C150, (ObjectMaster *a1), 0x46C150);
 
 
 //Usercall and Thiscall Functions

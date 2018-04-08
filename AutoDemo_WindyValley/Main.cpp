@@ -103,8 +103,6 @@ void __cdecl Tanpopo_Main(ObjectMaster *a1)
 {
 	EntityData1 *v1; // edi@1
 	ObjectMaster *v2; // eax@10
-	char *v3; // edi@11
-	int v4; // ecx@11
 
 	v1 = a1->Data1;
 	if (!ClipSetObject(a1))
@@ -126,11 +124,7 @@ void __cdecl Tanpopo_Main(ObjectMaster *a1)
 					if (v2)
 					{
 						a1->Child = v2;
-						v3 = (char *)&v1->Position;
-						v4 = (int)&v2->Data1->Position;
-						*(_DWORD *)v4 = *(_DWORD *)v3;
-						*(_DWORD *)(v4 + 4) = *((_DWORD *)v3 + 1);
-						*(_DWORD *)(v4 + 8) = *((_DWORD *)v3 + 2);
+						v2->Data1->Position = v1->Position;
 					}
 				}
 			}
@@ -238,7 +232,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 0, 0, 0, Load_IHas16, "I HAS16" } /* "I HAS16" */,						//4E
 	{ 2, 3, 0, 0, 0, Load_IHas17, "I HAS17" } /* "I HAS17" */,						//4F
 	{ 2, 3, 0, 0, 0, Load_IHas18, "I HAS18" } /* "I HAS18" */,						//50
-	{ 2, 2, 0, 0, 0, NullFunction, "BANEIWA" } /* "BANEIWA" */,						//51
+	{ 2, 2, 0, 0, 0, Load_BaneIwa, "BANEIWA" } /* "BANEIWA" */,						//51
 	{ 2, 5, 0, 0, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,						//52
 	{ 2, 5, 0, 0, 0, NullFunction, "TAKO W " } /* "TAKO W " */,						//53
 	{ 2, 3, 0, 0, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54

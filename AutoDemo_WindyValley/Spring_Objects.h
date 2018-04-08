@@ -1,5 +1,9 @@
 #include "SADXModLoader.h"
 
+CollisionData BaneIwa_Collision[] = {
+	{ 0, 0, 0x0F0, 0x0E0, 0, 0.0, 4.0, 0.0, 6.0, 0.0, 0.0, 0, 0, 0, 0 }
+};
+
 NJS_MATERIAL matlist_0014303C[] = {
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 52, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 27, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC }
@@ -152,7 +156,7 @@ NJS_VECTOR normal_00143304[] = {
 
 NJS_MODEL_SADX attach_001433E8 = { vertex_00143220, normal_00143304, LengthOfArray<Sint32>(vertex_00143220), meshlist_001431F0, matlist_0014303C, LengthOfArray<Uint16>(meshlist_001431F0), LengthOfArray<Uint16>(matlist_0014303C), { 0.000194f, 5.809262f, -0.000638f }, 13.16121f, NULL };
 
-NJS_OBJECT Baneiwa_Cap = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001433E8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+NJS_OBJECT Object_BaneIwa_Cap = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001433E8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_00143444[] = {
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 26, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC }
@@ -265,7 +269,7 @@ NJS_VECTOR normal_00143640[] = {
 
 NJS_MODEL_SADX attach_00143724 = { vertex_0014355C, normal_00143640, LengthOfArray<Sint32>(vertex_0014355C), meshlist_0014352C, matlist_00143444, LengthOfArray<Uint16>(meshlist_0014352C), LengthOfArray<Uint16>(matlist_00143444), { -0.768275f, 2.635278f, -0.018539f }, 10.04599f, NULL };
 
-NJS_OBJECT Baneiwa_Coil = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00143724, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, &Baneiwa_Cap };
+NJS_OBJECT Object_BaneIwa_Coil = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00143724, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, &Object_BaneIwa_Cap };
 
 NJS_MATERIAL matlist_00143780[] = {
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 24, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -431,7 +435,7 @@ NJS_VECTOR normal_00143AA0[] = {
 
 NJS_MODEL_SADX attach_00143C14 = { vertex_0014392C, normal_00143AA0, LengthOfArray<Sint32>(vertex_0014392C), meshlist_001438CC, matlist_00143780, LengthOfArray<Uint16>(meshlist_001438CC), LengthOfArray<Uint16>(matlist_00143780), { 0.045165f, -1.875197f, 2.325684f }, 9.266637f, NULL };
 
-NJS_OBJECT Baneiwa_Propellor = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00143C14, 0, -1.440511f, 9.5f, 0, 0, 0, 1, 1, 1, NULL, &Baneiwa_Coil };
+NJS_OBJECT Object_BaneIwa_Prop = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00143C14, 0, -1.440511f, 9.5f, 0, 0, 0, 1, 1, 1, NULL, &Object_BaneIwa_Coil };
 
 NJS_MATERIAL matlist_00143C70[] = {
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 9, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -611,7 +615,7 @@ NJS_VECTOR normal_00143FB0[] = {
 
 NJS_MODEL_SADX attach_001440A0 = { vertex_00143EC0, normal_00143FB0, LengthOfArray<Sint32>(vertex_00143EC0), meshlist_00143E90, matlist_00143C70, LengthOfArray<Uint16>(meshlist_00143E90), LengthOfArray<Uint16>(matlist_00143C70), { 0.000179f, -5.779027f, 0 }, 14.07734f, NULL };
 
-NJS_OBJECT Object_Baneiwa = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL, &attach_001440A0, 0, 0, 0, 0, 0, 0, 1, 1, 1, &Baneiwa_Propellor, NULL };
+NJS_OBJECT Object_BaneIwa = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL, &attach_001440A0, 0, 0, 0, 0, 0, 0, 1, 1, 1, &Object_BaneIwa_Prop, NULL };
 
 
 NJS_MATERIAL matlist_001A08CC[] = {
