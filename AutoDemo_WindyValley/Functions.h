@@ -8,6 +8,7 @@ extern inline void sub_4E2EC0(int a1);
 extern inline void sub_49CCD0(EntityData1 *a1, NJS_OBJECT *a2, float a3);
 extern inline void sub_4DF8B0(int *a1);
 extern inline void sub_4D46C0(EntityData1 *a1);
+extern inline void sub_7A46C0(ObjectMaster *a1, char a2);
 
 //Basic Usage Functions
 void __cdecl NullFunction(ObjectMaster *a1);

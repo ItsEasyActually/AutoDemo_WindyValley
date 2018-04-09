@@ -1,7 +1,7 @@
 #include "SADXModLoader.h"
 
 CollisionData BaneIwa_Collision[] = {
-	{ 0, 0, 0x0F0, 0x0E0, 0, 0.0, 4.0, 0.0, 6.0, 0.0, 0.0, 0, 0, 0, 0 }
+	{ 0, 0, 0x0F0, 0x0E0, 0, 0.0, 4.0, 0.0, 14.0, 0.0, 0.0, 0, 0, 0, 0 }
 };
 
 NJS_MATERIAL matlist_0014303C[] = {

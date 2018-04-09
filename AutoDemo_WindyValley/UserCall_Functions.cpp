@@ -82,3 +82,16 @@ extern inline void sub_4D46C0(EntityData1 *a1)
 		call sub_4D46C0Ptr
 	}
 }
+
+// void __usercall(ObjectMaster *a1@<eax>, char a2)
+static const void *const sub_7A46C0Ptr = (void*)0x7A46C0;
+extern inline void sub_7A46C0(ObjectMaster *a1, char a2)
+{
+	__asm
+	{
+		push[a2]
+		mov eax, [a1]
+		call sub_7A46C0Ptr
+		add esp, 4
+	}
+}
