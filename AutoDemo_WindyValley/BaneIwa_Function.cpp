@@ -22,6 +22,16 @@ void __cdecl BaneIwa_Display(ObjectMaster *a1)
 	njPushMatrix(0);
 	njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
 
+	if (v1->Scale.z) 
+	{
+		*(float*)&v1->CharIndex = v1->Scale.z + *(float*)&v1->CharIndex;
+	}
+	else
+	{
+		*(float*)&v1->CharIndex = 2.7f + *(float*)&v1->CharIndex;
+	}
+	
+
 	rz = v1->Rotation.z;
 	if (rz)
 	{
@@ -42,19 +52,16 @@ void __cdecl BaneIwa_Display(ObjectMaster *a1)
 	njPushMatrix(0); //Propeller Start
 	njPushMatrix(0); //Spring Coil Start
 	njPushMatrix(0); //Spring Top
-	//YDist = v1->CharIndex * 4.0;
-	//njTranslate(0, 0.0, YDist, 0.0);
 	sub_407A00((NJS_MODEL_SADX*)Object_BaneIwa_Cap.model, 1.0); //Spring Top (NJS_MODEL)
 	njPopMatrix(1u);
-	//*(float *)&a1a = v1->CharIndex + 1.0;
-	//njScale(0, 1.0, *(Float *)&a1a, 1.0);
-	//if (*(float *)&a1a <= 1.0)
-	//{
-	//	*(float *)&a1a = 1.0;
-	//}
 	sub_407A00((NJS_MODEL_SADX*)Object_BaneIwa_Coil.model, 1.0); //Spring Coil (NJS_MODEL)
 	njPopMatrix(1u);
 	njTranslate(0, Object_BaneIwa_Prop.pos[0], Object_BaneIwa_Prop.pos[1], Object_BaneIwa_Prop.pos[2]);
+	v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+	if (v5)
+	{
+		njRotateZ(0, (unsigned __int16)v5);
+	}
 	sub_407A00((NJS_MODEL_SADX*)Object_BaneIwa_Prop.model, 1.0); //Propeller (NJS_MODEL)
 	njPopMatrix(1u);
 	njPopMatrix(1u);
@@ -75,14 +82,26 @@ void __cdecl Load_BaneIwa(ObjectMaster *a1)
 	ObjectMaster *v13; // edi@15
 	unsigned __int8 a1a; // [sp+Ch] [bp+4h]@14
 
+	float zScale;
+	float RotSpeed;
+
 	v2 = a1->Data1;
 	v2->Scale.y = 5.0f;
 	v2->Scale.x = 1.0f;
+	zScale = v2->Scale.z;
 	if (!ClipSetObject(a1))
 	{
 		switch (v2->Action)
 		{
 		case 0:
+			if (zScale != 0)
+			{
+				RotSpeed = zScale + RotSpeed;
+			}
+			else
+			{
+				RotSpeed = 2.7f + RotSpeed;
+			}
 			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
 			a1->DisplaySub = BaneIwa_Display;
 			InitCollision(a1, BaneIwa_Collision, 1, 4u);

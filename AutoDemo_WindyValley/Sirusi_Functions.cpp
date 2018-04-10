@@ -41,8 +41,8 @@ void __cdecl Sirusi1_Display(ObjectMaster *a1)
 
 		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
 		{
-			*(float*)&v1->CharIndex = 0.43f + *(float*)&v1->CharIndex;
-			if (*(float*)&v1->CharIndex >= 28.0)
+			*(float*)&v1->CharIndex = 0.86f + *(float*)&v1->CharIndex;
+			if (*(float*)&v1->CharIndex >= 54.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
 			}
