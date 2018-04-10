@@ -41,7 +41,14 @@ void __cdecl Sirusi1_Display(ObjectMaster *a1)
 
 		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
 		{
-			*(float*)&v1->CharIndex = 0.43f + *(float*)&v1->CharIndex;
+			if (FramerateSetting >= 2)
+			{
+				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
+			}
+			else
+			{
+				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+			}
 			if (*(float*)&v1->CharIndex >= 28.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
