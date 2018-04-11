@@ -45,14 +45,8 @@ void __cdecl Grass1_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
+
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
 			if (*(float*)&v1->CharIndex >= 7.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
@@ -106,14 +100,8 @@ void __cdecl Grass2_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
+
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
 			if (*(float*)&v1->CharIndex >= 7.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
@@ -167,14 +155,8 @@ void __cdecl Grass3_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
+
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
 			if (*(float*)&v1->CharIndex >= 7.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
@@ -228,14 +210,8 @@ void __cdecl Grass4_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
+
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
 			if (*(float*)&v1->CharIndex >= 7.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
@@ -303,14 +279,8 @@ void __cdecl WKusa1_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
+
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
 			if (*(float*)&v1->CharIndex >= 7.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
@@ -365,14 +335,8 @@ void __cdecl Flower0_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
+
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
 			if (*(float*)&v1->CharIndex >= 7.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
@@ -426,14 +390,8 @@ void __cdecl Flower1_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
+
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
 			if (*(float*)&v1->CharIndex >= 7.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
@@ -487,14 +445,8 @@ void __cdecl PinkF_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
+
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
 			if (*(float*)&v1->CharIndex >= 7.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
@@ -549,14 +501,8 @@ void __cdecl WKi1_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
+
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
 			if (*(float*)&v1->CharIndex >= 17.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
@@ -610,14 +556,8 @@ void __cdecl WKi2_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
+
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
 			if (*(float*)&v1->CharIndex >= 17.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
