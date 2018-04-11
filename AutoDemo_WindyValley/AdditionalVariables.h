@@ -63,6 +63,7 @@ FunctionPointer(void, sub_4413E0, (unsigned __int8 a1, int a2, int a3, __int16 a
 FunctionPointer(void, sub_441990, (unsigned __int8 a1, float *a2), 0x441990);
 FunctionPointer(void *, sub_41CBC0, (EntityData1 *a1), 0x41CBC0);
 FunctionPointer(void, sub_46C150, (ObjectMaster *a1), 0x46C150);
+DataPointer(int, FramerateSetting, 0x0389D7DC);
 
 
 //Usercall and Thiscall Functions
