@@ -21,15 +21,6 @@ void __cdecl BaneIwa_Display(ObjectMaster *a1)
 	SetTextureToLevelObj();
 	njPushMatrix(0);
 	njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
-
-	if (v1->Scale.z) 
-	{
-		*(float*)&v1->CharIndex = v1->Scale.z + *(float*)&v1->CharIndex;
-	}
-	else
-	{
-		*(float*)&v1->CharIndex = 2.7f + *(float*)&v1->CharIndex;
-	}
 	
 
 	rz = v1->Rotation.z;
@@ -57,7 +48,7 @@ void __cdecl BaneIwa_Display(ObjectMaster *a1)
 	sub_407A00((NJS_MODEL_SADX*)Object_BaneIwa_Coil.model, 1.0); //Spring Coil (NJS_MODEL)
 	njPopMatrix(1u);
 	njTranslate(0, Object_BaneIwa_Prop.pos[0], Object_BaneIwa_Prop.pos[1], Object_BaneIwa_Prop.pos[2]);
-	v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+	v5 = *(float*)&v1->field_3C * 65536.0 * 0.002777777777777778;
 	if (v5)
 	{
 		njRotateZ(0, (unsigned __int16)v5);
@@ -82,26 +73,24 @@ void __cdecl Load_BaneIwa(ObjectMaster *a1)
 	ObjectMaster *v13; // edi@15
 	unsigned __int8 a1a; // [sp+Ch] [bp+4h]@14
 
-	float zScale;
-	float RotSpeed;
+	float fanSpeed;
 
 	v2 = a1->Data1;
-	v2->Scale.y = 5.0f;
-	v2->Scale.x = 1.0f;
-	zScale = v2->Scale.z;
+	fanSpeed = v2->Scale.x;
+	v2->Scale.x = 40.0f;
 	if (!ClipSetObject(a1))
 	{
+		if (fanSpeed != 0)
+		{
+			*(float *)&v2->field_3C = fanSpeed + *(float *)&v2->field_3C;
+		}
+		else
+		{
+			*(float *)&v2->field_3C = 2.5f + *(float *)&v2->field_3C;
+		}
 		switch (v2->Action)
 		{
 		case 0:
-			if (zScale != 0)
-			{
-				RotSpeed = zScale + RotSpeed;
-			}
-			else
-			{
-				RotSpeed = 2.7f + RotSpeed;
-			}
 			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
 			a1->DisplaySub = BaneIwa_Display;
 			InitCollision(a1, BaneIwa_Collision, 1, 4u);
@@ -115,11 +104,6 @@ void __cdecl Load_BaneIwa(ObjectMaster *a1)
 		case 1:
 			v3 = (int)(*(float *)&v2->Object * 65536.0 * 0.002777777777777778);
 			*(float *)&v2->CharIndex = -fabs(njSin(v3) * *(float *)&v2->LoopData);
-			if (ObjectSelectedDebug(a1))
-			{
-				DisplayDebugString(1114131, "<- NO TIMER");
-				DisplayDebugString(1114132, "<- ADD YSPD");
-			}
 			if (!GetDebugMode())
 			{
 				v4 = *(float *)&v2->Object + v2->Scale.z;

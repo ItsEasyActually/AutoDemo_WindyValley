@@ -11,6 +11,11 @@
 #include "Act2.h"
 #include "Act3.h"
 
+//Skybox
+#include "Skybox01.h"
+#include "Skybox02.h"
+#include "Skybox03.h"
+
 //Stage Info Headers
 #include "PathInfo.h"
 #include "StartPos.h"
@@ -28,6 +33,7 @@
 
 //Variables
 static bool ADSetFile = true;
+static float SkyTrans = 1.0f;
 
 //Tanpopo (Dandelion)
 ObjectThing Tanpopo_Particles[] = {
@@ -190,7 +196,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 5, 0, 0, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
 	{ 2, 5, 0, 0, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
 	{ 6, 3, 0, 0, 0, LRock, "L ROCK1" } /* "L ROCK1" */,							//26
-	{ 6, 3, 0, 0, 0, Load_Raft , "RAFT   " } /* "RAFT   " */,						//27
+	{ 6, 3, 0, 0, 0, NullFunction, "RAFT   " } /* "RAFT   " */,						//27
 	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 2 " } /* "RAFT 2 " */,						//28
 	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,						//29
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,						//2A
@@ -286,6 +292,24 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 
 ObjectList WindyValleyObjectList = { arraylengthandptrT(WindyValleyObjectList_list, int) };
 
+void RetrieveWindy1SkyTransparency(float a, float r, float g, float b)
+{
+	SkyTrans = a;
+}
+
+void RenderWindy1Sky()
+{
+	SetMaterialAndSpriteColor_Float(SkyTrans, 1.0f, 1.0f, 1.0f);
+	DrawQueueDepthBias = -30000.0f;
+	ProcessModelNode(&Act01_Skybox1, (QueuedModelFlagsB)0, 1.0f); //Main
+	DrawQueueDepthBias = -28000.0f;
+	ProcessModelNode(&Act01_Skybox2, (QueuedModelFlagsB)0, 1.0f); //Bottom non-trans
+	SetMaterialAndSpriteColor_Float(SkyTrans* 0.6f, 1.0f, 1.0f, 1.0f);
+	DrawQueueDepthBias = -25000.0f;
+	ProcessModelNode(&Act01_Skybox3, (QueuedModelFlagsB)0, 1.0f); //Bottom trans
+	DrawQueueDepthBias = 0;
+}
+
 //Adding Windy Valley to Big's Trial Level List
 TrialLevelListEntry BigActionStages_list[] = {
 	{ LevelIDs_TwinklePark, 1 },
@@ -377,7 +401,16 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteData((float *)0x004DE8ED, tornadoLoadDistance); // Tornado's load distance
 	WriteData((int *)0x07E1D90, (int)LengthOfArray(WV3path)); // p2 path for WV3
 	WriteCall((void *)0x4DD8D3, TornadoPosition); // setting the tornado position properly
+	//Skybox stuff
+	//WriteCall((void*)0x004DD794, RetrieveWindy1SkyTransparency);
+	//WriteCall((void*)0x004DD7D1, RenderWindy1Sky);
+	//WriteData<5>((void*)0x004DD7DB, 0x90);
+	//WriteData<5>((void*)0x004DD7E5, 0x90);
+	//WriteData<5>((void*)0x004DD7EF, 0x90);
+	//WriteData<5>((void*)0x004DD7F9, 0x90);
 	WriteCall((void *)0x4DD7A5, WVSkybox1Position);
+
+
 	WriteData((NJS_OBJECT**)0x004DFAC9, &Particle_Tanpopo);
 	WriteData((NJS_OBJECT**)0x004DFCB0, &Particle_Tanpopo);
 	WriteData((float**)0x004E802D, E103_PositionData);
