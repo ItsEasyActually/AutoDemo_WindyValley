@@ -76,7 +76,7 @@ void __cdecl Load_BaneIwa(ObjectMaster *a1)
 	float fanSpeed;
 
 	v2 = a1->Data1;
-	fanSpeed = v2->Scale.x;
+	fanSpeed = v2->Scale.y/2;
 	v2->Scale.x = 40.0f;
 	if (!ClipSetObject(a1))
 	{
