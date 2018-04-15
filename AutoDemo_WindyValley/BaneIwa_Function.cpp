@@ -48,7 +48,7 @@ void __cdecl BaneIwa_Display(ObjectMaster *a1)
 	sub_407A00((NJS_MODEL_SADX*)Object_BaneIwa_Coil.model, 1.0); //Spring Coil (NJS_MODEL)
 	njPopMatrix(1u);
 	njTranslate(0, Object_BaneIwa_Prop.pos[0], Object_BaneIwa_Prop.pos[1], Object_BaneIwa_Prop.pos[2]);
-	v5 = *(float*)&v1->field_3C * 65536.0 * 0.002777777777777778;
+	v5 = *(float*)&v1->LoopData * 65536.0 * 0.002777777777777778;
 	if (v5)
 	{
 		njRotateZ(0, (unsigned __int16)v5);
@@ -73,52 +73,53 @@ void __cdecl Load_BaneIwa(ObjectMaster *a1)
 	ObjectMaster *v13; // edi@15
 	unsigned __int8 a1a; // [sp+Ch] [bp+4h]@14
 
+	float thingTest;
 	float fanSpeed;
+	float otherFloat;
 
 	v2 = a1->Data1;
-	fanSpeed = v2->Scale.y/2;
-	v2->Scale.x = 40.0f;
+	fanSpeed = v2->Scale.z;
 	if (!ClipSetObject(a1))
 	{
 		if (fanSpeed != 0)
 		{
-			*(float *)&v2->field_3C = fanSpeed + *(float *)&v2->field_3C;
+			*(float *)&v2->LoopData = fanSpeed + *(float *)&v2->LoopData;
 		}
 		else
 		{
-			*(float *)&v2->field_3C = 2.5f + *(float *)&v2->field_3C;
+			*(float *)&v2->LoopData = 2.5f + *(float *)&v2->LoopData;
 		}
 		switch (v2->Action)
 		{
 		case 0:
-			a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+			a1->DeleteSub = DeleteObject_;
 			a1->DisplaySub = BaneIwa_Display;
 			InitCollision(a1, BaneIwa_Collision, 1, 4u);
 			(v2->CollisionInfo->Flags) |= 0x40u;
 			*(float *)&v2->Object = 180.0f;
-			(v2->Scale.z) = 0;
-			*(float *)&v2->LoopData = 0.5f;
+			otherFloat = 0;
+			thingTest = 0.5f;
 			v2->Index = 10;
 			v2->Action = 1;
 			break;
 		case 1:
 			v3 = (int)(*(float *)&v2->Object * 65536.0 * 0.002777777777777778);
-			*(float *)&v2->CharIndex = -fabs(njSin(v3) * *(float *)&v2->LoopData);
+			*(float *)&v2->CharIndex = -fabs(njSin(v3) * thingTest);
 			if (!GetDebugMode())
 			{
-				v4 = *(float *)&v2->Object + v2->Scale.z;
+				v4 = *(float *)&v2->Object + otherFloat;
 				*(float *)&v2->Object = v4;
-				if (v4 < v2->Scale.z + 290.0)
+				if (v4 < otherFloat + 290.0)
 				{
-					(v2->Scale.z) = 15.0f;
+					(otherFloat) = 15.0f;
 				}
 				v7 = (int)((*(float *)&v2->Object - 180.0) * 0.1 * 65536.0 * 0.002777777777777778);
 				v8 = njCos(v7) * 0.60000002;
-				*(float *)&v2->LoopData = v8;
+				thingTest = v8;
 				if (v8 < 0.0)
 				{
 					*(float *)&v2->Object = 180.0f;
-					(v2->Scale.z) = 0;
+					(otherFloat) = 0;
 				}
 				v9 = v2->Index + 1;
 				v2->Index = v9;
@@ -149,7 +150,7 @@ void __cdecl Load_BaneIwa(ObjectMaster *a1)
 						}
 						*(float *)&v2->CharIndex = 0.1f;
 						v2->NextAction = v12;
-						(v2->Scale.z) = 20.0f;
+						(otherFloat) = 20.0f;
 						*(float *)&v2->Object = 270.0f;
 						v2->Action = 2;
 					}
