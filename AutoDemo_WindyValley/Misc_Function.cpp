@@ -75,6 +75,10 @@ void __cdecl Trampoline_Main(ObjectMaster *a1)
 			Trampolineheightthird = 16.0f;
 			Trampolineheightfourth = 12.0f;
 			sub_4E2D30((int)a1);
+			Trampolineheight = 19.0f;
+                        Trampolineheightsecond = 20.0f;
+                        Trampolineheightthird = 25.0f;
+                        Trampolineheightfourth = 21.0f;
 			AddToCollisionList(v1);
 			Trampoline_Display(a1);
 			break;
