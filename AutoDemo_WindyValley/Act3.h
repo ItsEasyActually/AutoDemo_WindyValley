@@ -85070,13 +85070,6 @@ COL collist_00802BC0[] = {
 };
 LandTable landtable_0080433C = { LengthOfArray(collist_00802BC0), 0, 0xC, 3000, collist_00802BC0, NULL, NULL, &WINDY03_texlist, 0, 0 };
 
-
-PVMEntry WindyValley3Textures_list[] = {
-	{ "WINDY03", &WINDY03_texlist }
-};
-
-LevelPVMList WindyValley3Textures = { levelact(LevelIDs_WindyValley, 2), arraylengthandptr(WindyValley3Textures_list) };
-
 Sint16 poly_007FD35C[] = {
 	4, 0, 1
 };
