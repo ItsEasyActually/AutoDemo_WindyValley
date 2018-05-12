@@ -240,7 +240,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, Load_IHas18, "I HAS18" } /* "I HAS18" */,						//50
 	{ 2, 2, 0, 0, 0, Load_BaneIwa, "BANEIWA" } /* "BANEIWA" */,						//51
 	{ 2, 5, 0, 0, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,						//52
-	{ 2, 5, 0, 0, 0, NullFunction, "TAKO W " } /* "TAKO W " */,						//53
+	{ 2, 5, 0, 0, 0, Load_TakoW, "TAKO W " } /* "TAKO W " */,						//53
 	{ 2, 3, 0, 0, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54
 	{ 2, 3, 0, 0, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,						//55
 	{ 2, 3, 0, 0, 0, Load_Dome3, "DOME 3 " } /* "DOME 3 " */,						//56
@@ -265,7 +265,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 0, 0, 0, Load_SaraS1, "SARA S1" } /* "SARA S1" */,						//69
 	{ 6, 3, 0, 0, 0, Load_SaraS2, "SARA S2" } /* "SARA S2" */,						//6A
 	{ 2, 4, 0, 0, 0, NullFunction, "TSPRING" } /* "TSPRING" */,						//6B
-	{ 2, 4, 0, 0, 0, NullFunction, "LAUCHIN" } /* "LAUCHIN" */,						//6C
+	{ 2, 4, 0, 0, 0, Load_Lauchin, "LAUCHIN" } /* "LAUCHIN" */,						//6C
 	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,						//6D
 	{ 7, 3, 0, 0, 0, NullFunction, "WELE   " } /* "WELE   " */,						//6E
 	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,					//6F
