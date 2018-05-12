@@ -22,6 +22,8 @@ void __cdecl WindyGate_Main(ObjectMaster *a1);
 void __cdecl SBridg(ObjectMaster *a1);
 void __cdecl Load_BrPole(ObjectMaster *a1);
 void __cdecl Load_BaneIwa(ObjectMaster *a1);
+void __cdecl Load_TakoW(ObjectMaster *a1);
+void __cdecl Load_Lauchin(ObjectMaster *a1);
 
 //Rock Functions
 void __cdecl LRock(ObjectMaster *a1);
