@@ -34,7 +34,7 @@ void __cdecl TakoW_Display(ObjectMaster *a1)
 		}
 		sub_409E70((NJS_MODEL_SADX*)Object_TakoW.model, 0, 1.0); //Root Model
 		njPushMatrix(0);
-		njTranslate(0, TakoW_Net.pos[0], TakoW_Net.pos[1], TakoW_Net.pos[2]);
+		njTranslate(0, Object_TakoW_Net.pos[0], Object_TakoW_Net.pos[1], Object_TakoW_Net.pos[2]);
 		
 		if (!ObjectSelectedDebug(a1))
 		{
@@ -65,7 +65,7 @@ void __cdecl TakoW_Display(ObjectMaster *a1)
 			}
 
 		}
-		sub_409E70((NJS_MODEL_SADX*)TakoW_Net.model, 0, 1.0);
+		sub_409E70((NJS_MODEL_SADX*)Object_TakoW_Net.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
