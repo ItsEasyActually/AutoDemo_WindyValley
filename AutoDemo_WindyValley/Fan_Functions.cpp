@@ -14,6 +14,8 @@ void __cdecl Prope1_Display(ObjectMaster *a1)
 	Angle v5; // st7@8
 
 	v1 = a1->Data1;
+	v1->Rotation.x = 0;
+	v1->Rotation.z = 0;
 	if (!MissedFrames)
 	{
 		SetTextureToLevelObj();
@@ -57,6 +59,7 @@ void __cdecl Load_Prope1(ObjectMaster *a1)
 				{
 					*(float*)&v1->CharIndex = 2.7f + *(float*)&v1->CharIndex;
 				}
+				AddToCollisionList(v1);
 				Prope1_Display(a1);
 			}
 		}
@@ -64,6 +67,7 @@ void __cdecl Load_Prope1(ObjectMaster *a1)
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Prope1_Display;
+			InitCollision(a1, Prope1_Collision, 1, 4u);
 		}
 	}
 }
@@ -75,6 +79,8 @@ void __cdecl Prope2_Display(ObjectMaster *a1)
 	Angle v5; // st7@8
 
 	v1 = a1->Data1;
+	v1->Rotation.x = 0;
+	v1->Rotation.z = 0;
 	if (!MissedFrames)
 	{
 		SetTextureToLevelObj();
@@ -119,14 +125,14 @@ void __cdecl Load_Prope2(ObjectMaster *a1)
 					*(float*)&v1->CharIndex = 2.7f + *(float*)&v1->CharIndex;
 				}
 				Prope2_Display(a1);
-				//AddToCollisionList(v1);
+				AddToCollisionList(v1);
 			}
 		}
 		else
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Prope2_Display;
-			//InitCollision(a1, WGate_Collision, 3, 4u);
+			InitCollision(a1, Prope2_Collision, 3, 4u);
 		}
 	}
 }
@@ -167,6 +173,8 @@ void __cdecl Load_Prope3(ObjectMaster *a1)
 	EntityData1 *v1; // esi@1
 
 	v1 = a1->Data1;
+	v1->Rotation.x = 0;
+	v1->Rotation.z = 0;
 	if (!ClipSetObject(a1))
 	{
 		if (v1->Action)
@@ -182,14 +190,14 @@ void __cdecl Load_Prope3(ObjectMaster *a1)
 					*(float*)&v1->CharIndex = 3.0f + *(float*)&v1->CharIndex;
 				}
 				Prope3_Display(a1);
-				//AddToCollisionList(v1);
+				AddToCollisionList(v1);
 			}
 		}
 		else
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Prope3_Display;
-			//InitCollision(a1, WGate_Collision, 3, 4u);
+			InitCollision(a1, Prope3_Collision, 3, 4u);
 		}
 	}
 }
@@ -667,6 +675,8 @@ void __cdecl Load_Prop1(ObjectMaster *a1)
 	EntityData1 *v1; // esi@1
 
 	v1 = a1->Data1;
+	v1->Rotation.x = 0;
+	v1->Rotation.z = 0;
 	if (!ClipSetObject(a1))
 	{
 		if (v1->Action)
@@ -690,14 +700,14 @@ void __cdecl Load_Prop1(ObjectMaster *a1)
 					*(float*)&v1->Object = -1.0f + *(float*)&v1->Object;
 				}
 				Prop1_Display(a1);
-				//AddToCollisionList(v1);
+				AddToCollisionList(v1);
 			}
 		}
 		else
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Prop1_Display;
-			//InitCollision(a1, Pot02_Collision, 2, 4u);
+			InitCollision(a1, Prop1_Collision, 1, 4u);
 		}
 	}
 }
@@ -747,6 +757,8 @@ void __cdecl Load_Dome1(ObjectMaster *a1)
 	EntityData1 *v1; // esi@1
 
 	v1 = a1->Data1;
+	v1->Rotation.x = 0;
+	v1->Rotation.z = 0;
 	if (!ClipSetObject(a1))
 	{
 		if (v1->Action)
@@ -830,6 +842,8 @@ void __cdecl Load_Dome2(ObjectMaster *a1)
 	EntityData1 *v1; // esi@1
 
 	v1 = a1->Data1;
+	v1->Rotation.x = 0;
+	v1->Rotation.z = 0;
 	if (!ClipSetObject(a1))
 	{
 		if (v1->Action)
@@ -925,6 +939,8 @@ void __cdecl Load_Dome3(ObjectMaster *a1)
 	EntityData1 *v1; // esi@1
 
 	v1 = a1->Data1;
+	v1->Rotation.x = 0;
+	v1->Rotation.z = 0;
 	if (!ClipSetObject(a1))
 	{
 		if (v1->Action)
