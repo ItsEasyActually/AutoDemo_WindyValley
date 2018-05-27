@@ -132,7 +132,7 @@ void __cdecl Load_Prope2(ObjectMaster *a1)
 		{
 			v1->Action = 1;
 			a1->DisplaySub = Prope2_Display;
-			InitCollision(a1, Prope2_Collision, 3, 4u);
+			InitCollision(a1, Prope2_Collision, 1, 4u);
 		}
 	}
 }
