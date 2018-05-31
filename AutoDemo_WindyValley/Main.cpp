@@ -130,7 +130,9 @@ void __cdecl Tanpopo_Main(ObjectMaster *a1)
 					if (v2)
 					{
 						a1->Child = v2;
-						v2->Data1->Position = v1->Position;
+						v2->Data1->Position.x = v1->Position.x;
+						v2->Data1->Position.y = (v1->Position.y - 1);
+						v2->Data1->Position.z = v1->Position.z;
 					}
 				}
 			}
