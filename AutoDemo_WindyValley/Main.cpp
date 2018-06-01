@@ -87,19 +87,19 @@ void __cdecl Tanpopo_Display(ObjectMaster *a1)
 		sub_407870(&Model_Tanpopo, 1, 1.0);
 		njPushMatrix(0);
 		njTranslate(0, Object_Tanpopostem.pos[0], Object_Tanpopostem.pos[1], Object_Tanpopostem.pos[2]);
-		if (v1->Rotation.y)
-		{
-			njRotateY(0, (unsigned __int16)(v1->Rotation.y));
-		}
-		if (v1->Rotation.x)
-		{
-			njRotateX(0, (unsigned __int16)(v1->Rotation.x));
-		}
-		if (v1->Rotation.z)
-		{
-			njRotateZ(0, (unsigned __int16)(v1->Rotation.z));
-		}
 		sub_407870(&Model_Tanpopostem, 1, 1.0);
+		njPushMatrix(0);
+		njTranslate(0, Particle_Tanpopo.pos[0], (Particle_Tanpopo.pos[1] + 2.5f), (Particle_Tanpopo.pos[2] + 0.3f));
+		sub_407870(&attach_001398BC, 1, 1.0);
+		njPushMatrix(0);
+		njTranslate(0, Particle_Tanpopo.pos[0], (Particle_Tanpopo.pos[1]), Particle_Tanpopo.pos[2]);
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4 + 0x4000);
+		}
+		sub_407870(&attach_001398BC, 1, 1.0);
+		njPopMatrix(1u);
+		njPopMatrix(1u);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
