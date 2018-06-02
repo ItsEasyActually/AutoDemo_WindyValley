@@ -85068,7 +85068,7 @@ COL collist_00802BC0[] = {
 	{ { -1311.235f, -1796.315f, -2781.594f }, 510.6809f, 0x438EB685, 0x43BC3DFB, &object_000F3E28, 0, 0x80000001 },
 	{ { -1336.914f, -1725.964f, -3164.212f }, 467.991f, 0x438EB685, 0x42E6473F, &object_000F42FC, 0, 0x80000001 }
 };
-LandTable landtable_0080433C = { LengthOfArray(collist_00802BC0), 0, 0xC, 3000, collist_00802BC0, NULL, NULL, &WINDY03_texlist, 0, 0 };
+LandTable landtable_0080433C = { LengthOfArray(collist_00802BC0), 0, 0xC, 3000, collist_00802BC0, NULL, NULL, &WINDY03_TEXLIST, 0, 0 };
 
 Sint16 poly_007FD35C[] = {
 	4, 0, 1

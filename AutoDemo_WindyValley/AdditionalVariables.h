@@ -64,7 +64,8 @@ FunctionPointer(void, sub_441990, (unsigned __int8 a1, float *a2), 0x441990);
 FunctionPointer(void *, sub_41CBC0, (EntityData1 *a1), 0x41CBC0);
 FunctionPointer(void, sub_46C150, (ObjectMaster *a1), 0x46C150);
 DataPointer(int, FramerateSetting, 0x0389D7DC);
-
+FunctionPointer(void, SetStatus, (ObjectMaster *a1), 0x0049CD60);
+FunctionPointer(void, DynCol_LoadObject, (ObjectMaster *a1), 0x0049E170);
 
 //Usercall and Thiscall Functions
 ThiscallFunctionPointer(void, sub_4E3090, (int _this), 0x4E3090);
