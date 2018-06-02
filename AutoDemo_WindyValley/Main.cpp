@@ -87,19 +87,19 @@ void __cdecl Tanpopo_Display(ObjectMaster *a1)
 		sub_407870(&Model_Tanpopo, 1, 1.0);
 		njPushMatrix(0);
 		njTranslate(0, Object_Tanpopostem.pos[0], Object_Tanpopostem.pos[1], Object_Tanpopostem.pos[2]);
-		if (v1->Rotation.y)
-		{
-			njRotateY(0, (unsigned __int16)(v1->Rotation.y));
-		}
-		if (v1->Rotation.x)
-		{
-			njRotateX(0, (unsigned __int16)(v1->Rotation.x));
-		}
-		if (v1->Rotation.z)
-		{
-			njRotateZ(0, (unsigned __int16)(v1->Rotation.z));
-		}
 		sub_407870(&Model_Tanpopostem, 1, 1.0);
+		njPushMatrix(0);
+		njTranslate(0, Particle_Tanpopo.pos[0], (Particle_Tanpopo.pos[1] + 2.5f), (Particle_Tanpopo.pos[2] + 0.3f));
+		sub_407870(&attach_001398BC, 1, 1.0);
+		njPushMatrix(0);
+		njTranslate(0, Particle_Tanpopo.pos[0], (Particle_Tanpopo.pos[1]), Particle_Tanpopo.pos[2]);
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4 + 0x4000);
+		}
+		sub_407870(&attach_001398BC, 1, 1.0);
+		njPopMatrix(1u);
+		njPopMatrix(1u);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -130,7 +130,9 @@ void __cdecl Tanpopo_Main(ObjectMaster *a1)
 					if (v2)
 					{
 						a1->Child = v2;
-						v2->Data1->Position = v1->Position;
+						v2->Data1->Position.x = v1->Position.x;
+						v2->Data1->Position.y = (v1->Position.y - 1);
+						v2->Data1->Position.z = v1->Position.z;
 					}
 				}
 			}
@@ -240,7 +242,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, Load_IHas18, "I HAS18" } /* "I HAS18" */,						//50
 	{ 2, 2, 0, 0, 0, Load_BaneIwa, "BANEIWA" } /* "BANEIWA" */,						//51
 	{ 2, 5, 0, 0, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,						//52
-	{ 2, 5, 0, 0, 0, NullFunction, "TAKO W " } /* "TAKO W " */,						//53
+	{ 2, 5, 0, 0, 0, Load_TakoW, "TAKO W " } /* "TAKO W " */,						//53
 	{ 2, 3, 0, 0, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54
 	{ 2, 3, 0, 0, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,						//55
 	{ 2, 3, 0, 0, 0, Load_Dome3, "DOME 3 " } /* "DOME 3 " */,						//56
@@ -265,7 +267,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 0, 0, 0, Load_SaraS1, "SARA S1" } /* "SARA S1" */,						//69
 	{ 6, 3, 0, 0, 0, Load_SaraS2, "SARA S2" } /* "SARA S2" */,						//6A
 	{ 2, 4, 0, 0, 0, NullFunction, "TSPRING" } /* "TSPRING" */,						//6B
-	{ 2, 4, 0, 0, 0, NullFunction, "LAUCHIN" } /* "LAUCHIN" */,						//6C
+	{ 2, 4, 0, 0, 0, Load_Lauchin, "LAUCHIN" } /* "LAUCHIN" */,						//6C
 	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,						//6D
 	{ 7, 3, 0, 0, 0, NullFunction, "WELE   " } /* "WELE   " */,						//6E
 	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,					//6F
