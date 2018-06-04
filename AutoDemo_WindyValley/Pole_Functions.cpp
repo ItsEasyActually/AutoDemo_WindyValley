@@ -37,7 +37,10 @@ void __cdecl Load_Pole2(ObjectMaster *a1)
 
 void __cdecl Load_IHas14(ObjectMaster *a1)
 {
-	NJS_OBJECT *obj;
+	a1->Data1->Object = &I_Has14;
+	SetStatus(a1);
+	DynCol_LoadObject(a1);
+	/*NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
@@ -62,12 +65,15 @@ void __cdecl Load_IHas14(ObjectMaster *a1)
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}
+	}*/
 }
 
 void __cdecl Load_IHas15(ObjectMaster *a1)
 {
-	NJS_OBJECT *obj;
+	a1->Data1->Object = &I_Has15;
+	SetStatus(a1);
+	DynCol_LoadObject(a1);
+	/*NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
@@ -92,12 +98,15 @@ void __cdecl Load_IHas15(ObjectMaster *a1)
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}
+	}*/
 }
 
 void __cdecl Load_IHas16(ObjectMaster *a1)
 {
-	NJS_OBJECT *obj;
+	a1->Data1->Object = &I_Has16;
+	SetStatus(a1);
+	DynCol_LoadObject(a1);
+	/*NJS_OBJECT *obj;
 	EntityData1 *v1;
 	Angle XAng;
 	Angle YAng;
@@ -125,7 +134,7 @@ void __cdecl Load_IHas16(ObjectMaster *a1)
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}
+	}*/
 }
 
 void __cdecl Load_IHas17(ObjectMaster *a1)
@@ -160,7 +169,10 @@ void __cdecl Load_IHas18(ObjectMaster *a1)
 
 void __cdecl Load_IHas19(ObjectMaster *a1)
 {
-	NJS_OBJECT *obj;
+	a1->Data1->Object = &Unreferenced02_001149B4;
+	SetStatus(a1);
+	DynCol_LoadObject(a1);
+	/*NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
@@ -185,5 +197,5 @@ void __cdecl Load_IHas19(ObjectMaster *a1)
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}
+	}*/
 }
