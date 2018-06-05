@@ -240,7 +240,10 @@ void __cdecl Load_Sirusi9(ObjectMaster *a1)
 
 void __cdecl Load_Siru11(ObjectMaster *a1)
 {
-	NJS_OBJECT *obj;
+	a1->Data1->Object = &Object_Siru11;
+	SetStatus(a1);
+	DynCol_LoadObject(a1);
+	/*NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
@@ -265,12 +268,15 @@ void __cdecl Load_Siru11(ObjectMaster *a1)
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}
+	}*/
 }
 
 void __cdecl Load_Siru12(ObjectMaster *a1)
 {
-	NJS_OBJECT *obj;
+	a1->Data1->Object = &Object_Siru12;
+	SetStatus(a1);
+	DynCol_LoadObject(a1);
+	/*NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
@@ -295,12 +301,15 @@ void __cdecl Load_Siru12(ObjectMaster *a1)
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}
+	}*/
 }
 
 void __cdecl Load_Siru13(ObjectMaster *a1)
 {
-	NJS_OBJECT *obj;
+	a1->Data1->Object = &Object_Siru13;
+	SetStatus(a1);
+	DynCol_LoadObject(a1);
+	/*NJS_OBJECT *obj;
 	EntityData1 *v1;
 
 	v1 = a1->Data1;
@@ -325,7 +334,7 @@ void __cdecl Load_Siru13(ObjectMaster *a1)
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
 		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}
+	}*/
 }
 
 void __cdecl Load_Yaji01(ObjectMaster *a1)
