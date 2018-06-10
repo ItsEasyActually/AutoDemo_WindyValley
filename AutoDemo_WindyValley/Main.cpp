@@ -177,107 +177,107 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 2, 0, 0, 0, RocketHS_Main, "Rocket HS" } /* "Rocket HS" */,				//0F
 	{ 6, 2, 0, 0, 0, RocketV_Main, "Rocket V" } /* "Rocket V" */,					//10
 	{ 6, 2, 0, 0, 0, RocketVS_Main, "Rocket VS" } /* "Rocket VS" */,				//11
-	{ 2, 2, 1, 4000000, 0, JumpPanel_Load, "O JPanel" } /* "O JPanel" */,			//12
-	{ 15, 3, 0, 0, 0, CheckPoint_Main, "O Save Point" } /* "O Save Point" */,		//13
+	{ 2, 2, 1, 4000000, 0, JumpPanel_Load, "O JPanel" } /* "O JPanel" */,				//12
+	{ 15, 3, 0, 0, 0, CheckPoint_Main, "O Save Point" } /* "O Save Point" */,				//13
 	{ 2, 3, 0, 0, 0, Wall_Main, "WALL   " } /* "WALL   " */,						//14
-	{ 3, 2, 0, 0, 0, Trampoline_Main, "TRAMPOL" } /* "TRAMPOL" */,					//15
-	{ 2, 2, 0, 0, 0, BLeaf, "B LEAF " } /* "B LEAF " */,							//16
-	{ 2, 2, 0, 0, 0, WcWind, "WC WIND" } /* "WC WIND" */,							//17
+	{ 3, 2, 1, 1250000, 0, Trampoline_Main, "TRAMPOL" } /* "TRAMPOL" */,					//15
+	{ 2, 2, 1, 450000, 0, BLeaf, "B LEAF " } /* "B LEAF " */,						//16
+	{ 2, 2, 1, 550000, 0, WcWind, "WC WIND" } /* "WC WIND" */,						//17
 	{ 2, 2, 0, 0, 0, PuWind, "PU WIND" } /* "PU WIND" */,							//18
-	{ 2, 4, 0, 0, 0, Load_Prope1, "PROPE1 " } /* "PROPE1 " */,						//19
-	{ 2, 4, 0, 0, 0, Load_Prope2, "PROPE2 " } /* "PROPE2 " */,						//1A
-	{ 2, 4, 0, 0, 0, Load_Prope3, "PROPE3 " } /* "PROPE3 " */,						//1B
-	{ 2, 5, 0, 0, 0, Load_Flower0, "FLOWER0" } /* "FLOWER0" */,						//1C
-	{ 2, 5, 0, 0, 0, Load_Flower1, "FLOWER1" } /* "FLOWER1" */,						//1D
-	{ 2, 5, 0, 0, 0, Load_Green0, "GREEN 0" } /* "GREEN 0" */,						//1E
-	{ 2, 4, 0, 0, 0, Load_WKi1, "W KI1  " } /* "W KI1  " */,						//1F
-	{ 2, 4, 0, 0, 0, Load_WKi2, "W KI2  " } /* "W KI2  " */,						//20
-	{ 2, 5, 0, 0, 0, Load_WKusa1, "W KUSA1" } /* "W KUSA1" */,						//21
-	{ 2, 5, 0, 0, 0, Load_Grass1, "GRASS1 " } /* "GRASS1 " */,						//22
-	{ 2, 5, 0, 0, 0, Load_Grass2, "GRASS2 " } /* "GRASS2 " */,						//23
-	{ 2, 5, 0, 0, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
-	{ 2, 5, 0, 0, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
-	{ 6, 3, 0, 0, 0, LRock, "L ROCK1" } /* "L ROCK1" */,							//26
-	{ 6, 3, 0, 0, 0, NullFunction, "RAFT   " } /* "RAFT   " */,						//27
-	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 2 " } /* "RAFT 2 " */,						//28
-	{ 7, 3, 0, 0, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,						//29
+	{ 2, 4, 1, 1250000, 0, Load_Prope1, "PROPE1 " } /* "PROPE1 " */,					//19
+	{ 2, 4, 1, 1250000, 0, Load_Prope2, "PROPE2 " } /* "PROPE2 " */,					//1A
+	{ 2, 4, 1, 1250000, 0, Load_Prope3, "PROPE3 " } /* "PROPE3 " */,					//1B
+	{ 2, 5, 1, 650000, 0, Load_Flower0, "FLOWER0" } /* "FLOWER0" */,					//1C
+	{ 2, 5, 1, 650000, 0, Load_Flower1, "FLOWER1" } /* "FLOWER1" */,					//1D
+	{ 2, 5, 1, 650000, 0, Load_Green0, "GREEN 0" } /* "GREEN 0" */,						//1E
+	{ 2, 4, 1, 1050000, 0, Load_WKi1, "W KI1  " } /* "W KI1  " */,						//1F
+	{ 2, 4, 1, 1050000, 0, Load_WKi2, "W KI2  " } /* "W KI2  " */,						//20
+	{ 2, 5, 1, 650000, 0, Load_WKusa1, "W KUSA1" } /* "W KUSA1" */,						//21
+	{ 2, 5, 1, 650000, 0, Load_Grass1, "GRASS1 " } /* "GRASS1 " */,						//22
+	{ 2, 5, 1, 650000, 0, Load_Grass2, "GRASS2 " } /* "GRASS2 " */,						//23
+	{ 2, 5, 1, 650000, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
+	{ 2, 5, 1, 650000, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
+	{ 6, 3, 1, 950000, 0, LRock, "L ROCK1" } /* "L ROCK1" */,						//26
+	{ 6, 3, 1, 500000, 0, NullFunction, "RAFT   " } /* "RAFT   " */,					//27
+	{ 7, 3, 1, 1250000, 0, NullFunction, "RAFT 2 " } /* "RAFT 2 " */,					//28
+	{ 7, 3, 1, 1250000, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,					//29
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,						//2A
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT2" } /* "T_RAFT2" */,						//2B
-	{ 2, 4, 0, 0, 0, Load_Sirusi1, "SIRUSI1" } /* "SIRUSI1" */,						//2C
-	{ 6, 4, 0, 0, 0, Load_Sirusi2, "SIRUSI2" } /* "SIRUSI2" */,						//2D
-	{ 6, 4, 0, 0, 0, Load_Sirusi3, "SIRUSI3" } /* "SIRUSI3" */,						//2E
-	{ 6, 4, 0, 0, 0, Load_Sirusi4, "SIRUSI4" } /* "SIRUSI4" */,						//2F
-	{ 2, 4, 0, 0, 0, Load_Sirusi5, "SIRUSI5" } /* "SIRUSI5" */,						//30
-	{ 2, 4, 0, 0, 0, Load_Sirusi6, "SIRUSI6" } /* "SIRUSI6" */,						//31
-	{ 2, 4, 0, 0, 0, Load_Sirusi7, "SIRUSI7" } /* "SIRUSI7" */,						//32
-	{ 2, 4, 0, 0, 0, Load_Sirusi8, "SIRUSI8" } /* "SIRUSI8" */,						//33
-	{ 2, 4, 0, 0, 0, Load_Sirusi9, "SIRUSI9" } /* "SIRUSI9" */,						//34
-	{ 6, 4, 0, 0, 0, Load_Siru11, "SIRU 11" } /* "SIRU 11" */,						//35
-	{ 6, 4, 0, 0, 0, Load_Siru12, "SIRU 12" } /* "SIRU 12" */,						//36
-	{ 6, 4, 0, 0, 0, Load_Siru13, "SIRU 13" } /* "SIRU 13" */,						//37
-	{ 2, 4, 0, 0, 0, Load_Yaji01, "YAJI 01" } /* "YAJI 01" */,						//38
-	{ 2, 4, 0, 0, 0, Load_Pole1, "POLE 1 " } /* "POLE 1 " */,						//39
-	{ 2, 4, 0, 0, 0, Load_Pole2, "POLE 2 " } /* "POLE 2 " */,						//3A
-	{ 2, 3, 0, 0, 0, WindyGate_Main, "W GATE " } /* "W GATE " */,					//3B
-	{ 2, 3, 0, 0, 0, WindyGate_Main, "W GATE2" } /* "W GATE2" */,					//3C
-	{ 2, 3, 0, 0, 0, Load_Pot01, "POT01  " } /* "POT01  " */,						//3D
-	{ 2, 3, 0, 0, 0, Load_Pot02, "POT02  " } /* "POT02  " */,						//3E
-	{ 6, 3, 0, 0, 0, Rock1, "ROCK 1 " } /* "ROCK 1 " */,							//3F
-	{ 2, 3, 0, 0, 0, Rock2, "ROCK 2 " } /* "ROCK 2 " */,							//40
-	{ 2, 3, 0, 0, 0, Rock3, "ROCK 3 " } /* "ROCK 3 " */,							//41
-	{ 2, 3, 0, 0, 0, Rock5, "ROCK 5 " } /* "ROCK 5 " */,							//42
-	{ 6, 3, 0, 0, 0, Load_IDai1, "I DAI 1" } /* "I DAI 1" */,						//43
-	{ 6, 3, 0, 0, 0, Load_IDai2, "I DAI 2" } /* "I DAI 2" */,						//44
-	{ 6, 3, 0, 0, 0, Load_IDai3, "I DAI 3" } /* "I DAI 3" */,						//45
-	{ 6, 3, 0, 0, 0, Load_IDai4, "I DAI 4" } /* "I DAI 4" */,						//46
-	{ 6, 3, 0, 0, 0, Load_IDai5, "I DAI 5" } /* "I DAI 5" */,						//47
-	{ 6, 3, 0, 0, 0, Load_IDai6, "I DAI 6" } /* "I DAI 6" */,						//48
-	{ 6, 3, 0, 0, 0, Load_IDai7, "I DAI 7" } /* "I DAI 7" */,						//49
-	{ 6, 3, 0, 0, 0, Load_IDai8, "I DAI 8" } /* "I DAI 8" */,						//4A
-	{ 6, 3, 0, 0, 0, Load_IDai9, "I DAI 9" } /* "I DAI 9" */,						//4B
-	{ 6, 3, 0, 0, 0, Load_IHas14, "I HAS14" } /* "I HAS14" */,						//4C
-	{ 6, 3, 0, 0, 0, Load_IHas15, "I HAS15" } /* "I HAS15" */,						//4D
-	{ 6, 3, 0, 0, 0, Load_IHas16, "I HAS16" } /* "I HAS16" */,						//4E
-	{ 2, 3, 0, 0, 0, Load_IHas17, "I HAS17" } /* "I HAS17" */,						//4F
-	{ 2, 3, 0, 0, 0, Load_IHas18, "I HAS18" } /* "I HAS18" */,						//50
-	{ 2, 2, 0, 0, 0, Load_BaneIwa, "BANEIWA" } /* "BANEIWA" */,						//51
-	{ 2, 5, 0, 0, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,						//52
-	{ 2, 5, 0, 0, 0, Load_TakoW, "TAKO W " } /* "TAKO W " */,						//53
-	{ 2, 3, 0, 0, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54
-	{ 2, 3, 0, 0, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,						//55
-	{ 2, 3, 0, 0, 0, Load_Dome3, "DOME 3 " } /* "DOME 3 " */,						//56
-	{ 2, 5, 0, 0, 0, Load_Prop1, "PROP 1 " } /* "PROP 1 " */,						//57
-	{ 2, 4, 0, 0, 0, Load_PropeA, "PROPE A" } /* "PROPE A" */,						//58
-	{ 2, 4, 0, 0, 0, Load_PropeB, "PROPE B" } /* "PROPE B" */,						//59
-	{ 2, 4, 0, 0, 0, Load_PropeC, "PROPE C" } /* "PROPE C" */,						//5A
-	{ 6, 3, 0, 0, 0, Load_IwaB, "IWA B  " } /* "IWA B  " */,						//5B
-	{ 2, 5, 0, 0, 0, Load_PinkF, "PINK F " } /* "PINK F " */,						//5C
-	{ 6, 3, 0, 0, 0, Load_IBou01, "I BOU01" } /* "I BOU01" */,						//5D
-	{ 6, 3, 0, 0, 0, Load_IBou02, "I BOU02" } /* "I BOU02" */,						//5E
-	{ 6, 3, 0, 0, 0, Load_IHah01, "I HAH01" } /* "I HAH01" */,						//5F
-	{ 6, 3, 0, 0, 0, Load_IHah02, "I HAH02" } /* "I HAH02" */,						//60
-	{ 6, 3, 0, 0, 0, Load_IHah03, "I HAH03" } /* "I HAH03" */,						//61
-	{ 6, 3, 0, 0, 0, Load_Ioiwa01, "IOIWA01" } /* "IOIWA01" */,						//62
-	{ 6, 3, 0, 0, 0, Load_Ioiwa02, "IOIWA02" } /* "IOIWA02" */,						//63
-	{ 6, 3, 0, 0, 0, Load_Ioiwa03, "IOIWA03" } /* "IOIWA03" */,						//64
-	{ 6, 3, 0, 0, 0, Load_SaraB1, "SARA B1" } /* "SARA B1" */,						//65
-	{ 6, 3, 0, 0, 0, Load_SaraB2, "SARA B2" } /* "SARA B2" */,						//66
-	{ 6, 3, 0, 0, 0, Load_SaraM1, "SARA M1" } /* "SARA M1" */,						//67
-	{ 6, 3, 0, 0, 0, Load_SaraM2, "SARA M2" } /* "SARA M2" */,						//68
-	{ 6, 3, 0, 0, 0, Load_SaraS1, "SARA S1" } /* "SARA S1" */,						//69
-	{ 6, 3, 0, 0, 0, Load_SaraS2, "SARA S2" } /* "SARA S2" */,						//6A
+	{ 2, 4, 1, 850000, 0, Load_Sirusi1, "SIRUSI1" } /* "SIRUSI1" */,					//2C
+	{ 6, 4, 1, 950000, 0, Load_Sirusi2, "SIRUSI2" } /* "SIRUSI2" */,					//2D
+	{ 6, 4, 1, 950000, 0, Load_Sirusi3, "SIRUSI3" } /* "SIRUSI3" */,					//2E
+	{ 6, 4, 1, 950000, 0, Load_Sirusi4, "SIRUSI4" } /* "SIRUSI4" */,					//2F
+	{ 2, 4, 1, 1250000, 0, Load_Sirusi5, "SIRUSI5" } /* "SIRUSI5" */,					//30
+	{ 2, 4, 1, 1250000, 0, Load_Sirusi6, "SIRUSI6" } /* "SIRUSI6" */,					//31
+	{ 2, 4, 1, 1250000, 0, Load_Sirusi7, "SIRUSI7" } /* "SIRUSI7" */,					//32
+	{ 2, 4, 1, 1250000, 0, Load_Sirusi8, "SIRUSI8" } /* "SIRUSI8" */,					//33
+	{ 2, 4, 1, 1250000, 0, Load_Sirusi9, "SIRUSI9" } /* "SIRUSI9" */,					//34
+	{ 6, 4, 1, 950000, 0, Load_Siru11, "SIRU 11" } /* "SIRU 11" */,						//35
+	{ 6, 4, 1, 950000, 0, Load_Siru12, "SIRU 12" } /* "SIRU 12" */,						//36
+	{ 6, 4, 1, 950000, 0, Load_Siru13, "SIRU 13" } /* "SIRU 13" */,						//37
+	{ 2, 4, 1, 1250000, 0, Load_Yaji01, "YAJI 01" } /* "YAJI 01" */,					//38
+	{ 2, 4, 1, 1250000, 0, Load_Pole1, "POLE 1 " } /* "POLE 1 " */,						//39
+	{ 2, 4, 1, 1250000, 0, Load_Pole2, "POLE 2 " } /* "POLE 2 " */,						//3A
+	{ 2, 3, 1, 1250000, 0, WindyGate_Main, "W GATE " } /* "W GATE " */,					//3B
+	{ 2, 3, 1, 1250000, 0, WindyGate_Main, "W GATE2" } /* "W GATE2" */,					//3C
+	{ 2, 3, 1, 1250000, 0, Load_Pot01, "POT01  " } /* "POT01  " */,						//3D
+	{ 2, 3, 1, 1250000, 0, Load_Pot02, "POT02  " } /* "POT02  " */,						//3E
+	{ 6, 3, 1, 950000, 0, Rock1, "ROCK 1 " } /* "ROCK 1 " */,						//3F
+	{ 2, 3, 1, 1250000, 0, Rock2, "ROCK 2 " } /* "ROCK 2 " */						//40
+	{ 2, 3, 1, 1250000, 0, Rock3, "ROCK 3 " } /* "ROCK 3 " */,						//41
+	{ 2, 3, 1, 1250000, 0, Rock5, "ROCK 5 " } /* "ROCK 5 " */,						//42
+	{ 6, 3, 1, 950000, 0, Load_IDai1, "I DAI 1" } /* "I DAI 1" */,						//43
+	{ 6, 3, 1, 950000, 0, Load_IDai2, "I DAI 2" } /* "I DAI 2" */,						//44
+	{ 6, 3, 1, 950000, 0, Load_IDai3, "I DAI 3" } /* "I DAI 3" */,						//45
+	{ 6, 3, 1, 950000, 0, Load_IDai4, "I DAI 4" } /* "I DAI 4" */,						//46
+	{ 6, 3, 1, 950000, 0, Load_IDai5, "I DAI 5" } /* "I DAI 5" */,						//47
+	{ 6, 3, 1, 950000, 0, Load_IDai6, "I DAI 6" } /* "I DAI 6" */,						//48
+	{ 6, 3, 1, 950000, 0, Load_IDai7, "I DAI 7" } /* "I DAI 7" */,						//49
+	{ 6, 3, 1, 950000, 0, Load_IDai8, "I DAI 8" } /* "I DAI 8" */,						//4A
+	{ 6, 3, 1, 950000 0, Load_IDai9, "I DAI 9" } /* "I DAI 9" */,						//4B
+	{ 6, 3, 1, 950000, 0, Load_IHas14, "I HAS14" } /* "I HAS14" */,						//4C
+	{ 6, 3, 1, 950000, 0, Load_IHas15, "I HAS15" } /* "I HAS15" */,						//4D
+	{ 6, 3, 1, 950000, 0, Load_IHas16, "I HAS16" } /* "I HAS16" */,						//4E
+	{ 2, 3, 1, 1210000, 0, Load_IHas17, "I HAS17" } /* "I HAS17" */,					//4F
+	{ 2, 3, 1, 1210000, 0, Load_IHas18, "I HAS18" } /* "I HAS18" */,					//50
+	{ 2, 2, 1, 1250000, 0, Load_BaneIwa, "BANEIWA" } /* "BANEIWA" */,					//51
+	{ 2, 5, 1, 650000, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,					//52
+	{ 2, 5, 1, 1250000, 0, Load_TakoW, "TAKO W " } /* "TAKO W " */,						//53
+	{ 2, 3, 1, 1250000, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54
+	{ 2, 3, 1, 1250000, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,						//55
+	{ 2, 3, 1, 1250000, 0, Load_Dome3, "DOME 3 " } /* "DOME 3 " */,						//56
+	{ 2, 5, 1, 1850000, 0, Load_Prop1, "PROP 1 " } /* "PROP 1 " */,						//57
+	{ 2, 4, 1, 1250000, 0, Load_PropeA, "PROPE A" } /* "PROPE A" */,					//58
+	{ 2, 4, 1, 1250000, 0, Load_PropeB, "PROPE B" } /* "PROPE B" */,					//59
+	{ 2, 4, 1, 1250000, 0, Load_PropeC, "PROPE C" } /* "PROPE C" */,					//5A
+	{ 6, 3, 1, 950000, 0, Load_IwaB, "IWA B  " } /* "IWA B  " */,						//5B
+	{ 2, 5, 1, 650000, 0, Load_PinkF, "PINK F " } /* "PINK F " */,						//5C
+	{ 6, 3, 1, 950000, 0, Load_IBou01, "I BOU01" } /* "I BOU01" */,						//5D
+	{ 6, 3, 1, 950000, 0, Load_IBou02, "I BOU02" } /* "I BOU02" */,						//5E
+	{ 6, 3, 1, 950000, 0, Load_IHah01, "I HAH01" } /* "I HAH01" */,						//5F
+	{ 6, 3, 1, 950000, 0, Load_IHah02, "I HAH02" } /* "I HAH02" */,						//60
+	{ 6, 3, 1, 950000, 0, Load_IHah03, "I HAH03" } /* "I HAH03" */,						//61
+	{ 6, 3, 1, 950000, 0, Load_Ioiwa01, "IOIWA01" } /* "IOIWA01" */,						//62
+	{ 6, 3, 1, 950000, 0, Load_Ioiwa02, "IOIWA02" } /* "IOIWA02" */,						//63
+	{ 6, 3, 1, 950000, 0, Load_Ioiwa03, "IOIWA03" } /* "IOIWA03" */,						//64
+	{ 6, 3, 1, 950000, 0, Load_SaraB1, "SARA B1" } /* "SARA B1" */,						//65
+	{ 6, 3, 1, 950000, 0, Load_SaraB2, "SARA B2" } /* "SARA B2" */,						//66
+	{ 6, 3, 1, 950000, 0, Load_SaraM1, "SARA M1" } /* "SARA M1" */,						//67
+	{ 6, 3, 1, 950000, 0, Load_SaraM2, "SARA M2" } /* "SARA M2" */,						//68
+	{ 6, 3, 1, 950000, 0, Load_SaraS1, "SARA S1" } /* "SARA S1" */,						//69
+	{ 6, 3, 1, 950000, 0, Load_SaraS2, "SARA S2" } /* "SARA S2" */,						//6A
 	{ 2, 4, 0, 0, 0, NullFunction, "TSPRING" } /* "TSPRING" */,						//6B
 	{ 2, 4, 0, 0, 0, Load_Lauchin, "LAUCHIN" } /* "LAUCHIN" */,						//6C
 	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,						//6D
 	{ 7, 3, 0, 0, 0, NullFunction, "WELE   " } /* "WELE   " */,						//6E
-	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,					//6F
+	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,						//6F
 	{ 2, 3, 0, 0, 0, BoaBoa_Main, "E HEVY " } /* "E HEVY " */,						//70
 	{ 2, 3, 0, 0, 0, Leon_Load, "E LEON " } /* "E LEON " */,						//71
 	{ 2, 3, 0, 0, 0, E103Enemy_Load, "E E-103" } /* "E E-103" */,					//72
 	{ 2, 3, 0, 0, 0, ChaosEmeGoal_WValley_Main, "O KAOSE" } /* "Chaos Emerald */,	//73
-	{ 6, 3, 0, 0, 0, Load_IDai10, "I DAI 10" } /* "I DAI 10" */,					//74
-	{ 6, 3, 0, 0, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,						//75
-	{ 6, 3, 0, 0, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */,						//76
+	{ 6, 3, 1, 950000, 0, Load_IDai10, "I DAI 10" } /* "I DAI 10" */,					//74
+	{ 6, 3, 1, 950000, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,						//75
+	{ 6, 3, 1, 910000, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */,						//76
 	//Placeholder slots for possible use of those 3 giant rock models
 	{ 6, 3, 1, 40000000, 0, NullFunction, "I HAH04" } /* "I HAH04" */,						//77
 	{ 6, 3, 1, 40000000, 0, NullFunction, "I HAH05" } /* "I HAH05" */,						//78
