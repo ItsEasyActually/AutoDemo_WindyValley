@@ -82,32 +82,6 @@ void __cdecl Load_Sirusi2(ObjectMaster *a1)
 	a1->Data1->Object = &Object_Sirusi2;
 	SetStatus(a1);
 	DynCol_LoadObject(a1);
-	/*NJS_OBJECT *obj;
-	EntityData1 *v1;
-
-	v1 = a1->Data1;
-	v1->Object = &Object_Sirusi2;
-	if (!ClipSetObject(a1))
-	{
-		obj = ObjectArray_GetFreeObject();
-		obj->evalflags = v1->Object->evalflags;
-		obj->model = Collision_Sirusi2.model;
-		obj->pos[0] = v1->Position.x;
-		obj->pos[1] = v1->Position.y;
-		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.x;
-		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.z;
-		obj->scl[0] = 1.0f;
-		obj->scl[1] = 1.0f;
-		obj->scl[2] = 1.0f;
-		obj->child = 0;
-		obj->sibling = 0;
-		DynamicCOL_Add(ColFlags_Solid, a1, obj);
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}*/
 }
 
 void __cdecl Load_Sirusi3(ObjectMaster *a1)
@@ -115,32 +89,6 @@ void __cdecl Load_Sirusi3(ObjectMaster *a1)
 	a1->Data1->Object = &Object_Sirusi3;
 	SetStatus(a1);
 	DynCol_LoadObject(a1);
-	/*NJS_OBJECT *obj;
-	EntityData1 *v1;
-
-	v1 = a1->Data1;
-	v1->Object = &Object_Sirusi3;
-	if (!ClipSetObject(a1))
-	{
-		obj = ObjectArray_GetFreeObject();
-		obj->evalflags = v1->Object->evalflags;
-		obj->model = Collision_Sirusi3.model;
-		obj->pos[0] = v1->Position.x;
-		obj->pos[1] = v1->Position.y;
-		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.x;
-		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.z;
-		obj->scl[0] = 1.0f;
-		obj->scl[1] = 1.0f;
-		obj->scl[2] = 1.0f;
-		obj->child = 0;
-		obj->sibling = 0;
-		DynamicCOL_Add(ColFlags_Solid, a1, obj);
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}*/
 }
 
 void __cdecl Load_Sirusi4(ObjectMaster *a1)
@@ -148,32 +96,6 @@ void __cdecl Load_Sirusi4(ObjectMaster *a1)
 	a1->Data1->Object = &Object_Sirusi4;
 	SetStatus(a1);
 	DynCol_LoadObject(a1);
-	/*NJS_OBJECT *obj;
-	EntityData1 *v1;
-
-	v1 = a1->Data1;
-	v1->Object = &Object_Sirusi4;
-	if (!ClipSetObject(a1))
-	{
-		obj = ObjectArray_GetFreeObject();
-		obj->evalflags = v1->Object->evalflags;
-		obj->model = Collision_Sirusi4.model;
-		obj->pos[0] = v1->Position.x;
-		obj->pos[1] = v1->Position.y;
-		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.x;
-		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.z;
-		obj->scl[0] = 1.0f;
-		obj->scl[1] = 1.0f;
-		obj->scl[2] = 1.0f;
-		obj->child = 0;
-		obj->sibling = 0;
-		DynamicCOL_Add(ColFlags_Solid, a1, obj);
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}*/
 }
 
 void __cdecl Load_Sirusi5(ObjectMaster *a1)
@@ -252,32 +174,6 @@ void __cdecl Load_Siru11(ObjectMaster *a1)
 	a1->Data1->Object = &Object_Siru11;
 	SetStatus(a1);
 	DynCol_LoadObject(a1);
-	/*NJS_OBJECT *obj;
-	EntityData1 *v1;
-
-	v1 = a1->Data1;
-	v1->Object = &Object_Siru11;
-	if (!ClipSetObject(a1))
-	{
-		obj = ObjectArray_GetFreeObject();
-		obj->evalflags = v1->Object->evalflags;
-		obj->model = v1->Object->model;
-		obj->pos[0] = v1->Position.x;
-		obj->pos[1] = v1->Position.y;
-		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.x;
-		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.z;
-		obj->scl[0] = 1.0f;
-		obj->scl[1] = 1.0f;
-		obj->scl[2] = 1.0f;
-		obj->child = 0;
-		obj->sibling = 0;
-		DynamicCOL_Add(ColFlags_Solid, a1, obj);
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}*/
 }
 
 void __cdecl Load_Siru12(ObjectMaster *a1)
@@ -285,32 +181,6 @@ void __cdecl Load_Siru12(ObjectMaster *a1)
 	a1->Data1->Object = &Object_Siru12;
 	SetStatus(a1);
 	DynCol_LoadObject(a1);
-	/*NJS_OBJECT *obj;
-	EntityData1 *v1;
-
-	v1 = a1->Data1;
-	v1->Object = &Object_Siru12;
-	if (!ClipSetObject(a1))
-	{
-		obj = ObjectArray_GetFreeObject();
-		obj->evalflags = v1->Object->evalflags;
-		obj->model = v1->Object->model;
-		obj->pos[0] = v1->Position.x;
-		obj->pos[1] = v1->Position.y;
-		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.x;
-		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.z;
-		obj->scl[0] = 1.0f;
-		obj->scl[1] = 1.0f;
-		obj->scl[2] = 1.0f;
-		obj->child = 0;
-		obj->sibling = 0;
-		DynamicCOL_Add(ColFlags_Solid, a1, obj);
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}*/
 }
 
 void __cdecl Load_Siru13(ObjectMaster *a1)
@@ -318,32 +188,6 @@ void __cdecl Load_Siru13(ObjectMaster *a1)
 	a1->Data1->Object = &Object_Siru13;
 	SetStatus(a1);
 	DynCol_LoadObject(a1);
-	/*NJS_OBJECT *obj;
-	EntityData1 *v1;
-
-	v1 = a1->Data1;
-	v1->Object = &Object_Siru13;
-	if (!ClipSetObject(a1))
-	{
-		obj = ObjectArray_GetFreeObject();
-		obj->evalflags = v1->Object->evalflags;
-		obj->model = v1->Object->model;
-		obj->pos[0] = v1->Position.x;
-		obj->pos[1] = v1->Position.y;
-		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.x;
-		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.z;
-		obj->scl[0] = 1.0f;
-		obj->scl[1] = 1.0f;
-		obj->scl[2] = 1.0f;
-		obj->child = 0;
-		obj->sibling = 0;
-		DynamicCOL_Add(ColFlags_Solid, a1, obj);
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}*/
 }
 
 void __cdecl Load_Yaji01(ObjectMaster *a1)

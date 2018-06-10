@@ -40,32 +40,6 @@ void __cdecl Load_IHas14(ObjectMaster *a1)
 	a1->Data1->Object = &I_Has14;
 	SetStatus(a1);
 	DynCol_LoadObject(a1);
-	/*NJS_OBJECT *obj;
-	EntityData1 *v1;
-
-	v1 = a1->Data1;
-	v1->Object = &I_Has14;
-	if (!ClipSetObject(a1))
-	{
-		obj = ObjectArray_GetFreeObject();
-		obj->evalflags = v1->Object->evalflags;
-		obj->model = v1->Object->model;
-		obj->pos[0] = v1->Position.x;
-		obj->pos[1] = v1->Position.y;
-		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.x;
-		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.z;
-		obj->scl[0] = 1.0f;
-		obj->scl[1] = 1.0f;
-		obj->scl[2] = 1.0f;
-		obj->child = 0;
-		obj->sibling = 0;
-		DynamicCOL_Add(ColFlags_Solid, a1, obj);
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}*/
 }
 
 void __cdecl Load_IHas15(ObjectMaster *a1)
@@ -73,32 +47,6 @@ void __cdecl Load_IHas15(ObjectMaster *a1)
 	a1->Data1->Object = &I_Has15;
 	SetStatus(a1);
 	DynCol_LoadObject(a1);
-	/*NJS_OBJECT *obj;
-	EntityData1 *v1;
-
-	v1 = a1->Data1;
-	v1->Object = &I_Has15;
-	if (!ClipSetObject(a1))
-	{
-		obj = ObjectArray_GetFreeObject();
-		obj->evalflags = v1->Object->evalflags;
-		obj->model = v1->Object->model;
-		obj->pos[0] = v1->Position.x;
-		obj->pos[1] = v1->Position.y;
-		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.x;
-		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.z;
-		obj->scl[0] = 1.0f;
-		obj->scl[1] = 1.0f;
-		obj->scl[2] = 1.0f;
-		obj->child = 0;
-		obj->sibling = 0;
-		DynamicCOL_Add(ColFlags_Solid, a1, obj);
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}*/
 }
 
 void __cdecl Load_IHas16(ObjectMaster *a1)
@@ -106,35 +54,6 @@ void __cdecl Load_IHas16(ObjectMaster *a1)
 	a1->Data1->Object = &I_Has16;
 	SetStatus(a1);
 	DynCol_LoadObject(a1);
-	/*NJS_OBJECT *obj;
-	EntityData1 *v1;
-	Angle XAng;
-	Angle YAng;
-	Angle ZAng;
-
-	v1 = a1->Data1;
-	v1->Object = &I_Has16;
-	if (!ClipSetObject(a1))
-	{
-		obj = ObjectArray_GetFreeObject();
-		obj->evalflags = 0;
-		obj->model = v1->Object->model;
-		obj->scl[0] = 1.0f;
-		obj->scl[1] = 1.0f;
-		obj->scl[2] = 1.0f;
-		obj->ang[0] = v1->Rotation.x;
-		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.z;
-		obj->pos[0] = v1->Position.x;
-		obj->pos[1] = v1->Position.y;
-		obj->pos[2] = v1->Position.z;
-		obj->child = 0;
-		obj->sibling = 0;
-		DynamicCOL_Add(ColFlags_Solid, a1, obj);
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}*/
 }
 
 void __cdecl Load_IHas17(ObjectMaster *a1)
@@ -172,30 +91,4 @@ void __cdecl Load_IHas19(ObjectMaster *a1)
 	a1->Data1->Object = &Unreferenced02_001149B4;
 	SetStatus(a1);
 	DynCol_LoadObject(a1);
-	/*NJS_OBJECT *obj;
-	EntityData1 *v1;
-
-	v1 = a1->Data1;
-	v1->Object = &Unreferenced02_001149B4;
-	if (!ClipSetObject(a1))
-	{
-		obj = ObjectArray_GetFreeObject();
-		obj->evalflags = v1->Object->evalflags;
-		obj->model = v1->Object->model;
-		obj->pos[0] = v1->Position.x;
-		obj->pos[1] = v1->Position.y;
-		obj->pos[2] = v1->Position.z;
-		obj->ang[0] = v1->Rotation.x;
-		obj->ang[1] = v1->Rotation.y;
-		obj->ang[2] = v1->Rotation.z;
-		obj->scl[0] = 1.0f;
-		obj->scl[1] = 1.0f;
-		obj->scl[2] = 1.0f;
-		obj->child = 0;
-		obj->sibling = 0;
-		DynamicCOL_Add(ColFlags_Solid, a1, obj);
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Basic_Display;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteDynamicCollision;
-	}*/
 }
