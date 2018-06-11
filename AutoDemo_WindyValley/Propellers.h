@@ -30,7 +30,7 @@ CollisionData Prope3_Collision[] = {
 };
 
 CollisionData Prop1_Collision[] = {
-	{ 0, 0, 0x77, 0, 0, -1.2, -7.0, -7.27, 16.0, 0.0, 0.0, 0, 0, 0, 0 }
+	{ 0, 0, 0x77, 0, 0, -1.2, -7.0, -1.27, 16.0, 0.0, 0.0, 0, 0, 0, 0 }
 };
 
 NJS_MATERIAL matlist_001103EC[] = {
