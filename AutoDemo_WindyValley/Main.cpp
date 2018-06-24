@@ -2487,6 +2487,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	*(NJS_MODEL_SADX*)0xC15B00 = attach_0012911C;
 	*(NJS_MODEL_SADX*)0xC159D0 = attach_0012911C;
 
+
 	*(NJS_OBJECT*)0xC0D9CC = Transition_Tornado1; //Replacing SET tornado models for forward-moving tornado
 	*(NJS_OBJECT*)0xC0CDCC = Transition_Tornado2;
 	*(NJS_OBJECT*)0xC0BFA4 = Transition_Tornado3;

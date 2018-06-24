@@ -91,3 +91,4 @@ FunctionPointer(void, sub_49CF80, (EntityData1 *a1), 0x49CF80);
 //Usercall and Thiscall Functions
 ThiscallFunctionPointer(void, sub_4E3090, (int _this), 0x4E3090);
 
+
