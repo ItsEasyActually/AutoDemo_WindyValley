@@ -348,11 +348,11 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v2);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Decor_Tornado1.model, 0, 1.0);
+		sub_407A00((NJS_MODEL_SADX *)Decor_Tornado3.model, 1.0);
 		njPushMatrix(0);
-		sub_409E70((NJS_MODEL_SADX*)Decor_Tornado2.model, 0, 1.0);
+		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado1.model, (QueuedModelFlagsB)0, 1.0);
 		njPushMatrix(0);
-		sub_409E70((NJS_MODEL_SADX*)Decor_Tornado3.model, 0, 1.0);
+		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado2.model, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
@@ -509,6 +509,36 @@ void __cdecl Load_Tornado(void)
 			Torn->Scale.y = 0.0f;
 			Torn->Scale.z = 0.0f;
 			Torn->CharIndex = 7;
+		}
+		a1 = LoadObject((LoadObj)2, 3, Wall_Main);
+		a1->SETData.SETData = &TornadoThings;
+		if (a1)
+		{
+			Torn = a1->Data1;
+			Torn->Position.x = 473.244659f;
+			Torn->Position.y = -384.367523f;
+			Torn->Position.z = -2498.39258f;
+			Torn->Rotation.x = 0;
+			Torn->Rotation.y = 0x7A2D;
+			Torn->Rotation.z = 0;
+			Torn->Scale.x = 100.0f;
+			Torn->Scale.y = 100.0f;
+			Torn->Scale.z = 25.0f;
+		}
+		a1 = LoadObject((LoadObj)2, 3, Wall_Main);
+		a1->SETData.SETData = &TornadoThings;
+		if (a1)
+		{
+			Torn = a1->Data1;
+			Torn->Position.x = 597.882935f;
+			Torn->Position.y = -395.617523f;
+			Torn->Position.z = -2558.87744f;
+			Torn->Rotation.x = 0;
+			Torn->Rotation.y = 0xA35B;
+			Torn->Rotation.z = 0;
+			Torn->Scale.x = 100.0f;
+			Torn->Scale.y = 100.0f;
+			Torn->Scale.z = 25.0f;
 		}
 	}
 	LoadedTornado = true;
