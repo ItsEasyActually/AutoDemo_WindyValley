@@ -1240,6 +1240,8 @@ NJS_VECTOR normal_00176264[] = {
 
 NJS_MODEL_SADX Bridge01 = { vertex_0017621C, normal_00176264, LengthOfArray<Sint32>(vertex_0017621C), meshlist_001761EC, matlist_00176134, LengthOfArray<Uint16>(meshlist_001761EC), LengthOfArray<Uint16>(matlist_00176134),{ 0, -1.50749f, -0.001451f }, 20.15822f, NULL };
 
+NJS_OBJECT object_001762D4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &Bridge01, 2.4822f, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+
 NJS_MATERIAL matlist_00175F8C[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 73, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };

@@ -43,6 +43,8 @@ DataPointer(float, Trampolineheightsecond, 0x007DEBE0); //These are floats for t
 DataPointer(float, Trampolineheightthird, 0x007DF1B0);
 DataPointer(float, Trampolineheightfourth, 0x007E0B1C);
 
+DataPointer(float, WindPathParticleZone, 0x007E9584); //Controls the wind path leaves
+
 //Additional SADX Functions
 FunctionPointer(void, sub_407870, (NJS_MODEL_SADX *model, char blend, float radius_scale), 0x407870);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
@@ -66,6 +68,25 @@ FunctionPointer(void, sub_46C150, (ObjectMaster *a1), 0x46C150);
 DataPointer(int, FramerateSetting, 0x0389D7DC);
 FunctionPointer(void, SetStatus, (ObjectMaster *a1), 0x0049CD60);
 FunctionPointer(void, DynCol_LoadObject, (ObjectMaster *a1), 0x0049E170);
+
+FunctionPointer(void, sub_4DE8E0, (ObjectMaster *a1), 0x4DE8E0); //Forward-moving tornado subroutine
+FunctionPointer(void, sub_4DF7D0, (ObjectMaster *a1), 0x4DF7D0); //Tornado Debris subroutine
+FunctionPointer(void, sub_4E6770, (ObjectMaster *a1), 0x4E6770); //Tornado Bridge subroutine
+
+FunctionPointer(void, sub_4DDCE0, (ObjectMaster *a1), 0x4DDCE0); //Tornado....something :3
+FunctionPointer(void, sub_4DDC10, (ObjectMaster *a1), 0x4DDC10); //Tornado....something.
+FunctionPointer(void, __ftol2, (), 0x644340);
+FunctionPointer(void, sub_4B9820, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9820);
+
+FunctionPointer(void, sub_456BF0, (void *a1, int *a2), 0x456BF0); //Sprite Particles
+
+DataArray(ObjectThing, DebrisThing, 0x00C66CA8, 14);
+
+FunctionPointer(void, sub_49D530, (ObjectMaster *a1), 0x49D530);
+FunctionPointer(void, sub_49D570, (ObjectMaster *a1), 0x49D570);
+FunctionPointer(void, sub_49D5B0, (ObjectMaster *a1), 0x49D5B0);
+FunctionPointer(void, sub_49E070, (), 0x49E070);
+FunctionPointer(void, sub_49CF80, (EntityData1 *a1), 0x49CF80);
 
 //Usercall and Thiscall Functions
 ThiscallFunctionPointer(void, sub_4E3090, (int _this), 0x4E3090);
