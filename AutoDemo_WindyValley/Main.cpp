@@ -38,14 +38,14 @@
 //Variables
 static bool ADSetFile = true;
 static float SkyTrans = 1.0f;
-bool LoadedTornado = false;
-SETObjData TornadoThings = {};
-bool LoadedDECOTornado = false;
-int TornadoDECOFrame = 0;
-SETObjData TornadoDecoThings = {};
-bool TransTornadoDust = false;
+bool LoadedTornado = false; //Flag to set if the Transition Tornado has been loaded or not.
+SETObjData TornadoThings = {}; //Raw SET Data for the tornado stuff.
+bool LoadedDECOTornado = false; //Flag to set if the Decorational Tornado has been loaded or not.
+int TornadoDECOFrame = 0; //Used to get the Deco Tornado to swerve back and forth. Uses OnFrame.
+SETObjData TornadoDecoThings = {}; //More Raw SET Data for the Deco Tornado.
+bool TransTornadoDust = false; //This is really stupid. I'm trying to figure out this dust cloud animation that's playing in front of the transition tornado in the beta footage, but I can't find the animation anywhere in the final game. So, this flag is fliped on and off every other frame, and controls a dust effect that I have display in front of the transiton tornado.
 //Length  = 127 (including 0)
-int TornadoPosModifier[] = {
+int TornadoPosModifier[] = { //This is the array of ints that is used in translating the Deco Tornado back and forth. It's like an NJS_ACTION without being one.
 	0,
 	0,
 	0,
@@ -175,18 +175,18 @@ int TornadoPosModifier[] = {
 	512,
 	512
 };
-bool TornadoDirection = false;
-bool LoadedDebris = false;
-bool LoadedWave = false;
-bool LoadedBridge = false;
-SETObjData DebrisThings = {};
-const float tornadoLoadDistance = 3102500.0f;
-const float debrisLoadDistance = 2250000.0f;
-static float DebrisFrame = 0;
-static float WaveFrame = 0;
-int BridgeFrame = 0;
+bool TornadoDirection = false; //Used by the Deco Tornado to check how it should read from the array above and translate the tornado in a direction.
+bool LoadedDebris = false; //This is used to check if the Debris thing I have going in Act 2 loaded. Not that important atm, honestly.
+bool LoadedWave = false; //This is used to check if the "shockwave" effect when the Transition Tornado loads can go ahead and spawn.
+bool LoadedBridge = false; //This is used to check if the Tornado bridge pieces loaded.
+SETObjData DebrisThings = {}; //Raw SET Data for the Debris thing in Act 2.
+const float tornadoLoadDistance = 3102500.0f; //Draw Distance stuff.
+const float debrisLoadDistance = 2250000.0f; //Draw Distance stuff.
+static float DebrisFrame = 0; //This is also some stupid shit, getting the debris to spawn every 15 frames so it doesn't lag out. Also not important atm.
+static float WaveFrame = 0; //Uused in scaling the "shockwave" effect and making it spin.
+int BridgeFrame = 0; //Used in the bridge loading function below to select pieces and get positions and stuff.
 
-void TrampolineValueCorrecter()
+void TrampolineValueCorrecter() //This function is a fail-safe just in case you somehow pause and quit the level in the middle of bouncing on a trampoline and one of the values doesn't get reset to its proper value.
 {
 	if (CurrentLevel != 2)
 	{
@@ -212,7 +212,7 @@ void TrampolineValueCorrecter()
 	}
 }
 
-void WindPathZoneSetting()
+void WindPathZoneSetting() //This changes the speed of the leaf models blowing around the wind paths. ....Now, not actually sure if the effect was different in the beta. It's hard to see in evilham's gif.
 {
 	if (CurrentLevel == 2)
 	{
@@ -224,7 +224,7 @@ void WindPathZoneSetting()
 	}
 }
 
-void __cdecl Tornado_Texture_Load(void)
+void __cdecl Tornado_Texture_Load(void) //Sets the textures for the object to Tomado.PVM.
 {
 	//LoadPVM("Tomado", &Tomado_texlist);
 	njSetTexture(&Tomado_texlist);
@@ -239,9 +239,9 @@ void __cdecl ShockwaveEffect_Display(ObjectMaster *a1)
 	{
 		Tornado_Texture_Load();
 		njPushMatrix(0);
-		njTranslate(0, 732.156555f, -195.87912f, -3467.09546f);
-		njScale(0, WaveFrame, WaveFrame, WaveFrame);
-		njRotateY(0, (unsigned __int16)(WaveFrame * 0x1000));
+		njTranslate(0, 732.156555f, -195.87912f, -3467.09546f); //Where the tornado spawns, too, except higher.
+		njScale(0, WaveFrame, WaveFrame, WaveFrame); //Scale it based on the counter.
+		njRotateY(0, (unsigned __int16)(WaveFrame * 0x1000)); //Make it spin. Because of how this works, it gets faster and faster the higher the count goes.
 		sub_409E70((NJS_MODEL_SADX*)TornadoShockwave.model, 0, 1.0);
 		njPopMatrix(1u);
 	}
@@ -284,8 +284,8 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
 	Angle v2;
-	NJS_VECTOR a2;
-	NJS_VECTOR a3;
+	NJS_VECTOR a2; //Directional vector for the dust cloud effect.
+	NJS_VECTOR a3; //Vector that controls where the dust cloud spawns.
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -294,21 +294,21 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
 		a3.y = (v1->Position.y - 90);
-		a3.z = (v1->Position.z + 50);
+		a3.z = (v1->Position.z + 50); //Make it always appear in front of the tornado, hiding the base.
 
-		if (TornadoDirection == false)
+		if (TornadoDirection == false) //Determining how the value obtained from the array should be applied to the transformation. Basically, what direction are we going?
 		{
-			njTranslate(0, (TornadoPosModifier[TornadoDECOFrame]), 0, 0);
-			a3.x = (467.1638 + TornadoPosModifier[TornadoDECOFrame]);
+			njTranslate(0, (TornadoPosModifier[TornadoDECOFrame]), 0, 0); //Moves to the right.
+			a3.x = (467.1638 + TornadoPosModifier[TornadoDECOFrame]); //It has to move along with the tornado.
 		}
 
 		else
 		{
-			njTranslate(0, -1 * (TornadoPosModifier[TornadoDECOFrame]), 0, 0);
+			njTranslate(0, -1 * (TornadoPosModifier[TornadoDECOFrame]), 0, 0); //Moves to the left.
 			a3.x = (975.1638 - TornadoPosModifier[TornadoDECOFrame]);
 		}
 
-		if (TornadoDECOFrame < 127)
+		if (TornadoDECOFrame < 127) //Have we reached the end of the array?
 		{
 			if (!IsGamePaused() && GameState != 3 && GameState != 4 && GameState != 7 && GameState != 21)
 			{
@@ -316,7 +316,7 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 
 				if (FramerateSetting >= 2)
 				{
-					TornadoDECOFrame++;
+					TornadoDECOFrame++; //To keep a consistent movement speed across all framerates.
 				}
 			}
 			(a2.x) = 0;
@@ -324,7 +324,7 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 			(a2.z) = 0;
 			if (!IsGamePaused())
 			{
-				sub_4B9820(&a3, &a2, 35.0);
+				sub_4B9820(&a3, &a2, 35.0); //This is the dust cloud subroutine. Easy to use. It goes: Spawn Vector, Directional Vector, Scale.
 			}
 		}
 
@@ -333,8 +333,8 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 			TornadoDECOFrame = 0;
 			if (TornadoDirection == false)
 			{
-				v1->Position.x += 512;
-				TornadoDirection = true;
+				v1->Position.x += 512; //Moving the tornado to the actual position of the translation so we can start heading the other way.
+				TornadoDirection = true; //And changing direction.
 			}
 
 			else
@@ -386,7 +386,7 @@ void __cdecl Deco_Tornado_Main(ObjectMaster *a2)
 			{
 				v1->Action = 1;
 				a2->DisplaySub = DecoTornado_Display;
-				PlaySound2(62, a2, 1, 0);
+				PlaySound2(62, a2, 1, 0); //Because why not? Whoooosh!
 			}
 		}
 	}
@@ -405,7 +405,7 @@ void __cdecl Load_DecoTornado(void)
 		if (a1)
 		{
 			Torn = a1->Data1;
-			Torn->Position.x = 467.1638f;
+			Torn->Position.x = 467.1638f; //I don't know if this is actually where it spawns in the beta. In fact, that goes for all of these things except the bridge pieces, obviously. It'd be nice to find those positions so we can have pinpoint accuracy.
 			Torn->Position.y = -245.87912f;
 			Torn->Position.z = -3445.72241f;
 			Torn->Rotation.x = 0;
@@ -421,14 +421,14 @@ void __cdecl Load_DecoTornado(void)
 	LoadedDECOTornado = true;
 }
 
-void __cdecl NewTransitionTornado_Display(ObjectMaster *a1)
+void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Transition Tornado's display routine so I can add that additional dust cloud effect in front of it.
 {
 	EntityData1 *v1; // esi@1
 	double v2; // st7@2
 	double v3; // st7@4
 	double v4; // st7@6
-	NJS_VECTOR a2;
-	NJS_VECTOR a3;
+	NJS_VECTOR a2; //These vectors are doing the same shit as the Deco Tornado's....mostly. This is the directional one.
+	NJS_VECTOR a3; //And this one is always placed offset from the tornado's current position. So, it follows it, staying in front.
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -472,9 +472,9 @@ void __cdecl NewTransitionTornado_Display(ObjectMaster *a1)
 		(a2.z) = 0;
 		if (!IsGamePaused())
 		{
-			if (TransTornadoDust == true)
+			if (TransTornadoDust == true) //God, this is dumb. I'm just trying to mimic the effect in the footage as best I can until someone comes in and shows me where it is or how to do this better.
 			{
-				sub_4B9820(&a3, &a2, 30.0);
+				sub_4B9820(&a3, &a2, 30.0); //Dust cloud routine.
 				TransTornadoDust = false;
 			}
 
@@ -499,7 +499,7 @@ void __cdecl Load_Tornado(void)
 		if (a1)
 		{
 			Torn = a1->Data1;
-			Torn->Position.x = 732.156555f;
+			Torn->Position.x = 732.156555f; //Again, don't know if this is actually where it's supposed to spawn.
 			Torn->Position.y = -195.87912f;
 			Torn->Position.z = -3467.09546f;
 			Torn->Rotation.x = 0;
@@ -515,7 +515,7 @@ void __cdecl Load_Tornado(void)
 		if (a1)
 		{
 			Torn = a1->Data1;
-			Torn->Position.x = 473.244659f;
+			Torn->Position.x = 473.244659f; //Loading some pushy walls in just to make sure the player can't escape the tornado by going back into the level or something.
 			Torn->Position.y = -384.367523f;
 			Torn->Position.z = -2498.39258f;
 			Torn->Rotation.x = 0;
@@ -555,7 +555,7 @@ void __cdecl Load_Tornado_Shockwave(void)
 	if (a1)
 	{
 		Wave = a1->Data1;
-		Wave->Position.x = 732.156555f;
+		Wave->Position.x = 732.156555f; //Again, position is just a guess.
 		Wave->Position.y = -195.87912f;
 		Wave->Position.z = -3467.09546f;
 		Wave->Rotation.x = 0;
@@ -568,7 +568,7 @@ void __cdecl Load_Tornado_Shockwave(void)
 	}
 }
 
-void __cdecl Debris_Texture_Load(void)
+void __cdecl Debris_Texture_Load(void) //Sets the textures of the object to Debris.PVM. Used for the tornado debris and the bridge pieces.
 {
 	//LoadPVM("Debris", &TomadoDebris_texlist);
 	njSetTexture(&TomadoDebris_texlist);
@@ -576,10 +576,10 @@ void __cdecl Debris_Texture_Load(void)
 
 void __cdecl TornadoDestroy(ObjectMaster *a1)
 {
-	DeleteChildObjects(a1);
+	DeleteChildObjects(a1); //Currently, this MUST run for the bridge pieces, otherwise they'll swirl around the tornado and eventually crash the game because....I dunno? Too many child objects being processed at once?
 }
 
-void __cdecl NewBreak_Display(ObjectMaster *a2)
+void __cdecl NewBreak_Display(ObjectMaster *a2) //Overriding the Tornado Bridge objects' display routine. This currently isn't working as intended.
 {
 	EntityData1 *v1; // esi@1
 	Angle v2; // eax@2
@@ -609,7 +609,7 @@ void __cdecl NewBreak_Display(ObjectMaster *a2)
 		}
 		__ftol2;
 		//Rings = BridgeFrame;
-		switch (BridgeFrame)
+		switch (BridgeFrame) //Oh boy big-ass long-ass switch statement.
 		{
 		case 0:
 			ProcessModelNode_AB_Wrapper(&object_001999A8, 1.0);
@@ -1952,7 +1952,7 @@ void __cdecl NewBreak_Display(ObjectMaster *a2)
 			njPopMatrix(1u);
 			break;
 		default:
-			ProcessModelNode_AB_Wrapper(&object_001999A8, 1.0);
+			ProcessModelNode_AB_Wrapper(&object_001999A8, 1.0); //I think they all end up defaulting for some reason. If I remove this, when it loads, the screen goes black because the matrix is never popped.
 			njPopMatrix(1u);
 			break;
 		}
@@ -1960,7 +1960,7 @@ void __cdecl NewBreak_Display(ObjectMaster *a2)
 	}
 }
 
-void __cdecl Load_TBridge(void)
+void __cdecl Load_TBridge(void) //This colossal mess.
 {
 	ObjectMaster *a1;
 	EntityData1 *Torn;
@@ -1969,17 +1969,17 @@ void __cdecl Load_TBridge(void)
 		//collist_008046E8[84].Flags = 0x01;	//This makes the landtable bridge invisible. Use only once we get the stupid bridge pieces to show up...
 		TornadoThings.Distance = 40000000.0f;
 
-		for (BridgeFrame = 0; BridgeFrame < 335; BridgeFrame++)
+		for (BridgeFrame = 0; BridgeFrame < 335; BridgeFrame++) //I'm looping through, trying to get them all loaded in an orderly fashion. ....It's not working.
 		{
-			//a1->Data1->Object = &(TBRIDGE[BridgeFrame]);
+			//a1->Data1->Object = &(TBRIDGE[BridgeFrame]); //This doesn't work. Access violation error when debugging.
 			a1 = LoadObject((LoadObj)2, 1, sub_4E6770);
 			a1->SETData.SETData = &TornadoThings;
 			if (a1)
 			{
 				Torn = a1->Data1;
-				//Torn->Object = &(TBRIDGE[BridgeFrame]);
+				//Torn->Object = &(TBRIDGE[BridgeFrame]); //This works, but still doesn't render or do much else, really.
 				Torn->Position.x = (TBRIDGE[BridgeFrame]).pos[0];
-				Torn->Position.y = (TBRIDGE[BridgeFrame]).pos[1];
+				Torn->Position.y = (TBRIDGE[BridgeFrame]).pos[1]; //Trying to grab positions and rotations (if any) from the current piece. I think it's at least partially working?
 				Torn->Position.z = (TBRIDGE[BridgeFrame]).pos[2];
 				Torn->Rotation.x = (TBRIDGE[BridgeFrame]).ang[0];
 				Torn->Rotation.y = (TBRIDGE[BridgeFrame]).ang[1];
@@ -1989,18 +1989,18 @@ void __cdecl Load_TBridge(void)
 				Torn->Scale.z = 1.0f;
 				Torn->CharIndex = (BridgeFrame + 12);
 			}
-		}
+		} //Getting this to work is going to require extensive research on the bridge's coding in the final game. Maybe.
 	}
 	LoadedBridge = true;
 }
 
-void __cdecl Tornado_Check(void)
+void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the stage function nonsense.
 {
 	if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 	{
 		if (Camera_Data1 != nullptr && Camera_Data1->Position.z > -1700 && (LoadedTornado == true || LoadedDECOTornado == true))
 		{
-			LoadedTornado = false;
+			LoadedTornado = false; //Basically, if you reset after either tornado has been loaded, and you appear further back, reset everything. For some baffling reason, not checking for that distance away (1700), the transiton tornado won't load. Are the gamestates being changed when that thing appears?
 			LoadedWave = false;
 			WaveFrame = 0;
 			collist_008046E8[84].Flags = 0x80000001;
@@ -2013,14 +2013,14 @@ void __cdecl Tornado_Check(void)
 		}
 	}
 
-	if (CurrentLevel == 2 && CurrentAct == 0 && CurrentCharacter != 6)
+	if (CurrentLevel == 2 && CurrentAct == 0 && CurrentCharacter != 6) //Make sure you're in Act 1 and NOT Gamma.
 	{
-		if (Camera_Data1 != nullptr && Camera_Data1->Position.z < -2450 && Camera_Data1->Position.y > -460 && LoadedTornado == false)
+		if (Camera_Data1 != nullptr && Camera_Data1->Position.z < -2450 && Camera_Data1->Position.y > -460 && LoadedTornado == false) //If you reach the air vent and the tornado hasn't been loaded in yet.
 		{
 			Load_Tornado();
-			LoadedWave = true;
+			LoadedWave = true; //Giving the "shockwave" the greenlight to spawn and start spinning and scaling.
 		}
-		if (LoadedWave == true && WaveFrame < 305)
+		if (LoadedWave == true && WaveFrame < 305) //Yes, the wave scales up to 305 times its normal size. If it's much lower than this, I just find it a bit underwhelming.
 		{
 			if (WaveFrame == 0)
 			{
@@ -2031,18 +2031,18 @@ void __cdecl Tornado_Check(void)
 				WaveFrame += 2;
 				if (FramerateSetting >= 2)
 				{
-					WaveFrame += 2;
+					WaveFrame += 2; //Maintaining consistent scaling and spinning speed no matter the framerate.
 				}
 			}
 		}
-		if (Camera_Data1 != nullptr && Camera_Data1->Position.z < -1950 && Camera_Data1->Position.y > -460)
+		if (Camera_Data1 != nullptr && Camera_Data1->Position.z < -1950 && Camera_Data1->Position.y > -460) //Loadind the swerving tornado and the bridge when you reach a certain point.
 		{
 			Load_DecoTornado();
 			Load_TBridge();
 		}
 	}
 
-	else if (CurrentLevel != 2 && (LoadedTornado == true || LoadedDECOTornado == true))
+	else if (CurrentLevel != 2 && (LoadedTornado == true || LoadedDECOTornado == true)) //If you leave the level and either tornado has been loaded.
 	{
 		LoadedTornado = false;
 		LoadedWave = false;
@@ -2056,13 +2056,18 @@ void __cdecl Tornado_Check(void)
 		TransTornadoDust = false;
 	}
 
-	if (CurrentLevel == 2 && CurrentAct == 0 && CurrentCharacter == 6)
+	if (CurrentLevel == 2 && CurrentAct == 0 && CurrentCharacter == 6) //When playing as Gamma in Act 1, make the bridge invisible to simulate that it got ripped up when Sonic played the stage prior to him arriving here.
 	{
 		collist_008046E8[84].Flags = 0x01;
 	}
+	
+	if (CurrentLevel != 2 && (collist_008046E8[84].Flags) == 0x01) //When you leave the level for whatever reason, and the bridge is invisible, make that shit visible!
+	{
+		collist_008046E8[84].Flags = 0x80000001;
+	}
 }
 
-void __cdecl Load_Debris(void)
+void __cdecl Load_Debris(void) //Debris loading shit.
 {
 	if (LoadedDebris == false)
 	{
@@ -2074,7 +2079,7 @@ void __cdecl Load_Debris(void)
 		if (a1)
 		{
 			debr = a1->Data1;
-			debr->Position.x = 649.074f;
+			debr->Position.x = 649.074f; //The debug sphere appears in the right spot, but all the models still swirl around 0, SpawnHeight, 0.
 			debr->Position.y = -203.486f;
 			debr->Position.z = -196.07f;
 			debr->Rotation.x = 0;
@@ -2090,7 +2095,7 @@ void __cdecl Load_Debris(void)
 }
 
 
-void __cdecl Debris_Check(void)
+void __cdecl Debris_Check(void) //Basic checking shit to make sure you're in Act 2.
 {
 	if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 	{
@@ -2513,7 +2518,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	*(NJS_OBJECT*)0xC158E0 = Object_Leaf; //WcWind/PuWind/Bleaf
 	*(NJS_OBJECT*)0xC159FC = Object_Leaf; //WcWind/PuWind/Bleaf
 	*(NJS_OBJECT*)0xC15B2C = Object_Leaf; //WcWind/PuWind/Bleaf
-	*(NJS_MODEL_SADX*)0xC158B4 = attach_0012911C;
+	*(NJS_MODEL_SADX*)0xC158B4 = attach_0012911C; //These are model replacements for the stuff the Transition Tornado spawns, like more leaves and bridge pieces.
 	*(NJS_MODEL_SADX*)0xC15B00 = attach_0012911C;
 	*(NJS_MODEL_SADX*)0xC159D0 = attach_0012911C;
 
