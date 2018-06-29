@@ -44,6 +44,7 @@ bool LoadedDECOTornado = false; //Flag to set if the Decorational Tornado has be
 int TornadoDECOFrame = 0; //Used to get the Deco Tornado to swerve back and forth. Uses OnFrame.
 SETObjData TornadoDecoThings = {}; //More Raw SET Data for the Deco Tornado.
 bool TransTornadoDust = false; //This is really stupid. I'm trying to figure out this dust cloud animation that's playing in front of the transition tornado in the beta footage, but I can't find the animation anywhere in the final game. So, this flag is fliped on and off every other frame, and controls a dust effect that I have display in front of the transiton tornado.
+NJS_VECTOR TornadoSuck = {  692.156555f, -195.87912f, -3467.09546f  }; //Vector position for sucking the player into the tornado.
 //Length  = 127 (including 0)
 int TornadoPosModifier[] = { //This is the array of ints that is used in translating the Deco Tornado back and forth. It's like an NJS_ACTION without being one.
 	0,
@@ -1996,9 +1997,11 @@ void __cdecl Load_TBridge(void) //This colossal mess.
 
 void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the stage function nonsense.
 {
+	auto PlayChar = EntityData1Ptrs[0];
+	
 	if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 	{
-		if (Camera_Data1 != nullptr && Camera_Data1->Position.z > -1700 && (LoadedTornado == true || LoadedDECOTornado == true))
+		if (PlayChar != nullptr && PlayChar->Position.z > -1700 && (LoadedTornado == true || LoadedDECOTornado == true))
 		{
 			LoadedTornado = false; //Basically, if you reset after either tornado has been loaded, and you appear further back, reset everything. For some baffling reason, not checking for that distance away (1700), the transiton tornado won't load. Are the gamestates being changed when that thing appears?
 			LoadedWave = false;
@@ -2015,7 +2018,7 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 
 	if (CurrentLevel == 2 && CurrentAct == 0 && CurrentCharacter != 6) //Make sure you're in Act 1 and NOT Gamma.
 	{
-		if (Camera_Data1 != nullptr && Camera_Data1->Position.z < -2450 && Camera_Data1->Position.y > -460 && LoadedTornado == false) //If you reach the air vent and the tornado hasn't been loaded in yet.
+		if (PlayChar != nullptr && PlayChar->Position.z < -2450 && PlayChar->Position.y > -350 && LoadedTornado == false) //If you reach the air vent and the tornado hasn't been loaded in yet.
 		{
 			Load_Tornado();
 			LoadedWave = true; //Giving the "shockwave" the greenlight to spawn and start spinning and scaling.
@@ -2035,10 +2038,26 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 				}
 			}
 		}
-		if (Camera_Data1 != nullptr && Camera_Data1->Position.z < -1950 && Camera_Data1->Position.y > -460) //Loadind the swerving tornado and the bridge when you reach a certain point.
+		if (PlayChar != nullptr && PlayChar->Position.z < -2050 && PlayChar->Position.y > -460) //Loadind the swerving tornado and the bridge when you reach a certain point.
 		{
 			Load_DecoTornado();
 			Load_TBridge();
+		}
+		
+		if (LoadedTornado == true && CurrentLevel == 2 && CurrentAct == 0)
+		{
+			if (PlayChar != nullptr && !IsGamePaused()) //This is the code that sucks the player up into the tornado.
+			{
+				PlayChar->Position.x = PlayChar->Position.x + squareroot((TornadoSuck.x - PlayChar->Position.x) / 5);
+				PlayChar->Position.y = PlayChar->Position.y + squareroot((TornadoSuck.y - (PlayChar->Position.y * 1.2358869) + 220) / 40);
+				PlayChar->Position.z = PlayChar->Position.z + squareroot((TornadoSuck.z - PlayChar->Position.z) / 40);
+
+				while (PlayChar->Position.y > -280)
+				{
+					PlayChar->Position.y -= 1;
+				}
+				//DisablePause();
+			}
 		}
 	}
 
