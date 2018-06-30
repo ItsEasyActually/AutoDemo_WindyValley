@@ -44,7 +44,7 @@ bool LoadedDECOTornado = false; //Flag to set if the Decorational Tornado has be
 int TornadoDECOFrame = 0; //Used to get the Deco Tornado to swerve back and forth. Uses OnFrame.
 SETObjData TornadoDecoThings = {}; //More Raw SET Data for the Deco Tornado.
 bool TransTornadoDust = false; //This is really stupid. I'm trying to figure out this dust cloud animation that's playing in front of the transition tornado in the beta footage, but I can't find the animation anywhere in the final game. So, this flag is fliped on and off every other frame, and controls a dust effect that I have display in front of the transiton tornado.
-NJS_VECTOR TornadoSuck = {  692.156555f, -195.87912f, -3467.09546f  }; //Vector position for sucking the player into the tornado.
+NJS_VECTOR TornadoSuck = {  692.156555f, -280.87912f, -3467.09546f  }; //Vector position for sucking the player into the tornado.
 //Length  = 127 (including 0)
 int TornadoPosModifier[] = { //This is the array of ints that is used in translating the Deco Tornado back and forth. It's like an NJS_ACTION without being one.
 	0,
@@ -592,7 +592,7 @@ void __cdecl NewBreak_Display(ObjectMaster *a2) //Overriding the Tornado Bridge 
 	{
 		Debris_Texture_Load();
 		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
+		//njTranslateV(0, &v1->Position);
 		v2 = v1->Rotation.z;
 		if (v2)
 		{
@@ -610,7 +610,7 @@ void __cdecl NewBreak_Display(ObjectMaster *a2) //Overriding the Tornado Bridge 
 		}
 		__ftol2;
 		//Rings = BridgeFrame;
-		switch (BridgeFrame) //Oh boy big-ass long-ass switch statement.
+		switch ((int)v1->Scale.z) //Oh boy big-ass long-ass switch statement.
 		{
 		case 0:
 			ProcessModelNode_AB_Wrapper(&object_001999A8, 1.0);
@@ -1987,7 +1987,7 @@ void __cdecl Load_TBridge(void) //This colossal mess.
 				Torn->Rotation.z = (TBRIDGE[BridgeFrame]).ang[2];
 				Torn->Scale.x = 1.0f;
 				Torn->Scale.y = 1.0f;
-				Torn->Scale.z = 1.0f;
+				Torn->Scale.z = BridgeFrame;
 				Torn->CharIndex = (BridgeFrame + 12);
 			}
 		} //Getting this to work is going to require extensive research on the bridge's coding in the final game. Maybe.
@@ -2018,10 +2018,11 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 
 	if (CurrentLevel == 2 && CurrentAct == 0 && CurrentCharacter != 6) //Make sure you're in Act 1 and NOT Gamma.
 	{
-		if (PlayChar != nullptr && PlayChar->Position.z < -2450 && PlayChar->Position.y > -350 && LoadedTornado == false) //If you reach the air vent and the tornado hasn't been loaded in yet.
+		if (PlayChar != nullptr && PlayChar->Position.z < -2450 && PlayChar->Position.y > -350 && LoadedTornado == false) //If you reach the air vent and the tornado and bridge haven't been loaded in yet.
 		{
 			Load_Tornado();
 			LoadedWave = true; //Giving the "shockwave" the greenlight to spawn and start spinning and scaling.
+			Load_TBridge();
 		}
 		if (LoadedWave == true && WaveFrame < 305) //Yes, the wave scales up to 305 times its normal size. If it's much lower than this, I just find it a bit underwhelming.
 		{
@@ -2038,10 +2039,9 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 				}
 			}
 		}
-		if (PlayChar != nullptr && PlayChar->Position.z < -2050 && PlayChar->Position.y > -460) //Loadind the swerving tornado and the bridge when you reach a certain point.
+		if (PlayChar != nullptr && PlayChar->Position.z < -2050 && PlayChar->Position.y > -460) //Loading the swerving tornado
 		{
 			Load_DecoTornado();
-			Load_TBridge();
 		}
 		
 		if (LoadedTornado == true && CurrentLevel == 2 && CurrentAct == 0)
@@ -2049,7 +2049,8 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 			if (PlayChar != nullptr && !IsGamePaused()) //This is the code that sucks the player up into the tornado.
 			{
 				PlayChar->Position.x = PlayChar->Position.x + squareroot((TornadoSuck.x - PlayChar->Position.x) / 5);
-				PlayChar->Position.y = PlayChar->Position.y + squareroot((TornadoSuck.y - (PlayChar->Position.y * 1.2358869) + 220) / 40);
+				//PlayChar->Position.y = PlayChar->Position.y + squareroot((TornadoSuck.y - (PlayChar->Position.y * 1.2358869) + 220) / 40);
+				PlayChar->Position.y = TornadoSuck.y;
 				PlayChar->Position.z = PlayChar->Position.z + squareroot((TornadoSuck.z - PlayChar->Position.z) / 40);
 
 				while (PlayChar->Position.y > -280)
