@@ -1304,7 +1304,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteCall((void *)0x4DF522, Debris_Texture_Load); //Setting the tornado debris to use a custom PVM file.
 	WriteJump((void *)0x4E5C20, NewBreak_Display); //Overwriting the bridge's display function.
 	WriteCall((void *)0x4DDEB6, Debris_Texture_Load);
-	WriteCall((void *)0x4FB2A8, Debris_Texture_Load);
+	//WriteCall((void *)0x4FB2A8, Debris_Texture_Load);
 	WriteCall((void *)0x4E5C3A, Debris_Texture_Load);
 	WriteJump((void *)0x4DE3F0, NewTransitionTornado_Display); //overwriting the transition tornado's display routine.
 	//WriteCall((void *)0x4E660F, TornadoDestroy); //Makes it so the debris doesn't swirl around the tornado.
