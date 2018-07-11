@@ -706,8 +706,8 @@ NJS_VECTOR normal_0012E5B0[] = {
 	{ -0.796912f, -0.604031f, 0.008781999f }
 };
 
-NJS_MODEL_SADX attach_0012EA18 = { vertex_0012E148, normal_0012E5B0, LengthOfArray<Sint32>(vertex_0012E148), meshlist_0012E088, matlist_0012D808, LengthOfArray<Uint16>(meshlist_0012E088), LengthOfArray<Uint16>(matlist_0012D808),{ 6.512639f, 31.91131f, 0.573238f }, 36.01213f, NULL };
-
+NJS_MODEL_SADX attach_0012EA18 = { vertex_0012E148, normal_0012E5B0, LengthOfArray<Sint32>(vertex_0012E148), meshlist_0012E088, matlist_0012D808, LengthOfArray<Uint16>(meshlist_0012E088), LengthOfArray<Uint16>(matlist_0012D808),{ 6.512639f, 31.91131f, 0.573238f }, 66.01213f, NULL }; //Adjusted radius to fix problem with lacking collision on top.
+																																																																							//Original Bounds: 6.512639f, 31.91131f, 0.573238f }, 36.01213f
 NJS_OBJECT I_Has14 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0012EA18, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_0012EA74[] = {
@@ -1395,8 +1395,8 @@ NJS_VECTOR normal_0012F814[] = {
 	{ 0.5299079f, 0.515483f, -0.673405f }
 };
 
-NJS_MODEL_SADX attach_0012FC94 = { vertex_0012F394, normal_0012F814, LengthOfArray<Sint32>(vertex_0012F394), meshlist_0012F2EC, matlist_0012EA74, LengthOfArray<Uint16>(meshlist_0012F2EC), LengthOfArray<Uint16>(matlist_0012EA74),{ 0.5136189f, 27.42735f, -0.84346f }, 32.37746f, NULL };
-
+NJS_MODEL_SADX attach_0012FC94 = { vertex_0012F394, normal_0012F814, LengthOfArray<Sint32>(vertex_0012F394), meshlist_0012F2EC, matlist_0012EA74, LengthOfArray<Uint16>(meshlist_0012F2EC), LengthOfArray<Uint16>(matlist_0012EA74),{ 0.5136189f, 27.42735f, -0.84346f }, 42.37746f, NULL }; //Adjusted radius to make sure the entire model is solid.
+																																																																							 //Original Bounds: 0.5136189f, 27.42735f, -0.84346f }, 32.37746f
 NJS_OBJECT I_Has15 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0012FC94, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_0010ADCC[] = {
@@ -1813,8 +1813,8 @@ NJS_VECTOR normal_0010B5EC[] = {
 	{ 0.126211f, 0.991814f, 0.019377f }
 };
 
-NJS_MODEL_SADX attach_0010B85C = { vertex_0010B37C, normal_0010B5EC, LengthOfArray<Sint32>(vertex_0010B37C), meshlist_0010B31C, matlist_0010ADCC, LengthOfArray<Uint16>(meshlist_0010B31C), LengthOfArray<Uint16>(matlist_0010ADCC),{ 0, 23.48093f, 0.000031f }, 28.15405f, NULL };
-
+NJS_MODEL_SADX attach_0010B85C = { vertex_0010B37C, normal_0010B5EC, LengthOfArray<Sint32>(vertex_0010B37C), meshlist_0010B31C, matlist_0010ADCC, LengthOfArray<Uint16>(meshlist_0010B31C), LengthOfArray<Uint16>(matlist_0010ADCC),{ 0, 23.48093f, 0.000031f }, 38.15405f, NULL }; //Adjusted radius to make sure the entire model is solid.
+																																																																					//Original Bounds: 0, 23.48093f, 0.000031f }, 28.15405f
 NJS_OBJECT I_Has16 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0010B85C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 NJS_MATERIAL matlist_0012FCF0[] = {

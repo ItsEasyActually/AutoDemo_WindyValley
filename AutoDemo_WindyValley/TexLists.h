@@ -140,27 +140,26 @@ NJS_TEXLIST WINDY03_texlist = { arrayptrandlength(WINDY03_texlist_entries) };
 
 NJS_TEXNAME WINDY01_SKY01_texnames[] = {
         { "s_wt28" },
+		{ "s_wt32" },
         { "wv_nbg" },
-        { "s_wt32" },
         { "sw_nbg2" }
 };
 
-NJS_TEXLIST WINDY_BACK = { arrayptrandlength(WINDY01_SKY01_texnames) };
+NJS_TEXLIST BETAWINDY_BACK_texlist = { arrayptrandlength(WINDY01_SKY01_texnames) };
 
 NJS_TEXNAME WINDY02_SKY01_texnames[] = {
         { "tatu50" },
-        { "tatu61" },
-        { "tatu62" }
+        { "tatu61" }
 };
 
-NJS_TEXLIST WINDY_BACK2 = { arrayptrandlength(WINDY02_SKY01_texnames) };
+NJS_TEXLIST BETAWINDY_BACK2_texlist = { arrayptrandlength(WINDY02_SKY01_texnames) };
 
 NJS_TEXNAME WINDY03_SKY01_texnames[] = {
         { "Sora96" },
         { "Sora62" }
 };
 
-NJS_TEXLIST WINDY_BACK3 = { arrayptrandlength(WINDY03_SKY01_texnames) };
+NJS_TEXLIST BETAWINDY_BACK3_texlist = { arrayptrandlength(WINDY03_SKY01_texnames) };
 
 NJS_TEXNAME OBJWINDY_texlist_entries[] = {
 	{ "Green_1" },
@@ -288,7 +287,8 @@ NJS_TEXNAME OBJWINDY_texlist_entries[] = {
 	{ "win_pvr" },
 	{ "Gear1" },
 	{ "Gear2" },
-	{ "Gear3" }
+	{ "Gear3" },
+    { "Clear" }
 };
 
 NJS_TEXLIST OBJWINDY_texlist = { arrayptrandlength(OBJWINDY_texlist_entries) };
@@ -324,7 +324,7 @@ NJS_TEXLIST TomadoDebris_texlist = { arrayptrandlength(TomadoDebris_texlist_entr
 
 PVMEntry WindyValleyObjectTextures[] = {
 	//{ "OBJ_WINDY", &OBJWINDY_texlist },
-	{ "OBJ_WINDY", (TexList *)0xC055D4 },
+	{ "OBJ_WINDY_AD", (TexList *)0xC055D4 },
 	{ "WINDY_E103", (TexList *)0xC409A4 },
 	{ "E_SAI", (TexList *)0x38C8EA8 },
 	{ "E_LEON", (TexList *)0x9599F4 },
@@ -340,6 +340,9 @@ PVMEntry WindyValleyObjectTextures[] = {
 	{ "CHAOS_LIFEGAUGE", (TexList *)0x974000 },
 	{ "Debris", &TomadoDebris_texlist },
 	{ "Tomado", &Tomado_texlist },
+	{ "WINDY_BACK_AD", &BETAWINDY_BACK_texlist },
+	{ "WINDY_BACK2_AD", &BETAWINDY_BACK2_texlist },
+	{ "WINDY_BACK3_AD", &BETAWINDY_BACK3_texlist },
 	{ NULL, (TexList *)0x973FB0 },
 	{ 0 }
 };
