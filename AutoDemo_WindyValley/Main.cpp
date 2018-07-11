@@ -188,11 +188,14 @@ static float DebrisFrame = 0; //This is also some stupid shit, getting the debri
 static float WaveFrame = 0; //Uused in scaling the "shockwave" effect and making it spin.
 int BridgeFrame = 0; //Used in the bridge loading function below to select pieces and get positions and stuff.
 
+<<<<<<< HEAD
 bool Skybox1Loaded = false;
 bool Skybox2Loaded = false;
 bool Skybox3Loaded = false;
 SETObjData SkyboxThings = {};
 
+=======
+>>>>>>> dba67353769f50f03f679761999f4bf7c57c2786
 void TrampolineValueCorrecter() //This function is a fail-safe just in case you somehow pause and quit the level in the middle of bouncing on a trampoline and one of the values doesn't get reset to its proper value.
 {
 	if (CurrentLevel != 2)
@@ -231,6 +234,7 @@ void WindPathZoneSetting() //This changes the speed of the leaf models blowing a
 	}
 }
 
+<<<<<<< HEAD
 void __cdecl WVAct1_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
@@ -613,6 +617,8 @@ void __cdecl Load_BWVSkybox(void)
 	}
 }
 
+=======
+>>>>>>> dba67353769f50f03f679761999f4bf7c57c2786
 void __cdecl Tornado_Texture_Load(void) //Sets the textures for the object to Tomado.PVM.
 {
 	//LoadPVM("Tomado", &Tomado_texlist);
@@ -999,6 +1005,128 @@ void __cdecl NewBreak_Display(ObjectMaster *a2) //Overriding the Tornado Bridge 
 		
 		ProcessModelNode_AB_Wrapper(&TBRIDGE[(int)v1->Scale.z], 1.0);
 		njPopMatrix(1u);
+<<<<<<< HEAD
+=======
+	}
+}
+
+void __cdecl NewBreakBridgeMain(ObjectMaster *a1) //New main subroutine for bridge objects
+{
+	ObjectMaster *v1; // edi@1
+	EntityData1 *v2; // esi@1
+	char v3; // al@18
+	NJS_VECTOR a2; // [sp+8h] [bp-Ch]@11
+	NJS_OBJECT *v4; // edi@1
+	ObjectMaster *v5; // edi@1
+	EntityData1 *v7; // esi@1
+	NJS_VECTOR a3; // edi@1
+	ObjectMaster *v8; // edi@1
+
+	v1 = a1;
+	v2 = a1->Data1;
+	if (!ClipObject(a1, 2250000.0))
+	{
+		if (v2->Action)
+		{
+			if (v2->Action == 1)
+			{
+				if (++v2->InvulnerableTime <= 0x58u) //This was lowered from 258 to 58. This make the child objects disappear faster, so we can have them swirl up the tornado and not have the game crash.
+				{
+					RunObjectChildren(v1);
+				}
+				else
+				{
+					v2->Action = 6;
+					DeleteChildObjects(v1);
+				}
+			}
+		}
+		else
+		{
+			if (sub_4DE570((int)&v2->Position, (int)&a1))
+			{
+				if (*(float *)&a1 < 190.0 || v2->NextAction)
+				{
+					if (*(float *)&a1 < 95.0)
+					{
+						(a2.x) = 0;
+						(a2.y) = -8;
+						(a2.z) = 0;
+						sub_4B9820(&v2->Position, &a2, 10.0);
+					}
+					if (v2->Scale.y < 0.0)
+					{
+						sub_4E6370((int)v1);
+						if (v2->Index > 5u)
+						{
+							(a2.x) = 0;
+							(a2.y) = -8;
+							(a2.z) = 0;
+							v2->Index = 0;
+							sub_4B9820(&v2->Position, &a2, 10.0);
+						}
+					}
+					else
+					{
+						/*	
+						NJS_OBJECT *v4;
+						ObjectMaster *v5;
+						EntityData1 *v7;
+
+
+
+						v2 = LoadChildObject(LoadObj_Data1, sub_4DFAF0, a1);
+						if (v2)
+						{
+						a1->Child = v2;
+						v2->Data1->Position.x = v1->Position.x;
+						v2->Data1->Position.y = (v1->Position.y - 1);
+						v2->Data1->Position.z = v1->Position.z;
+						}
+
+
+
+
+						*/
+						//INSERT LOADCHILDSHIT HERE
+					/*	v4 = &TBRIDGE[(int)v2->Scale.z];
+						v5 = LoadChildObject(LoadObj_Data1, sub_4E6070, v8);
+						if (v5)
+						{
+							v5->Data1->Rotation.y = v4->ang[1];
+							v5->Data1->Position.x = v4->pos[0];
+							v5->Data1->Position.y = v4->pos[1];
+							v5->Data1->Position.z = v4->pos[2];
+							v5->Data1->Object = v4;
+
+							(a3.x = 0);
+							(a3.y = 8);
+							(a3.z = 0);
+							sub_4B9820(&v2->Position, &a3, 5.0);
+						}*/ 
+						//Bullshit I was doing ^
+						sub_4E6200(0, (int)v1);
+						v2->Action = 1;
+						v1->DisplaySub = 0;
+					}
+				}
+				if (v2->Scale.y >= 0.0 && *(float *)&a1 < 200.0)
+				{
+					v3 = v2->Index + 1;
+					v2->Index = v3;
+					if ((unsigned __int8)v3 > 0x14u)
+					{
+						(a2.x) = 10;
+						(a2.y) = 8;
+						(a2.z) = 0;
+						v2->Index = 0;
+						sub_4B9820(&v2->Position, &a2, 18.0);
+					}
+				}
+			}
+			sub_4E5C20(v1);
+		}
+>>>>>>> dba67353769f50f03f679761999f4bf7c57c2786
 	}
 }
 
@@ -1013,7 +1141,11 @@ void __cdecl Load_TBridge(void) //This colossal mess.
 
 		for (BridgeFrame = 0; BridgeFrame < 335; BridgeFrame++) //I'm looping through, trying to get them all loaded in an orderly fashion.
 		{
+<<<<<<< HEAD
 			a1 = LoadObject((LoadObj)2, 1, sub_4E6770);
+=======
+			a1 = LoadObject((LoadObj)2, 1, sub_4E6770);/
+>>>>>>> dba67353769f50f03f679761999f4bf7c57c2786
 			a1->SETData.SETData = &TornadoThings;
 			if (a1)
 			{
@@ -1576,7 +1708,11 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteCall((void *)0x4E5C3A, Debris_Texture_Load);
 	WriteJump((void *)0x4DE3F0, NewTransitionTornado_Display); //overwriting the transition tornado's display routine.
 	//WriteCall((void *)0x4E660F, TornadoDestroy); //Makes it so the debris doesn't swirl around the tornado.
+<<<<<<< HEAD
 	//WriteJump((void *)0x4E65C0, NewBreakBridgeMain); //overwriting the breakable bridge's main routine.
+=======
+	WriteJump((void *)0x4E65C0, NewBreakBridgeMain); //overwriting the breakable bridge's main routine.
+>>>>>>> dba67353769f50f03f679761999f4bf7c57c2786
 	
 
 	//WriteJump((void *)0x4DDC10, sub_4DDCE0); //RHINO TANK TORNADO PARTY!!! :D
