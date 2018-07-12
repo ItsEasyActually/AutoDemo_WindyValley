@@ -377,7 +377,7 @@ NJS_VECTOR normal_00107270[] = {
 	{ 0.533973f, -0.292076f, 0.793451f }
 };
 
-NJS_MODEL_SADX attach_00107438 = { vertex_001070A8, normal_00107270, LengthOfArray<Sint32>(vertex_001070A8), meshlist_00107048, matlist_00106B64, LengthOfArray<Uint16>(meshlist_00107048), LengthOfArray<Uint16>(matlist_00106B64),{ 3.843499f, 2.83935f, 3.277737f }, 10.52184f, NULL };
+NJS_MODEL_SADX attach_00107438 = { vertex_001070A8, normal_00107270, LengthOfArray<Sint32>(vertex_001070A8), meshlist_00107048, matlist_00106B64, LengthOfArray<Uint16>(meshlist_00107048), LengthOfArray<Uint16>(matlist_00106B64),{ 3.843499f, 2.83935f, 3.277737f }, 20.52184f, NULL };
 
 NJS_OBJECT I_Dai1 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00107438, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
@@ -774,7 +774,7 @@ NJS_VECTOR normal_00107BF8[] = {
 	{ 0.577884f, -0.303853f, 0.757445f }
 };
 
-NJS_MODEL_SADX attach_00107DC0 = { vertex_00107A30, normal_00107BF8, LengthOfArray<Sint32>(vertex_00107A30), meshlist_001079A0, matlist_00107494, LengthOfArray<Uint16>(meshlist_001079A0), LengthOfArray<Uint16>(matlist_00107494),{ 3.938347f, 3.479263f, 3.422007f }, 10.93186f, NULL };
+NJS_MODEL_SADX attach_00107DC0 = { vertex_00107A30, normal_00107BF8, LengthOfArray<Sint32>(vertex_00107A30), meshlist_001079A0, matlist_00107494, LengthOfArray<Uint16>(meshlist_001079A0), LengthOfArray<Uint16>(matlist_00107494),{ 3.938347f, 3.479263f, 3.422007f }, 20.93186f, NULL };
 
 NJS_OBJECT I_Dai2 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00107DC0, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
@@ -1155,7 +1155,7 @@ NJS_VECTOR normal_00108528[] = {
 	{ 0.685563f, -0.315146f, 0.656267f }
 };
 
-NJS_MODEL_SADX attach_001086F0 = { vertex_00108360, normal_00108528, LengthOfArray<Sint32>(vertex_00108360), meshlist_00108300, matlist_00107E1C, LengthOfArray<Uint16>(meshlist_00108300), LengthOfArray<Uint16>(matlist_00107E1C),{ 4.287663f, 3.542821f, 3.490717f }, 11.30636f, NULL };
+NJS_MODEL_SADX attach_001086F0 = { vertex_00108360, normal_00108528, LengthOfArray<Sint32>(vertex_00108360), meshlist_00108300, matlist_00107E1C, LengthOfArray<Uint16>(meshlist_00108300), LengthOfArray<Uint16>(matlist_00107E1C),{ 4.287663f, 3.542821f, 3.490717f }, 21.30636f, NULL };
 
 NJS_OBJECT I_Dai3 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001086F0, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
@@ -1292,7 +1292,7 @@ NJS_VECTOR normal_001089B8[] = {
 	{ 0.121375f, 0.946493f, 0.29903f }
 };
 
-NJS_MODEL_SADX attach_00108A48 = { vertex_00108928, normal_001089B8, LengthOfArray<Sint32>(vertex_00108928), meshlist_001088E0, matlist_0010874C, LengthOfArray<Uint16>(meshlist_001088E0), LengthOfArray<Uint16>(matlist_0010874C),{ 0.075577f, 1.557881f, 0.166269f }, 7.062984f, NULL };
+NJS_MODEL_SADX attach_00108A48 = { vertex_00108928, normal_001089B8, LengthOfArray<Sint32>(vertex_00108928), meshlist_001088E0, matlist_0010874C, LengthOfArray<Uint16>(meshlist_001088E0), LengthOfArray<Uint16>(matlist_0010874C),{ 0.075577f, 1.557881f, 0.166269f }, 17.062984f, NULL };
 
 NJS_OBJECT I_Dai4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00108A48, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
@@ -1402,7 +1402,7 @@ NJS_VECTOR normal_00108CA4[] = {
 	{ 0.203271f, 0.944275f, 0.258894f }
 };
 
-NJS_MODEL_SADX attach_00108D34 = { vertex_00108C14, normal_00108CA4, LengthOfArray<Sint32>(vertex_00108C14), meshlist_00108BCC, matlist_00108AA4, LengthOfArray<Uint16>(meshlist_00108BCC), LengthOfArray<Uint16>(matlist_00108AA4),{ 0, 1.596183f, 0 }, 7.233704f, NULL };
+NJS_MODEL_SADX attach_00108D34 = { vertex_00108C14, normal_00108CA4, LengthOfArray<Sint32>(vertex_00108C14), meshlist_00108BCC, matlist_00108AA4, LengthOfArray<Uint16>(meshlist_00108BCC), LengthOfArray<Uint16>(matlist_00108AA4),{ 0, 1.596183f, 0 }, 17.233704f, NULL };
 
 NJS_OBJECT I_Dai5 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00108D34, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
@@ -1539,7 +1539,7 @@ NJS_VECTOR normal_00108FFC[] = {
 	{ 0.06441499f, 0.866624f, 0.494787f }
 };
 
-NJS_MODEL_SADX attach_0010908C = { vertex_00108F6C, normal_00108FFC, LengthOfArray<Sint32>(vertex_00108F6C), meshlist_00108F24, matlist_00108D90, LengthOfArray<Uint16>(meshlist_00108F24), LengthOfArray<Uint16>(matlist_00108D90),{ 0, 2.185338f, -0.569569f }, 6.84282f, NULL };
+NJS_MODEL_SADX attach_0010908C = { vertex_00108F6C, normal_00108FFC, LengthOfArray<Sint32>(vertex_00108F6C), meshlist_00108F24, matlist_00108D90, LengthOfArray<Uint16>(meshlist_00108F24), LengthOfArray<Uint16>(matlist_00108D90),{ 0, 2.185338f, -0.569569f }, 16.84282f, NULL };
 
 NJS_OBJECT I_Dai6 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0010908C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
@@ -1676,7 +1676,7 @@ NJS_VECTOR normal_00109354[] = {
 	{ 0.050133f, 0.846184f, 0.530527f }
 };
 
-NJS_MODEL_SADX attach_001093E4 = { vertex_001092C4, normal_00109354, LengthOfArray<Sint32>(vertex_001092C4), meshlist_0010927C, matlist_001090E8, LengthOfArray<Uint16>(meshlist_0010927C), LengthOfArray<Uint16>(matlist_001090E8),{ 0.584452f, 1.990783f, -0.4383f }, 6.00285f, NULL };
+NJS_MODEL_SADX attach_001093E4 = { vertex_001092C4, normal_00109354, LengthOfArray<Sint32>(vertex_001092C4), meshlist_0010927C, matlist_001090E8, LengthOfArray<Uint16>(meshlist_0010927C), LengthOfArray<Uint16>(matlist_001090E8),{ 0.584452f, 1.990783f, -0.4383f }, 16.00285f, NULL };
 
 NJS_OBJECT I_Dai7 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001093E4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
@@ -1813,7 +1813,7 @@ NJS_VECTOR normal_001096AC[] = {
 	{ 0.175161f, 0.942013f, 0.286236f }
 };
 
-NJS_MODEL_SADX attach_0010973C = { vertex_0010961C, normal_001096AC, LengthOfArray<Sint32>(vertex_0010961C), meshlist_001095D4, matlist_00109440, LengthOfArray<Uint16>(meshlist_001095D4), LengthOfArray<Uint16>(matlist_00109440),{ 0, 1.711077f, 0 }, 7.233704f, NULL };
+NJS_MODEL_SADX attach_0010973C = { vertex_0010961C, normal_001096AC, LengthOfArray<Sint32>(vertex_0010961C), meshlist_001095D4, matlist_00109440, LengthOfArray<Uint16>(meshlist_001095D4), LengthOfArray<Uint16>(matlist_00109440),{ 0, 1.711077f, 0 }, 17.233704f, NULL };
 
 NJS_OBJECT I_Dai8 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0010973C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
@@ -1951,7 +1951,7 @@ NJS_VECTOR normal_00109A04[] = {
 	{ 0.08959699f, 0.7423f, 0.664051f }
 };
 
-NJS_MODEL_SADX attach_00109A94 = { vertex_00109974, normal_00109A04, LengthOfArray<Sint32>(vertex_00109974), meshlist_0010992C, matlist_00109798, LengthOfArray<Uint16>(meshlist_0010992C), LengthOfArray<Uint16>(matlist_00109798),{ 0.541732f, 2.201643f, -0.596096f }, 5.923434f, NULL };
+NJS_MODEL_SADX attach_00109A94 = { vertex_00109974, normal_00109A04, LengthOfArray<Sint32>(vertex_00109974), meshlist_0010992C, matlist_00109798, LengthOfArray<Uint16>(meshlist_0010992C), LengthOfArray<Uint16>(matlist_00109798),{ 0.541732f, 2.201643f, -0.596096f }, 15.923434f, NULL };
 
 NJS_OBJECT I_Dai9 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00109A94, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
@@ -2088,7 +2088,7 @@ NJS_VECTOR normal_00106A78[] = {
 { 0.161698f, 0.94081f, 0.297876f }
 };
 
-NJS_MODEL_SADX attach_00106B08 = { vertex_001069E8, normal_00106A78, LengthOfArray<Sint32>(vertex_001069E8), meshlist_001069A0, matlist_0010680C, LengthOfArray<Uint16>(meshlist_001069A0), LengthOfArray<Uint16>(matlist_0010680C),{ 0, 1.582411f, 0 }, 7.233704f, NULL };
+NJS_MODEL_SADX attach_00106B08 = { vertex_001069E8, normal_00106A78, LengthOfArray<Sint32>(vertex_001069E8), meshlist_001069A0, matlist_0010680C, LengthOfArray<Uint16>(meshlist_001069A0), LengthOfArray<Uint16>(matlist_0010680C),{ 0, 1.582411f, 0 }, 17.233704f, NULL };
 
 //Medium Platform
 NJS_OBJECT Unreferenced01_00106B30 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00106B08, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };

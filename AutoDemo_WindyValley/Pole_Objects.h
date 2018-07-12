@@ -3667,7 +3667,7 @@ NJS_VECTOR normal_00114710[] = {
 { -0.882683f, -0.455013f, 0.117617f }
 };
 
-NJS_MODEL_SADX attach_0011498C = { vertex_00114494, normal_00114710, LengthOfArray<Sint32>(vertex_00114494), meshlist_00114404, matlist_00113EF8, LengthOfArray<Uint16>(meshlist_00114404), LengthOfArray<Uint16>(matlist_00113EF8),{ -0.294445f, 6.652057f, 0.677718f }, 12.00095f, NULL };
+NJS_MODEL_SADX attach_0011498C = { vertex_00114494, normal_00114710, LengthOfArray<Sint32>(vertex_00114494), meshlist_00114404, matlist_00113EF8, LengthOfArray<Uint16>(meshlist_00114404), LengthOfArray<Uint16>(matlist_00113EF8),{ -0.294445f, 6.652057f, 0.677718f }, 22.00095f, NULL };
 
 //Tall Platform
 NJS_OBJECT Unreferenced02_001149B4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0011498C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
