@@ -81,6 +81,12 @@ FunctionPointer(void, sub_4B9820, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x
 
 FunctionPointer(void, sub_456BF0, (void *a1, int *a2), 0x456BF0); //Sprite Particles
 
+
+//Debris Shit
+FunctionPointer(void, sub_4DF500, (ObjectMaster *a1), 0x004DF500);
+FunctionPointer(void, sub_4DF740, (ObjectMaster *a1), 0x004DF740);
+DataArray(NJS_MODEL_SADX, off_C66C80, 0x00C66C80, 10);
+DataArray(ObjectThing, stru_C66CA8, 0x00C66CA8, 14);
 DataArray(ObjectThing, DebrisThing, 0x00C66CA8, 14);
 
 FunctionPointer(void, sub_49D530, (ObjectMaster *a1), 0x49D530);

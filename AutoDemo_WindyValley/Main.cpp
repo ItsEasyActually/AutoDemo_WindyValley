@@ -1138,8 +1138,172 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 	}
 }
 
-void __cdecl Load_Debris(void) //Debris loading shit.
+void __cdecl DebrisDisplay(ObjectMaster *a1)
 {
+	EntityData1 *v1; // esi@1
+	NJS_MODEL_SADX *v2; // ebx@1
+	Angle v3; // eax@2
+	Angle v4; // eax@4
+	Angle v5; // eax@6
+
+	v1 = a1->Data1;
+	v2 = (NJS_MODEL_SADX *)*((_DWORD *)v1 + 4);
+	if (!MissedFrames)
+	{
+		Debris_Texture_Load();
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v3 = v1->Rotation.z;
+		if (v3 && v2 != &*(NJS_MODEL_SADX*)0xC2AF1C && v2 != &*(NJS_MODEL_SADX*)0xC2C2E8)
+		{
+			njRotateZ(0, (unsigned __int16)v3);
+		}
+		v4 = v1->Rotation.x;
+		if (v4 && v2 != &*(NJS_MODEL_SADX*)0xC2AF1C && v2 != &*(NJS_MODEL_SADX*)0xC2C2E8)
+		{
+			njRotateX(0, (unsigned __int16)v4);
+		}
+		v5 = v1->Rotation.y;
+		if (v5 && v2 != &*(NJS_MODEL_SADX*)0xC2AF1C)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
+		//DrawModel_QueueVisible(v2, (QueuedModelFlagsB)0, 1.0);
+
+		if (v2 == &*(NJS_MODEL_SADX*)0xC2AF1C)
+		{
+			ProcessModelNode_AB_Wrapper(&object_0016F8E0, 1.0);
+			njPopMatrix(1u);
+		}
+
+		else if (v2 == &*(NJS_MODEL_SADX*)0xC2CAF8)
+		{
+			ProcessModelNode_AB_Wrapper(&object_0019E788, 1.0);
+			njPopMatrix(1u);
+		}
+
+		else
+		{
+			sub_407A00(v2, 1.0);
+			njPopMatrix(1u);
+		}
+	}
+}
+
+void __cdecl HypotheticalDebris(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+	double v2; // st7@7
+	Angle v3; // edi@7
+	int v4; // edi@7
+	double v5; // st7@7
+	int v6; // rax@7
+	int v9; // rax@7
+	int v7; // eax@8
+	long double v8; // st7@8
+	NJS_MODEL_SADX *v10; // ebx@1
+
+	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 1))
+	{
+		DeleteObjectMaster(a1);
+	}
+
+	else
+	{
+		v1 = a1->Data1;
+		v10 = (NJS_MODEL_SADX *)*((_DWORD *)v1 + 4);
+		if (v1->Action)
+		{
+			if (v1->Action == 1 && /*IsVisible((NJS_VECTOR *)((char *)v1 + 32), 3.0) && EntityData1Ptrs[0] && EntityData1Ptrs[0]->Position.y - 70.0 < *((float *)v1 + 9) && *((float *)v1 + 9) < (double)Camera_Data1->Position.y*/ v1->Position.y < 1420)
+			{
+				//if (v10 == &*(NJS_MODEL_SADX*)0xC2AF1C)
+				//{
+				v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 8.0) + *((float *)v1 + 2);
+				/*}
+				else if (v10 == &*(NJS_MODEL_SADX*)0xC2C2E8)
+				{
+				v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 4.5111828) + *((float *)v1 + 2);
+				}
+				else
+				{
+				v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 5.92273662) + *((float *)v1 + 2);
+				}*/
+				*((float *)v1 + 2) = v2;
+				v3 = (v2 * 65536.0 * 0.002777777777777778);
+				*((float *)v1 + 8) = 649.074f + njCos(v3) * 90.0;
+				*((float *)v1 + 10) = -196.07f + njSin(v3) * 90.0;
+				*((float *)v1 + 9) = fabs((double)rand() * 0.000030517578) * 3.4000001 + *((float *)v1 + 12) * 1.3 + *((float *)v1 + 9);
+				v4 = ((*((float *)v1 + 12) + *((float *)v1 + 12)) * 65536.0 * -0.002777777777777778);
+				v5 = *((float *)v1 + 12) * 5.0 * 65536.0;
+				*((_DWORD *)v1 + 5) -= v4;
+				v6 = (v5 * 0.002777777777777778);
+				v9 = *((_DWORD *)v1 + 7) - v4;
+				*((_DWORD *)v1 + 6) += v6;
+				*((_DWORD *)v1 + 7) = v9;
+				sub_4DF500(a1);
+			}
+		}
+		else
+		{
+			v1->Action = 1;
+			v7 = rand();
+			*((_DWORD *)v1 + 8) = 0;
+			*((_DWORD *)v1 + 10) = 0;
+			v8 = (double)v7 * 0.000030517578;
+			*((float *)v1 + 12) = fabs(v8);
+			*((float *)v1 + 2) = (double)(signed int)(v8 * 360.0);
+			a1->DisplaySub = sub_4DF500;
+		}
+	}
+}
+
+/*void __cdecl PreHypoDebris(ObjectMaster *a1)
+{
+EntityData1 *v1; // edi@1
+NJS_MODEL_SADX **v2; // esi@7
+ObjectMaster *v3; // eax@8
+EntityData1 *v4; // edi@1
+//int v4 = 0;
+
+v1 = a1->Data1;
+if (v1->Action)
+{
+if (v1->Action == 1)
+{
+if (++v1->InvulnerableTime >= 0x296u)
+{
+DeleteChildObjects(a1);
+CheckThingButThenDeleteObject(a1);
+}
+else
+{
+RunObjectChildren(a1);
+}
+}
+}
+else
+{
+v1->Action = 1;
+*v2 = off_C66C80;
+do
+{
+v3 = LoadChildObject(LoadObj_Data1, HypotheticalDebris, a1);
+v4 = v3->Data1;
+if (v4)
+{
+*(float *)v4->LoopData = (Sint32)*v2;
+++v2;
+v4->Position.y = v1->Position.y;
+}
+} while ((signed int)v2 < (signed int)stru_C66CA8);
+SetCameraControlEnabled(1);
+}
+}*/
+
+void __cdecl Load_Debris(void)
+{
+	//auto entityPlayer = EntityData1Ptrs[0];
+
 	if (LoadedDebris == false)
 	{
 		ObjectMaster *a1;
@@ -1150,8 +1314,76 @@ void __cdecl Load_Debris(void) //Debris loading shit.
 		if (a1)
 		{
 			debr = a1->Data1;
-			debr->Position.x = 649.074f; //The debug sphere appears in the right spot, but all the models still swirl around 0, SpawnHeight, 0.
+			debr->Position.x = 649.074f;
 			debr->Position.y = -203.486f;
+			debr->Position.z = -196.07f;
+			debr->Rotation.x = 0;
+			debr->Rotation.y = 0;
+			debr->Rotation.z = 0;
+			debr->Scale.x = 1.0f;
+			debr->Scale.y = 1.0f;
+			debr->Scale.z = 1.0f;
+			debr->CharIndex = 8;
+		}
+
+		a1 = LoadObject((LoadObj)2, 3, sub_4DF7D0);
+		a1->SETData.SETData = &DebrisThings;
+		if (a1)
+		{
+			debr = a1->Data1;
+			debr->Position.x = 649.074f;
+			debr->Position.y = 103.486f;
+			debr->Position.z = -196.07f;
+			debr->Rotation.x = 0;
+			debr->Rotation.y = 0;
+			debr->Rotation.z = 0;
+			debr->Scale.x = 1.0f;
+			debr->Scale.y = 1.0f;
+			debr->Scale.z = 1.0f;
+			debr->CharIndex = 8;
+		}
+
+		a1 = LoadObject((LoadObj)2, 3, sub_4DF7D0);
+		a1->SETData.SETData = &DebrisThings;
+		if (a1)
+		{
+			debr = a1->Data1;
+			debr->Position.x = 649.074f;
+			debr->Position.y = 403.486f;
+			debr->Position.z = -196.07f;
+			debr->Rotation.x = 0;
+			debr->Rotation.y = 0;
+			debr->Rotation.z = 0;
+			debr->Scale.x = 1.0f;
+			debr->Scale.y = 1.0f;
+			debr->Scale.z = 1.0f;
+			debr->CharIndex = 8;
+		}
+
+		a1 = LoadObject((LoadObj)2, 3, sub_4DF7D0);
+		a1->SETData.SETData = &DebrisThings;
+		if (a1)
+		{
+			debr = a1->Data1;
+			debr->Position.x = 649.074f;
+			debr->Position.y = 703.486f;
+			debr->Position.z = -196.07f;
+			debr->Rotation.x = 0;
+			debr->Rotation.y = 0;
+			debr->Rotation.z = 0;
+			debr->Scale.x = 1.0f;
+			debr->Scale.y = 1.0f;
+			debr->Scale.z = 1.0f;
+			debr->CharIndex = 8;
+		}
+
+		a1 = LoadObject((LoadObj)2, 3, sub_4DF7D0);
+		a1->SETData.SETData = &DebrisThings;
+		if (a1)
+		{
+			debr = a1->Data1;
+			debr->Position.x = 649.074f;
+			debr->Position.y = 1103.486f;
 			debr->Position.z = -196.07f;
 			debr->Rotation.x = 0;
 			debr->Rotation.y = 0;
@@ -1163,31 +1395,6 @@ void __cdecl Load_Debris(void) //Debris loading shit.
 		}
 	}
 	LoadedDebris = true;
-}
-
-
-void __cdecl Debris_Check(void) //Basic checking shit to make sure you're in Act 2.
-{
-	if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
-	{
-		if (LoadedDebris == true)
-		{
-			LoadedDebris = false;
-		}
-	}
-
-	if (CurrentLevel == 2 && CurrentAct == 1)
-	{
-		if (LoadedDebris == false)
-		{
-			Load_Debris();
-		}
-	}
-
-	else if (CurrentLevel != 2 && LoadedDebris == true)
-	{
-		LoadedDebris = false;
-	}
 }
 
 
@@ -1726,16 +1933,34 @@ extern "C"
 		Tornado_Check(); //Loads Stage Function stuff for Act 1
 		Load_BWVSkybox();
 
-		if (CurrentLevel == 2 && CurrentAct == 1 && !IsGamePaused()) //Loads Stage Function Debris for Act 2. Very early state, barely works.
+		if (CurrentLevel == 2 && CurrentAct == 1 && !IsGamePaused())
 		{
-			DebrisFrame++;
-			if (FramerateSetting >= 2)
+			if (LoadedDebris == false)
 			{
 				DebrisFrame++;
+				if (FramerateSetting >= 2)
+				{
+					DebrisFrame++;
+				}
 			}
-			if (DebrisFrame == 15)
+			if (DebrisFrame >= 15)
 			{
-				Debris_Check();
+				Load_Debris();
+				//DebrisFrame = 0;
+			}
+
+			if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
+			{
+				LoadedDebris = false;
+				DebrisFrame = 0;
+			}
+		}
+
+		if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 1))
+		{
+			if (DebrisFrame != 0)
+			{
+				LoadedDebris = false;
 				DebrisFrame = 0;
 			}
 		}

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #include "SADXModLoader.h"
 
 //Glass Shards 1-58
