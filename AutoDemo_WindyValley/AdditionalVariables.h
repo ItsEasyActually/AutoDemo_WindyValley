@@ -94,6 +94,13 @@ FunctionPointer(void, sub_49D570, (ObjectMaster *a1), 0x49D570);
 FunctionPointer(void, sub_49D5B0, (ObjectMaster *a1), 0x49D5B0);
 FunctionPointer(void, sub_49E070, (), 0x49E070);
 FunctionPointer(void, sub_49CF80, (EntityData1 *a1), 0x49CF80);
+FunctionPointer(void, sub_4E6070, (ObjectMaster *a2), 0x004E6070);
+FunctionPointer(void, sub_4FB2A0, (ObjectMaster *a2), 0x004FB2A0);
+FunctionPointer(void, sub_4E5D90, (ObjectMaster *a2), 0x004E5D90);
+FunctionPointer(signed int, sub_4DE570, (int a1, int a2), 0x4DE570);
+FunctionPointer(void, sub_4E6370, (int a1), 0x4E6370);
+FunctionPointer(void, sub_4E6200, (int a1, int a2), 0x4E6200);
+FunctionPointer(void, sub_4E5C20, (ObjectMaster *a3), 0x4E5C20);
 
 //Usercall and Thiscall Functions
 ThiscallFunctionPointer(void, sub_4E3090, (int _this), 0x4E3090);

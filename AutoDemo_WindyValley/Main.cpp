@@ -963,12 +963,7 @@ void __cdecl Debris_Texture_Load(void) //Sets the textures of the object to Debr
 	njSetTexture(&TomadoDebris_texlist);
 }
 
-void __cdecl TornadoDestroy(ObjectMaster *a1)
-{
-	DeleteChildObjects(a1); //Currently, this MUST run for the bridge pieces, otherwise they'll swirl around the tornado and eventually crash the game because....I dunno? Too many child objects being processed at once?
-}
-
-void __cdecl NewBreak_Display(ObjectMaster *a2) //Overriding the Tornado Bridge objects' display routine.
+void __cdecl NewBreak_Display(ObjectMaster *a2)
 {
 	EntityData1 *v1; // esi@1
 	Angle v2; // eax@2
@@ -980,7 +975,7 @@ void __cdecl NewBreak_Display(ObjectMaster *a2) //Overriding the Tornado Bridge 
 	{
 		Debris_Texture_Load();
 		njPushMatrix(0);
-		//njTranslateV(0, &v1->Position);
+		//njTranslateV(0, &v1->Position); //This is not needed, since the position is being set directly when the pieces load.
 		v2 = v1->Rotation.z;
 		if (v2)
 		{
@@ -996,13 +991,348 @@ void __cdecl NewBreak_Display(ObjectMaster *a2) //Overriding the Tornado Bridge 
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		
+
 		ProcessModelNode_AB_Wrapper(&TBRIDGE[(int)v1->Scale.z], 1.0);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_TBridge(void) //This colossal mess.
+void __cdecl NewBreakBridgeMain(ObjectMaster *a1) //Hijacking the main routine of the tornado bridge object.
+{
+	ObjectMaster *v1; // edi@1
+	EntityData1 *v2; // esi@1
+	char v3; // al@18
+	NJS_VECTOR a2; // [sp+8h] [bp-Ch]@11
+	NJS_OBJECT *v4; // edi@1
+	ObjectMaster *v5; // edi@1
+	EntityData1 *v7; // esi@1
+	NJS_VECTOR a3; // edi@1
+	ObjectMaster *v8; // edi@1
+	auto entity = EntityData1Ptrs[0];
+
+	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 0) || entity == nullptr) //Failsafe delete thing. (Not sure if this is really working. On repeated playthroughs, or by restarting during the tornado sequence where this bridge is used, there is a tendency to crash, and I don't know why.
+	{
+		DeleteObjectMaster(a1);
+		DeleteChildObjects(a1);
+	}
+
+	else
+	{
+		v1 = a1;
+		v2 = a1->Data1;
+
+		if (!ClipObject(a1, 2250000.0))
+		{
+			if (v2->Action)
+			{
+				if (v2->Action == 1)
+				{
+					if (++v2->InvulnerableTime <= 0x58u) //This used to be much higher. 258. However, it seems that the game can only handle so many child objects being run at once. And it's strict, crashing if it's overloaded. This was lowered so the debris doesn't spend a lot of time swirling around. The child objects despawn quicker.
+					{
+						RunObjectChildren(v1);
+					}
+					else
+					{
+						v2->Action = 6;
+						DeleteChildObjects(v1);
+					}
+				}
+			}
+			else
+			{
+				if (sub_4DE570((int)&v2->Position, (int)&a1))
+				{
+					if (*(float *)&a1 < 190.0 || v2->NextAction)
+					{
+						if (*(float *)&a1 < 95.0)
+						{
+							(a2.x) = 0;
+							(a2.y) = -8;
+							(a2.z) = 0;
+							sub_4B9820(&v2->Position, &a2, 10.0);
+						}
+						if (v2->Scale.y < 0.0)
+						{
+							sub_4E6370((int)v1);
+							if (v2->Index > 5u)
+							{
+								(a2.x) = 0;
+								(a2.y) = -8;
+								(a2.z) = 0;
+								v2->Index = 0;
+								sub_4B9820(&v2->Position, &a2, 10.0);
+							}
+						}
+						else
+						{
+							sub_4E6200(0, (int)v1);
+							v2->Action = 1; //And THIS, right here, is where the debugger says it crashes. It actually crashes in the above function, but again, I'm not sure what's causing it. I'm at a loss, and need help with troubleshooting this.
+							v1->DisplaySub = 0;
+						}
+					}
+					if (v2->Scale.y >= 0.0 && *(float *)&a1 < 200.0)
+					{
+						v3 = v2->Index + 1;
+						v2->Index = v3;
+						if ((unsigned __int8)v3 > 0x14u)
+						{
+							(a2.x) = 10;
+							(a2.y) = 8;
+							(a2.z) = 0;
+							v2->Index = 0;
+							sub_4B9820(&v2->Position, &a2, 18.0);
+						}
+					}
+				}
+				NewBreak_Display(v1);
+			}
+		}
+	}
+}
+
+void __cdecl ChildBridge_Display(ObjectMaster *a2)
+{
+	EntityData1 *v1; // esi@1
+	Angle v2; // eax@1
+	Angle v3; // eax@3
+
+	v1 = a2->Data1;
+	Debris_Texture_Load();
+	njPushMatrix(0);
+	njTranslate(0, (v1->Position.x), (v1->Position.y), (v1->Position.z));
+	v2 = v1->Rotation.x;
+	if (v2)
+	{
+		njRotateX(0, (unsigned __int16)v2);
+	}
+	v3 = v1->Rotation.y;
+	if (v3)
+	{
+		njRotateY(0, (unsigned __int16)v3);
+	}
+	//ProcessModelNode_AB_Wrapper((&(TBRIDGE[(int)a2->Parent->Data1->Scale.z])), 1.0);
+	//sub_407A00((NJS_MODEL_SADX *)&(TBRIDGE[(int)a2->Parent->Data1->Scale.z]).model, 1.0);
+	DrawModel(*(NJS_MODEL_SADX **)(&(TBRIDGE[(int)a2->Parent->Data1->Scale.z]).model)); //Of all the draw routines I tried, this one is the one that works. I think maybe there's layering issues? But I can't really tell by looking at it. ....Nor do I really care, to be honest. Just happy that this works as well as it does.
+	njPopMatrix(1u);
+}
+
+void __cdecl ChildBridgeMain(ObjectMaster *a2)
+{
+	ObjectMaster *v1; // ebp@1
+	EntityData2 *v2; // ecx@1
+	EntityData1 *v3; // esi@1
+	float *v4; // ebx@1
+	double v5; // st7@7
+	int v6; // eax@8
+	double v7; // st7@8
+	double v8; // st7@10
+	double v9; // st7@13
+	int v10; // ecx@15
+	double v11; // st7@18
+	int v12; // edx@18
+	int v13; // eax@18
+	int v14; // edi@20
+	int v15; // ebx@20
+	float v16; // [sp+10h] [bp-14h]@1
+	float v17; // [sp+14h] [bp-10h]@1
+	float v18; // [sp+18h] [bp-Ch]@1
+	float v19; // [sp+1Ch] [bp-8h]@1
+	float v20; // [sp+20h] [bp-4h]@1
+	float a2a; // [sp+28h] [bp+4h]@1
+
+	v1 = a2;
+	v2 = (EntityData2 *)a2->Data2;
+	v3 = a2->Data1;
+	v16 = v3->Position.x;
+	v17 = v3->Position.y;
+	v18 = v3->Position.z;
+	a2a = (v2->VelocityDirection.y);
+	v19 = v2->VelocityDirection.x;
+	v4 = &v2->VelocityDirection.x;
+	v20 = v2->VelocityDirection.z;
+	switch (*(char *)v3) //Yeah, I really don't know what all this is doing for the most part. Obviously it's what makes it swirl around the tornado, but the details are blurred to my eyes.
+	{
+	case 2:
+		if (!--v3->InvulnerableTime)
+		{
+			v3->InvulnerableTime = 0;
+			v3->Action = 3;
+		}
+		if (v3->LoopData && v3->LoopData != (Loop *)0x1)
+		{
+			if (*(float *)v3->LoopData == 1.0f)
+			{
+				v3->InvulnerableTime = 0;
+				v3->Action = 3;
+			}
+		}
+		ChildBridge_Display(v1);
+		goto LABEL_20;
+	case 3:
+		v5 = v19;
+		if (v3->LoopData)
+		{
+			v3->Rotation.y += v2->field_2C;
+			v16 = v5 * 3.0 + v16;
+			v3->Rotation.x += v2->field_28;
+			v17 = *(float *)&a2a * 3.0 + v17;
+			v18 = v20 * 3.0 + v18;
+			v8 = *(float *)&a2a - 0.1;
+			*(float *)&a2a = v8;
+			if (v8 < 0.0)
+			{
+				*(char *)v3 = 4;
+			}
+		}
+		else
+		{
+			v6 = v3->Rotation.x;
+			v16 = v5 + v16;
+			v3->Rotation.y += v2->field_2C;
+			v3->Rotation.x = v2->field_28 + v6;
+			v17 = *(float *)&a2a + v17;
+			v18 = v20 + v18;
+			v7 = *(float *)&a2a - 0.1;
+			*(float *)&a2a = v7;
+			if (v7 < 0.0)
+			{
+				v3->Action = 5;
+				v3->CharIndex = 692;
+				ChildBridge_Display(v1);
+				goto LABEL_20;
+			}
+		}
+		ChildBridge_Display(v1);
+	LABEL_20:
+		v3->Position.x = v16;
+		v14 = (int)&v3->Position.y;
+		*(float *)v14 = v17;
+		*(float *)(v14 + 4) = v18;
+		*v4 = v19;
+		v15 = (int)(v4 + 1);
+		*(float *)v15 = *(float *)&a2a;
+		*(float *)(v15 + 4) = v20;
+		return;
+	case 4:
+		v9 = *(float *)&a2a - 0.14;
+		*(float *)&a2a = v9;
+		if (v9 < -0.12)
+		{
+			*(float *)&a2a = -0.12;
+		}
+		v3->Rotation.y += v2->field_2C;
+		v10 = v2->field_28 + v3->Rotation.x;
+		++v3->InvulnerableTime;
+		v16 = v19 + v19 + v16;
+		v3->Rotation.x = v10;
+		v17 = *(float *)&a2a * 7.0 + v17;
+		v18 = v20 + v20 + v18;
+		ChildBridge_Display(v1);
+		goto LABEL_20;
+	case 5:
+		if (++v3->InvulnerableTime > 0xE1u)
+		{
+			v3->Action = 6;
+		}
+		v11 = v3->CharIndex + 3.0;
+		v12 = v3->Rotation.x;
+		v3->Rotation.y += v2->field_2C;
+		v13 = v2->field_28;
+		v3->CharIndex = v11;
+		v3->Rotation.x = v13 + v12;
+		v16 = njSin((unsigned __int64)(v11 * 65536.0 * 0.002777777777777778)) * 3.4000001 + v16;
+		v17 = v17 + 0.1;
+		v18 = njCos((unsigned __int64)(v3->CharIndex * 65536.0 * 0.002777777777777778)) * 3.4000001 + v18;
+		ChildBridge_Display(v1);
+		goto LABEL_20;
+	case 6:
+		v1->DisplaySub = 0;
+		goto LABEL_20;
+	default:
+		goto LABEL_20;
+	}
+}
+
+void __cdecl BridgeChildLoad(ObjectMaster *a2) //Hijacking the function used when loading a child object from the bridge object.
+{
+	ObjectMaster *v1; // edi@1
+	EntityData1 *v2; // esi@1
+	EntityData2 *v3; // ebp@1
+	double v4; // st7@1
+	float *v5; // ebx@8
+	int v6; // eax@9
+	double v7; // st7@9
+	int v8; // eax@10
+	ObjectMaster *a2a; // [sp+14h] [bp+4h]@1
+	ObjectMaster *a2b; // [sp+14h] [bp+4h]@9
+
+	v1 = a2;
+	v2 = a2->Data1;
+	v3 = (EntityData2 *)a2->Data2;
+	v2->InvulnerableTime = 0;
+	a2a = (ObjectMaster *)rand();
+	*(char *)v2 = 2;
+	v4 = (double)(signed int)a2a * 0.000030517578;
+	if (v4 <= 0.60000002) //Bunch of shit I don't know what it's doing.
+	{
+		if (v4 <= 0.75)
+		{
+			if (v4 <= 0.94999999)
+			{
+				v2->InvulnerableTime = 5;
+			}
+			else
+			{
+				v2->InvulnerableTime = 3;
+			}
+		}
+		else
+		{
+			v2->InvulnerableTime = 2;
+		}
+	}
+	else
+	{
+		v2->InvulnerableTime = 0;
+		v2->Action = 3;
+	}
+	v5 = (float *)v1->Parent->Data1;
+	if (v2->LoopData)
+	{
+		v3->VelocityDirection.x = (double)rand() * 0.000030517578 * v5[11];
+		v8 = rand();
+		v3->VelocityDirection.y = (double)v8 * 0.000030517578 + (double)v8 * 0.000030517578;
+		v7 = (double)rand() * 0.000030517578 * v5[13];
+	}
+	else
+	{
+		v6 = rand();
+		v3->VelocityDirection.x = (double)v6 * 0.000030517578 + (double)v6 * 0.000030517578;
+		v3->VelocityDirection.y = (double)rand() * 0.000030517578 * 1.5 + 2.5;
+		a2b = (ObjectMaster *)rand();
+		v7 = (double)(signed int)a2b * 0.000030517578 + (double)(signed int)a2b * 0.000030517578;
+	}
+	v3->VelocityDirection.z = v7;
+	v3->field_2C = (unsigned __int64)(((double)rand() * 0.000030517578 - 0.5) * 1800.0);
+	v3->field_28 = (unsigned __int64)(((double)rand() * 0.000030517578 - 0.5) * 3000.0);
+	if (CurrentLevel == 2) //This is also super important. A level check, so that this function doesn't interefere with other levels. From what I've tested, anything else that uses these functions doesn't crash or crap-out with this coding, but further testing should be done throughout the game, just to make sure.
+	{
+		v1->MainSub = ChildBridgeMain;
+		v1->DisplaySub = ChildBridge_Display;
+		v1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+		ChildBridge_Display(v1);
+	}
+	else //Also, for clarification, this function isn't the one that is used by other levels. The below Main and Display functions are, however.
+	{
+		v1->MainSub = sub_4E5D90;
+		v1->DisplaySub = sub_4FB2A0;
+		v1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+		sub_4FB2A0(v1);
+	}
+}
+
+
+void __cdecl Load_TBridge(void)
 {
 	ObjectMaster *a1;
 	EntityData1 *Torn;
@@ -1011,7 +1341,7 @@ void __cdecl Load_TBridge(void) //This colossal mess.
 		collist_008046E8[84].Flags = 0x01;	//This makes the landtable bridge invisible.
 		TornadoThings.Distance = 40000000.0f;
 
-		for (BridgeFrame = 0; BridgeFrame < 335; BridgeFrame++) //I'm looping through, trying to get them all loaded in an orderly fashion.
+		for (BridgeFrame = 0; BridgeFrame < 335; BridgeFrame++) //Looping through the array of NJS_OBJECTS for the bridge pieces.
 		{
 			a1 = LoadObject((LoadObj)2, 1, sub_4E6770);
 			a1->SETData.SETData = &TornadoThings;
@@ -1019,17 +1349,17 @@ void __cdecl Load_TBridge(void) //This colossal mess.
 			{
 				Torn = a1->Data1;
 				Torn->Position.x = (TBRIDGE[BridgeFrame]).pos[0];
-				Torn->Position.y = (TBRIDGE[BridgeFrame]).pos[1]; //Trying to grab positions and rotations (if any) from the current piece.
+				Torn->Position.y = (TBRIDGE[BridgeFrame]).pos[1];
 				Torn->Position.z = (TBRIDGE[BridgeFrame]).pos[2];
 				Torn->Rotation.x = (TBRIDGE[BridgeFrame]).ang[0];
 				Torn->Rotation.y = (TBRIDGE[BridgeFrame]).ang[1];
 				Torn->Rotation.z = (TBRIDGE[BridgeFrame]).ang[2];
 				Torn->Scale.x = 1.0f;
 				Torn->Scale.y = 1.0f;
-				Torn->Scale.z = BridgeFrame;
+				Torn->Scale.z = BridgeFrame; //This is important. This is like the object's "ID". The Z Scale is used later to get the child objects displaying correctly.
 				Torn->CharIndex = (BridgeFrame + 12);
 			}
-		} //Getting this to work is going to require extensive research on the bridge's coding in the final game. Maybe.
+		}
 	}
 	LoadedBridge = true;
 }
@@ -1782,9 +2112,9 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	//WriteCall((void *)0x4FB2A8, Debris_Texture_Load);
 	WriteCall((void *)0x4E5C3A, Debris_Texture_Load);
 	WriteJump((void *)0x4DE3F0, NewTransitionTornado_Display); //overwriting the transition tornado's display routine.
-	//WriteCall((void *)0x4E660F, TornadoDestroy); //Makes it so the debris doesn't swirl around the tornado.
 
-	//WriteJump((void *)0x4E65C0, NewBreakBridgeMain); //overwriting the breakable bridge's main routine.
+	WriteJump((void *)0x4E65C0, NewBreakBridgeMain); //overwriting the breakable bridge's main routine.
+	WriteJump((void *)0x4E6070, BridgeChildLoad);
 
 	
 
