@@ -22,6 +22,7 @@ DataArray(SkyboxScale, SkyboxScale_Windy3, 0x00AFE96C, 3);
 DataArray(FogData, FogData_Windy1, 0x00AFEA20, 3);
 DataArray(FogData, FogData_Windy2, 0x00AFEA50, 3);
 DataArray(FogData, FogData_Windy3, 0x00AFEA80, 3);
+DataArray(float, E103FinalPos, 0x00C67AD0, 16);
 DataPointer(NJS_OBJECT, stru_C05E10, 0xC05E10);
 DataPointer(NJS_OBJECT, stru_C06344, 0xC06344);
 DataPointer(NJS_OBJECT, stru_C06450, 0xC06450); //Skybox model pointers

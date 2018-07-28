@@ -5442,3 +5442,151 @@ NJS_MODEL_SADX attach_0016F884 = { vertex_0016F47C, normal_0016F680, LengthOfArr
 NJS_OBJECT object_0016F8AC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL, &attach_0016F884, 0, 0, 0, 0, 0, 0, 1, 1, 1, &object_0016EE58, &object_0016E528 };
 
 NJS_OBJECT object_0016F8E0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_HIDE, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 1, &object_0016F8AC, NULL }; //Magatama Rock
+
+NJS_MATERIAL matlist_0016F928[] = {
+	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 4, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC }
+};
+
+Sint16 poly_0016F93C[] = {
+	0, 1, 2,
+	0, 2, 3
+};
+
+NJS_TEX uv_0016F948[] = {
+	{ 2, 255 },
+	{ 765, 234 },
+	{ 750, 0 },
+	{ 2, 255 },
+	{ 750, 0 },
+	{ 0, 32 }
+};
+
+NJS_MESHSET_SADX meshlist_0016F960[] = {
+	{ NJD_MESHSET_3 | 0, 2, poly_0016F93C, NULL, NULL, NULL, uv_0016F948, NULL }
+};
+
+NJS_VECTOR vertex_0016F978[] = {
+	{ -9.89172f, 0, -1.672386f },
+	{ 9.963801f, 0, -1.382004f },
+	{ 9.622563f, 0, 1.861008f },
+	{ -9.955901f, 0, 1.409615f }
+};
+
+NJS_VECTOR normal_0016F9A8[] = {
+	{ 0, -1, 0 },
+	{ 0, -1, 0 },
+	{ 0, -1, 0 },
+	{ 0, -1, 0 }
+};
+
+NJS_MODEL_SADX attach_0016F9D8 = { vertex_0016F978, normal_0016F9A8, LengthOfArray<Sint32>(vertex_0016F978), meshlist_0016F960, matlist_0016F928, LengthOfArray<Uint16>(meshlist_0016F960), LengthOfArray<Uint16>(matlist_0016F928),{ 0.00395f, 0, 0.094311f }, 10.11533f, NULL };
+
+NJS_OBJECT object_0016FA00 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0016F9D8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL }; //Flat Wood Rectangle
+
+NJS_MATERIAL matlist_0016FA48[] = {
+	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 4, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC }
+};
+
+Sint16 poly_0016FA5C[] = {
+	2, 3, 4,
+	2, 4, 5,
+	5, 6, 0,
+	5, 0, 1,
+	5, 1, 2
+};
+
+NJS_TEX uv_0016FA7C[] = {
+	{ 758, 144 },
+	{ 765, 0 },
+	{ 362, 0 },
+	{ 758, 144 },
+	{ 362, 0 },
+	{ 350, 120 },
+	{ 350, 120 },
+	{ 0, 127 },
+	{ 10, 255 },
+	{ 350, 120 },
+	{ 10, 255 },
+	{ 749, 248 },
+	{ 350, 120 },
+	{ 749, 248 },
+	{ 758, 144 }
+};
+
+NJS_MESHSET_SADX meshlist_0016FAB8[] = {
+	{ NJD_MESHSET_3 | 0, 5, poly_0016FA5C, NULL, NULL, NULL, uv_0016FA7C, NULL }
+};
+
+NJS_VECTOR vertex_0016FAD0[] = {
+	{ -5.769121f, 0, -2.064339f },
+	{ 3.260879f, 0, -1.939739f },
+	{ 3.38543f, 0, -0.008438f },
+	{ 3.447706f, 0, 2.67046f },
+	{ -1.472087f, 0, 2.67046f },
+	{ -1.59664f, 0, 0.427662f },
+	{ -5.893673f, 0, 0.303062f }
+};
+
+NJS_VECTOR normal_0016FB24[] = {
+	{ 0, -1, 0 },
+	{ 0, -1, 0 },
+	{ 0, -1, 0 },
+	{ 0, -1, 0 },
+	{ 0, -1, 0 },
+	{ 0, -1, 0 },
+	{ 0, -1, 0 }
+};
+
+NJS_MODEL_SADX attach_0016FB78 = { vertex_0016FAD0, normal_0016FB24, LengthOfArray<Sint32>(vertex_0016FAD0), meshlist_0016FAB8, matlist_0016FA48, LengthOfArray<Uint16>(meshlist_0016FAB8), LengthOfArray<Uint16>(matlist_0016FA48),{ -1.222983f, 0, 0.303061f }, 5.236403f, NULL };
+
+NJS_OBJECT object_0016FBA0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0016FB78, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL }; //Flat, L-Shaped Wood
+
+NJS_MATERIAL matlist_00170788[] = {
+	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 4, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC }
+};
+
+Sint16 poly_0017079C[] = {
+	0, 1, 2
+};
+
+NJS_TEX uv_001707A4[] = {
+	{ 0, 65 },
+	{ 255, 255 },
+	{ 205, 0 }
+};
+
+NJS_MESHSET_SADX meshlist_001707B0[] = {
+	{ NJD_MESHSET_3 | 0, 1, poly_0017079C, NULL, NULL, NULL, uv_001707A4, NULL }
+};
+
+NJS_VECTOR vertex_001707C8[] = {
+	{ -0.595423f, -0.025441f, -0.217961f },
+	{ 0.568665f, -0.456084f, -0.08013f },
+	{ 0.08231299f, 0.546631f, 0.354854f }
+};
+
+NJS_VECTOR normal_001707EC[] = {
+	{ -0.279948f, -0.493109f, 0.8236949f },
+	{ -0.279948f, -0.493109f, 0.8236949f },
+	{ -0.279948f, -0.493109f, 0.8236949f }
+};
+
+NJS_MODEL_SADX attach_00170810 = { vertex_001707C8, normal_001707EC, LengthOfArray<Sint32>(vertex_001707C8), meshlist_001707B0, matlist_00170788, LengthOfArray<Uint16>(meshlist_001707B0), LengthOfArray<Uint16>(matlist_00170788),{ -0.013379f, 0.045273f, 0.06844699f }, 0.648695f, NULL };
+
+NJS_OBJECT object_00170838 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00170810, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL }; //Tiny, Triangle-shaped Wood
+
+
+NJS_MODEL_SADX TornadoBetaDebris[] = {
+	attach_0016F884,
+	attach_001A0228,
+	attach_0019F7FC,
+	attach_0019EDD0,
+	attach_00170718,
+	attach_0016FCEC,
+	attach_001A0724,
+	attach_001A0844,
+	attach_0019E760,
+	attach_0016F9D8,
+	attach_0016FB78,
+	attach_00170810
+};

@@ -1,11 +1,15 @@
 #include "SADXModLoader.h"
 
 CollisionData Lauchin_Collision[] = {
-	{ 0, 6, 0x77, 0, 0,    0.0, 0.0, 0.0, 10.0, 4.0, 0.0, 0, 0, 0, 0 }
+	{ 0, 2, 0x77, 0, 0,    0.0, 0.0, 0.0, 10.0, 4.0, 0.0, 0, 0, 0, 0 }
 };
 
 CollisionData BaneIwa_Collision[] = {
 	{ 0, 0, 0x0F0, 0x0E0, 0, 0.0, 4.0, 0.0, 14.0, 0.0, 0.0, 0, 0, 0, 0 }
+};
+
+CollisionData T_Spring_Collision[] = {
+	{ 0, 2, 0x77, 0, 0,	0.0, 0.0, 0.0, 5.0, 4.0, 0.0, 0, 0, 0, 0 }
 };
 
 NJS_MATERIAL matlist_0014303C[] = {

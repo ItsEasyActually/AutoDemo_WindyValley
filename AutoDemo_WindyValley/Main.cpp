@@ -1011,7 +1011,7 @@ void __cdecl NewBreakBridgeMain(ObjectMaster *a1) //Hijacking the main routine o
 	ObjectMaster *v8; // edi@1
 	auto entity = EntityData1Ptrs[0];
 
-	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 0) || entity == nullptr) //Failsafe delete thing. (Not sure if this is really working. On repeated playthroughs, or by restarting during the tornado sequence where this bridge is used, there is a tendency to crash, and I don't know why.
+	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 0) || entity == nullptr) //Failsafe delete thing.
 	{
 		DeleteObjectMaster(a1);
 		DeleteChildObjects(a1);
@@ -1067,7 +1067,7 @@ void __cdecl NewBreakBridgeMain(ObjectMaster *a1) //Hijacking the main routine o
 						else
 						{
 							sub_4E6200(0, (int)v1);
-							v2->Action = 1; //And THIS, right here, is where the debugger says it crashes. It actually crashes in the above function, but again, I'm not sure what's causing it. I'm at a loss, and need help with troubleshooting this.
+							v2->Action = 1;
 							v1->DisplaySub = 0;
 						}
 					}
@@ -1344,7 +1344,7 @@ void __cdecl Load_TBridge(void)
 
 		for (BridgeFrame = 0; BridgeFrame < 335; BridgeFrame++) //Looping through the array of NJS_OBJECTS for the bridge pieces.
 		{
-			a1 = LoadObject((LoadObj)2, 1, sub_4E6770);
+			a1 = LoadObject((LoadObj)2, 4, sub_4E6770);
 			a1->SETData.SETData = &TornadoThings;
 			if (a1)
 			{
@@ -1499,7 +1499,6 @@ void __cdecl DebrisDisplay(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		//DrawModel_QueueVisible(v2, (QueuedModelFlagsB)0, 1.0);
 
 		if (v2 == &*(NJS_MODEL_SADX*)0xC2AF1C)
 		{
@@ -1510,6 +1509,18 @@ void __cdecl DebrisDisplay(ObjectMaster *a1)
 		else if (v2 == &*(NJS_MODEL_SADX*)0xC2CAF8)
 		{
 			ProcessModelNode_AB_Wrapper(&object_0019E788, 1.0);
+			njPopMatrix(1u);
+		}
+
+		else if (v2 == &*(NJS_MODEL_SADX*)0xC0EC2C && v1->Scale.z == 0.01f)
+		{
+			sub_407A00(&attach_0016FB78, 1.0);
+			njPopMatrix(1u);
+		}
+
+		else if (v2 == &*(NJS_MODEL_SADX*)0xC2C134 && v1->Scale.z == 0.01f)
+		{
+			sub_407A00(&attach_00170810, 1.0);
 			njPopMatrix(1u);
 		}
 
@@ -1533,6 +1544,7 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 	int v7; // eax@8
 	long double v8; // st7@8
 	NJS_MODEL_SADX *v10; // ebx@1
+	int v11;
 
 	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 1))
 	{
@@ -1576,6 +1588,35 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 		}
 		else
 		{
+			if (v10 == &*(NJS_MODEL_SADX*)0xC0EC2C && !v1->Action)
+			{
+				v11 = rand();
+
+				while (v11 > 999)
+				{
+					v11 -= 720;
+				}
+
+				if ((v11 % 2) == 0)
+				{
+					v1->Scale.z = 0.01f;
+				}
+			}
+
+			else if (v10 == &*(NJS_MODEL_SADX*)0xC2C134 && !v1->Action)
+			{
+				v11 = rand();
+
+				while (v11 > 999)
+				{
+					v11 -= 720;
+				}
+
+				if ((v11 % 2) == 0)
+				{
+					v1->Scale.z = 0.01f;
+				}
+			}
 			v1->Action = 1;
 			v7 = rand();
 			*((_DWORD *)v1 + 8) = 0;
@@ -1590,45 +1631,45 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 
 /*void __cdecl PreHypoDebris(ObjectMaster *a1)
 {
-EntityData1 *v1; // edi@1
-NJS_MODEL_SADX **v2; // esi@7
-ObjectMaster *v3; // eax@8
-EntityData1 *v4; // edi@1
-//int v4 = 0;
+	EntityData1 *v1; // edi@1
+	NJS_MODEL_SADX **v2; // esi@7
+	ObjectMaster *v3; // eax@8
+	EntityData1 *v4; // edi@1
+	//int v4 = 0;
 
-v1 = a1->Data1;
-if (v1->Action)
-{
-if (v1->Action == 1)
-{
-if (++v1->InvulnerableTime >= 0x296u)
-{
-DeleteChildObjects(a1);
-CheckThingButThenDeleteObject(a1);
-}
-else
-{
-RunObjectChildren(a1);
-}
-}
-}
-else
-{
-v1->Action = 1;
-*v2 = off_C66C80;
-do
-{
-v3 = LoadChildObject(LoadObj_Data1, HypotheticalDebris, a1);
-v4 = v3->Data1;
-if (v4)
-{
-*(float *)v4->LoopData = (Sint32)*v2;
-++v2;
-v4->Position.y = v1->Position.y;
-}
-} while ((signed int)v2 < (signed int)stru_C66CA8);
-SetCameraControlEnabled(1);
-}
+	v1 = a1->Data1;
+	if (v1->Action)
+	{
+		if (v1->Action == 1)
+		{
+			if (++v1->InvulnerableTime >= 0x296u)
+			{
+				DeleteChildObjects(a1);
+				CheckThingButThenDeleteObject(a1);
+			}
+			else
+			{
+				RunObjectChildren(a1);
+			}
+		}
+	}
+	else
+	{
+		v1->Action = 1;
+		*v2 = off_C66C80;
+		do
+		{
+			v3 = LoadChildObject(LoadObj_Data1, HypotheticalDebris, a1);
+			v4 = v3->Data1;
+			if (v4)
+			{
+				*(float *)v4->LoopData = (Sint32)*v2;
+				++v2;
+				v4->Position.y = v1->Position.y;
+			}
+		} while ((signed int)v2 < (signed int)stru_C66CA8);
+		SetCameraControlEnabled(1);
+	}
 }*/
 
 void __cdecl Load_Debris(void)
@@ -1854,31 +1895,31 @@ void __cdecl Tanpopo_Main(ObjectMaster *a1)
 
 //SADX Object List for Windy Valley
 ObjectListEntry WindyValleyObjectList_list[] = {
-	{ 2, 3, 0, 0, 0, Ring_Main, "RING   " } /* "RING   " */,						//00
-	{ 2, 2, 0, 0, 0, Spring_Main, "SPRING " } /* "SPRING " */,						//01
-	{ 2, 2, 0, 0, 0, SpringB_Main, "SPRINGB" } /* "SPRINGB" */,						//02
-	{ 3, 3, 0, 0, 0, DashPanel_Main, "O AXPNL" } /* "O AXPNL" */,					//03
-	{ 6, 3, 0, 0, 0, SwingSpikeBall_Load, "O IRONB" } /* "O IRONB" */,				//04
-	{ 2, 3, 0, 0, 0, FallingSpikeBall_Load, "O FeBJG" } /* "O FeBJG" */,			//05
-	{ 2, 3, 0, 0, 0, Spikes_Main, "O TOGE" } /* "O TOGE" */,						//06
-	{ 3, 3, 0, 0, 0, EmeraldPiece_Load, "O EME P" } /* "O EME P" */,				//07	
-	{ 2, 3, 0, 0, 0, Capsule_Load, "O RELEASE" } /* "O RELEASE" */,					//08
-	{ 6, 3, 0, 0, 0, Switch_Main, "O SWITCH" } /* "O SWITCH" */,					//09
-	{ 10, 3, 0, 0, 0, Weed_Main, "CMN KUSA" } /* "CMN KUSA" */,						//0A
-	{ 6, 3, 0, 0, 0, DashHoop_Main, "CMN_DRING" } /* "CMN_DRING" */,				//0B
-	{ 2, 3, 0, 0, 0, Balloon_Main, "O BALOON" } /* "O BALOON" */,					//0C
-	{ 2, 3, 0, 0, 0, ItemBox_Main, "O ITEMBOX" } /* "O ITEMBOX" */,					//0D
-	{ 6, 2, 0, 0, 0, RocketH_Main, "Rocket H" } /* "Rocket H" */,					//0E
-	{ 6, 2, 0, 0, 0, RocketHS_Main, "Rocket HS" } /* "Rocket HS" */,				//0F
-	{ 6, 2, 0, 0, 0, RocketV_Main, "Rocket V" } /* "Rocket V" */,					//10
-	{ 6, 2, 0, 0, 0, RocketVS_Main, "Rocket VS" } /* "Rocket VS" */,				//11
+	{ 2, 3, 0, 0, 0, Ring_Main, "RING   " } /* "RING   " */,							//00
+	{ 2, 2, 0, 0, 0, Spring_Main, "SPRING " } /* "SPRING " */,							//01
+	{ 2, 2, 0, 0, 0, SpringB_Main, "SPRINGB" } /* "SPRINGB" */,							//02
+	{ 3, 3, 0, 0, 0, DashPanel_Main, "O AXPNL" } /* "O AXPNL" */,						//03
+	{ 6, 3, 0, 0, 0, SwingSpikeBall_Load, "O IRONB" } /* "O IRONB" */,					//04
+	{ 2, 3, 0, 0, 0, FallingSpikeBall_Load, "O FeBJG" } /* "O FeBJG" */,				//05
+	{ 2, 3, 0, 0, 0, Spikes_Main, "O TOGE" } /* "O TOGE" */,							//06
+	{ 3, 3, 0, 0, 0, EmeraldPiece_Load, "O EME P" } /* "O EME P" */,					//07	
+	{ 2, 3, 0, 0, 0, Capsule_Load, "O RELEASE" } /* "O RELEASE" */,						//08
+	{ 6, 3, 0, 0, 0, Switch_Main, "O SWITCH" } /* "O SWITCH" */,						//09
+	{ 10, 3, 0, 0, 0, Weed_Main, "CMN KUSA" } /* "CMN KUSA" */,							//0A
+	{ 6, 3, 0, 0, 0, DashHoop_Main, "CMN_DRING" } /* "CMN_DRING" */,					//0B
+	{ 2, 3, 0, 0, 0, Balloon_Main, "O BALOON" } /* "O BALOON" */,						//0C
+	{ 2, 3, 0, 0, 0, ItemBox_Main, "O ITEMBOX" } /* "O ITEMBOX" */,						//0D
+	{ 6, 2, 0, 0, 0, RocketH_Main, "Rocket H" } /* "Rocket H" */,						//0E
+	{ 6, 2, 0, 0, 0, RocketHS_Main, "Rocket HS" } /* "Rocket HS" */,					//0F
+	{ 6, 2, 0, 0, 0, RocketV_Main, "Rocket V" } /* "Rocket V" */,						//10
+	{ 6, 2, 0, 0, 0, RocketVS_Main, "Rocket VS" } /* "Rocket VS" */,					//11
 	{ 2, 2, 1, 4000000, 0, JumpPanel_Load, "O JPanel" } /* "O JPanel" */,				//12
-	{ 15, 3, 0, 0, 0, CheckPoint_Main, "O Save Point" } /* "O Save Point" */,				//13
-	{ 2, 3, 0, 0, 0, Wall_Main, "WALL   " } /* "WALL   " */,						//14
-	{ 3, 2, 1, 1250000, 0, Trampoline_Main, "TRAMPOL" } /* "TRAMPOL" */,					//15
-	{ 2, 2, 1, 450000, 0, BLeaf, "B LEAF " } /* "B LEAF " */,						//16
-	{ 2, 2, 1, 550000, 0, WcWind, "WC WIND" } /* "WC WIND" */,						//17
-	{ 2, 2, 0, 0, 0, PuWind, "PU WIND" } /* "PU WIND" */,							//18
+	{ 15, 3, 0, 0, 0, CheckPoint_Main, "O Save Point" } /* "O Save Point" */,			//13
+	{ 2, 3, 0, 0, 0, Wall_Main, "WALL   " } /* "WALL   " */,							//14
+	{ 3, 2, 1, 1250000, 0, Trampoline_Main, "TRAMPOL" } /* "TRAMPOL" */,				//15
+	{ 2, 2, 1, 450000, 0, BLeaf, "B LEAF " } /* "B LEAF " */,							//16
+	{ 2, 2, 1, 550000, 0, WcWind, "WC WIND" } /* "WC WIND" */,							//17
+	{ 2, 2, 0, 0, 0, PuWind, "PU WIND" } /* "PU WIND" */,								//18
 	{ 2, 4, 1, 1250000, 0, Load_Prope1, "PROPE1 " } /* "PROPE1 " */,					//19
 	{ 2, 4, 1, 1250000, 0, Load_Prope2, "PROPE2 " } /* "PROPE2 " */,					//1A
 	{ 2, 4, 1, 1250000, 0, Load_Prope3, "PROPE3 " } /* "PROPE3 " */,					//1B
@@ -1892,12 +1933,12 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 5, 1, 650000, 0, Load_Grass2, "GRASS2 " } /* "GRASS2 " */,						//23
 	{ 2, 5, 1, 650000, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
 	{ 2, 5, 1, 650000, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
-	{ 6, 3, 1, 950000, 0, LRock, "L ROCK1" } /* "L ROCK1" */,						//26
+	{ 6, 3, 1, 950000, 0, LRock, "L ROCK1" } /* "L ROCK1" */,							//26
 	{ 6, 3, 1, 500000, 0, NullFunction, "RAFT   " } /* "RAFT   " */,					//27
 	{ 7, 3, 1, 1250000, 0, NullFunction, "RAFT 2 " } /* "RAFT 2 " */,					//28
 	{ 7, 3, 1, 1250000, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,					//29
-	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,						//2A
-	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT2" } /* "T_RAFT2" */,						//2B
+	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,							//2A
+	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT2" } /* "T_RAFT2" */,							//2B
 	{ 2, 4, 1, 850000, 0, Load_Sirusi1, "SIRUSI1" } /* "SIRUSI1" */,					//2C
 	{ 6, 4, 1, 950000, 0, Load_Sirusi2, "SIRUSI2" } /* "SIRUSI2" */,					//2D
 	{ 6, 4, 1, 950000, 0, Load_Sirusi3, "SIRUSI3" } /* "SIRUSI3" */,					//2E
@@ -1917,10 +1958,10 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 1, 1250000, 0, WindyGate_Main, "W GATE2" } /* "W GATE2" */,					//3C
 	{ 2, 3, 1, 1250000, 0, Load_Pot01, "POT01  " } /* "POT01  " */,						//3D
 	{ 2, 3, 1, 1250000, 0, Load_Pot02, "POT02  " } /* "POT02  " */,						//3E
-	{ 6, 3, 1, 950000, 0, Rock1, "ROCK 1 " } /* "ROCK 1 " */,						//3F
-	{ 2, 3, 1, 1250000, 0, Rock2, "ROCK 2 " } /* "ROCK 2 " */,						//40
-	{ 2, 3, 1, 1250000, 0, Rock3, "ROCK 3 " } /* "ROCK 3 " */,						//41
-	{ 2, 3, 1, 1250000, 0, Rock5, "ROCK 5 " } /* "ROCK 5 " */,						//42
+	{ 6, 3, 1, 950000, 0, Rock1, "ROCK 1 " } /* "ROCK 1 " */,							//3F
+	{ 2, 3, 1, 1250000, 0, Rock2, "ROCK 2 " } /* "ROCK 2 " */,							//40
+	{ 2, 3, 1, 1250000, 0, Rock3, "ROCK 3 " } /* "ROCK 3 " */,							//41
+	{ 2, 3, 1, 1250000, 0, Rock5, "ROCK 5 " } /* "ROCK 5 " */,							//42
 	{ 6, 3, 1, 950000, 0, Load_IDai1, "I DAI 1" } /* "I DAI 1" */,						//43
 	{ 6, 3, 1, 950000, 0, Load_IDai2, "I DAI 2" } /* "I DAI 2" */,						//44
 	{ 6, 3, 1, 950000, 0, Load_IDai3, "I DAI 3" } /* "I DAI 3" */,						//45
@@ -1941,7 +1982,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 1, 1250000, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54
 	{ 2, 3, 1, 1250000, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,						//55
 	{ 2, 3, 1, 1250000, 0, Load_Dome3, "DOME 3 " } /* "DOME 3 " */,						//56
-	{ 2, 5, 1, 1850000, 0, Load_Prop1, "PROP 1 " } /* "PROP 1 " */,						//57
+	{ 2, 5, 1, 1450000, 0, Load_Prop1, "PROP 1 " } /* "PROP 1 " */,						//57
 	{ 2, 4, 1, 1250000, 0, Load_PropeA, "PROPE A" } /* "PROPE A" */,					//58
 	{ 2, 4, 1, 1250000, 0, Load_PropeB, "PROPE B" } /* "PROPE B" */,					//59
 	{ 2, 4, 1, 1250000, 0, Load_PropeC, "PROPE C" } /* "PROPE C" */,					//5A
@@ -1952,39 +1993,38 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 1, 950000, 0, Load_IHah01, "I HAH01" } /* "I HAH01" */,						//5F
 	{ 6, 3, 1, 950000, 0, Load_IHah02, "I HAH02" } /* "I HAH02" */,						//60
 	{ 6, 3, 1, 950000, 0, Load_IHah03, "I HAH03" } /* "I HAH03" */,						//61
-	{ 6, 3, 1, 950000, 0, Load_Ioiwa01, "IOIWA01" } /* "IOIWA01" */,						//62
-	{ 6, 3, 1, 950000, 0, Load_Ioiwa02, "IOIWA02" } /* "IOIWA02" */,						//63
-	{ 6, 3, 1, 950000, 0, Load_Ioiwa03, "IOIWA03" } /* "IOIWA03" */,						//64
+	{ 6, 3, 1, 950000, 0, Load_Ioiwa01, "IOIWA01" } /* "IOIWA01" */,					//62
+	{ 6, 3, 1, 950000, 0, Load_Ioiwa02, "IOIWA02" } /* "IOIWA02" */,					//63
+	{ 6, 3, 1, 950000, 0, Load_Ioiwa03, "IOIWA03" } /* "IOIWA03" */,					//64
 	{ 6, 3, 1, 950000, 0, Load_SaraB1, "SARA B1" } /* "SARA B1" */,						//65
 	{ 6, 3, 1, 950000, 0, Load_SaraB2, "SARA B2" } /* "SARA B2" */,						//66
 	{ 6, 3, 1, 950000, 0, Load_SaraM1, "SARA M1" } /* "SARA M1" */,						//67
 	{ 6, 3, 1, 950000, 0, Load_SaraM2, "SARA M2" } /* "SARA M2" */,						//68
 	{ 6, 3, 1, 950000, 0, Load_SaraS1, "SARA S1" } /* "SARA S1" */,						//69
 	{ 6, 3, 1, 950000, 0, Load_SaraS2, "SARA S2" } /* "SARA S2" */,						//6A
-	{ 2, 4, 0, 0, 0, NullFunction, "TSPRING" } /* "TSPRING" */,						//6B
-	{ 2, 4, 0, 0, 0, Load_Lauchin, "LAUCHIN" } /* "LAUCHIN" */,						//6C
-	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,						//6D
-	{ 7, 3, 0, 0, 0, NullFunction, "WELE   " } /* "WELE   " */,						//6E
+	{ 2, 4, 0, 0, 0, NullFunction, "TSPRING" } /* "TSPRING" */,							//6B
+	{ 2, 4, 0, 0, 0, Load_Lauchin, "LAUCHIN" } /* "LAUCHIN" */,							//6C
+	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,							//6D
+	{ 7, 3, 0, 0, 0, NullFunction, "WELE   " } /* "WELE   " */,							//6E
 	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,						//6F
-	{ 2, 3, 0, 0, 0, BoaBoa_Main, "E HEVY " } /* "E HEVY " */,						//70
-	{ 2, 3, 0, 0, 0, Leon_Load, "E LEON " } /* "E LEON " */,						//71
-	{ 2, 3, 0, 0, 0, E103Enemy_Load, "E E-103" } /* "E E-103" */,					//72
-	{ 2, 3, 0, 0, 0, ChaosEmeGoal_WValley_Main, "O KAOSE" } /* "Chaos Emerald */,	//73
+	{ 2, 3, 0, 0, 0, BoaBoa_Main, "E HEVY " } /* "E HEVY " */,							//70
+	{ 2, 3, 0, 0, 0, Leon_Load, "E LEON " } /* "E LEON " */,							//71
+	{ 2, 3, 0, 0, 0, E103Enemy_Load, "E E-103" } /* "E E-103" */,						//72
+	{ 2, 3, 0, 0, 0, ChaosEmeGoal_WValley_Main, "O KAOSE" } /* "Chaos Emerald */,		//73
 	{ 6, 3, 1, 950000, 0, Load_IDai10, "I DAI 10" } /* "I DAI 10" */,					//74
 	{ 6, 3, 1, 950000, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,						//75
 	{ 6, 3, 1, 910000, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */,						//76
-	//Placeholder slots for possible use of those 3 giant rock models
-	{ 6, 3, 1, 40000000, 0, NullFunction, "I HAH04" } /* "I HAH04" */,						//77
-	{ 6, 3, 1, 40000000, 0, NullFunction, "I HAH05" } /* "I HAH05" */,						//78
-	{ 6, 3, 1, 40000000, 0, NullFunction, "I HAH06" } /* "I HAH06" */,						//79
-	{ 2, 2, 0, 0, 0, NextAct_Main, "NEXT ACT" } /* This is a test object */,	//7A
+	{ 6, 3, 1, 40000000, 0, NullFunction, "I HAH04" } /* "I HAH04" */,					//77
+	{ 6, 3, 1, 40000000, 0, NullFunction, "I HAH05" } /* "I HAH05" */,					//78
+	{ 6, 3, 1, 40000000, 0, NullFunction, "I HAH06" } /* "I HAH06" */,					//79
+	{ 15, 3, 1, 160000, 0, ItemBoxAir_Main, "O ItemBoxAir" },/*O ItemboxAir*/			//7A
 	{ 6, 3, 1, 1000000, 0, Load_BrPole, "BRPOLE" } /* "BRPOLE" */,						//7B
-	{ 6, 3, 1, 4000000, 0, NullFunction, "WGEAR" } /* "WGEAR" */,					//7C
-	{ 6, 3, 1, 4000000, 0, NullFunction, "WBOLT" } /* "WBOLT" */,					//7D
-	{ 2, 2, 0, 0, 0, CSphere, "C SPHERE" } /* "C SPHERE" */,						//7E
-	{ 2, 2, 0, 0, 0, ColCylinder_Main, "C CYLINDER" } /* "C CYLINDER" */,			//7F
-	{ 2, 2, 0, 0, 0, ColCube_Main, "C CUBE" } /* "C CUBE" */,						//80
-	{ 2, 2, 0, 0, 0, TikalHint_Load, "O TIKAL" } /* "O TIKAL" */					//81
+	{ 6, 3, 1, 4000000, 0, NullFunction, "WGEAR" } /* "WGEAR" */,						//7C
+	{ 6, 3, 1, 4000000, 0, NullFunction, "WBOLT" } /* "WBOLT" */,						//7D
+	{ 2, 2, 0, 0, 0, CSphere, "C SPHERE" } /* "C SPHERE" */,							//7E
+	{ 2, 2, 0, 0, 0, ColCylinder_Main, "C CYLINDER" } /* "C CYLINDER" */,				//7F
+	{ 2, 2, 0, 0, 0, ColCube_Main, "C CUBE" } /* "C CUBE" */,							//80
+	{ 2, 2, 0, 0, 0, TikalHint_Load, "O TIKAL" } /* "O TIKAL" */						//81
 };
 
 ObjectList WindyValleyObjectList = { arraylengthandptrT(WindyValleyObjectList_list, int) };
@@ -2117,6 +2157,10 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteJump((void *)0x4E65C0, NewBreakBridgeMain); //overwriting the breakable bridge's main routine.
 	WriteJump((void *)0x4E6070, BridgeChildLoad);
 
+	WriteJump((void *)0x4DF5A0, HypotheticalDebris); //Main Debris loading function overwrite
+	WriteJump((void *)0x4DF500, DebrisDisplay); //Display routine overwrite for Debris
+	//WriteJump((void *)0x4DF740, PreHypoDebris); //Testing something
+
 	
 
 	//WriteJump((void *)0x4DDC10, sub_4DDCE0); //RHINO TANK TORNADO PARTY!!! :D
@@ -2125,7 +2169,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 
 	WriteData((NJS_OBJECT**)0x004DFAC9, &Particle_Tanpopo);
 	WriteData((NJS_OBJECT**)0x004DFCB0, &Particle_Tanpopo);
-	WriteData((float**)0x004E802D, E103_PositionData);
+	//WriteData((float**)0x004E802D, E103_PositionData);
 
 	//Replacing Final's skybox models with "null" object.
 	*(NJS_OBJECT*)0xC05E10 = SkyNuller; 
@@ -2231,9 +2275,14 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	*(NJS_OBJECT*)0xC2CB24 = object_0019E788; //Debris Tree with Leaves
 	*(NJS_MODEL_SADX*)0xC2CAF8 = attach_0019E760;
 
-	*(NJS_OBJECT*)0xC0EC58 = object_001A086C; //Another WKusa1 Leaf. There's one too many slots, not enough beta debris...
-	*(NJS_MODEL_SADX*)0xC0EC2C = attach_001A0844;
+	*(NJS_OBJECT*)0xC0EC58 = object_0016FA00; //Flat, Rectangular Wood
+	*(NJS_MODEL_SADX*)0xC0EC2C = attach_0016F9D8;
 
+
+	for (int j = 0; j < 16; j++) //This sets E103's positions correctly so he can be fought without him flying off.
+	{
+		E103FinalPos[j] = E103_PositionData[j];
+	}
 
 	// registering start locations
 	helperFunctions.RegisterStartPosition(Characters_Sonic, sonicWindyValley0);
@@ -2262,7 +2311,7 @@ extern "C"
 		TrampolineValueCorrecter(); //This is just to make sure that if you pause in the middle of bouncing, that the floats return to their original values for other levels.
 		//WindPathZoneSetting(); Unsure now if the wind path leaves actually moved differently in the beta.
 		Tornado_Check(); //Loads Stage Function stuff for Act 1
-		Load_BWVSkybox();
+		Load_BWVSkybox(); //Loads the skyboxes
 
 		if (CurrentLevel == 2 && CurrentAct == 1 && !IsGamePaused())
 		{

@@ -1,5 +1,9 @@
 #include "SADXModLoader.h"
 
+CollisionData Wele_Collision[] = {
+	{ 0, 0, 0x77, 0, 0,	0.0, 6.5, 0.0, 8.5, 8.5, 4.0, 0, 0, 0, 0 }
+};
+
 NJS_MATERIAL matlist_0013DEAC[] = {
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 36, NJD_D_100 | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
