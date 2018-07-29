@@ -242,6 +242,7 @@ void __cdecl WVAct1_Display(ObjectMaster *a1)
 	{
 		DisableFog();
 		njSetTexture(&BETAWINDY_BACK_texlist);
+		//SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
 		v4 = v1->Rotation.y;
@@ -289,6 +290,7 @@ void __cdecl WVAct2_Display(ObjectMaster *a1)
 	{
 		DisableFog();
 		njSetTexture(&BETAWINDY_BACK2_texlist);
+		//SetTextureToLevelObj();
 		njPushMatrix(0);
 		DrawQueueDepthBias = -28052.0;
 		njTranslateV(0, &v1->Position);
@@ -302,7 +304,7 @@ void __cdecl WVAct2_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		ProcessModelNode_A_Wrapper(&Act02_Skybox3, (QueuedModelFlagsB)0, 1.0);
+		ProcessModelNode_A_Wrapper(&Act02_Skybox2, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u); //model1
 
 		njPushMatrix(0);
@@ -313,7 +315,7 @@ void __cdecl WVAct2_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v6);
 		}
-		ProcessModelNode_A_Wrapper(&Act02_Skybox2, (QueuedModelFlagsB)0, 1.0);
+		ProcessModelNode_A_Wrapper(&Act02_Skybox1, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u); //model3
 
 		njPushMatrix(0);
@@ -323,7 +325,7 @@ void __cdecl WVAct2_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v7);
 		}
-		ProcessModelNode_A_Wrapper(&Act02_Skybox1, (QueuedModelFlagsB)0, 1.0);
+		ProcessModelNode_A_Wrapper(&Act02_Skybox3, (QueuedModelFlagsB)0, 1.0);
 		DrawQueueDepthBias = 0;
 		njPopMatrix(1u); //model2
 		ToggleStageFog();
@@ -344,6 +346,7 @@ void __cdecl WVAct3_Display(ObjectMaster *a1)
 	if (!MissedFrames)
 	{
 		njSetTexture(&BETAWINDY_BACK3_texlist);
+		//SetTextureToLevelObj();
 		DisableFog();
 		if (Camera_Data1 != nullptr)
 		{
@@ -738,11 +741,11 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v2);
 		}
-		sub_407A00((NJS_MODEL_SADX *)Decor_Tornado3.model, 1.0);
+		sub_407A00((NJS_MODEL_SADX *)Decor_Tornado1.model, 1.0);
+		njPushMatrix(0);
+		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado3.model, (QueuedModelFlagsB)0, 1.0);
 		njPushMatrix(0);
 		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado2.model, (QueuedModelFlagsB)0, 1.0);
-		njPushMatrix(0);
-		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado1.model, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
@@ -2069,6 +2072,7 @@ PointerInfo pointers[] = {
 	ptrdecl(0x974B38, &WindyValleyObjectList),
 	ptrdecl(0x974B3C, &WindyValleyObjectList),
 	ptrdecl(0x974B40, &WindyValleyObjectList),
+	ptrdecl(0x90EB70, &WindyValleyObjectTextures),
 	ptrdecl(0x91C0B8, &WV3path),
 	ptrdecl(0x91C0BC, &WV3path)
 };
@@ -2282,6 +2286,22 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	for (int j = 0; j < 16; j++) //This sets E103's positions correctly so he can be fought without him flying off.
 	{
 		E103FinalPos[j] = E103_PositionData[j];
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		FogData_Windy1[i].Distance = 14000.0f;
+		FogData_Windy1[i].Layer = 1000.0f;
+		FogData_Windy1[i].Color = 0xFFFFFFFF;
+		DrawDist_WindyValley1[i].Maximum = -8000.0f;
+		FogData_Windy2[i].Color = 0xFFFFFFFF;
+		FogData_Windy2[i].Distance = 2500.0f;
+		FogData_Windy2[i].Layer = 50.0f;
+		FogData_Windy2[i].Toggle = 1;
+		FogData_Windy3[i].Distance = 10000.0f;
+		FogData_Windy3[i].Layer = 200.0f;
+		FogData_Windy3[i].Color = 0xFFFFFFFF;
+		DrawDist_WindyValley3[i].Maximum = -8000.0f;
 	}
 
 	// registering start locations

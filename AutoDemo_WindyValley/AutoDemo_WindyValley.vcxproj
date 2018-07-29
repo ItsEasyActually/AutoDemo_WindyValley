@@ -173,6 +173,7 @@
     <ClInclude Include="Tako_W.h" />
     <ClInclude Include="Tanpopo_Object.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TexLists.h" />
     <ClInclude Include="Trampoline.h" />
     <ClInclude Include="Wele.h" />
     <ClInclude Include="WindyGate.h" />
