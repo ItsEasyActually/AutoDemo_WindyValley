@@ -197,7 +197,7 @@ void __cdecl Load_Yaji01(ObjectMaster *a1)
 	v1 = a1->Data1;
 	if (!ObjectSelectedDebug(a1))
 	{
-		InitCollision(a1, (CollisionData*)&Yaji01_Collision, 1, 4u);
+		InitCollision(a1, (CollisionData*)&Yaji01_Collision, 2, 4u);
 	}
 	v1->Object = &Object_Yaji01;
 	a1->MainSub = Basic_Main;

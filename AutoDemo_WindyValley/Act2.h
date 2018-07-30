@@ -8305,6 +8305,12 @@ COL collist_00804360[] = {
 
 LandTable landtable_008046C0 = { LengthOfArray(collist_00804360), 0, 0xC, 3000, collist_00804360, NULL, NULL, &WINDY02_TEXLIST, 0, 0 };
 
+PVMEntry WindyValley2Textures_list[] = {
+	{ "WINDY02", &WINDY02_texlist }
+};
+
+LevelPVMList WindyValley2Textures = { levelact(LevelIDs_WindyValley, 1), arraylengthandptr(WindyValley2Textures_list) };
+
 Sint16 poly_007FD264[] = {
 	0, 1, 3, 2
 };

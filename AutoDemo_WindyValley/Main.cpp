@@ -2064,10 +2064,13 @@ TrialLevelList BigActionStages = { arrayptrandlength(BigActionStages_list) };
 
 PointerInfo pointers[] = {
 	ptrdecl(0x97DA48, &landtable_008051E0),
+	//ptrdecl(0x90F01C, &WindyValley1Textures),
 	ptrdecl(0xBFD820, &WindyValley1DeathZones),
 	ptrdecl(0x97DA4C, &landtable_008046C0),
+	//ptrdecl(0x90F020, &WindyValley2Textures),
 	ptrdecl(0xBFD824, &WindyValley2DeathZones),
 	ptrdecl(0x97DA50, &landtable_0080433C),
+	ptrdecl(0x90F024, &WindyValley3Textures),
 	ptrdecl(0xBFD828, &WindyValley3DeathZones),
 	ptrdecl(0x974B38, &WindyValleyObjectList),
 	ptrdecl(0x974B3C, &WindyValleyObjectList),
@@ -2328,6 +2331,7 @@ extern "C"
 
 	__declspec(dllexport) void __cdecl OnFrame()
 	{
+
 		TrampolineValueCorrecter(); //This is just to make sure that if you pause in the middle of bouncing, that the floats return to their original values for other levels.
 		//WindPathZoneSetting(); Unsure now if the wind path leaves actually moved differently in the beta.
 		Tornado_Check(); //Loads Stage Function stuff for Act 1

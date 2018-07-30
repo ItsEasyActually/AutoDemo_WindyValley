@@ -85077,6 +85077,7 @@ PVMEntry WindyValley3Textures_list[] = {
 
 LevelPVMList WindyValley3Textures = { levelact(LevelIDs_WindyValley, 2), arraylengthandptr(WindyValley3Textures_list) };
 
+
 Sint16 poly_007FD35C[] = {
 	4, 0, 1
 };

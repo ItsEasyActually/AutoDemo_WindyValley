@@ -156,7 +156,8 @@ NJS_TEXLIST BETAWINDY_BACK2_texlist = { arrayptrandlength(WINDY02_SKY01_texnames
 
 NJS_TEXNAME WINDY03_SKY01_texnames[] = {
         { "Sora96" },
-        { "Sora62" }
+        { "Sora62" },
+		{ "SoraTorn" }
 };
 
 NJS_TEXLIST BETAWINDY_BACK3_texlist = { arrayptrandlength(WINDY03_SKY01_texnames) };
