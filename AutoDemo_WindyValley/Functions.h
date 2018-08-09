@@ -94,6 +94,9 @@ void __cdecl Load_IBou03(ObjectMaster *a1);
 void __cdecl Load_IHah01(ObjectMaster *a1);
 void __cdecl Load_IHah02(ObjectMaster *a1);
 void __cdecl Load_IHah03(ObjectMaster *a1);
+void __cdecl Load_IHah04(ObjectMaster *a1);
+void __cdecl Load_IHah05(ObjectMaster *a1);
+void __cdecl Load_IHah06(ObjectMaster *a1);
 
 //Propeller Functions
 void __cdecl Load_Prope1(ObjectMaster *a1);

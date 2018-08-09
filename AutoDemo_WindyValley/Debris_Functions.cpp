@@ -48,3 +48,42 @@ void __cdecl Load_IHah03(ObjectMaster *a1)
 	SetStatus(a1);
 	DynCol_LoadObject(a1);
 }
+
+void __cdecl Load_IHah04(ObjectMaster *a1)
+{
+	{
+		EntityData1 *v1;
+
+		v1 = a1->Data1;
+		v1->Object = &Object_IHah04;
+		a1->MainSub = Basic_Main;
+		a1->DisplaySub = Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+	}
+}
+
+void __cdecl Load_IHah05(ObjectMaster *a1)
+{
+	{
+		EntityData1 *v1;
+
+		v1 = a1->Data1;
+		v1->Object = &Object_IHah05;
+		a1->MainSub = Basic_Main;
+		a1->DisplaySub = Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+	}
+}
+
+void __cdecl Load_IHah06(ObjectMaster *a1)
+{
+	{
+		EntityData1 *v1;
+
+		v1 = a1->Data1;
+		v1->Object = &Object_IHah06;
+		a1->MainSub = Basic_Main;
+		a1->DisplaySub = Basic_Display;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
+	}
+}
