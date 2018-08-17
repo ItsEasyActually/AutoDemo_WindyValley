@@ -144,6 +144,12 @@
     <ClInclude Include="TexLists.h">
       <Filter>Header Files\Addons</Filter>
     </ClInclude>
+    <ClInclude Include="TorndaoBridgeParts.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TDebris.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

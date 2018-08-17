@@ -173,7 +173,9 @@
     <ClInclude Include="Tako_W.h" />
     <ClInclude Include="Tanpopo_Object.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TDebris.h" />
     <ClInclude Include="TexLists.h" />
+    <ClInclude Include="TorndaoBridgeParts.h" />
     <ClInclude Include="Trampoline.h" />
     <ClInclude Include="Wele.h" />
     <ClInclude Include="WindyGate.h" />

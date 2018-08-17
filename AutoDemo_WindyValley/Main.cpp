@@ -633,7 +633,7 @@ void __cdecl ShockwaveEffect_Display(ObjectMaster *a1)
 		Tornado_Texture_Load();
 		njPushMatrix(0);
 		njTranslate(0, 732.156555f, -195.87912f, -3467.09546f); //Where the tornado spawns, too, except higher.
-		njScale(0, WaveFrame, WaveFrame, WaveFrame); //Scale it based on the counter.
+		njScale(0, WaveFrame, WaveFrame + 180, WaveFrame); //Scale it based on the counter.
 		njRotateY(0, (unsigned __int16)(WaveFrame * 0x1000)); //Make it spin. Because of how this works, it gets faster and faster the higher the count goes.
 		sub_409E70((NJS_MODEL_SADX*)TornadoShockwave.model, 0, 1.0);
 		njPopMatrix(1u);
@@ -642,7 +642,7 @@ void __cdecl ShockwaveEffect_Display(ObjectMaster *a1)
 
 void __cdecl ShockWaveEffect_Main(ObjectMaster *a1)
 {
-	if (WaveFrame >= 300)
+	if (WaveFrame >= 200)
 	{
 		if (a1)
 		{
@@ -798,9 +798,9 @@ void __cdecl Load_DecoTornado(void)
 		if (a1)
 		{
 			Torn = a1->Data1;
-			Torn->Position.x = 467.1638f; //I don't know if this is actually where it spawns in the beta. In fact, that goes for all of these things except the bridge pieces, obviously. It'd be nice to find those positions so we can have pinpoint accuracy.
-			Torn->Position.y = -245.87912f;
-			Torn->Position.z = -3445.72241f;
+			Torn->Position.x = 434; //Finally found the coordinates! Y value didn't work out so well, so I kept the one I had. The intended Y value makes it float, so....who knows how it works.
+			Torn->Position.y = -245.87912f; //Actual intended value: 91.022217
+			Torn->Position.z = -3500; //Still not sure on values of the shockwave effect, though I did see coding for it. Not sure what the coding does, specifically.
 			Torn->Rotation.x = 0;
 			Torn->Rotation.y = 0;
 			Torn->Rotation.z = 0;
@@ -892,9 +892,9 @@ void __cdecl Load_Tornado(void)
 		if (a1)
 		{
 			Torn = a1->Data1;
-			Torn->Position.x = 732.156555f; //Again, don't know if this is actually where it's supposed to spawn.
-			Torn->Position.y = -195.87912f;
-			Torn->Position.z = -3467.09546f;
+			Torn->Position.x = 750; //Finally found the coordinates! Z value didn't work so well, so I kept the one I had.
+			Torn->Position.y = -374;
+			Torn->Position.z = -3467.09546f; //Actual intended value: -3273
 			Torn->Rotation.x = 0;
 			Torn->Rotation.y = 0;
 			Torn->Rotation.z = 0;
@@ -948,8 +948,8 @@ void __cdecl Load_Tornado_Shockwave(void)
 	if (a1)
 	{
 		Wave = a1->Data1;
-		Wave->Position.x = 732.156555f; //Again, position is just a guess.
-		Wave->Position.y = -195.87912f;
+		Wave->Position.x = 750; //Again, position is just a guess.
+		Wave->Position.y = -374;
 		Wave->Position.z = -3467.09546f;
 		Wave->Rotation.x = 0;
 		Wave->Rotation.y = 0;
@@ -1397,7 +1397,7 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 			LoadedWave = true; //Giving the "shockwave" the greenlight to spawn and start spinning and scaling.
 			Load_TBridge();
 		}
-		if (LoadedWave == true && WaveFrame < 305) //Yes, the wave scales up to 305 times its normal size. If it's much lower than this, I just find it a bit underwhelming.
+		if (LoadedWave == true && WaveFrame < 201) //Yes, the wave scales up to 201 times its normal size. If it's much lower than this, I just find it a bit underwhelming.
 		{
 			if (WaveFrame == 0)
 			{
@@ -1576,8 +1576,8 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 				}*/
 				*((float *)v1 + 2) = v2;
 				v3 = (v2 * 65536.0 * 0.002777777777777778);
-				*((float *)v1 + 8) = 649.074f + njCos(v3) * 90.0;
-				*((float *)v1 + 10) = -196.07f + njSin(v3) * 90.0;
+				*((float *)v1 + 8) = 650 + njCos(v3) * 90.0;
+				*((float *)v1 + 10) = -200 + njSin(v3) * 90.0;
 				*((float *)v1 + 9) = fabs((double)rand() * 0.000030517578) * 3.4000001 + *((float *)v1 + 12) * 1.3 + *((float *)v1 + 9);
 				v4 = ((*((float *)v1 + 12) + *((float *)v1 + 12)) * 65536.0 * -0.002777777777777778);
 				v5 = *((float *)v1 + 12) * 5.0 * 65536.0;
@@ -2085,7 +2085,7 @@ PathDataPtr WV3PathList = { levelact(LevelIDs_WindyValley, 2), PathList_WindyVal
 
 void TornadoPosition()
 {
-	njPushMatrix(NULL); njTranslate(NULL, 649.074f, -203.486f, -196.07f);
+	njPushMatrix(NULL); njTranslate(NULL, 650, -360, -200);
 }
 
 void WVSkybox1Position()
@@ -2207,7 +2207,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 
 	//There's a piece of debris that gets sucked up into the Final's tornado, a piece of the final bridge with two posts attached to it.
 
-	//*(NJS_OBJECT*)0xC13274 = object_001762D4; //So this thing was causing that redefintion error. I just wanted to replace a childobject model for the tornado with the bridge model. I'll find some way to make this work.
+	*(NJS_OBJECT*)0xC13274 = object_00183588; //?
 
 	//More Debris for this model when it hits the tornado:
 	*(NJS_OBJECT*)0xC111AC = object_00196C6C;
