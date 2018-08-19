@@ -626,23 +626,35 @@ void __cdecl Tornado_Texture_Load(void) //Sets the textures for the object to To
 void __cdecl ShockwaveEffect_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
+	Angle v5;
 
 	v1 = a1->Data1;
+
 	if (!MissedFrames)
 	{
+		DisableFog();
 		Tornado_Texture_Load();
+		if (Camera_Data1 != nullptr)
+		{
+			a1->Data1->Position = Camera_Data1->Position; //Making the effect follow the camera.
+		}
 		njPushMatrix(0);
-		njTranslate(0, 732.156555f, -195.87912f, -3467.09546f); //Where the tornado spawns, too, except higher.
-		njScale(0, WaveFrame, WaveFrame + 180, WaveFrame); //Scale it based on the counter.
-		njRotateY(0, (unsigned __int16)(WaveFrame * 0x1000)); //Make it spin. Because of how this works, it gets faster and faster the higher the count goes.
+		njTranslateV(0, &v1->Position);
+		njScale(0, 1.0f, 3.1f, 1.0f); //Scaling it vertically so that you can't see the edges of it by tilting the camera during the sequence.
+		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
 		sub_409E70((NJS_MODEL_SADX*)TornadoShockwave.model, 0, 1.0);
 		njPopMatrix(1u);
+		ToggleStageFog();
 	}
 }
 
 void __cdecl ShockWaveEffect_Main(ObjectMaster *a1)
 {
-	if (WaveFrame >= 200)
+	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 0))
 	{
 		if (a1)
 		{
@@ -661,6 +673,7 @@ void __cdecl ShockWaveEffect_Main(ObjectMaster *a1)
 			{
 				if (v1->Action == 1)
 				{
+					*(float*)&v1->CharIndex = -9.2f + *(float*)&v1->CharIndex;
 					ShockwaveEffect_Display(a1);
 				}
 			}
@@ -1394,10 +1407,11 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 		if (PlayChar != nullptr && PlayChar->Position.z < -2450 && PlayChar->Position.y > -350 && LoadedTornado == false) //If you reach the air vent and the tornado and bridge haven't been loaded in yet.
 		{
 			Load_Tornado();
-			LoadedWave = true; //Giving the "shockwave" the greenlight to spawn and start spinning and scaling.
+			Load_Tornado_Shockwave();
+			//LoadedWave = true; //Giving the "shockwave" the greenlight to spawn and start spinning and scaling.
 			Load_TBridge();
 		}
-		if (LoadedWave == true && WaveFrame < 201) //Yes, the wave scales up to 201 times its normal size. If it's much lower than this, I just find it a bit underwhelming.
+		/*if (LoadedWave == true && WaveFrame < 201) //Yes, the wave scales up to 201 times its normal size. If it's much lower than this, I just find it a bit underwhelming.
 		{
 			if (WaveFrame == 0)
 			{
@@ -1411,7 +1425,7 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 					WaveFrame += 2; //Maintaining consistent scaling and spinning speed no matter the framerate.
 				}
 			}
-		}
+		}*/
 		if (PlayChar != nullptr && PlayChar->Position.z < -2050 && PlayChar->Position.y > -460) //Loading the swerving tornado
 		{
 			Load_DecoTornado();
@@ -1770,6 +1784,11 @@ void __cdecl Load_Debris(void)
 		}
 	}
 	LoadedDebris = true;
+}
+
+int __cdecl WindCheck(void)
+{
+	return 0;
 }
 
 
@@ -2167,6 +2186,11 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteJump((void *)0x4DF5A0, HypotheticalDebris); //Main Debris loading function overwrite
 	WriteJump((void *)0x4DF500, DebrisDisplay); //Display routine overwrite for Debris
 	//WriteJump((void *)0x4DF740, PreHypoDebris); //Testing something
+
+
+	WriteCall((void *)0x4E379D, WindCheck); //Removing ClipSet check for the leaves of Pu Wind.
+	WriteCall((void *)0x4E354B, WindCheck);
+	WriteCall((void *)0x4E52AD, WindCheck); //Doing the same for BLeaf.
 
 	
 
