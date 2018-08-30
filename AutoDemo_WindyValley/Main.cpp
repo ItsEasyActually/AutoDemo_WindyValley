@@ -1533,48 +1533,49 @@ void __cdecl DebrisDisplay(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
 		v3 = v1->Rotation.z;
-		if (v3 && v2 != &*(NJS_MODEL_SADX*)0xC2AF1C && v2 != &*(NJS_MODEL_SADX*)0xC2C2E8)
+		if (v3 && v1->Scale.z != 0.01f) //Checking to see if we actually have the magatama rock or giant pillar.
 		{
 			njRotateZ(0, (unsigned __int16)v3);
 		}
 		v4 = v1->Rotation.x;
-		if (v4 && v2 != &*(NJS_MODEL_SADX*)0xC2AF1C && v2 != &*(NJS_MODEL_SADX*)0xC2C2E8)
+		if (v4 && v1->Scale.z != 0.01f)//Checking to see if we actually have the magatama rock or giant pillar.
 		{
 			njRotateX(0, (unsigned __int16)v4);
 		}
 		v5 = v1->Rotation.y;
-		if (v5 && v2 != &*(NJS_MODEL_SADX*)0xC2AF1C)
+		if (v5 && (v2 != &*(NJS_MODEL_SADX*)0xC2AF1C && v1->Scale.z != 0.01f))//Checking to see if we actually have the magatama rock.
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
+		//DrawModel_QueueVisible(v2, (QueuedModelFlagsB)0, 1.0);
 
-		if (v2 == &*(NJS_MODEL_SADX*)0xC2AF1C)
-		{
-			ProcessModelNode_AB_Wrapper(&object_0016F8E0, 1.0);
-			njPopMatrix(1u);
-		}
 
-		else if (v2 == &*(NJS_MODEL_SADX*)0xC2CAF8)
-		{
-			ProcessModelNode_AB_Wrapper(&object_0019E788, 1.0);
-			njPopMatrix(1u);
-		}
-
-		else if (v2 == &*(NJS_MODEL_SADX*)0xC0EC2C && v1->Scale.z == 0.01f)
+		if (v2 == &*(NJS_MODEL_SADX*)0xC2AF1C && v1->Scale.z != 0.01f) //Magatam rock's alternate selection (L-Shaped wood)
 		{
 			sub_407A00(&attach_0016FB78, 1.0);
 			njPopMatrix(1u);
 		}
 
-		else if (v2 == &*(NJS_MODEL_SADX*)0xC2C134 && v1->Scale.z == 0.01f)
+		else if (v2 == &*(NJS_MODEL_SADX*)0xC2AF1C) //Normal magatama rock
 		{
-			sub_407A00(&attach_00170810, 1.0);
+			ProcessModelNode_AB_Wrapper(&object_0016F8E0, 1.0);
 			njPopMatrix(1u);
 		}
 
+		else if (v2 == &*(NJS_MODEL_SADX*)0xC2CAF8) //Rendering tree with leaves
+		{
+			ProcessModelNode_AB_Wrapper(&object_0019E788, 1.0);
+			njPopMatrix(1u);
+		}
+
+		else if (v2 == &*(NJS_MODEL_SADX*)0xC2C2E8 && v1->Scale.z == 0.01f) //Tiny wooden triangle's alternate selection (Giant pillar)
+		{
+			sub_407A00(&attach_001A0724, 1.0);
+			njPopMatrix(1u);
+		}
 		else
 		{
-			sub_407A00(v2, 1.0);
+			sub_407A00(v2, 1.0); //Everything else
 			njPopMatrix(1u);
 		}
 	}
@@ -1605,23 +1606,24 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 		v10 = (NJS_MODEL_SADX *)*((_DWORD *)v1 + 4);
 		if (v1->Action)
 		{
-			if (v1->Action == 1 && /*IsVisible((NJS_VECTOR *)((char *)v1 + 32), 3.0) && EntityData1Ptrs[0] && EntityData1Ptrs[0]->Position.y - 70.0 < *((float *)v1 + 9) && *((float *)v1 + 9) < (double)Camera_Data1->Position.y*/ v1->Position.y < 1420)
+			if (v1->Action == 1 && /*IsVisible((NJS_VECTOR *)((char *)v1 + 32), 3.0) && EntityData1Ptrs[0] && EntityData1Ptrs[0]->Position.y - 70.0 < *((float *)v1 + 9) && *((float *)v1 + 9) < (double)Camera_Data1->Position.y*/ v1->Position.y < 1720)
 			{
+
 				//if (v10 == &*(NJS_MODEL_SADX*)0xC2AF1C)
 				//{
-				v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 8.0) + *((float *)v1 + 2);
-				/*}
+				v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 7.0) + *((float *)v1 + 2);
+				/*}													// ^  This value controls how fast the debris move around. Higher makes them faster, lower makes them slower. 8.0 is original value.
 				else if (v10 == &*(NJS_MODEL_SADX*)0xC2C2E8)
 				{
-				v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 4.5111828) + *((float *)v1 + 2);
+					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 4.5111828) + *((float *)v1 + 2);
 				}
 				else
 				{
-				v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 5.92273662) + *((float *)v1 + 2);
+					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 5.92273662) + *((float *)v1 + 2);
 				}*/
 				*((float *)v1 + 2) = v2;
 				v3 = (v2 * 65536.0 * 0.002777777777777778);
-				*((float *)v1 + 8) = 650 + njCos(v3) * 90.0;
+				*((float *)v1 + 8) = 650 + njCos(v3) * 90.0; //These fix the positioning of the debris; this one, and the one below it. (650 and -200)
 				*((float *)v1 + 10) = -200 + njSin(v3) * 90.0;
 				*((float *)v1 + 9) = fabs((double)rand() * 0.000030517578) * 3.4000001 + *((float *)v1 + 12) * 1.3 + *((float *)v1 + 9);
 				v4 = ((*((float *)v1 + 12) + *((float *)v1 + 12)) * 65536.0 * -0.002777777777777778);
@@ -1636,7 +1638,7 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 		}
 		else
 		{
-			if (v10 == &*(NJS_MODEL_SADX*)0xC0EC2C && !v1->Action)
+			if (v10 == &*(NJS_MODEL_SADX*)0xC2AF1C && !v1->Action)
 			{
 				v11 = rand();
 
@@ -1645,13 +1647,15 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 					v11 -= 720;
 				}
 
-				if ((v11 % 2) == 0)
+				if ((v11 % 3) == 0)
 				{
+					//Rings = v11;
+					//*(NJS_MODEL_SADX *)*((_DWORD *)v1 + 4) = TornadoBetaDebris[10];
 					v1->Scale.z = 0.01f;
 				}
 			}
 
-			else if (v10 == &*(NJS_MODEL_SADX*)0xC2C134 && !v1->Action)
+			else if (v10 == &*(NJS_MODEL_SADX*)0xC2C2E8 && !v1->Action)
 			{
 				v11 = rand();
 
@@ -1660,8 +1664,10 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 					v11 -= 720;
 				}
 
-				if ((v11 % 2) == 0)
+				if ((v11 % 3) == 0)
 				{
+					//Rings = v11;
+					//*(NJS_MODEL_SADX *)*((_DWORD *)v1 + 4) = TornadoBetaDebris[10];
 					v1->Scale.z = 0.01f;
 				}
 			}
@@ -1752,7 +1758,7 @@ void __cdecl Load_Debris(void)
 		{
 			debr = a1->Data1;
 			debr->Position.x = 649.074f;
-			debr->Position.y = 103.486f;
+			debr->Position.y = 203.486f;
 			debr->Position.z = -196.07f;
 			debr->Rotation.x = 0;
 			debr->Rotation.y = 0;
@@ -1769,7 +1775,7 @@ void __cdecl Load_Debris(void)
 		{
 			debr = a1->Data1;
 			debr->Position.x = 649.074f;
-			debr->Position.y = 403.486f;
+			debr->Position.y = 603.486f;
 			debr->Position.z = -196.07f;
 			debr->Rotation.x = 0;
 			debr->Rotation.y = 0;
@@ -1786,7 +1792,7 @@ void __cdecl Load_Debris(void)
 		{
 			debr = a1->Data1;
 			debr->Position.x = 649.074f;
-			debr->Position.y = 703.486f;
+			debr->Position.y = 1003.486f;
 			debr->Position.z = -196.07f;
 			debr->Rotation.x = 0;
 			debr->Rotation.y = 0;
@@ -1803,7 +1809,7 @@ void __cdecl Load_Debris(void)
 		{
 			debr = a1->Data1;
 			debr->Position.x = 649.074f;
-			debr->Position.y = 1103.486f;
+			debr->Position.y = 1503.486f;
 			debr->Position.z = -196.07f;
 			debr->Rotation.x = 0;
 			debr->Rotation.y = 0;
@@ -2217,6 +2223,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteJump((void *)0x4DF5A0, HypotheticalDebris); //Main Debris loading function overwrite
 	WriteJump((void *)0x4DF500, DebrisDisplay); //Display routine overwrite for Debris
 	//WriteJump((void *)0x4DF740, PreHypoDebris); //Testing something
+	WriteData<1>((void*)0x04DF75C, 0xFFu); //Controlling how long each piece of debris is spawned for. 96u is original value.
 
 
 	WriteCall((void *)0x4E379D, WindCheck); //Removing ClipSet check for the leaves of Pu Wind.
