@@ -1993,7 +1993,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 5, 1, 650000, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
 	{ 2, 5, 1, 650000, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
 	{ 6, 3, 1, 950000, 0, LRock, "L ROCK1" } /* "L ROCK1" */,							//26
-	{ 6, 3, 1, 500000, 0, NullFunction, "RAFT   " } /* "RAFT   " */,					//27
+	{ 6, 3, 1, 500000, 0, Load_Raft, "RAFT   " } /* "RAFT   " */,					//27
 	{ 7, 3, 1, 1250000, 0, NullFunction, "RAFT 2 " } /* "RAFT 2 " */,					//28
 	{ 7, 3, 1, 1250000, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,					//29
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,							//2A
@@ -2335,8 +2335,8 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	*(NJS_OBJECT*)0xC2C160 = object_0016FD14; //Angled Wood
 	*(NJS_MODEL_SADX*)0xC2C134 = attach_0016FCEC;
 
-	*(NJS_OBJECT*)0xC2C314 = object_001A074C; //Giant Pillar
-	*(NJS_MODEL_SADX*)0xC2C2E8 = attach_001A0724;
+	*(NJS_OBJECT*)0xC2C314 = object_00170838; //Tiny Triangle Wood
+	*(NJS_MODEL_SADX*)0xC2C2E8 = attach_00170810;
 
 	*(NJS_OBJECT*)0xC2C788 = object_001A086C; //WKusa1 Leaf
 	*(NJS_MODEL_SADX*)0xC2C75C = attach_001A0844;
