@@ -1956,7 +1956,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 5, 1, 650000, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
 	{ 2, 5, 1, 650000, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
 	{ 6, 3, 1, 950000, 0, LRock, "L ROCK1" } /* "L ROCK1" */,							//26
-	{ 6, 3, 1, 500000, 0, NullFunction, "RAFT   " } /* "RAFT   " */,					//27
+	{ 6, 3, 1, 500000, 0, Load_Raft, "RAFT   " } /* "RAFT   " */,					//27
 	{ 7, 3, 1, 1250000, 0, NullFunction, "RAFT 2 " } /* "RAFT 2 " */,					//28
 	{ 7, 3, 1, 1250000, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,					//29
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,							//2A

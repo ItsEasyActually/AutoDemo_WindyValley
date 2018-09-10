@@ -27,6 +27,7 @@ DataPointer(NJS_OBJECT, stru_C05E10, 0xC05E10);
 DataPointer(NJS_OBJECT, stru_C06344, 0xC06344);
 DataPointer(NJS_OBJECT, stru_C06450, 0xC06450); //Skybox model pointers
 DataPointer(NJS_OBJECT, stru_C0655C, 0xC0655C);
+DataPointer(int, DroppedFrames, 0x03B1117C);
 //DataArray(EntityData1 *, EntityData1Ptrs, 0x3B42E10, 8);
 
 DataPointer(NJS_OBJECT, stru_C158E0, 0xC158E0);

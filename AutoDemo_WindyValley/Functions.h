@@ -15,6 +15,9 @@ void __cdecl NullFunction(ObjectMaster *a1);
 void __cdecl Basic_Display(ObjectMaster *a2);
 void __cdecl Basic_Main(ObjectMaster *a1);
 void __cdecl DeleteDynamicCollision(ObjectMaster *a1);
+void AddToCollision(ObjectMaster *a1, uint8_t col);
+void DrawObjModel(ObjectMaster *a1, NJS_MODEL_SADX *m, bool scalable);
+void deleteSub_Global(ObjectMaster *a1);
 
 //Misc Functions
 void __cdecl Trampoline_Main(ObjectMaster *a1);
