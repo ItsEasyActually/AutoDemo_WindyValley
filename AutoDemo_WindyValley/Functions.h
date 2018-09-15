@@ -125,3 +125,6 @@ void __cdecl Load_SaraS2(ObjectMaster *a1);
 
 //Raft Functions
 void __cdecl Load_Raft(ObjectMaster *a1);
+
+//Wele Function
+void __cdecl Load_Wele(ObjectMaster *a1);

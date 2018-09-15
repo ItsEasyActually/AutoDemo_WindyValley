@@ -2064,7 +2064,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 4, 0, 0, 0, NullFunction, "TSPRING" } /* "TSPRING" */,							//6B
 	{ 2, 4, 0, 0, 0, Load_Lauchin, "LAUCHIN" } /* "LAUCHIN" */,							//6C
 	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,							//6D
-	{ 7, 3, 0, 0, 0, NullFunction, "WELE   " } /* "WELE   " */,							//6E
+	{ 7, 3, 1, 1000000, 0, Load_Wele, "WELE   " } /* "WELE   " */,					//6E
 	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,						//6F
 	{ 2, 3, 0, 0, 0, BoaBoa_Main, "E HEVY " } /* "E HEVY " */,							//70
 	{ 2, 3, 0, 0, 0, Leon_Load, "E LEON " } /* "E LEON " */,							//71

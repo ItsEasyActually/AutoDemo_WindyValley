@@ -209,5 +209,8 @@
     <ClCompile Include="BaneIwa_Function.cpp">
       <Filter>Source Files\Functions</Filter>
     </ClCompile>
+    <ClCompile Include="Wele_Function.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

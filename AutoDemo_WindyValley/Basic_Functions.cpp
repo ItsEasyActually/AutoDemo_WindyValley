@@ -92,6 +92,12 @@ void AddToCollision(ObjectMaster *a1, uint8_t col) {
 		colobject->scl[1] = 1.0f + original->Scale.x;
 		colobject->scl[2] = 1.0f + original->Scale.x;
 	}
+	else if (col == 5) {
+		colobject->evalflags = NJD_EVAL_BREAK | NJD_EVAL_SKIP | NJD_EVAL_HIDE;
+		colobject->scl[0] = 1.0f + original->Scale.z;
+		colobject->scl[1] = 1.0f + original->Scale.z;
+		colobject->scl[2] = 1.0f + original->Scale.z;
+	}
 	else {
 		colobject->evalflags = NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK | NJD_EVAL_SKIP | NJD_EVAL_HIDE; //ignore scale
 		colobject->scl[0] = 1.0;
@@ -100,7 +106,7 @@ void AddToCollision(ObjectMaster *a1, uint8_t col) {
 	}
 
 	//add the rest
-	if (col == 4)
+	if (col == 4 || col == 1 || col == 5)
 	{
 		colobject->ang[0] = 0;
 		colobject->ang[1] = original->Rotation.y;
@@ -119,7 +125,7 @@ void AddToCollision(ObjectMaster *a1, uint8_t col) {
 	a1->Data1->Object = colobject; //pointer to the collision object into our original object
 
 	if (col == 0 || col == 2) DynamicCOL_Add((ColFlags)1, a1, colobject); //Solid
-	else if (col == 1 || col == 3 || col == 4) DynamicCOL_Add((ColFlags)0x8000000, a1, colobject); //Dynamic, solid
+	else if (col == 1 || col == 3 || col == 4 || col == 5) DynamicCOL_Add((ColFlags)0x8000000, a1, colobject); //Dynamic, solid
 }
 
 //Basic drawing call
