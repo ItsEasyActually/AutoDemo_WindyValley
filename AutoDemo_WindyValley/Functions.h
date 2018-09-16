@@ -127,8 +127,11 @@ void __cdecl Load_SaraS2(ObjectMaster *a1);
 void __cdecl Load_Raft(ObjectMaster *a1);
 void __cdecl Load_Raft2(ObjectMaster *a1);
 void __cdecl Load_Raft3(ObjectMaster *a1);
+<<<<<<< HEAD
 void __cdecl Load_TRaft1(ObjectMaster *a1);
 void __cdecl Load_TRaft2(ObjectMaster *a1);
+=======
+>>>>>>> 77cd84535ab80eb9ed9a8a12449b1433ef0f7747
 
 //Wele Function
 void __cdecl Load_Wele(ObjectMaster *a1);
