@@ -807,3 +807,4 @@ NJS_VECTOR vertex_Act3Torn[] = {
 NJS_MODEL_SADX attach_Act3Torn = { vertex_Act3Torn, normal_0014A190, LengthOfArray<Sint32>(vertex_0014A160), meshlist_0014A148, matlist_Act3Torn, LengthOfArray<Uint16>(meshlist_0014A148), LengthOfArray<Uint16>(matlist_Act3Torn),{ 0, -2462.068f, 0 }, 3664.812f, NULL };
 
 NJS_OBJECT Act3CloudLayer = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_Act3Torn, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+

@@ -4366,3 +4366,4 @@ NJS_VECTOR normal_0016AA28[] = {
 NJS_MODEL_SADX attach_0016B4B4 = { vertex_00169F9C, normal_0016AA28, LengthOfArray<Sint32>(vertex_00169F9C), meshlist_00169F6C, matlist_00168AB8, LengthOfArray<Uint16>(meshlist_00169F6C), LengthOfArray<Uint16>(matlist_00168AB8),{ 4.301121f, 772.8557f, -3.029289f }, 1391.843f, NULL };
 
 NJS_OBJECT Act02_Skybox3 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0016B4B4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+

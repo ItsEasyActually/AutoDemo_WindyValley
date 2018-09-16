@@ -1739,3 +1739,4 @@ NJS_VECTOR normal_0014A9AC[] = {
 NJS_MODEL_SADX attach_0014ABEC = { vertex_0014A76C, normal_0014A9AC, LengthOfArray<Sint32>(vertex_0014A76C), meshlist_0014A754, matlist_0014A230, LengthOfArray<Uint16>(meshlist_0014A754), LengthOfArray<Uint16>(matlist_0014A230),{ 0, -946.3378f, 0 }, 2861.641f, NULL };
 
 NJS_OBJECT Act3CloudRing2 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0014ABEC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+

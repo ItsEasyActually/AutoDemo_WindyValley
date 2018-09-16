@@ -1,5 +1,32 @@
 #pragma once
 #include "SADXModLoader.h"
+#include "Skybox01.h"
+#include "Skybox02.h"
+#include "Skybox03.h"
+
+NJS_TEXNAME WINDY01_SKY01_texnames[] = {
+		{ "s_wt28" },
+		{ "s_wt32" },
+		{ "wv_nbg" },
+		{ "sw_nbg2" }
+};
+
+NJS_TEXLIST BETAWINDY_BACK_texlist = { arrayptrandlength(WINDY01_SKY01_texnames) };
+
+NJS_TEXNAME WINDY02_SKY01_texnames[] = {
+		{ "tatu50" },
+		{ "tatu61" }
+};
+
+NJS_TEXLIST BETAWINDY_BACK2_texlist = { arrayptrandlength(WINDY02_SKY01_texnames) };
+
+NJS_TEXNAME WINDY03_SKY01_texnames[] = {
+		{ "Sora96" },
+		{ "Sora62" },
+		{ "SoraTorn" }
+};
+
+NJS_TEXLIST BETAWINDY_BACK3_texlist = { arrayptrandlength(WINDY03_SKY01_texnames) };
 
 NJS_TEXNAME WINDY01_texlist_entries[] = {
 	{ "S_wt12" },
@@ -137,30 +164,6 @@ NJS_TEXNAME WINDY03_texlist_entries[] = {
 };
 
 NJS_TEXLIST WINDY03_texlist = { arrayptrandlength(WINDY03_texlist_entries) };
-
-NJS_TEXNAME WINDY01_SKY01_texnames[] = {
-        { "s_wt28" },
-		{ "s_wt32" },
-        { "wv_nbg" },
-        { "sw_nbg2" }
-};
-
-NJS_TEXLIST BETAWINDY_BACK_texlist = { arrayptrandlength(WINDY01_SKY01_texnames) };
-
-NJS_TEXNAME WINDY02_SKY01_texnames[] = {
-        { "tatu50" },
-        { "tatu61" }
-};
-
-NJS_TEXLIST BETAWINDY_BACK2_texlist = { arrayptrandlength(WINDY02_SKY01_texnames) };
-
-NJS_TEXNAME WINDY03_SKY01_texnames[] = {
-        { "Sora96" },
-        { "Sora62" },
-		{ "SoraTorn" }
-};
-
-NJS_TEXLIST BETAWINDY_BACK3_texlist = { arrayptrandlength(WINDY03_SKY01_texnames) };
 
 NJS_TEXNAME OBJWINDY_texlist_entries[] = {
 	{ "Green_1" },
