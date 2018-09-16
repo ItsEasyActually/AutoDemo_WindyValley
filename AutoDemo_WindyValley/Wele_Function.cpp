@@ -148,7 +148,6 @@ void Wele3_Display(ObjectMaster *a1)
 	}
 }
 
-
 void Wele_Main(ObjectMaster *a1)
 {
 	float dest = a1->Data1->Scale.x;

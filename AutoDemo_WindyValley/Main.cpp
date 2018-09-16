@@ -12,11 +12,6 @@
 #include "Act2.h"
 #include "Act3.h"
 
-//Skybox
-#include "Skybox01.h"
-#include "Skybox02.h"
-#include "Skybox03.h"
-
 //Stage Info Headers
 #include "PathInfo.h"
 #include "StartPos.h"
@@ -27,7 +22,6 @@
 #include "Leaf_Models.h"
 #include "TDebris.h"
 #include "TorndaoBridgeParts.h"
-//#include "SBridge.h"
 
 //Functions
 #include "Functions.h"
@@ -224,44 +218,6 @@ bool Skybox2Loaded = false;
 bool Skybox3Loaded = false;
 SETObjData SkyboxThings = {};
 
-void TrampolineValueCorrecter() //This function is a fail-safe just in case you somehow pause and quit the level in the middle of bouncing on a trampoline and one of the values doesn't get reset to its proper value.
-{
-	if (CurrentLevel != 2)
-	{
-		if (Trampolineheight == 10.0f)
-		{
-			Trampolineheight == 19.0f;
-		}
-
-		if (Trampolineheightsecond == 11.0f)
-		{
-			Trampolineheight == 20.0f;
-		}
-
-		if (Trampolineheightthird == 16.0f)
-		{
-			Trampolineheight == 25.0f;
-		}
-
-		if (Trampolineheightfourth == 12.0f)
-		{
-			Trampolineheight == 21.0f;
-		}
-	}
-}
-
-void WindPathZoneSetting() //This changes the speed of the leaf models blowing around the wind paths. ....Now, not actually sure if the effect was different in the beta. It's hard to see in evilham's gif.
-{
-	if (CurrentLevel == 2)
-	{
-		WindPathParticleZone = 0.2224999975f;
-	}
-	else
-	{
-		WindPathParticleZone = 0.88999999f;
-	}
-}
-
 void __cdecl WVAct1_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
@@ -427,8 +383,6 @@ void __cdecl WVAct3_Display(ObjectMaster *a1)
 	}
 }
 
-
-
 void __cdecl SkyBoxAct3_Main(ObjectMaster *a1)
 {
 	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 2))
@@ -464,7 +418,6 @@ void __cdecl SkyBoxAct3_Main(ObjectMaster *a1)
 		}
 	}
 }
-
 
 void __cdecl SkyBoxAct2_Main(ObjectMaster *a1)
 {
@@ -621,7 +574,6 @@ void __cdecl Act1SkyBox_Load(void)
 	Skybox1Loaded = true;
 }
 
-
 void __cdecl Load_BWVSkybox(void)
 {
 	auto CharTest = EntityData1Ptrs[0];
@@ -645,6 +597,44 @@ void __cdecl Load_BWVSkybox(void)
 			Skybox2Loaded = false;
 			Skybox3Loaded = false;
 		}
+	}
+}
+
+void TrampolineValueCorrecter() //This function is a fail-safe just in case you somehow pause and quit the level in the middle of bouncing on a trampoline and one of the values doesn't get reset to its proper value.
+{
+	if (CurrentLevel != 2)
+	{
+		if (Trampolineheight == 10.0f)
+		{
+			Trampolineheight == 19.0f;
+		}
+
+		if (Trampolineheightsecond == 11.0f)
+		{
+			Trampolineheight == 20.0f;
+		}
+
+		if (Trampolineheightthird == 16.0f)
+		{
+			Trampolineheight == 25.0f;
+		}
+
+		if (Trampolineheightfourth == 12.0f)
+		{
+			Trampolineheight == 21.0f;
+		}
+	}
+}
+
+void WindPathZoneSetting() //This changes the speed of the leaf models blowing around the wind paths. ....Now, not actually sure if the effect was different in the beta. It's hard to see in evilham's gif.
+{
+	if (CurrentLevel == 2)
+	{
+		WindPathParticleZone = 0.2224999975f;
+	}
+	else
+	{
+		WindPathParticleZone = 0.88999999f;
 	}
 }
 
@@ -1379,7 +1369,6 @@ void __cdecl BridgeChildLoad(ObjectMaster *a2) //Hijacking the function used whe
 	}
 }
 
-
 void __cdecl Load_TBridge(void)
 {
 	ObjectMaster *a1;
@@ -1828,8 +1817,6 @@ int __cdecl WindCheck(void)
 	return 0;
 }
 
-
-
 //Tanpopo (Dandelion)
 ObjectThing Tanpopo_Particles[] = {
 	{ sub_4E0050, LoadObj_Data1, 0, 0, 0, 0, 0, 0, 0, &Particle_Tanpopo },
@@ -1993,9 +1980,9 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 5, 1, 650000, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
 	{ 2, 5, 1, 650000, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
 	{ 6, 3, 1, 950000, 0, LRock, "L ROCK1" } /* "L ROCK1" */,							//26
-	{ 6, 3, 1, 500000, 0, Load_Raft, "RAFT   " } /* "RAFT   " */,					//27
-	{ 7, 3, 1, 1250000, 0, NullFunction, "RAFT 2 " } /* "RAFT 2 " */,					//28
-	{ 7, 3, 1, 1250000, 0, NullFunction, "RAFT 3 " } /* "RAFT 3 " */,					//29
+	{ 6, 3, 1, 500000, 0, Load_Raft, "RAFT   " } /* "RAFT   " */,						//27
+	{ 7, 3, 1, 1250000, 0, Load_Raft2, "RAFT 2 " } /* "RAFT 2 " */,						//28
+	{ 7, 3, 1, 1250000, 0, Load_Raft3, "RAFT 3 " } /* "RAFT 3 " */,						//29
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT1" } /* "T_RAFT1" */,							//2A
 	{ 7, 3, 0, 0, 0, NullFunction, "T_RAFT2" } /* "T_RAFT2" */,							//2B
 	{ 2, 4, 1, 850000, 0, Load_Sirusi1, "SIRUSI1" } /* "SIRUSI1" */,					//2C

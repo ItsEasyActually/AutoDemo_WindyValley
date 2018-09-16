@@ -73,3 +73,78 @@ void __cdecl Load_Raft(ObjectMaster *a1)
 	a1->DisplaySub = &Raft_Display;
 	a1->DeleteSub = &deleteSub_Global; //a function that removes a1->Data1->Object from the object list & dynamic list
 }
+
+void Raft2_Display(ObjectMaster *a1) {
+	if (!DroppedFrames) {
+		njSetTexture((NJS_TEXLIST*)&OBJ_WINDY_TEXLIST);
+		njPushMatrix(0);
+		njTranslateV(0, (NJS_VECTOR*)a1->Data1->Object->pos); //Draw the model where the collision is
+		njRotateY(0, a1->Data1->Rotation.y);
+		njScale(0, (1.0f + a1->Data1->Scale.z), (1.0f + a1->Data1->Scale.z), (1.0f + a1->Data1->Scale.z)); //scale thing here, maybe use a1->Data1->Scale.x as you said
+		DrawQueueDepthBias = -6000.0f;
+		DrawModel(a1->Data1->Object->basicdxmodel); //draw the collision model
+		DrawQueueDepthBias = 0;
+		njPopMatrix(1u);
+	}
+}
+
+void Raft2_Main(ObjectMaster *a1)
+{
+	float orig = a1->Data1->Position.y;
+	float dest = a1->Data1->Scale.y;
+	float pos = a1->Data1->Object->pos[1];
+	float speed = 0.3f; //based on what you said
+
+	char timer = a1->Data1->CharIndex;
+	if (!ClipSetObject(a1)) {
+		if (timer == 0) {
+			uint8_t state = a1->Data1->NextAction;
+
+			if (state == 0) {
+				if (pos < orig) a1->Data1->Object->pos[1] += speed;
+				else {
+					a1->Data1->Object->pos[1] = orig;
+					a1->Data1->NextAction = 1; //state
+
+					a1->Data1->CharIndex = 10; //timer
+				}
+
+			}
+			else {
+				if (pos > dest) a1->Data1->Object->pos[1] -= speed;
+				else {
+					a1->Data1->Object->pos[1] = dest;
+					a1->Data1->NextAction = 0; //state
+
+					a1->Data1->CharIndex = 10; //timer
+				}
+			}
+		}
+		else a1->Data1->CharIndex--;
+		Raft2_Display(a1);
+	}
+}
+
+void __cdecl Load_Raft2(ObjectMaster *a1)
+{
+	a1->Data1->Object = &Object_Raft2;
+	AddToCollision(a1, 5); //set up a moving collision with scaling, replaces a1->Data1->Object with a pointer to itself
+	//a1->Data1->Scale.y = a1->Data1->Position.y + a1->Data1->Scale.y; //dest pos
+	a1->Data1->Scale.y = (a1->Data1->Position.y + a1->Data1->Scale.y);
+
+	a1->MainSub = &Raft2_Main;
+	a1->DisplaySub = &Raft2_Display;
+	a1->DeleteSub = &deleteSub_Global; //a function that removes a1->Data1->Object from the object list & dynamic list
+}
+
+void __cdecl Load_Raft3(ObjectMaster *a1)
+{
+	a1->Data1->Object = &Object_Raft3;
+	AddToCollision(a1, 5); //set up a moving collision with scaling, replaces a1->Data1->Object with a pointer to itself
+	//a1->Data1->Scale.y = a1->Data1->Position.y + a1->Data1->Scale.y; //dest pos
+	a1->Data1->Scale.y = (a1->Data1->Position.y + a1->Data1->Scale.y);
+
+	a1->MainSub = &Raft2_Main;
+	a1->DisplaySub = &Raft2_Display;
+	a1->DeleteSub = &deleteSub_Global; //a function that removes a1->Data1->Object from the object list & dynamic list
+}
