@@ -247,7 +247,12 @@ void Wele_Main(ObjectMaster *a1)
 			if (IsPlayerInsideSphere(&a1->Data1->Position, 9)) //Activation radius. Stepping inside this sphere will initiate movement, and close the door if there is one to close.
 			{
 				a1->Data1->NextAction = 1; //Enter Mode 1
+				if (a1->Data1->CharIndex != 0 && a1->Data1->Scale.z != 0)
+				{
+					PlaySound(58, 0, 0, 0); //Door shut sound (Unused?)
+				}
 				a1->Data1->CharIndex = 0; // Shut the door.
+				PlaySound(57, 0, 0, 0); //Weird but kinda cool hovering sound (Unused?)
 			}
 		}
 

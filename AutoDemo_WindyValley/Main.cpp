@@ -1506,6 +1506,393 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 	}
 }
 
+void __cdecl MagatamaDebris_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi@1
+	Angle v3; // eax@2
+	Angle v4; // eax@4
+	Angle v5; // eax@6
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		Debris_Texture_Load();
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v3 = v1->Rotation.z;
+		if (v3)
+		{
+			njRotateZ(0, (unsigned __int16)v3);
+		}
+		v4 = v1->Rotation.x;
+		if (v4)
+		{
+			njRotateX(0, (unsigned __int16)v4);
+		}
+		v5 = v1->Rotation.y;
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
+
+		sub_407A00(v1->Object->basicdxmodel, 1.0);
+		njPopMatrix(1u);
+	}
+}
+
+void __cdecl MagatamaDebris(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+	double v2; // st7@7
+	Angle v3; // edi@7
+	int v4; // edi@7
+	double v5; // st7@7
+	int v6; // rax@7
+	int v9; // rax@7
+	int v7; // eax@8
+	long double v8; // st7@8
+	NJS_MODEL_SADX *v10; // ebx@1
+
+	v1 = a1->Data1;
+
+	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 1) || v1->Position.y >= 1700)
+	{
+		if (a1)
+		{
+			a1->DisplaySub = 0;
+			DeleteObjectMaster(a1);
+		}
+	}
+
+	else
+	{
+		if (v1->Action)
+		{
+			if (v1->Action == 1 && v1->Position.y < 1720)
+			{
+				if (v1->Object == &object_0016D290 || v1->Object == &object_0016E528 || v1->Object == &object_0016EA18) //Average-sized pieces
+				{
+					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 6.0) + *((float *)v1 + 2);
+				}														// ^  This value controls how fast the debris move around. Higher makes them faster, lower makes them slower. 8.0 is original value.
+				else if (v1->Object == &object_0016C21C || v1->Object == &object_0016CF08 || v1->Object == &object_0016DF08 || v1->Object == &object_0016F8AC) //Big pieces
+				{
+					v2 = (double)(signed int)(*((float *)v1 + 12) * 3.5 + 4.5111828) + *((float *)v1 + 2);
+				}
+				else //Tiny pieces
+				{
+					v2 = (double)(signed int)(*((float *)v1 + 12) * 8.0 + 5.92273662) + *((float *)v1 + 2);
+				}
+				*((float *)v1 + 2) = v2;
+				v3 = (v2 * 65536.0 * 0.002777777777777778);
+				*((float *)v1 + 8) = 650 + njCos(v3) * 90.0; //These fix the positioning of the debris; this one, and the one below it. (650 and -200)
+				*((float *)v1 + 10) = -200 + njSin(v3) * 90.0;
+				*((float *)v1 + 9) = fabs((double)rand() * 0.000030517578) * 3.4000001 + *((float *)v1 + 12) * 1.3 + *((float *)v1 + 9);
+				v4 = ((*((float *)v1 + 12) + *((float *)v1 + 12)) * 65536.0 * -0.002777777777777778);
+				v5 = *((float *)v1 + 12) * 5.0 * 65536.0;
+				*((_DWORD *)v1 + 5) -= v4;
+				v6 = (v5 * 0.002777777777777778);
+				v9 = *((_DWORD *)v1 + 7) - v4;
+				*((_DWORD *)v1 + 6) += v6;
+				*((_DWORD *)v1 + 7) = v9;
+				MagatamaDebris_Display(a1);
+			}
+		}
+		else
+		{
+			v1->Action = 1;
+			v7 = rand();
+			*((_DWORD *)v1 + 8) = 0;
+			*((_DWORD *)v1 + 10) = 0;
+			v8 = (double)v7 * 0.000030517578;
+			*((float *)v1 + 12) = fabs(v8);
+			*((float *)v1 + 2) = (double)(signed int)(v8 * 360.0);
+			a1->DisplaySub = MagatamaDebris_Display;
+		}
+	}
+}
+
+
+
+void __cdecl MagatamaBreak(NJS_VECTOR SpawnPos)
+{
+	ObjectMaster *a1;
+	SETObjData MagatamaSetting = {};
+	EntityData1 *Stone;
+
+	MagatamaSetting.Distance = 200000.0f;
+
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016F8AC;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016EE58;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016EC38;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016EA18;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016E528;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016E128;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016DF08;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016D6D0;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016D4B0;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016D290;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016CF08;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016C43C;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016C21C;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016B930;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+
+	a1 = LoadObject((LoadObj)2, 3, MagatamaDebris);
+	a1->SETData.SETData = &MagatamaSetting;
+	a1->Data1->Object = &object_0016B710;
+	if (a1)
+	{
+		Stone = a1->Data1;
+		Stone->Position.x = SpawnPos.x;
+		Stone->Position.y = SpawnPos.y;
+		Stone->Position.z = SpawnPos.z;
+		Stone->Rotation.x = 0;
+		Stone->Rotation.y = 0;
+		Stone->Rotation.z = 0;
+		Stone->Scale.x = 1.0f;
+		Stone->Scale.y = 1.0f;
+		Stone->Scale.z = 1.0f;
+		a1->MainSub = MagatamaDebris;
+	}
+}
+
 void __cdecl DebrisDisplay(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
@@ -1583,6 +1970,11 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 	long double v8; // st7@8
 	NJS_MODEL_SADX *v10; // ebx@1
 	int v11;
+	NJS_VECTOR a2; //used for dust for Magatama rock when it breaks.
+
+	a2.x = 0;
+	a2.y = 2;
+	a2.z = 0;
 
 	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 1))
 	{
@@ -1593,23 +1985,31 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 	{
 		v1 = a1->Data1;
 		v10 = (NJS_MODEL_SADX *)*((_DWORD *)v1 + 4);
-		if (v1->Action)
+		if (v10 == &*(NJS_MODEL_SADX*)0xC2AF1C && v1->Scale.z != 0 && a1->Parent->Data1->InvulnerableTime == 0xFE) //Magatama destruction sequence
 		{
-			if (v1->Action == 1 && /*IsVisible((NJS_VECTOR *)((char *)v1 + 32), 3.0) && EntityData1Ptrs[0] && EntityData1Ptrs[0]->Position.y - 70.0 < *((float *)v1 + 9) && *((float *)v1 + 9) < (double)Camera_Data1->Position.y*/ v1->Position.y < 1720)
-			{
+			PlaySound(64, 0, 0, 0);
+			sub_4B9820(&v1->Position, &a2, 18.0); //make dust?
+			MagatamaBreak(a1->Data1->Position);
+			a1->DisplaySub = 0;
+			DeleteObjectMaster(a1);
+		}
 
-				//if (v10 == &*(NJS_MODEL_SADX*)0xC2AF1C)
-				//{
-				v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 7.0) + *((float *)v1 + 2);
-				/*}													// ^  This value controls how fast the debris move around. Higher makes them faster, lower makes them slower. 8.0 is original value.
-				else if (v10 == &*(NJS_MODEL_SADX*)0xC2C2E8)
+		else if (v1->Action)
+		{
+			if (v1->Action == 1 && v1->Position.y < 1720)
+			{
+				if (v10 == &*(NJS_MODEL_SADX*)0xC2AF1C && v1->Scale.z != 0)
 				{
-					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 4.5111828) + *((float *)v1 + 2);
+					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 6.0) + *((float *)v1 + 2); //Magatama rock speed
+				}														// ^  This value controls how fast the debris move around. Higher makes them faster, lower makes them slower. 8.0 is original value.
+				else if (v10 == &*(NJS_MODEL_SADX*)0xC2C2E8 && v1->Scale.z != 0)
+				{
+					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 5.5111828) + *((float *)v1 + 2); //Big pillar speed
 				}
 				else
 				{
-					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 5.92273662) + *((float *)v1 + 2);
-				}*/
+					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 7.0) + *((float *)v1 + 2);
+				}
 				*((float *)v1 + 2) = v2;
 				v3 = (v2 * 65536.0 * 0.002777777777777778);
 				*((float *)v1 + 8) = 650 + njCos(v3) * 90.0; //These fix the positioning of the debris; this one, and the one below it. (650 and -200)
@@ -1636,10 +2036,8 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 					v11 -= 720;
 				}
 
-				if ((v11 % 3) == 0)
+				if ((v11 % 12) == 0) //Randomly selecting the Magatama Rock
 				{
-					//Rings = v11;
-					//*(NJS_MODEL_SADX *)*((_DWORD *)v1 + 4) = TornadoBetaDebris[10];
 					v1->Scale.z = 0.01f;
 				}
 			}
@@ -1653,10 +2051,8 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 					v11 -= 720;
 				}
 
-				if ((v11 % 3) == 0)
+				if ((v11 % 4) == 0) //Randomly selecting the Giant Pillar
 				{
-					//Rings = v11;
-					//*(NJS_MODEL_SADX *)*((_DWORD *)v1 + 4) = TornadoBetaDebris[10];
 					v1->Scale.z = 0.01f;
 				}
 			}
@@ -1966,19 +2362,19 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 2, 1, 450000, 0, BLeaf, "B LEAF " } /* "B LEAF " */,							//16
 	{ 2, 2, 1, 550000, 0, WcWind, "WC WIND" } /* "WC WIND" */,							//17
 	{ 2, 2, 0, 0, 0, PuWind, "PU WIND" } /* "PU WIND" */,								//18
-	{ 2, 4, 1, 1250000, 0, Load_Prope1, "PROPE1 " } /* "PROPE1 " */,					//19
-	{ 2, 4, 1, 1250000, 0, Load_Prope2, "PROPE2 " } /* "PROPE2 " */,					//1A
-	{ 2, 4, 1, 1250000, 0, Load_Prope3, "PROPE3 " } /* "PROPE3 " */,					//1B
-	{ 2, 5, 1, 650000, 0, Load_Flower0, "FLOWER0" } /* "FLOWER0" */,					//1C
-	{ 2, 5, 1, 650000, 0, Load_Flower1, "FLOWER1" } /* "FLOWER1" */,					//1D
-	{ 2, 5, 1, 650000, 0, Load_Green0, "GREEN 0" } /* "GREEN 0" */,						//1E
+	{ 2, 4, 1, 1150000, 0, Load_Prope1, "PROPE1 " } /* "PROPE1 " */,					//19
+	{ 2, 4, 1, 1150000, 0, Load_Prope2, "PROPE2 " } /* "PROPE2 " */,					//1A
+	{ 2, 4, 1, 1150000, 0, Load_Prope3, "PROPE3 " } /* "PROPE3 " */,					//1B
+	{ 2, 5, 1, 550000, 0, Load_Flower0, "FLOWER0" } /* "FLOWER0" */,					//1C
+	{ 2, 5, 1, 550000, 0, Load_Flower1, "FLOWER1" } /* "FLOWER1" */,					//1D
+	{ 2, 5, 1, 550000, 0, Load_Green0, "GREEN 0" } /* "GREEN 0" */,						//1E
 	{ 2, 4, 1, 1050000, 0, Load_WKi1, "W KI1  " } /* "W KI1  " */,						//1F
 	{ 2, 4, 1, 1050000, 0, Load_WKi2, "W KI2  " } /* "W KI2  " */,						//20
-	{ 2, 5, 1, 650000, 0, Load_WKusa1, "W KUSA1" } /* "W KUSA1" */,						//21
-	{ 2, 5, 1, 650000, 0, Load_Grass1, "GRASS1 " } /* "GRASS1 " */,						//22
-	{ 2, 5, 1, 650000, 0, Load_Grass2, "GRASS2 " } /* "GRASS2 " */,						//23
-	{ 2, 5, 1, 650000, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
-	{ 2, 5, 1, 650000, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
+	{ 2, 5, 1, 550000, 0, Load_WKusa1, "W KUSA1" } /* "W KUSA1" */,						//21
+	{ 2, 5, 1, 550000, 0, Load_Grass1, "GRASS1 " } /* "GRASS1 " */,						//22
+	{ 2, 5, 1, 550000, 0, Load_Grass2, "GRASS2 " } /* "GRASS2 " */,						//23
+	{ 2, 5, 1, 550000, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
+	{ 2, 5, 1, 550000, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
 	{ 6, 3, 1, 950000, 0, LRock, "L ROCK1" } /* "L ROCK1" */,							//26
 	{ 6, 3, 1, 500000, 0, Load_Raft, "RAFT   " } /* "RAFT   " */,						//27
 	{ 7, 3, 1, 1250000, 0, Load_Raft2, "RAFT 2 " } /* "RAFT 2 " */,						//28
@@ -1999,11 +2395,11 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 4, 1, 950000, 0, Load_Siru13, "SIRU 13" } /* "SIRU 13" */,						//37
 	{ 2, 4, 1, 1250000, 0, Load_Yaji01, "YAJI 01" } /* "YAJI 01" */,					//38
 	{ 2, 4, 1, 1250000, 0, Load_Pole1, "POLE 1 " } /* "POLE 1 " */,						//39
-	{ 2, 4, 1, 1250000, 0, Load_Pole2, "POLE 2 " } /* "POLE 2 " */,						//3A
-	{ 2, 3, 1, 1250000, 0, WindyGate_Main, "W GATE " } /* "W GATE " */,					//3B
+	{ 2, 4, 1, 1150000, 0, Load_Pole2, "POLE 2 " } /* "POLE 2 " */,						//3A
+	{ 2, 3, 1, 1150000, 0, WindyGate_Main, "W GATE " } /* "W GATE " */,					//3B
 	{ 2, 3, 1, 1250000, 0, WindyGate_Main, "W GATE2" } /* "W GATE2" */,					//3C
-	{ 2, 3, 1, 1250000, 0, Load_Pot01, "POT01  " } /* "POT01  " */,						//3D
-	{ 2, 3, 1, 1250000, 0, Load_Pot02, "POT02  " } /* "POT02  " */,						//3E
+	{ 2, 3, 1, 1150000, 0, Load_Pot01, "POT01  " } /* "POT01  " */,						//3D
+	{ 2, 3, 1, 1150000, 0, Load_Pot02, "POT02  " } /* "POT02  " */,						//3E
 	{ 6, 3, 1, 950000, 0, Rock1, "ROCK 1 " } /* "ROCK 1 " */,							//3F
 	{ 2, 3, 1, 1250000, 0, Rock2, "ROCK 2 " } /* "ROCK 2 " */,							//40
 	{ 2, 3, 1, 1250000, 0, Rock3, "ROCK 3 " } /* "ROCK 3 " */,							//41
@@ -2025,15 +2421,15 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 2, 1, 1250000, 0, Load_BaneIwa, "BANEIWA" } /* "BANEIWA" */,					//51
 	{ 2, 5, 1, 650000, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,					//52
 	{ 2, 5, 1, 1250000, 0, Load_TakoW, "TAKO W " } /* "TAKO W " */,						//53
-	{ 2, 3, 1, 1250000, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54
-	{ 2, 3, 1, 1250000, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,						//55
-	{ 2, 3, 1, 1250000, 0, Load_Dome3, "DOME 3 " } /* "DOME 3 " */,						//56
-	{ 2, 5, 1, 1450000, 0, Load_Prop1, "PROP 1 " } /* "PROP 1 " */,						//57
+	{ 2, 3, 1, 1150000, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54
+	{ 2, 3, 1, 1150000, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,						//55
+	{ 2, 3, 1, 1150000, 0, Load_Dome3, "DOME 3 " } /* "DOME 3 " */,						//56
+	{ 2, 5, 1, 1150000, 0, Load_Prop1, "PROP 1 " } /* "PROP 1 " */,						//57
 	{ 2, 4, 1, 1250000, 0, Load_PropeA, "PROPE A" } /* "PROPE A" */,					//58
 	{ 2, 4, 1, 1250000, 0, Load_PropeB, "PROPE B" } /* "PROPE B" */,					//59
 	{ 2, 4, 1, 1250000, 0, Load_PropeC, "PROPE C" } /* "PROPE C" */,					//5A
 	{ 6, 3, 1, 950000, 0, Load_IwaB, "IWA B  " } /* "IWA B  " */,						//5B
-	{ 2, 5, 1, 650000, 0, Load_PinkF, "PINK F " } /* "PINK F " */,						//5C
+	{ 2, 5, 1, 550000, 0, Load_PinkF, "PINK F " } /* "PINK F " */,						//5C
 	{ 6, 3, 1, 950000, 0, Load_IBou01, "I BOU01" } /* "I BOU01" */,						//5D
 	{ 6, 3, 1, 950000, 0, Load_IBou02, "I BOU02" } /* "I BOU02" */,						//5E
 	{ 6, 3, 1, 950000, 0, Load_IHah01, "I HAH01" } /* "I HAH01" */,						//5F
