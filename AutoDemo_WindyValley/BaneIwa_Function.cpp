@@ -174,7 +174,7 @@ void __cdecl Load_BaneIwa(ObjectMaster *a1)
 			v2->Index = 5;
 			sub_7A46C0(a1, 1);
 			BaneIwa_Display(a1);
-			//PlaySound(9, 0, 0, 0);
+			PlaySound(9, 0, 0, 0);
 			break;
 		case 3:
 			sub_46C150(a1);
