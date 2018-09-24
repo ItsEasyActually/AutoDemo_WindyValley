@@ -890,7 +890,7 @@ void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Tra
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 
-		(a3.y) = (v1->Position.y - 150);
+		(a3.y) = (v1->Position.y + 30);
 		(a3.z) = (v1->Position.z + 150);
 		(a3.x) = (v1->Position.x + 50);
 
