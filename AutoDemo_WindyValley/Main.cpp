@@ -2036,7 +2036,7 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 					v11 -= 720;
 				}
 
-				if ((v11 % 12) == 0) //Randomly selecting the Magatama Rock
+				if ((v11 % 14) == 0) //Randomly selecting the Magatama Rock
 				{
 					v1->Scale.z = 0.01f;
 				}
@@ -2051,7 +2051,7 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 					v11 -= 720;
 				}
 
-				if ((v11 % 4) == 0) //Randomly selecting the Giant Pillar
+				if ((v11 % 5) == 0) //Randomly selecting the Giant Pillar
 				{
 					v1->Scale.z = 0.01f;
 				}
@@ -2444,7 +2444,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 1, 950000, 0, Load_SaraM2, "SARA M2" } /* "SARA M2" */,						//68
 	{ 6, 3, 1, 950000, 0, Load_SaraS1, "SARA S1" } /* "SARA S1" */,						//69
 	{ 6, 3, 1, 950000, 0, Load_SaraS2, "SARA S2" } /* "SARA S2" */,						//6A
-	{ 2, 4, 0, 0, 0, NullFunction, "TSPRING" } /* "TSPRING" */,							//6B
+	{ 2, 4, 0, 0, 0, TSpring_Main, "TSPRING" } /* "TSPRING" */,							//6B
 	{ 2, 4, 0, 0, 0, Load_Lauchin, "LAUCHIN" } /* "LAUCHIN" */,							//6C
 	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,							//6D
 	{ 7, 3, 1, 1000000, 0, Load_Wele, "WELE   " } /* "WELE   " */,					//6E

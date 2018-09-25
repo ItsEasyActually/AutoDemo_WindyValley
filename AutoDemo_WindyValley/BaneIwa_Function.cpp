@@ -397,3 +397,160 @@ void __cdecl Load_Lauchin(ObjectMaster *a1)
 		}
 	}
 }
+
+void __cdecl TSpring_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+	Angle v2; // eax
+	Angle v3; // eax
+	Angle v4; // eax
+	float YDist; // ST04_4
+	float modify; // [esp+10h] [ebp+4h]
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		v2 = v1->Rotation.z;
+		if (v2)
+		{
+			njRotateZ(0, (unsigned __int16)v2);
+		}
+		v3 = v1->Rotation.x;
+		if (v3)
+		{
+			njRotateX(0, (unsigned __int16)v3);
+		}
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		sub_407A00((NJS_MODEL_SADX*)TSpring_Isle.model, 1.0);
+		njPushMatrix(0);
+		njTranslate(0, TSpring_Coil.pos[0], TSpring_Coil.pos[1], TSpring_Coil.pos[2]);
+		modify = *(float*)&v1->CharIndex + 1.0;
+		njScale(0, 1.0, modify, 1.0);
+		if (modify <= 1.0)
+		{
+			modify = 1.0;
+		}
+		sub_407A00((NJS_MODEL_SADX*)TSpring_Coil.model, modify);
+		njPopMatrixEx();
+		njPushMatrixEx();
+		njTranslate(0, TSpring_Cap.pos[0], TSpring_Cap.pos[1], TSpring_Cap.pos[2]);
+		YDist = *(float*)&v1->CharIndex * 4.0;
+		njTranslate(0, 0.0, YDist, 0.0);
+		sub_407A00((NJS_MODEL_SADX*)TSpring_Cap.model, 1.0);
+		njPopMatrix(1u);
+		njPopMatrix(1u);
+	}
+}
+
+void __cdecl TSpring_Main(ObjectMaster *a1)
+{
+	ObjectMaster *v1; // edi
+	EntityData1 *data1; // esi
+	double v3; // st7
+	char v5; // c0
+	unsigned __int8 i; // bl MAPDST
+	double v7; // st7
+	char v8; // al
+	__int16 v9; // ax
+	CollisionInfo *v10; // ecx
+
+	v1 = a1;
+	data1 = a1->Data1;
+	if (!ClipSetObject(a1))
+	{
+		switch (data1->Action)
+		{
+		case 0:
+			a1->DeleteSub = DeleteObject_;
+			a1->DisplaySub = TSpring_Display;
+			Collision_Init(a1, TSpring_Collision, 1, 4u);
+			(data1->CollisionInfo->Flags) |= 0x40u;
+			data1->Scale.x = 180.0;
+			data1->Scale.z = 0.0;
+			*(float*)&data1->LoopData = 0.5f;
+			data1->Action = 1;
+			break;
+		case 1:
+			*(float*)&data1->CharIndex = -fabs(
+				njSin((unsigned __int64)(data1->Scale.x * 65536.0 * 0.002777777777777778))
+				* *(float*)&data1->LoopData);
+			if (ObjectSelectedDebug(a1))
+			{
+				DisplayDebugString(1114132, "<- ADD YSPD");
+			}
+			if (!GetDebugMode())
+			{
+				v3 = data1->Scale.x + data1->Scale.z;
+				data1->Scale.x = v3;
+				if (!v5 && v3 < data1->Scale.z + 290.0)
+				{
+					data1->Scale.z = 18.0;
+				}
+				v7 = njCos((unsigned __int64)((data1->Scale.x - 180.0) * 0.1 * 65536.0 * 0.002777777777777778)) * 0.60000002;
+				i = 0;
+				*(float*)&data1->LoopData = v7;
+				if (v7 < 0.0)
+				{
+					data1->Scale.x = 180.0;
+					data1->Scale.z = 0.0;
+				}
+				v8 = data1->Index + 1;
+				data1->Index = v8;
+				if ((unsigned __int8)v8 > 0xAu)
+				{
+					v10 = data1->CollisionInfo;
+					v9 = v10->Flags;
+					if (v9 & 1)
+					{
+						v10->Flags = v9 & 0xFFFE;
+						i = 0;
+						while (data1->CollisionInfo->CollidingObject->Object != GetCharacterObject(i))
+						{
+							if (++i >= 2u)
+							{
+								goto LABEL_17;
+							}
+						}
+						data1->CharIndex = 0.1f;
+						data1->NextAction = i;
+						data1->Scale.z = 20.0;
+						data1->Scale.x = 270.0;
+						data1->Action = 2;
+					}
+					else
+					{
+					LABEL_17:
+						if (data1->Action != 2)
+						{
+							AddToCollisionList(data1);
+						}
+					}
+				}
+				if (data1->Index > 0x32u)
+				{
+					data1->Index = 50;
+				}
+			}
+			TSpring_Display(v1);
+			break;
+		case 2:
+			PlaySound(9, 0, 0, 0);
+			data1->Index = 0;
+			sub_7A46C0(a1, 0);
+			TSpring_Display(a1);
+			break;
+		case 3:
+			sub_46C150(a1);
+			break;
+		default:
+			return;
+		}
+	}
+}
