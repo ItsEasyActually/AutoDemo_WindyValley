@@ -218,6 +218,8 @@ bool Skybox2Loaded = false;
 bool Skybox3Loaded = false;
 SETObjData SkyboxThings = {};
 
+bool ClassicSpringCheat = false;
+
 void __cdecl WVAct1_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
@@ -515,6 +517,11 @@ void __cdecl Act3SkyBox_Load(void)
 			boxthree->Scale.y = 1.0f;
 			boxthree->Scale.z = 1.0f;
 		}
+
+		if ((ControllerPointers[0]->HeldButtons & Buttons_X) && CurrentCharacter != 6)
+		{
+			ClassicSpringCheat = true;
+		}
 	}
 	Skybox3Loaded = true;
 }
@@ -569,6 +576,11 @@ void __cdecl Act1SkyBox_Load(void)
 			boxone->Scale.x = 1.0f;
 			boxone->Scale.y = 1.0f;
 			boxone->Scale.z = 1.0f;
+		}
+
+		if ((ControllerPointers[0]->HeldButtons & Buttons_X) && CurrentCharacter != 6)
+		{
+			ClassicSpringCheat = true;
 		}
 	}
 	Skybox1Loaded = true;
@@ -2213,6 +2225,19 @@ int __cdecl WindCheck(void)
 	return 0;
 }
 
+void __cdecl SecretSpringCheck(ObjectMaster *a1)
+{
+	if (ClassicSpringCheat == true)
+	{
+		JamSpring_Main(a1);
+	}
+
+	else
+	{
+		Spring_Main(a1);
+	}
+}
+
 //Tanpopo (Dandelion)
 ObjectThing Tanpopo_Particles[] = {
 	{ sub_4E0050, LoadObj_Data1, 0, 0, 0, 0, 0, 0, 0, &Particle_Tanpopo },
@@ -2338,7 +2363,7 @@ void __cdecl Tanpopo_Main(ObjectMaster *a1)
 //SADX Object List for Windy Valley
 ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, Ring_Main, "RING   " } /* "RING   " */,							//00
-	{ 2, 2, 0, 0, 0, Spring_Main, "SPRING " } /* "SPRING " */,							//01
+	{ 2, 2, 0, 0, 0, SecretSpringCheck, "SPRING " } /* "SPRING " */,					//01 Cheat code? :3
 	{ 2, 2, 0, 0, 0, SpringB_Main, "SPRINGB" } /* "SPRINGB" */,							//02
 	{ 3, 3, 0, 0, 0, DashPanel_Main, "O AXPNL" } /* "O AXPNL" */,						//03
 	{ 6, 3, 0, 0, 0, SwingSpikeBall_Load, "O IRONB" } /* "O IRONB" */,					//04
@@ -2447,7 +2472,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 4, 0, 0, 0, TSpring_Main, "TSPRING" } /* "TSPRING" */,							//6B
 	{ 2, 4, 0, 0, 0, Load_Lauchin, "LAUCHIN" } /* "LAUCHIN" */,							//6C
 	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,							//6D
-	{ 7, 3, 1, 1000000, 0, Load_Wele, "WELE   " } /* "WELE   " */,					//6E
+	{ 7, 3, 1, 1000000, 0, Load_Wele, "WELE   " } /* "WELE   " */,						//6E
 	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,						//6F
 	{ 2, 3, 0, 0, 0, BoaBoa_Main, "E HEVY " } /* "E HEVY " */,							//70
 	{ 2, 3, 0, 0, 0, Leon_Load, "E LEON " } /* "E LEON " */,							//71
@@ -2812,6 +2837,11 @@ extern "C"
 				LoadedDebris = false;
 				DebrisFrame = 0;
 			}
+		}
+
+		if (CurrentLevel != 2 && ClassicSpringCheat == true)
+		{
+			ClassicSpringCheat = false;
 		}
 	}
 
