@@ -563,6 +563,9 @@ void __cdecl JamSpring_Display(ObjectMaster *a1)
 	Angle v4; // eax
 	float YDist; // ST04_4
 	float modify; // [esp+10h] [ebp+4h]
+	Angle v5;
+	Angle v6;
+
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -585,9 +588,20 @@ void __cdecl JamSpring_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
+
+		v5 = Jam_Base.ang[1];
+		if (v5)
+		{
+			njRotateY(0, (unsigned __int16)v5);
+		}
 		sub_407A00((NJS_MODEL_SADX*)Jam_Base.model, 1.0);
 		njPushMatrix(0);
 		njTranslate(0, (0 + Jam_Coil.pos[0]), (0 + Jam_Coil.pos[2]), (0 + Jam_Coil.pos[2]));
+		v6 = Jam_Coil.ang[1];
+		if (v6)
+		{
+			njRotateY(0, (unsigned __int16)v6);
+		}
 		modify = *(float*)&v1->CharIndex + 1.0;
 		//njScale(0, 1.0, modify, 1.0);
 		if (modify <= 1.0)
