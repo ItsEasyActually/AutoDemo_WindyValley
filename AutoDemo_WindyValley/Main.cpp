@@ -2633,6 +2633,9 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	//WriteJump((void *)0x4DF740, PreHypoDebris); //Testing something
 	WriteData<1>((void*)0x04DF75C, 0xFFu); //Controlling how long each piece of debris is spawned for. 96u is original value.
 
+	WriteData<1>((void*)0x04E362C, 0x2Cu); //Controlling how long the (normal) leaves of Pu Wind last for. 64u (100) is original value.
+	WriteData<1>((void*)0x04E362D, 0x1u); //Controlling how long the (normal) leaves of Pu Wind last for. 0u (100) is original value. These both are setting it to 300, the same as the beta effect.
+
 
 	WriteCall((void *)0x4E379D, WindCheck); //Removing ClipSet check for the leaves of Pu Wind.
 	WriteCall((void *)0x4E354B, WindCheck);
