@@ -2410,25 +2410,25 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 4, 1, 950000, 0, Load_Sirusi2, "SIRUSI2" } /* "SIRUSI2" */,					//2D
 	{ 6, 4, 1, 950000, 0, Load_Sirusi3, "SIRUSI3" } /* "SIRUSI3" */,					//2E
 	{ 6, 4, 1, 950000, 0, Load_Sirusi4, "SIRUSI4" } /* "SIRUSI4" */,					//2F
-	{ 2, 4, 1, 1250000, 0, Load_Sirusi5, "SIRUSI5" } /* "SIRUSI5" */,					//30
-	{ 2, 4, 1, 1250000, 0, Load_Sirusi6, "SIRUSI6" } /* "SIRUSI6" */,					//31
-	{ 2, 4, 1, 1250000, 0, Load_Sirusi7, "SIRUSI7" } /* "SIRUSI7" */,					//32
-	{ 2, 4, 1, 1250000, 0, Load_Sirusi8, "SIRUSI8" } /* "SIRUSI8" */,					//33
-	{ 2, 4, 1, 1250000, 0, Load_Sirusi9, "SIRUSI9" } /* "SIRUSI9" */,					//34
+	{ 2, 4, 1, 1150000, 0, Load_Sirusi5, "SIRUSI5" } /* "SIRUSI5" */,					//30
+	{ 2, 4, 1, 1150000, 0, Load_Sirusi6, "SIRUSI6" } /* "SIRUSI6" */,					//31
+	{ 2, 4, 1, 1150000, 0, Load_Sirusi7, "SIRUSI7" } /* "SIRUSI7" */,					//32
+	{ 2, 4, 1, 1150000, 0, Load_Sirusi8, "SIRUSI8" } /* "SIRUSI8" */,					//33
+	{ 2, 4, 1, 1150000, 0, Load_Sirusi9, "SIRUSI9" } /* "SIRUSI9" */,					//34
 	{ 6, 4, 1, 950000, 0, Load_Siru11, "SIRU 11" } /* "SIRU 11" */,						//35
 	{ 6, 4, 1, 950000, 0, Load_Siru12, "SIRU 12" } /* "SIRU 12" */,						//36
 	{ 6, 4, 1, 850000, 0, Load_Siru13, "SIRU 13" } /* "SIRU 13" */,						//37
 	{ 2, 4, 1, 1250000, 0, Load_Yaji01, "YAJI 01" } /* "YAJI 01" */,					//38
-	{ 2, 4, 1, 1250000, 0, Load_Pole1, "POLE 1 " } /* "POLE 1 " */,						//39
+	{ 2, 4, 1, 1150000, 0, Load_Pole1, "POLE 1 " } /* "POLE 1 " */,						//39
 	{ 2, 4, 1, 1150000, 0, Load_Pole2, "POLE 2 " } /* "POLE 2 " */,						//3A
 	{ 2, 3, 1, 1150000, 0, WindyGate_Main, "W GATE " } /* "W GATE " */,					//3B
 	{ 2, 3, 1, 1250000, 0, WindyGate_Main, "W GATE2" } /* "W GATE2" */,					//3C
 	{ 2, 3, 1, 1150000, 0, Load_Pot01, "POT01  " } /* "POT01  " */,						//3D
 	{ 2, 3, 1, 1150000, 0, Load_Pot02, "POT02  " } /* "POT02  " */,						//3E
 	{ 6, 3, 1, 850000, 0, Rock1, "ROCK 1 " } /* "ROCK 1 " */,							//3F
-	{ 2, 3, 1, 1250000, 0, Rock2, "ROCK 2 " } /* "ROCK 2 " */,							//40
-	{ 2, 3, 1, 1250000, 0, Rock3, "ROCK 3 " } /* "ROCK 3 " */,							//41
-	{ 2, 3, 1, 1250000, 0, Rock5, "ROCK 5 " } /* "ROCK 5 " */,							//42
+	{ 2, 3, 1, 1150000, 0, Rock2, "ROCK 2 " } /* "ROCK 2 " */,							//40
+	{ 2, 3, 1, 1150000, 0, Rock3, "ROCK 3 " } /* "ROCK 3 " */,							//41
+	{ 2, 3, 1, 1150000, 0, Rock5, "ROCK 5 " } /* "ROCK 5 " */,							//42
 	{ 6, 3, 1, 750000, 0, Load_IDai1, "I DAI 1" } /* "I DAI 1" */,						//43
 	{ 6, 3, 1, 750000, 0, Load_IDai2, "I DAI 2" } /* "I DAI 2" */,						//44
 	{ 6, 3, 1, 750000, 0, Load_IDai3, "I DAI 3" } /* "I DAI 3" */,						//45
