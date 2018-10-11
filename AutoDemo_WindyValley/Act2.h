@@ -8302,14 +8302,17 @@ COL collist_00804360[] = {
 	{ { 636.8798f, 156.9151f, -260.6076f }, 26.2201f, 0, 0, &object_001A9A30, 0, 0x80000001 },
 	{ { 603.7918f, 349.0829f, -178.4237f }, 33.62871f, 0, 0, &object_001AA740, 0, 0x80000001 }
 };
+NJS_TEXNAME textures_windy2[25];
+NJS_TEXLIST texlist_windy2 = { arrayptrandlength(textures_windy2) };
 
-LandTable landtable_008046C0 = { LengthOfArray(collist_00804360), 0, 0xC, 3000, collist_00804360, NULL, NULL, &WINDY02_TEXLIST, 0, 0 };
+LandTable landtable_008046C0 = { LengthOfArray(collist_00804360), 0, 0xC, 3000, collist_00804360, NULL, "WINDY02", (NJS_TEXLIST *)&texlist_windy2, 0, 0 };
 
+/*
 PVMEntry WindyValley2Textures_list[] = {
 	{ "WINDY02", &WINDY02_texlist }
 };
 
-LevelPVMList WindyValley2Textures = { levelact(LevelIDs_WindyValley, 1), arraylengthandptr(WindyValley2Textures_list) };
+LevelPVMList WindyValley2Textures = { levelact(LevelIDs_WindyValley, 1), arraylengthandptr(WindyValley2Textures_list) };*/
 
 Sint16 poly_007FD264[] = {
 	0, 1, 3, 2

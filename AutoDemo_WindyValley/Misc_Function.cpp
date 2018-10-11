@@ -280,18 +280,7 @@ void __cdecl SBridg(ObjectMaster *a1)
 	a1->MainSub = (void(__cdecl *)(ObjectMaster *))sub_4E0A60;
 }
 
-//New Objects
-void __cdecl Load_NextAct(ObjectMaster *a1)
-{
-	{
-		EntityData1 *v1;
-
-		v1 = a1->Data1;
-		IncrementAct(1);
-
-	}
-}
-
+//New Object
 void __cdecl BrPole_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1

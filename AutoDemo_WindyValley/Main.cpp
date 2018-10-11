@@ -764,6 +764,10 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 			if (!IsGamePaused())
 			{
 				sub_4B9820(&a3, &a2, 35.0); //This is the dust cloud subroutine. Easy to use. It goes: Spawn Vector, Directional Vector, Scale.
+				if (FramerateSetting >= 2)
+				{
+					sub_4B9820(&a3, &a2, 35.0);
+				}
 			}
 		}
 
@@ -914,6 +918,10 @@ void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Tra
 			if (TransTornadoDust == true) //God, this is dumb. I'm just trying to mimic the effect in the footage as best I can until someone comes in and shows me where it is or how to do this better.
 			{
 				sub_4B9820(&a3, &a2, 30.0); //Dust cloud routine.
+				if (FramerateSetting >= 2)
+				{
+					sub_4B9820(&a3, &a2, 30.0);
+				}
 				TransTornadoDust = false;
 			}
 
@@ -2486,8 +2494,8 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 1, 40000000, 0, Load_IHah06, "I HAH06" } /* "I HAH06" */,					//79
 	{ 15, 3, 1, 160000, 0, ItemBoxAir_Main, "O ItemBoxAir" },/*O ItemboxAir*/			//7A
 	{ 6, 3, 1, 1000000, 0, Load_BrPole, "BRPOLE" } /* "BRPOLE" */,						//7B
-	{ 6, 3, 1, 4000000, 0, NullFunction, "WGEAR" } /* "WGEAR" */,						//7C
-	{ 6, 3, 1, 4000000, 0, NullFunction, "WBOLT" } /* "WBOLT" */,						//7D
+	{ 6, 3, 1, 4000000, 0, Load_WGear, "WGEAR" } /* "WGEAR" */,							//7C
+	{ 6, 3, 1, 4000000, 0, Load_WBolt, "WBOLT" } /* "WBOLT" */,							//7D
 	{ 2, 2, 0, 0, 0, CSphere, "C SPHERE" } /* "C SPHERE" */,							//7E
 	{ 2, 2, 0, 0, 0, ColCylinder_Main, "C CYLINDER" } /* "C CYLINDER" */,				//7F
 	{ 2, 2, 0, 0, 0, ColCube_Main, "C CUBE" } /* "C CUBE" */,							//80
@@ -2534,7 +2542,7 @@ PointerInfo pointers[] = {
 	//ptrdecl(0x90F020, &WindyValley2Textures),
 	ptrdecl(0xBFD824, &WindyValley2DeathZones),
 	ptrdecl(0x97DA50, &landtable_0080433C),
-	ptrdecl(0x90F024, &WindyValley3Textures),
+	//ptrdecl(0x90F024, &WindyValley3Textures),
 	ptrdecl(0xBFD828, &WindyValley3DeathZones),
 	ptrdecl(0x974B38, &WindyValleyObjectList),
 	ptrdecl(0x974B3C, &WindyValleyObjectList),
@@ -2757,6 +2765,14 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 
 	*(NJS_OBJECT*)0xC0EC58 = object_0016FA00; //Flat, Rectangular Wood
 	*(NJS_MODEL_SADX*)0xC0EC2C = attach_0016F9D8;
+
+	ResizeTextureList(&OBJ_WINDY_TEXLIST, 128);
+	ResizeTextureList(&WINDY_BACK_TEXLIST, 3);
+	ResizeTextureList(&WINDY_BACK2_TEXLIST, 2);
+	ResizeTextureList(&WINDY_BACK3_TEXLIST, 3);
+	ResizeTextureList(&WINDY01_TEXLIST, 42);
+	ResizeTextureList(&WINDY02_TEXLIST, 25);
+	ResizeTextureList(&WINDY03_TEXLIST, 55);
 
 
 	for (int j = 0; j < 16; j++) //This sets E103's positions correctly so he can be fought without him flying off.

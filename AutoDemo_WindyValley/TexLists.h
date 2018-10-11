@@ -27,7 +27,7 @@ NJS_TEXNAME WINDY03_SKY01_texnames[] = {
 };
 
 NJS_TEXLIST BETAWINDY_BACK3_texlist = { arrayptrandlength(WINDY03_SKY01_texnames) };
-
+/*
 NJS_TEXNAME WINDY01_texlist_entries[] = {
 	{ "S_wt12" },
 	{ "S_w0" },
@@ -296,7 +296,7 @@ NJS_TEXNAME OBJWINDY_texlist_entries[] = {
 };
 
 NJS_TEXLIST OBJWINDY_texlist = { arrayptrandlength(OBJWINDY_texlist_entries) };
-
+*/
 NJS_TEXNAME Tomado_texlist_entries[] = {
 	{ "Tatu50" },
 	{ "Tatu60" },

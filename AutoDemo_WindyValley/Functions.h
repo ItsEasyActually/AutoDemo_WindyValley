@@ -134,3 +134,7 @@ void __cdecl Load_TRaft2(ObjectMaster *a1);
 
 //Wele Function
 void __cdecl Load_Wele(ObjectMaster *a1);
+
+//Easter Egg functions
+void __cdecl Load_WGear(ObjectMaster *a1);
+void __cdecl Load_WBolt(ObjectMaster *a1);

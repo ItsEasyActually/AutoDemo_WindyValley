@@ -397,7 +397,7 @@ NJS_VECTOR normal_0012BBDC[] = {
 NJS_MODEL_SADX attach_0012BCD8 = { vertex_0012BAE0, normal_0012BBDC, LengthOfArray<Sint32>(vertex_0012BAE0), meshlist_0012BA68, matlist_0012B854, LengthOfArray<Uint16>(meshlist_0012BA68), LengthOfArray<Uint16>(matlist_0012B854),{ 2.278302f, 8.605138f, -0.08141299f }, 8.730005f, NULL };
 
 NJS_OBJECT Object_Sirusi1 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL, &attach_0012BCD8, 0, 0, 0, 0, 0, 0, 1, 1, 1, &Sirusi1_Sign, NULL };
-
+/*
 NJS_MKEY_A Sirusi1_Action_1_rot[] = {
 	{ 0, 0, 0, 0 },
 	{ 2, 0x800, 0, 0 },
@@ -439,7 +439,7 @@ NJS_MOTION Sirusi1_Action = { Sirusi1_Action_mdat, 56, NJD_MTYPE_POS_0 | NJD_MTY
 
 NJS_ACTION action_Sirusi1_Action = { &Object_Sirusi1, &Sirusi1_Action };
 
-
+*/
 NJS_MATERIAL matlist_001200EC[] = {
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 103, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 44, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },

@@ -146,6 +146,7 @@
     <ClInclude Include="Act2.h" />
     <ClInclude Include="Act3.h" />
     <ClInclude Include="AdditionalVariables.h" />
+    <ClInclude Include="GoldGearandBolt.h" />
     <ClInclude Include="Spring_Objects.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="Bridge_Pole.h" />
@@ -189,6 +190,7 @@
     <ClCompile Include="Debris_Functions.cpp" />
     <ClCompile Include="Fan_Functions.cpp" />
     <ClCompile Include="Foliage_Functions.cpp" />
+    <ClCompile Include="GoldGearFunctions.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
