@@ -29,6 +29,7 @@ DataPointer(NJS_OBJECT, stru_C06450, 0xC06450); //Skybox model pointers
 DataPointer(NJS_OBJECT, stru_C0655C, 0xC0655C);
 DataPointer(int, DroppedFrames, 0x03B1117C);
 //DataArray(EntityData1 *, EntityData1Ptrs, 0x3B42E10, 8);
+DataPointer(NJS_TEXLIST, WINDY_BACK_TEXLIST, 0xC06B10);
 
 DataPointer(NJS_OBJECT, stru_C158E0, 0xC158E0);
 DataPointer(NJS_OBJECT, stru_C159FC, 0xC159FC); //These three are models for PuWind, WcWind, and BLeaf
