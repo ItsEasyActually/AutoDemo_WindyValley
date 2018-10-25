@@ -1467,7 +1467,7 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 				}
 			}
 		}*/
-		if (PlayChar != nullptr && PlayChar->Position.z < -2050 && PlayChar->Position.y > -460) //Loading the swerving tornado
+		if (PlayChar != nullptr && PlayChar->Position.z < -2000 && PlayChar->Position.y > -460) //Loading the swerving tornado
 		{
 			Load_DecoTornado();
 		}
