@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Functions">
       <UniqueIdentifier>{45602f73-daa4-4e3f-bbd0-8d7aeb97956c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Binary">
+      <UniqueIdentifier>{aad29d1c-8986-4571-92ae-bce6c0bf090b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Textures">
+      <UniqueIdentifier>{82aede7d-0148-472f-927d-57c4dcdc9892}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -218,5 +224,106 @@
     <ClCompile Include="GoldGearFunctions.cpp">
       <Filter>Source Files\Functions</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Cam\CAM0200E_AD.bin">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Cam\CAM0200S_AD.bin">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Cam\CAM0201S_AD.bin">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Cam\CAM0202M_AD.bin">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Cam\CAM0202S_AD.bin">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Lighting\PL_20B.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Lighting\PL_21B.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Lighting\PL_22B.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Lighting\SL_20B.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Lighting\SL_21B.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Lighting\SL_22B.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SET0200E_AD.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SET0200S_AD.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SET0200S_Orig.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SET0201S_AD.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SET0201S_Orig.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SET0202M_AD.bin">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SET0202S_AD.bin">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SET0202S_Orig.BIN">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SETMI0200E.bin">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SETMI0200S.bin">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SETMI0201S.bin">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Set\SETMI0202M.bin">
+      <Filter>Source Files\Binary</Filter>
+    </None>
+    <None Include="Textures\Debris.pvm">
+      <Filter>Source Files\Textures</Filter>
+    </None>
+    <None Include="Textures\OBJ_WINDY_AD.pvm">
+      <Filter>Source Files\Textures</Filter>
+    </None>
+    <None Include="Textures\Tomado.pvm">
+      <Filter>Source Files\Textures</Filter>
+    </None>
+    <None Include="Textures\WINDY_BACK_AD.PVM">
+      <Filter>Source Files\Textures</Filter>
+    </None>
+    <None Include="Textures\WINDY_BACK2_AD.PVM">
+      <Filter>Source Files\Textures</Filter>
+    </None>
+    <None Include="Textures\WINDY_BACK3_AD.PVM">
+      <Filter>Source Files\Textures</Filter>
+    </None>
+    <None Include="Textures\WINDY_E103_AD.PVM">
+      <Filter>Source Files\Textures</Filter>
+    </None>
+    <None Include="Textures\WINDY01_AD.PVM">
+      <Filter>Source Files\Textures</Filter>
+    </None>
+    <None Include="Textures\WINDY02_AD.pvm">
+      <Filter>Source Files\Textures</Filter>
+    </None>
+    <None Include="Textures\WINDY03_AD.PVM">
+      <Filter>Source Files\Textures</Filter>
+    </None>
   </ItemGroup>
 </Project>
