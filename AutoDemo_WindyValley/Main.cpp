@@ -26,7 +26,8 @@
 //Functions
 #include "Functions.h"
 
-#define ReplaceSETFile(a) helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" a "_AD.BIN");
+#define ReplaceBINFile(a) helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" a "_AD.BIN");
+#define ReplaceOrigFile(a) helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" a "_Orig");
 #define ReplacePVMFile(a) helperFunctions.ReplaceFile("system\\" a ".PVM", "system\\" a "_AD.PVM");
 
 //Variables
@@ -791,11 +792,11 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v2);
 		}
-		sub_407A00((NJS_MODEL_SADX *)Decor_Tornado1.model, 1.0);
-		njPushMatrix(0);
-		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado3.model, (QueuedModelFlagsB)0, 1.0);
+		sub_407A00((NJS_MODEL_SADX *)Decor_Tornado3.model, 1.0);
 		njPushMatrix(0);
 		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado2.model, (QueuedModelFlagsB)0, 1.0);
+		njPushMatrix(0);
+		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado1.model, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
@@ -1466,7 +1467,7 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 				}
 			}
 		}*/
-		if (PlayChar != nullptr && PlayChar->Position.z < -2050 && PlayChar->Position.y > -460) //Loading the swerving tornado
+		if (PlayChar != nullptr && PlayChar->Position.z < -2000 && PlayChar->Position.y > -460) //Loading the swerving tornado
 		{
 			Load_DecoTornado();
 		}
@@ -2600,13 +2601,24 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	ReplacePVMFile("OBJ_WINDY", "OBJ_WINDY_AD");
 	ReplacePVMFile("WINDY_E103", "WINDY_E103_AD");
 
+	ReplaceBINFile("SET0200S", "SET0200S_AD");
+	ReplaceBINFile("SET0201S", "SET0201S_AD");
+	ReplaceBINFile("SET0202S", "SET0202S_AD");
+	ReplaceBINFile("SET0202M", "SET0202M_AD");
+	ReplaceBINFile("SET0200E", "SET0200E_AD");
+	ReplaceBINFile("CAM0200S", "CAM0200S_AD");
+	ReplaceBINFile("CAM0201S", "CAM0201S_AD");
+	ReplaceBINFile("CAM0202S", "CAM0202S_AD");
+	ReplaceBINFile("CAM0202M", "CAM0202M_AD");
+	ReplaceBINFile("CAM0200E", "CAM0200E_AD");
+
 	const IniFile *config = new IniFile(std::string(path) + "\\config.ini");
 	ADSetFile = config->getBool("Options", "ADSetFile", false);
 	if (ADSetFile)
 	{
-		ReplaceSETFile("SET0200S", "SET0200S_AD");
-		ReplaceSETFile("SET0201S", "SET0201S_AD");
-		ReplaceSETFile("SET0202S", "SET0202S_AD");
+		ReplaceOrigFile("SET0200S", "SET0200S_Orig");
+		ReplaceOrigFile("SET0201S", "SET0201S_Orig");
+		ReplaceOrigFile("SET0202S", "SET0202S_Orig");
 	}
 	delete config;
 

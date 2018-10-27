@@ -223,6 +223,41 @@
     <ClCompile Include="UserCall_Functions.cpp" />
     <ClCompile Include="Wele_Function.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Cam\CAM0200E_AD.bin" />
+    <None Include="Cam\CAM0200S_AD.bin" />
+    <None Include="Cam\CAM0201S_AD.bin" />
+    <None Include="Cam\CAM0202M_AD.bin" />
+    <None Include="Cam\CAM0202S_AD.bin" />
+    <None Include="Lighting\PL_20B.BIN" />
+    <None Include="Lighting\PL_21B.BIN" />
+    <None Include="Lighting\PL_22B.BIN" />
+    <None Include="Lighting\SL_20B.BIN" />
+    <None Include="Lighting\SL_21B.BIN" />
+    <None Include="Lighting\SL_22B.BIN" />
+    <None Include="Set\SET0200E_AD.BIN" />
+    <None Include="Set\SET0200S_AD.BIN" />
+    <None Include="Set\SET0200S_Orig.BIN" />
+    <None Include="Set\SET0201S_AD.BIN" />
+    <None Include="Set\SET0201S_Orig.BIN" />
+    <None Include="Set\SET0202M_AD.bin" />
+    <None Include="Set\SET0202S_AD.bin" />
+    <None Include="Set\SET0202S_Orig.BIN" />
+    <None Include="Set\SETMI0200E.bin" />
+    <None Include="Set\SETMI0200S.bin" />
+    <None Include="Set\SETMI0201S.bin" />
+    <None Include="Set\SETMI0202M.bin" />
+    <None Include="Textures\Debris.pvm" />
+    <None Include="Textures\OBJ_WINDY_AD.pvm" />
+    <None Include="Textures\Tomado.pvm" />
+    <None Include="Textures\WINDY01_AD.PVM" />
+    <None Include="Textures\WINDY02_AD.pvm" />
+    <None Include="Textures\WINDY03_AD.PVM" />
+    <None Include="Textures\WINDY_BACK2_AD.PVM" />
+    <None Include="Textures\WINDY_BACK3_AD.PVM" />
+    <None Include="Textures\WINDY_BACK_AD.PVM" />
+    <None Include="Textures\WINDY_E103_AD.PVM" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
