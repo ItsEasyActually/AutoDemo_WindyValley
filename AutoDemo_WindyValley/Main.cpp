@@ -792,12 +792,12 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v2);
 		}
-		sub_407A00((NJS_MODEL_SADX *)Decor_Tornado3.model, 1.0);
+		sub_407A00((NJS_MODEL_SADX *)Decor_Tornado1.model, 1.0);
 		njPushMatrix(0);
 		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado2.model, (QueuedModelFlagsB)0, 1.0);
-		njPushMatrix(0);
-		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado1.model, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u);
+		njPushMatrix(0);
+		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado3.model, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
