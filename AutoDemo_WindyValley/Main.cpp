@@ -2608,6 +2608,9 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	ReplaceBINFile("CAM0202S", "CAM0202S_AD");
 	ReplaceBINFile("CAM0202M", "CAM0202M_AD");
 	ReplaceBINFile("CAM0200E", "CAM0200E_AD");
+	ReplaceBINFile("SET0200S", "SET0200S_AD");
+	ReplaceBINFile("SET0201S", "SET0201S_AD");
+	ReplaceBINFile("SET0202S", "SET0202S_AD");
 
 	const IniFile *config = new IniFile(std::string(path) + "\\config.ini");
 	ADSetFile = config->getBool("Options", "ADSetFile", false);
@@ -2616,12 +2619,6 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 		ReplaceOrigFile("SET0200S", "SET0200S_Orig");
 		ReplaceOrigFile("SET0201S", "SET0201S_Orig");
 		ReplaceOrigFile("SET0202S", "SET0202S_Orig");
-	}
-	else
-	{
-		ReplaceBINFile("SET0200S", "SET0200S_AD");
-		ReplaceBINFile("SET0201S", "SET0201S_AD");
-		ReplaceBINFile("SET0202S", "SET0202S_AD");
 	}
 	delete config;
 
