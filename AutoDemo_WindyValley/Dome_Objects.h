@@ -12,6 +12,7 @@ CollisionData Dome3_Collision[] = {
 	{ 0, 6, 0x77, 0, 0, 0.0, 43.0, 0.0, 17.5, 43.0, 0.0, 0, 0, 0, 0 }
 };
 
+
 NJS_MATERIAL matlist_000FF258[] = {
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 88, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 31, NJD_D_100 | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -168,10 +169,123 @@ NJS_MODEL_SADX attach_000FF600 = { vertex_000FF450, normal_000FF528, LengthOfArr
 
 NJS_OBJECT Dome_Base = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000FF600, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
+
+NJS_MATERIAL matlist_00100D8C[] = {
+	{ { 0xFFB2B2B2 },{ 0x00000000 }, 0, 31, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
+};
+
+Sint16 poly_00100DA0[] = {
+	5, 1, 3,
+	7, 9, 11,
+	6, 10, 8,
+	4, 2, 0
+};
+
+Sint16 poly_00100DB8[] = {
+	6, 8, 7, 9,
+	0, 2, 1, 3,
+	10, 0, 11, 1,
+	8, 10, 9, 11,
+	2, 4, 3, 5,
+	4, 6, 5, 7,
+	5, 7, 1, 11,
+	6, 4, 10, 0
+};
+
+NJS_TEX uv_00100DF8[] = {
+	{ 254, 254 },
+{ 1020, -255 },
+{ 765, 254 },
+{ 0, -255 },
+{ 255, -765 },
+{ 765, -764 },
+{ 0, -255 },
+{ 765, -764 },
+{ 255, -765 },
+{ 254, 254 },
+{ 765, 254 },
+{ 1020, -255 }
+};
+
+NJS_TEX uv_00100E28[] = {
+	{ 510, 255 },
+{ 510, -255 },
+{ 0, 255 },
+{ 0, -255 },
+{ 0, 255 },
+{ 0, -255 },
+{ 510, 255 },
+{ 510, -255 },
+{ 510, 255 },
+{ 510, -255 },
+{ 0, 255 },
+{ 0, -255 },
+{ 0, 255 },
+{ 0, -255 },
+{ 510, 255 },
+{ 510, -255 },
+{ 510, 255 },
+{ 510, -255 },
+{ 0, 255 },
+{ 0, -255 },
+{ 0, 255 },
+{ 0, -255 },
+{ 510, 255 },
+{ 510, -255 },
+{ 254, 254 },
+{ 0, -255 },
+{ 1020, -255 },
+{ 765, -764 },
+{ 0, -255 },
+{ 254, 254 },
+{ 765, -764 },
+{ 1020, -255 }
+};
+
+NJS_MESHSET_SADX meshlist_00100EA8[] = {
+	{ NJD_MESHSET_3 | 0, 4, poly_00100DA0, NULL, NULL, NULL, uv_00100DF8, NULL },
+{ NJD_MESHSET_4 | 0, 8, poly_00100DB8, NULL, NULL, NULL, uv_00100E28, NULL }
+};
+
+NJS_VECTOR vertex_00100ED8[] = {
+	{ 19, -0.2f, 0 },
+{ 19, 3, 0 },
+{ 9.499998f, -0.2f, -16.45448f },
+{ 9.499998f, 3, -16.45448f },
+{ -9.500003f, -0.2f, -16.45448f },
+{ -9.500003f, 3, -16.45448f },
+{ -19, -0.2f, 0.000005f },
+{ -19, 3, 0.000005f },
+{ -9.499994f, -0.2f, 16.45448f },
+{ -9.499994f, 3, 16.45448f },
+{ 9.500006f, -0.2f, 16.45448f },
+{ 9.500006f, 3, 16.45448f }
+};
+
+NJS_VECTOR normal_00100F68[] = {
+	{ 0.654654f, -0.755929f, 0 },
+{ 0.654654f, 0.755929f, 0 },
+{ 0.433013f, -0.5f, -0.75f },
+{ 0.433013f, 0.5f, -0.75f },
+{ -0.327327f, -0.755929f, -0.566947f },
+{ -0.327327f, 0.755929f, -0.566947f },
+{ -0.654654f, -0.755929f, 0 },
+{ -0.654654f, 0.755929f, 0 },
+{ -0.433012f, -0.5f, 0.75f },
+{ -0.433012f, 0.5f, 0.75f },
+{ 0.327327f, -0.755929f, 0.566947f },
+{ 0.327327f, 0.755929f, 0.566947f }
+};
+
+NJS_MODEL_SADX attach_00100FF8 = { vertex_00100ED8, normal_00100F68, LengthOfArray<Sint32>(vertex_00100ED8), meshlist_00100EA8, matlist_00100D8C, LengthOfArray<Uint16>(meshlist_00100EA8), LengthOfArray<Uint16>(matlist_00100D8C),{ 0, 1.4f, 0.000001f }, 25.13464f, NULL };
+
+NJS_OBJECT Dome_Middle = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00100FF8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL }; //Needs to be set to 43 for Y for Dome2, and 59 for Y for Dome 3
+
+
 NJS_MATERIAL matlist_000FECC0[] = {
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 30, NJD_D_100 | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 31, NJD_D_100 | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
-	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 30, NJD_D_100 | NJD_DA_INV_SRC | NJD_SA_SRC }
+	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 30, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC } //Set flag to use texture.
 };
 
 Sint16 poly_000FECFC[] = {
@@ -319,8 +433,8 @@ NJS_MESHSET_SADX meshlist_000FEF2C[] = {
 	{ NJD_MESHSET_3 | 0, 6, poly_000FECFC, NULL, NULL, NULL, uv_000FEDC4, NULL },
 	{ NJD_MESHSET_4 | 0, 12, poly_000FED20, NULL, NULL, NULL, uv_000FEE0C, NULL },
 	{ NJD_MESHSET_4 | 1, 6, poly_000FED80, NULL, NULL, NULL, uv_000FEECC, NULL },
-	{ NJD_MESHSET_3 | 2, 2, poly_000FEDB0, NULL, NULL, NULL, NULL, NULL },
-	{ NJD_MESHSET_4 | 2, 1, poly_000FEDBC, NULL, NULL, NULL, NULL, NULL }
+	{ NJD_MESHSET_3 | 2, 2, poly_000FEDB0, NULL, NULL, NULL, uv_00100E28, NULL }, //Set this untextured mesh to re-use UVs from the Middle Piece.
+	{ NJD_MESHSET_4 | 2, 1, poly_000FEDBC, NULL, NULL, NULL, uv_00100E28, NULL } //Set this untextured mesh to re-use UVs from the Middle Piece.
 };
 
 NJS_VECTOR vertex_000FEFA4[] = {
@@ -1114,118 +1228,6 @@ NJS_VECTOR normal_00100550[] = {
 
 NJS_MODEL_SADX attach_00100D30 = { vertex_000FFD70, normal_00100550, LengthOfArray<Sint32>(vertex_000FFD70), meshlist_000FFD10, matlist_000FF65C, LengthOfArray<Uint16>(meshlist_000FFD10), LengthOfArray<Uint16>(matlist_000FF65C), { 0, 6.891111f, 0 }, 48.98164f, NULL };
 
-NJS_OBJECT Dome_Fan = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00100D30, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL }; //Needs to be positioned at 30 for Y for Dome1, and 61 for 3rd fan for Dome3.
-
-NJS_OBJECT Dome_Fan2 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00100D30, 0, 0, 0, 0, 0x4000, 0, 1, 1, 1, NULL, NULL }; //Needs to be positioned at 46 for Y and have 0x4000 Y Rotation for Dome2.
+NJS_OBJECT Dome_Fan = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00100D30, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL }; //Needs to be positioned at 30 for Y for Dome1, 46 for 2nd fan for Dome2, and 61 for 3rd fan for Dome3.
 
 
-NJS_MATERIAL matlist_00100D8C[] = {
-	{ { 0xFFB2B2B2 }, { 0x00000000 }, 0, 31, NJD_D_100 | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
-};
-
-Sint16 poly_00100DA0[] = {
-	5, 1, 3,
-	7, 9, 11,
-	6, 10, 8,
-	4, 2, 0
-};
-
-Sint16 poly_00100DB8[] = {
-	6, 8, 7, 9,
-	0, 2, 1, 3,
-	10, 0, 11, 1,
-	8, 10, 9, 11,
-	2, 4, 3, 5,
-	4, 6, 5, 7,
-	5, 7, 1, 11,
-	6, 4, 10, 0
-};
-
-NJS_TEX uv_00100DF8[] = {
-	{ 254, 254 },
-	{ 1020, -255 },
-	{ 765, 254 },
-	{ 0, -255 },
-	{ 255, -765 },
-	{ 765, -764 },
-	{ 0, -255 },
-	{ 765, -764 },
-	{ 255, -765 },
-	{ 254, 254 },
-	{ 765, 254 },
-	{ 1020, -255 }
-};
-
-NJS_TEX uv_00100E28[] = {
-	{ 510, 255 },
-	{ 510, -255 },
-	{ 0, 255 },
-	{ 0, -255 },
-	{ 0, 255 },
-	{ 0, -255 },
-	{ 510, 255 },
-	{ 510, -255 },
-	{ 510, 255 },
-	{ 510, -255 },
-	{ 0, 255 },
-	{ 0, -255 },
-	{ 0, 255 },
-	{ 0, -255 },
-	{ 510, 255 },
-	{ 510, -255 },
-	{ 510, 255 },
-	{ 510, -255 },
-	{ 0, 255 },
-	{ 0, -255 },
-	{ 0, 255 },
-	{ 0, -255 },
-	{ 510, 255 },
-	{ 510, -255 },
-	{ 254, 254 },
-	{ 0, -255 },
-	{ 1020, -255 },
-	{ 765, -764 },
-	{ 0, -255 },
-	{ 254, 254 },
-	{ 765, -764 },
-	{ 1020, -255 }
-};
-
-NJS_MESHSET_SADX meshlist_00100EA8[] = {
-	{ NJD_MESHSET_3 | 0, 4, poly_00100DA0, NULL, NULL, NULL, uv_00100DF8, NULL },
-	{ NJD_MESHSET_4 | 0, 8, poly_00100DB8, NULL, NULL, NULL, uv_00100E28, NULL }
-};
-
-NJS_VECTOR vertex_00100ED8[] = {
-	{ 19, -0.2f, 0 },
-	{ 19, 3, 0 },
-	{ 9.499998f, -0.2f, -16.45448f },
-	{ 9.499998f, 3, -16.45448f },
-	{ -9.500003f, -0.2f, -16.45448f },
-	{ -9.500003f, 3, -16.45448f },
-	{ -19, -0.2f, 0.000005f },
-	{ -19, 3, 0.000005f },
-	{ -9.499994f, -0.2f, 16.45448f },
-	{ -9.499994f, 3, 16.45448f },
-	{ 9.500006f, -0.2f, 16.45448f },
-	{ 9.500006f, 3, 16.45448f }
-};
-
-NJS_VECTOR normal_00100F68[] = {
-	{ 0.654654f, -0.755929f, 0 },
-	{ 0.654654f, 0.755929f, 0 },
-	{ 0.433013f, -0.5f, -0.75f },
-	{ 0.433013f, 0.5f, -0.75f },
-	{ -0.327327f, -0.755929f, -0.566947f },
-	{ -0.327327f, 0.755929f, -0.566947f },
-	{ -0.654654f, -0.755929f, 0 },
-	{ -0.654654f, 0.755929f, 0 },
-	{ -0.433012f, -0.5f, 0.75f },
-	{ -0.433012f, 0.5f, 0.75f },
-	{ 0.327327f, -0.755929f, 0.566947f },
-	{ 0.327327f, 0.755929f, 0.566947f }
-};
-
-NJS_MODEL_SADX attach_00100FF8 = { vertex_00100ED8, normal_00100F68, LengthOfArray<Sint32>(vertex_00100ED8), meshlist_00100EA8, matlist_00100D8C, LengthOfArray<Uint16>(meshlist_00100EA8), LengthOfArray<Uint16>(matlist_00100D8C), { 0, 1.4f, 0.000001f }, 25.13464f, NULL };
-
-NJS_OBJECT Dome_Middle = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00100FF8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL }; //Needs to be set to 43 for Y for Dome2, and 59 for Y for Dome 3
