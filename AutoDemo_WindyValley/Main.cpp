@@ -739,13 +739,13 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 		if (TornadoDirection == false) //Determining how the value obtained from the array should be applied to the transformation. Basically, what direction are we going?
 		{
 			njTranslate(0, (TornadoPosModifier[TornadoDECOFrame]), 0, 0); //Moves to the right.
-			a3.x = (467.1638 + TornadoPosModifier[TornadoDECOFrame]); //It has to move along with the tornado.
+			a3.x = (434 + TornadoPosModifier[TornadoDECOFrame]); //It has to move along with the tornado.
 		}
 
 		else
 		{
 			njTranslate(0, -1 * (TornadoPosModifier[TornadoDECOFrame]), 0, 0); //Moves to the left.
-			a3.x = (975.1638 - TornadoPosModifier[TornadoDECOFrame]);
+			a3.x = (942 - TornadoPosModifier[TornadoDECOFrame]);
 		}
 
 		if (TornadoDECOFrame < 143) //Have we reached the end of the array?
