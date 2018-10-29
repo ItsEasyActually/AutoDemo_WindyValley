@@ -27,7 +27,7 @@
 #include "Functions.h"
 
 #define ReplaceBINFile(a) helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" a "_AD.BIN");
-#define ReplaceOrigFile(a) helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" a "_Orig");
+#define ReplaceOrigFile(a) helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" a "_Orig.BIN");
 #define ReplacePVMFile(a) helperFunctions.ReplaceFile("system\\" a ".PVM", "system\\" a "_AD.PVM");
 
 //Variables
@@ -2601,9 +2601,6 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	ReplacePVMFile("OBJ_WINDY", "OBJ_WINDY_AD");
 	ReplacePVMFile("WINDY_E103", "WINDY_E103_AD");
 
-	ReplaceBINFile("SET0200S", "SET0200S_AD");
-	ReplaceBINFile("SET0201S", "SET0201S_AD");
-	ReplaceBINFile("SET0202S", "SET0202S_AD");
 	ReplaceBINFile("SET0202M", "SET0202M_AD");
 	ReplaceBINFile("SET0200E", "SET0200E_AD");
 	ReplaceBINFile("CAM0200S", "CAM0200S_AD");
@@ -2619,6 +2616,12 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 		ReplaceOrigFile("SET0200S", "SET0200S_Orig");
 		ReplaceOrigFile("SET0201S", "SET0201S_Orig");
 		ReplaceOrigFile("SET0202S", "SET0202S_Orig");
+	}
+	else
+	{
+		ReplaceBINFile("SET0200S", "SET0200S_AD");
+		ReplaceBINFile("SET0201S", "SET0201S_AD");
+		ReplaceBINFile("SET0202S", "SET0202S_AD");
 	}
 	delete config;
 
