@@ -2413,7 +2413,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 1, 500000, 0, Load_Raft, "RAFT   " } /* "RAFT   " */,						//27
 	{ 7, 3, 1, 1250000, 0, Load_Raft2, "RAFT 2 " } /* "RAFT 2 " */,						//28
 	{ 7, 3, 1, 1250000, 0, Load_Raft3, "RAFT 3 " } /* "RAFT 3 " */,						//29
-	{ 7, 3, 0, 0, 0, Load_TRaft1, "T_RAFT1" } /* "T_RAFT1" */,							//2A
+	{ 7, 3, 1, 1250000, 0, Load_TRaft1, "T_RAFT1" } /* "T_RAFT1" */,					//2A
 	{ 7, 3, 0, 0, 0, Load_TRaft2, "T_RAFT2" } /* "T_RAFT2" */,							//2B
 	{ 2, 4, 1, 850000, 0, Load_Sirusi1, "SIRUSI1" } /* "SIRUSI1" */,					//2C
 	{ 6, 4, 1, 950000, 0, Load_Sirusi2, "SIRUSI2" } /* "SIRUSI2" */,					//2D
