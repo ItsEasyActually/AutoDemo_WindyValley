@@ -830,7 +830,7 @@ void __cdecl Dome2_Display(ObjectMaster *a1)
 		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Dome_Cap.pos[0], (Dome_Cap.pos[1] + 59.0f), Dome_Cap.pos[2]);
+		njTranslate(0, Dome_Cap.pos[0], (Dome_Cap.pos[1] + 61.0f), Dome_Cap.pos[2]);
 		sub_409E70((NJS_MODEL_SADX*)Dome_Cap.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
@@ -915,11 +915,11 @@ void __cdecl Dome3_Display(ObjectMaster *a1)
 		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Dome_Middle.pos[0], (Dome_Middle.pos[1] + 60.0f), Dome_Middle.pos[2]);
+		njTranslate(0, Dome_Middle.pos[0], (Dome_Middle.pos[1] + 61.0f), Dome_Middle.pos[2]);
 		sub_409E70((NJS_MODEL_SADX*)Dome_Middle.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 62.0f), Dome_Fan.pos[2]);
+		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 64.0f), Dome_Fan.pos[2]);
 		if (v5)
 		{
 			njRotateY(0, (unsigned __int16)v5);
@@ -927,7 +927,7 @@ void __cdecl Dome3_Display(ObjectMaster *a1)
 		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		njTranslate(0, Dome_Cap.pos[0], (Dome_Cap.pos[1] + 75.0f), Dome_Cap.pos[2]);
+		njTranslate(0, Dome_Cap.pos[0], (Dome_Cap.pos[1] + 78.0f), Dome_Cap.pos[2]);
 		sub_409E70((NJS_MODEL_SADX*)Dome_Cap.model, 0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
