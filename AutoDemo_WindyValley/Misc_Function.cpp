@@ -400,22 +400,6 @@ void __cdecl TakoW_Display(ObjectMaster *a1)
 				ResetRenderFlags();
 				njScale(0, 1.0f, 1.05f, 1.0f);
 			}
-
-			if (!IsGamePaused())
-			{
-				*(float*)&v1->LoopData += 0.8f;
-
-				if (FramerateSetting >= 2)
-				{
-					*(float*)&v1->LoopData += 0.8f;
-				}
-
-				if (*(float*)&v1->LoopData >= 4.5f)
-				{
-					*(float*)&v1->LoopData = 0.0f;
-				}
-			}
-
 		}
 		sub_409E70((NJS_MODEL_SADX*)Object_TakoW_Net.model, 0, 1.0);
 		njPopMatrix(1u);
@@ -434,6 +418,20 @@ void __cdecl Load_TakoW(ObjectMaster *a1)
 		{
 			if (v1->Action == 1)
 			{
+				if (!IsGamePaused())
+				{
+					*(float*)&v1->LoopData += 0.8f;
+
+					if (FramerateSetting >= 2)
+					{
+						*(float*)&v1->LoopData += 0.8f;
+					}
+
+					if (*(float*)&v1->LoopData >= 4.5f)
+					{
+						*(float*)&v1->LoopData = 0.0f;
+					}
+				}
 				TakoW_Display(a1);
 				AddToCollisionList(v1);
 			}

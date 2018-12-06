@@ -43,27 +43,34 @@ void __cdecl Grass1_Display(ObjectMaster *a2)
 		}
 		njAction(&action_Grass1_Action, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
-		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+	}
+}
+
+void __cdecl Grass1_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+
+	if (!ClipSetObject(a1))
+	{
+		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
-			if (*(float*)&v1->CharIndex >= 7.0)
-			{
-				*(float*)&v1->CharIndex = 0.0;
-			}
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+		}
+
+		Grass1_Display(a1);
+
+		if (*(float*)&v1->CharIndex >= 7.0)
+		{
+			*(float*)&v1->CharIndex = 0.0;
 		}
 	}
 }
 
 void __cdecl Load_Grass1(ObjectMaster *a1)
 {
-	a1->MainSub = Grass1_Display;
+	a1->MainSub = Grass1_Main;
 	a1->DisplaySub = Grass1_Display;
 	a1->Data1->Action = 0;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
@@ -104,28 +111,34 @@ void __cdecl Grass2_Display(ObjectMaster *a2)
 		}
 		njAction(&action_Grass2_Action, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
-		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
-		{
+	}
+}
 
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
-			if (*(float*)&v1->CharIndex >= 7.0)
-			{
-				*(float*)&v1->CharIndex = 0.0;
-			}
+void __cdecl Grass2_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+
+	if (!ClipSetObject(a1))
+	{
+		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+		}
+
+		Grass2_Display(a1);
+
+		if (*(float*)&v1->CharIndex >= 7.0)
+		{
+			*(float*)&v1->CharIndex = 0.0;
 		}
 	}
 }
 
 void __cdecl Load_Grass2(ObjectMaster *a1)
 {
-	a1->MainSub = Grass2_Display;
+	a1->MainSub = Grass2_Main;
 	a1->DisplaySub = Grass2_Display;
 	a1->Data1->Action = 0;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
@@ -166,27 +179,34 @@ void __cdecl Grass3_Display(ObjectMaster *a2)
 		}
 		njAction(&action_Action_Grass3, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
-		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+	}
+}
+
+void __cdecl Grass3_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+
+	if (!ClipSetObject(a1))
+	{
+		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
-			if (*(float*)&v1->CharIndex >= 7.0)
-			{
-				*(float*)&v1->CharIndex = 0.0;
-			}
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+		}
+
+		Grass3_Display(a1);
+
+		if (*(float*)&v1->CharIndex >= 7.0)
+		{
+			*(float*)&v1->CharIndex = 0.0;
 		}
 	}
 }
 
 void __cdecl Load_Grass3(ObjectMaster *a1)
 {
-	a1->MainSub = Grass3_Display;
+	a1->MainSub = Grass3_Main;
 	a1->DisplaySub = Grass3_Display;
 	a1->Data1->Action = 0;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
@@ -229,7 +249,6 @@ void __cdecl Grass4_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-
 			if (FramerateSetting >= 2)
 			{
 				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
@@ -246,9 +265,31 @@ void __cdecl Grass4_Display(ObjectMaster *a2)
 	}
 }
 
+void __cdecl Grass4_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+
+	if (!ClipSetObject(a1))
+	{
+		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+		}
+
+		Grass4_Display(a1);
+
+		if (*(float*)&v1->CharIndex >= 7.0)
+		{
+			*(float*)&v1->CharIndex = 0.0;
+		}
+	}
+}
+
 void __cdecl Load_Grass4(ObjectMaster *a1)
 {
-	a1->MainSub = Grass4_Display;
+	a1->MainSub = Grass4_Main;
 	a1->DisplaySub = Grass4_Display;
 	a1->Data1->Action = 0;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
@@ -303,28 +344,34 @@ void __cdecl WKusa1_Display(ObjectMaster *a2)
 		}
 		njAction(&action_Action_WKusa1, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
-		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
-		{
+	}
+}
 
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
-			if (*(float*)&v1->CharIndex >= 7.0)
-			{
-				*(float*)&v1->CharIndex = 0.0;
-			}
+void __cdecl WKusa1_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+
+	if (!ClipSetObject(a1))
+	{
+		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+		}
+
+		WKusa1_Display(a1);
+
+		if (*(float*)&v1->CharIndex >= 7.0)
+		{
+			*(float*)&v1->CharIndex = 0.0;
 		}
 	}
 }
 
 void __cdecl Load_WKusa1(ObjectMaster *a1)
 {
-	a1->MainSub = WKusa1_Display;
+	a1->MainSub = WKusa1_Main;
 	a1->DisplaySub = WKusa1_Display;
 	a1->Data1->Action = 0;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
@@ -366,28 +413,34 @@ void __cdecl Flower0_Display(ObjectMaster *a2)
 		}
 		njAction(&action_Action_Flower0, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
-		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
-		{
+	}
+}
 
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
-			if (*(float*)&v1->CharIndex >= 7.0)
-			{
-				*(float*)&v1->CharIndex = 0.0;
-			}
+void __cdecl Flower0_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+
+	if (!ClipSetObject(a1))
+	{
+		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+		}
+
+		Flower0_Display(a1);
+
+		if (*(float*)&v1->CharIndex >= 7.0)
+		{
+			*(float*)&v1->CharIndex = 0.0;
 		}
 	}
 }
 
 void __cdecl Load_Flower0(ObjectMaster *a1)
 {
-	a1->MainSub = Flower0_Display;
+	a1->MainSub = Flower0_Main;
 	a1->DisplaySub = Flower0_Display;
 	a1->Data1->Action = 0;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
@@ -428,28 +481,34 @@ void __cdecl Flower1_Display(ObjectMaster *a2)
 		}
 		njAction(&action_Action_Flower1, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
-		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
-		{
+	}
+}
 
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
-			if (*(float*)&v1->CharIndex >= 7.0)
-			{
-				*(float*)&v1->CharIndex = 0.0;
-			}
+void __cdecl Flower1_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+
+	if (!ClipSetObject(a1))
+	{
+		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+		}
+
+		Flower1_Display(a1);
+
+		if (*(float*)&v1->CharIndex >= 7.0)
+		{
+			*(float*)&v1->CharIndex = 0.0;
 		}
 	}
 }
 
 void __cdecl Load_Flower1(ObjectMaster *a1)
 {
-	a1->MainSub = Flower1_Display;
+	a1->MainSub = Flower1_Main;
 	a1->DisplaySub = Flower1_Display;
 	a1->Data1->Action = 0;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
@@ -490,28 +549,34 @@ void __cdecl PinkF_Display(ObjectMaster *a2)
 		}
 		njAction(&PinkF_Anim, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
-		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
-		{
+	}
+}
 
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
-			if (*(float*)&v1->CharIndex >= 7.0)
-			{
-				*(float*)&v1->CharIndex = 0.0;
-			}
+void __cdecl PinkF_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+
+	if (!ClipSetObject(a1))
+	{
+		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+		}
+
+		PinkF_Display(a1);
+
+		if (*(float*)&v1->CharIndex >= 7.0)
+		{
+			*(float*)&v1->CharIndex = 0.0;
 		}
 	}
 }
 
 void __cdecl Load_PinkF(ObjectMaster *a1)
 {
-	a1->MainSub = PinkF_Display;
+	a1->MainSub = PinkF_Main;
 	a1->DisplaySub = PinkF_Display;
 	a1->Data1->Action = 0;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
@@ -553,27 +618,34 @@ void __cdecl WKi1_Display(ObjectMaster *a2)
 		}
 		njAction(&action_Action_WKi1, *(float*)&v1->CharIndex);
 		njPopMatrix(1u);
-		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
+	}
+}
+
+void __cdecl WKi1_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+
+	if (!ClipSetObject(a1))
+	{
+		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
-			if (*(float*)&v1->CharIndex >= 17.0)
-			{
-				*(float*)&v1->CharIndex = 0.0;
-			}
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+		}
+
+		WKi1_Display(a1);
+
+		if (*(float*)&v1->CharIndex >= 17.0)
+		{
+			*(float*)&v1->CharIndex = 0.0;
 		}
 	}
 }
 
 void __cdecl Load_WKi1(ObjectMaster *a1)
 {
-	a1->MainSub = WKi1_Display;
+	a1->MainSub = WKi1_Main;
 	a1->DisplaySub = WKi1_Display;
 	a1->Data1->Action = 0;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
@@ -614,28 +686,34 @@ void __cdecl WKi2_Display(ObjectMaster *a2)
 		}
 		njAction(&action_Action_WKi2, *(float *)&v1->CharIndex);
 		njPopMatrix(1u);
-		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
-		{
+	}
+}
 
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
-			if (*(float*)&v1->CharIndex >= 17.0)
-			{
-				*(float*)&v1->CharIndex = 0.0;
-			}
+void __cdecl WKi2_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+
+	v1 = a1->Data1;
+
+	if (!ClipSetObject(a1))
+	{
+		if (!ObjectSelectedDebug(a1) && !IsGamePaused())
+		{
+			*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
+		}
+
+		WKi2_Display(a1);
+
+		if (*(float*)&v1->CharIndex >= 17.0)
+		{
+			*(float*)&v1->CharIndex = 0.0;
 		}
 	}
 }
 
 void __cdecl Load_WKi2(ObjectMaster *a1)
 {
-	a1->MainSub = WKi2_Display;
+	a1->MainSub = WKi2_Main;
 	a1->DisplaySub = WKi2_Display;
 	a1->Data1->Action = 0;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
