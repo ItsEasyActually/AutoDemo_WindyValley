@@ -688,6 +688,8 @@ void __cdecl ShockwaveEffect_Display(ObjectMaster *a1)
 
 void __cdecl ShockWaveEffect_Main(ObjectMaster *a1)
 {
+	auto SonicChar = EntityData1Ptrs[0];
+
 	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 0))
 	{
 		if (a1)
@@ -707,6 +709,22 @@ void __cdecl ShockWaveEffect_Main(ObjectMaster *a1)
 			{
 				if (v1->Action == 1)
 				{
+					if (LoadedTornado == true && CurrentLevel == 2 && CurrentAct == 0)
+					{
+						if (SonicChar != nullptr && !IsGamePaused()) //This is the code that sucks the player up into the tornado.
+						{
+							SonicChar->Position.x = SonicChar->Position.x + squareroot((TornadoSuck.x - SonicChar->Position.x) / 5);
+							//PlayChar->Position.y = PlayChar->Position.y + squareroot((TornadoSuck.y - (PlayChar->Position.y * 1.2358869) + 220) / 40);
+							SonicChar->Position.y = TornadoSuck.y;
+							SonicChar->Position.z = SonicChar->Position.z + squareroot((TornadoSuck.z - SonicChar->Position.z) / 40);
+
+							while (SonicChar->Position.y > -280)
+							{
+								SonicChar->Position.y -= 1;
+							}
+							//DisablePause();
+						}
+					}
 					*(float*)&v1->CharIndex = -9.2f + *(float*)&v1->CharIndex;
 					ShockwaveEffect_Display(a1);
 				}
@@ -1465,35 +1483,6 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 		if (PlayChar != nullptr && PlayChar->Position.z < -2000 && PlayChar->Position.y > -460) //Loading the swerving tornado
 		{
 			Load_DecoTornado();
-		}
-		
-		if (LoadedTornado == true && CurrentLevel == 2 && CurrentAct == 0)
-		{
-			if (PlayChar != nullptr && !IsGamePaused()) //This is the code that sucks the player up into the tornado.
-			{
-				
-				if (FramerateSetting >= 2)
-				{
-					PlayChar->Position.x = PlayChar->Position.x + squareroot((TornadoSuck.x - PlayChar->Position.x) / 2.5);
-					//PlayChar->Position.y = PlayChar->Position.y + squareroot((TornadoSuck.y - (PlayChar->Position.y * 1.2358869) + 220) / 20);
-					PlayChar->Position.y = TornadoSuck.y;
-					PlayChar->Position.z = PlayChar->Position.z + squareroot((TornadoSuck.z - PlayChar->Position.z) / 20); //Lower this to make it suck Sonic up faster.
-				}
-				
-				else
-				{
-					PlayChar->Position.x = PlayChar->Position.x + squareroot((TornadoSuck.x - PlayChar->Position.x) / 5);
-					//PlayChar->Position.y = PlayChar->Position.y + squareroot((TornadoSuck.y - (PlayChar->Position.y * 1.2358869) + 220) / 40);
-					PlayChar->Position.y = TornadoSuck.y;
-					PlayChar->Position.z = PlayChar->Position.z + squareroot((TornadoSuck.z - PlayChar->Position.z) / 40);
-				}
-				
-				while (PlayChar->Position.y > -280)
-				{
-					PlayChar->Position.y -= 1;
-				}
-				//DisablePause();
-			}
 		}
 	}
 
