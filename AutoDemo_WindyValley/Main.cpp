@@ -766,7 +766,7 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 			a3.x = (942 - TornadoPosModifier[TornadoDECOFrame]);
 		}
 
-		if (TornadoDECOFrame < 143) //Have we reached the end of the array?
+		if (TornadoDECOFrame < 142) //Have we reached the end of the array?
 		{
 			(a2.x) = 0;
 			(a2.y) = 1;
