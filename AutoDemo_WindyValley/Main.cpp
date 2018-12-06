@@ -750,15 +750,6 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 
 		if (TornadoDECOFrame < 143) //Have we reached the end of the array?
 		{
-			if (!IsGamePaused() && GameState != 3 && GameState != 4 && GameState != 7 && GameState != 21)
-			{
-				TornadoDECOFrame++;
-
-				if (FramerateSetting >= 2)
-				{
-					TornadoDECOFrame++; //To keep a consistent movement speed across all framerates.
-				}
-			}
 			(a2.x) = 0;
 			(a2.y) = 1;
 			(a2.z) = 0;
@@ -822,6 +813,10 @@ void __cdecl Deco_Tornado_Main(ObjectMaster *a2)
 			{
 				if (v1->Action == 1)
 				{
+					if (!IsGamePaused() && GameState != 3 && GameState != 4 && GameState != 7 && GameState != 21)
+					{
+						TornadoDECOFrame++;
+					}
 					*(float*)&v1->CharIndex = -24.6f + *(float*)&v1->CharIndex;
 					DecoTornado_Display(a2);
 				}
