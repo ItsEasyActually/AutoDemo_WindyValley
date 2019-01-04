@@ -249,14 +249,6 @@ void __cdecl Grass4_Display(ObjectMaster *a2)
 		njPopMatrix(1u);
 		if (!ObjectSelectedDebug(a2) && !IsGamePaused())
 		{
-			if (FramerateSetting >= 2)
-			{
-				*(float*)&v1->CharIndex = 2.0f + *(float*)&v1->CharIndex;
-			}
-			else
-			{
-				*(float*)&v1->CharIndex = 1.0f + *(float*)&v1->CharIndex;
-			}
 			if (*(float*)&v1->CharIndex >= 7.0)
 			{
 				*(float*)&v1->CharIndex = 0.0;
