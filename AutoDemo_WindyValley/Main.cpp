@@ -451,9 +451,9 @@ void __cdecl SkyBoxAct2_Main(ObjectMaster *a1)
 			}
 			else
 			{
-				a1->Data1->Position.x = 649.074f;
-				a1->Data1->Position.y = -203.486f;
-				a1->Data1->Position.z = -196.07f;
+				a1->Data1->Position.x = 650.0f;
+				a1->Data1->Position.y = -360.0f;
+				a1->Data1->Position.z = -200.0f;
 				v1->Action = 1;
 				a1->DisplaySub = WVAct2_Display;
 			}
