@@ -2131,7 +2131,7 @@ void __cdecl Load_Debris(void)
 		{
 			debr = a1->Data1;
 			debr->Position.x = 650.0f;
-			debr->Position.y = -203.486f;
+			debr->Position.y = -353.486f;
 			debr->Position.z = -200.0f;
 			debr->Rotation.x = 0;
 			debr->Rotation.y = 0;
@@ -2148,7 +2148,7 @@ void __cdecl Load_Debris(void)
 		{
 			debr = a1->Data1;
 			debr->Position.x = 650.0f;
-			debr->Position.y = 203.486f;
+			debr->Position.y = 53.486f;
 			debr->Position.z = -200.0f;
 			debr->Rotation.x = 0;
 			debr->Rotation.y = 0;
@@ -2165,7 +2165,7 @@ void __cdecl Load_Debris(void)
 		{
 			debr = a1->Data1;
 			debr->Position.x = 650.0f;
-			debr->Position.y = 603.486f;
+			debr->Position.y = 453.486f;
 			debr->Position.z = -200.0f;
 			debr->Rotation.x = 0;
 			debr->Rotation.y = 0;
@@ -2182,7 +2182,7 @@ void __cdecl Load_Debris(void)
 		{
 			debr = a1->Data1;
 			debr->Position.x = 650.0f;
-			debr->Position.y = 1003.486f;
+			debr->Position.y = 853.486f;
 			debr->Position.z = -200.0f;
 			debr->Rotation.x = 0;
 			debr->Rotation.y = 0;
@@ -2199,7 +2199,7 @@ void __cdecl Load_Debris(void)
 		{
 			debr = a1->Data1;
 			debr->Position.x = 650.0f;
-			debr->Position.y = 1503.486f;
+			debr->Position.y = 1353.486f;
 			debr->Position.z = -200.0f;
 			debr->Rotation.x = 0;
 			debr->Rotation.y = 0;
