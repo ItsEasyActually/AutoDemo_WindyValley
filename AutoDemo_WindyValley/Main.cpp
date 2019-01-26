@@ -336,11 +336,12 @@ void __cdecl WVAct3_Display(ObjectMaster *a1)
 	if (!MissedFrames)
 	{
 		njSetTexture(&BETAWINDY_BACK3_texlist);
-		//SetTextureToLevelObj();
 		DisableFog();
+		//SetTextureToLevelObj();
 		if (Camera_Data1 != nullptr)
 		{
 			a1->Data1->Position = Camera_Data1->Position;
+			//a1->Data1->Position.y = 0.0f;
 		}
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
@@ -356,6 +357,15 @@ void __cdecl WVAct3_Display(ObjectMaster *a1)
 		}
 		sub_408530(&Act3MainSkybox);
 		njPushMatrix(0);
+		v7 = *(float*)&v1->Object * 65536.0 * 0.002777777777777778;
+		if (v7)
+		{
+			njRotateY(0, (unsigned __int16)v7);
+		}
+		//njScale(0, 0.7f, 0.6f, 0.7f);
+		sub_408530(&Act3CloudLayer);
+		njPopMatrix(1u); //cloud layer
+		njPushMatrix(0);
 		v6 = *(float*)&v1->LoopData * 65536.0 * 0.002777777777777778;
 		if (v6)
 		{
@@ -369,18 +379,9 @@ void __cdecl WVAct3_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v7);
 		}
-		njScale(0, 1.1f, 1.1f, 1.1f);
+		//njScale(0, 1.1f, 1.1f, 1.1f);
 		sub_408530(&Act3CloudRing);
 		njPopMatrix(1u); //cloud ring
-		njPushMatrix(0);
-		v7 = *(float*)&v1->Object * 65536.0 * 0.002777777777777778;
-		if (v7)
-		{
-			njRotateY(0, (unsigned __int16)v7);
-		}
-		njScale(0, 0.7f, 0.6f, 0.7f);
-		sub_408530(&Act3CloudLayer);
-		njPopMatrix(1u); //cloud layer
 		njPopMatrix(1u); //main model
 		ToggleStageFog();
 	}
