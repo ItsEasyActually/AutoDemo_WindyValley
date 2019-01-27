@@ -249,7 +249,13 @@ void __cdecl WVAct1_Display(ObjectMaster *a1)
 		sub_408530(&Act1MainSkybox);
 
 		njPushMatrix(0);
-		njTranslate(0, 0, (Act1CloudRing1.pos[1] + 80.0f), 0);
+		njScale(0, 1.25f, 1.0f, 1.25f);
+		njTranslate(0, 0, (Act1CloudLayer.pos[1]), 0);
+		sub_408530(&Act1CloudLayer);
+		njPopMatrix(1u); //cloud layer
+
+		njPushMatrix(0);
+		njTranslate(0, 0, (Act1CloudRing1.pos[1]), 0);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
@@ -257,11 +263,6 @@ void __cdecl WVAct1_Display(ObjectMaster *a1)
 		}
 		sub_408530(&Act1CloudRing1);
 		njPopMatrix(1u); //cloud ring
-
-		njPushMatrix(0);
-		njTranslate(0, 0, (Act1CloudLayer.pos[1] + 380.0f), 0);
-		sub_408530(&Act1CloudLayer);
-		njPopMatrix(1u); //cloud layer
 		njPopMatrix(1u); //main model
 		ToggleStageFog();
 	}
