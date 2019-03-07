@@ -253,6 +253,8 @@ void Wele_Main(ObjectMaster *a1)
 				}
 				a1->Data1->CharIndex = 0; // Shut the door.
 				PlaySound(57, 0, 0, 0); //Weird but kinda cool hovering sound (Unused?)
+				GetCharObj2(0)->Speed.x /= 4;
+				GetCharObj2(0)->Speed.z /= 4;
 			}
 		}
 
