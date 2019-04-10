@@ -214,6 +214,10 @@ static float DebrisFrame = 0; //This is also some stupid shit, getting the debri
 static float WaveFrame = 0; //Uused in scaling the "shockwave" effect and making it spin.
 int BridgeFrame = 0; //Used in the bridge loading function below to select pieces and get positions and stuff.
 
+static int TornUVShift1 = 0;
+static int TornUVShift2 = 0;
+static int TornUVShift3 = 0;
+
 bool Skybox1Loaded = false;
 bool Skybox2Loaded = false;
 bool Skybox3Loaded = false;
@@ -753,8 +757,8 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 		Tornado_Texture_Load();
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
-		a3.y = (v1->Position.y - 90);
-		a3.z = (v1->Position.z + 50); //Make it always appear in front of the tornado, hiding the base.
+		a3.y = (v1->Position.y - 110);
+		a3.z = (v1->Position.z + 70); //Make it always appear in front of the tornado, hiding the base.
 
 		if (TornadoDirection == false) //Determining how the value obtained from the array should be applied to the transformation. Basically, what direction are we going?
 		{
@@ -775,10 +779,10 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 			(a2.z) = 0;
 			if (!IsGamePaused())
 			{
-				sub_4B9820(&a3, &a2, 35.0); //This is the dust cloud subroutine. Easy to use. It goes: Spawn Vector, Directional Vector, Scale.
+				sub_4B9820(&a3, &a2, 32.0); //This is the dust cloud subroutine. Easy to use. It goes: Spawn Vector, Directional Vector, Scale.
 				if (FramerateSetting >= 2)
 				{
-					sub_4B9820(&a3, &a2, 35.0);
+					sub_4B9820(&a3, &a2, 32.0);
 				}
 			}
 		}
@@ -786,6 +790,14 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 		else
 		{
 			TornadoDECOFrame = 0;
+
+			for (int h = 0; h < 252; h++)
+			{
+				vertex_00179E64[h].x = vertex_00179E64_Orig[h].x;
+				vertex_00176468[h].x = vertex_00176468_Orig[h].x;
+				vertex_00172A6C[h].x = vertex_00172A6C_Orig[h].x;
+			}
+
 			if (TornadoDirection == false)
 			{
 				v1->Position.x += 512; //Moving the tornado to the actual position of the translation so we can start heading the other way.
@@ -798,11 +810,11 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 				TornadoDirection = false;
 			}
 		}
-		v2 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+		/*v2 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
 		if (v2)
 		{
 			njRotateY(0, (unsigned __int16)v2);
-		}
+		}*/
 		sub_407A00((NJS_MODEL_SADX *)Decor_Tornado1.model, 1.0);
 		njPushMatrix(0);
 		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado2.model, (QueuedModelFlagsB)0, 1.0);
@@ -814,11 +826,200 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 	}
 }
 
+void __cdecl Deco_Tornado_Bending()
+{
+	for (int i = 0; i < 15; i++)
+	{
+		if (TornadoDirection == true)
+		{
+			if (TornadoDECOFrame <= 71 && TornadoDECOFrame >= 25)
+			{
+				if (vertex_00179E64[i].x < vertex_00179E64_bendingLEFT[i].x)
+				{
+					vertex_00179E64[i].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 21)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 42)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 63)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 84)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 105)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 126)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 147)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 168)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 189)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 210)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 231)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+
+					vertex_00176468[i].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 21)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 42)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 63)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 84)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 105)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 126)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 147)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 168)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 189)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 210)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 231)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+
+					vertex_00172A6C[i].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 21)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 42)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 63)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 84)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 105)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 126)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 147)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 168)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 189)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 210)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 231)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+				}
+			}
+			else if (TornadoDECOFrame >= 89)
+			{
+				if (vertex_00179E64[i].x > vertex_00179E64_Orig[i].x)
+				{
+					vertex_00179E64[i].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 21)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 42)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 63)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 84)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 105)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 126)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 147)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 168)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 189)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 210)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 231)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+
+					vertex_00176468[i].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 21)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 42)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 63)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 84)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 105)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 126)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 147)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 168)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 189)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 210)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 231)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+
+					vertex_00172A6C[i].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 21)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 42)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 63)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 84)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 105)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 126)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 147)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 168)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 189)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 210)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 231)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+				}
+			}
+		}
+		else
+		{
+			if (TornadoDECOFrame <= 71 && TornadoDECOFrame >= 25)
+			{
+				if (vertex_00179E64[i].x > vertex_00179E64_bendingRIGHT[i].x)
+				{
+					vertex_00179E64[i].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 21)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 42)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 63)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 84)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 105)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 126)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 147)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 168)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 189)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 210)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 231)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+
+					vertex_00176468[i].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 21)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 42)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 63)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 84)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 105)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 126)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 147)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 168)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 189)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 210)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 231)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+
+					vertex_00172A6C[i].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 21)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 42)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 63)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 84)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 105)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 126)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 147)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 168)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 189)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 210)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 231)].x -= ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+				}
+			}
+			else if (TornadoDECOFrame >= 89)
+			{
+				if (vertex_00179E64[i].x < vertex_00179E64_Orig[i].x)
+				{
+					vertex_00179E64[i].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 21)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 42)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 63)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 84)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 105)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 126)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 147)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 168)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 189)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 210)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00179E64[(i + 231)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+
+					vertex_00176468[i].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 21)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 42)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 63)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 84)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 105)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 126)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 147)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 168)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 189)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 210)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00176468[(i + 231)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+
+					vertex_00172A6C[i].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 21)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 42)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 63)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 84)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 105)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 126)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 147)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 168)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 189)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 210)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+					vertex_00172A6C[(i + 231)].x += ((0.45 * i) + (4 / (i + 1.8)) + 0.5);
+				}
+			}
+		}
+	}
+}
+
 void __cdecl Deco_Tornado_Main(ObjectMaster *a2)
 {
 	EntityData1 *v1; // esi@1
 
-	if (LoadedTornado == true)
+	if (LoadedTornado == true || (CurrentLevel == 2 && CurrentAct != 0) || CurrentLevel != 2)
 	{
 		DeleteObjectMaster(a2);
 	}
@@ -833,19 +1034,41 @@ void __cdecl Deco_Tornado_Main(ObjectMaster *a2)
 			{
 				if (v1->Action == 1)
 				{
+					Deco_Tornado_Bending();
+					DecoTornado_Display(a2);
+
+					if (GameState != 16)
+					{
+						TornUVShift3 = (TornUVShift3 + 35) % 255;
+						TornUVShift1 = (TornUVShift1 + 45) % 255;
+						TornUVShift2 = (TornUVShift2 + 55) % 255;
+
+						for (unsigned int q = 0; q < LengthOfArray(uv_001713D4); q++)
+						{
+							uv_001713D4[q].u = uv_001713D4_1[q].u + TornUVShift1;
+						}
+						for (unsigned int p = 0; p < LengthOfArray(uv_00174DD0); p++)
+						{
+							uv_00174DD0[p].u = uv_00174DD0_1[p].u + TornUVShift2;
+						}
+						for (unsigned int r = 0; r < LengthOfArray(uv_001787CC); r++)
+						{
+							uv_001787CC[r].u = uv_001787CC_1[r].u + TornUVShift3;
+						}
+					}
+
 					if (!IsGamePaused() && GameState != 3 && GameState != 4 && GameState != 7 && GameState != 21)
 					{
 						TornadoDECOFrame++;
 					}
-					*(float*)&v1->CharIndex = -24.6f + *(float*)&v1->CharIndex;
-					DecoTornado_Display(a2);
+					//*(float*)&v1->CharIndex = -24.6f + *(float*)&v1->CharIndex;
 				}
 			}
 			else
 			{
 				v1->Action = 1;
 				a2->DisplaySub = DecoTornado_Display;
-				PlaySound2(62, a2, 1, 0); //Because why not? Whoooosh!
+				PlaySound2(62, a2, 1, 0);
 			}
 		}
 	}
@@ -1455,6 +1678,16 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 			TornadoDirection = false;
 			BridgeFrame = 0;
 			TransTornadoDust = false;
+			TornUVShift3 = 0;
+			TornUVShift1 = 0;
+			TornUVShift2 = 0;
+
+			for (int h = 0; h < 252; h++)
+			{
+				vertex_00179E64[h].x = vertex_00179E64_Orig[h].x;
+				vertex_00176468[h].x = vertex_00176468_Orig[h].x;
+				vertex_00172A6C[h].x = vertex_00172A6C_Orig[h].x;
+			}
 		}
 	}
 
@@ -1500,6 +1733,16 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 		TornadoDirection = false;
 		BridgeFrame = 0;
 		TransTornadoDust = false;
+		TornUVShift3 = 0;
+		TornUVShift1 = 0;
+		TornUVShift2 = 0;
+
+		for (int h = 0; h < 252; h++)
+		{
+			vertex_00179E64[h].x = vertex_00179E64_Orig[h].x;
+			vertex_00176468[h].x = vertex_00176468_Orig[h].x;
+			vertex_00172A6C[h].x = vertex_00172A6C_Orig[h].x;
+		}
 	}
 
 	if (CurrentLevel == 2 && CurrentAct == 0 && CurrentCharacter == 6) //When playing as Gamma in Act 1, make the bridge invisible to simulate that it got ripped up when Sonic played the stage prior to him arriving here.
@@ -2385,16 +2628,16 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 4, 1, 1150000, 0, Load_Prope1, "PROPE1 " } /* "PROPE1 " */,					//19
 	{ 2, 4, 1, 1150000, 0, Load_Prope2, "PROPE2 " } /* "PROPE2 " */,					//1A
 	{ 2, 4, 1, 1150000, 0, Load_Prope3, "PROPE3 " } /* "PROPE3 " */,					//1B
-	{ 2, 5, 1, 550000, 0, Load_Flower0, "FLOWER0" } /* "FLOWER0" */,					//1C
-	{ 2, 5, 1, 550000, 0, Load_Flower1, "FLOWER1" } /* "FLOWER1" */,					//1D
-	{ 2, 5, 1, 550000, 0, Load_Green0, "GREEN 0" } /* "GREEN 0" */,						//1E
+	{ 2, 5, 1, 450000, 0, Load_Flower0, "FLOWER0" } /* "FLOWER0" */,					//1C
+	{ 2, 5, 1, 450000, 0, Load_Flower1, "FLOWER1" } /* "FLOWER1" */,					//1D
+	{ 2, 5, 1, 450000, 0, Load_Green0, "GREEN 0" } /* "GREEN 0" */,						//1E
 	{ 2, 4, 1, 1050000, 0, Load_WKi1, "W KI1  " } /* "W KI1  " */,						//1F
 	{ 2, 4, 1, 1050000, 0, Load_WKi2, "W KI2  " } /* "W KI2  " */,						//20
-	{ 2, 5, 1, 550000, 0, Load_WKusa1, "W KUSA1" } /* "W KUSA1" */,						//21
-	{ 2, 5, 1, 550000, 0, Load_Grass1, "GRASS1 " } /* "GRASS1 " */,						//22
-	{ 2, 5, 1, 550000, 0, Load_Grass2, "GRASS2 " } /* "GRASS2 " */,						//23
-	{ 2, 5, 1, 550000, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
-	{ 2, 5, 1, 550000, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
+	{ 2, 5, 1, 450000, 0, Load_WKusa1, "W KUSA1" } /* "W KUSA1" */,						//21
+	{ 2, 5, 1, 450000, 0, Load_Grass1, "GRASS1 " } /* "GRASS1 " */,						//22
+	{ 2, 5, 1, 450000, 0, Load_Grass2, "GRASS2 " } /* "GRASS2 " */,						//23
+	{ 2, 5, 1, 450000, 0, Load_Grass3, "GRASS3 " } /* "GRASS3 " */,						//24
+	{ 2, 5, 1, 450000, 0, Load_Grass4, "GRASS4 " } /* "GRASS4 " */,						//25
 	{ 6, 3, 1, 850000, 0, LRock, "L ROCK1" } /* "L ROCK1" */,							//26
 	{ 6, 3, 1, 500000, 0, Load_Raft, "RAFT   " } /* "RAFT   " */,						//27
 	{ 7, 3, 1, 1250000, 0, Load_Raft2, "RAFT 2 " } /* "RAFT 2 " */,						//28
@@ -2427,19 +2670,19 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 1, 750000, 0, Load_IDai1, "I DAI 1" } /* "I DAI 1" */,						//43
 	{ 6, 3, 1, 750000, 0, Load_IDai2, "I DAI 2" } /* "I DAI 2" */,						//44
 	{ 6, 3, 1, 750000, 0, Load_IDai3, "I DAI 3" } /* "I DAI 3" */,						//45
-	{ 6, 3, 1, 750000, 0, Load_IDai4, "I DAI 4" } /* "I DAI 4" */,						//46
-	{ 6, 3, 1, 750000, 0, Load_IDai5, "I DAI 5" } /* "I DAI 5" */,						//47
-	{ 6, 3, 1, 750000, 0, Load_IDai6, "I DAI 6" } /* "I DAI 6" */,						//48
-	{ 6, 3, 1, 750000, 0, Load_IDai7, "I DAI 7" } /* "I DAI 7" */,						//49
-	{ 6, 3, 1, 750000, 0, Load_IDai8, "I DAI 8" } /* "I DAI 8" */,						//4A
-	{ 6, 3, 1, 750000, 0, Load_IDai9, "I DAI 9" } /* "I DAI 9" */,						//4B
+	{ 6, 3, 1, 650000, 0, Load_IDai4, "I DAI 4" } /* "I DAI 4" */,						//46
+	{ 6, 3, 1, 650000, 0, Load_IDai5, "I DAI 5" } /* "I DAI 5" */,						//47
+	{ 6, 3, 1, 650000, 0, Load_IDai6, "I DAI 6" } /* "I DAI 6" */,						//48
+	{ 6, 3, 1, 650000, 0, Load_IDai7, "I DAI 7" } /* "I DAI 7" */,						//49
+	{ 6, 3, 1, 650000, 0, Load_IDai8, "I DAI 8" } /* "I DAI 8" */,						//4A
+	{ 6, 3, 1, 650000, 0, Load_IDai9, "I DAI 9" } /* "I DAI 9" */,						//4B
 	{ 6, 3, 1, 950000, 0, Load_IHas14, "I HAS14" } /* "I HAS14" */,						//4C
 	{ 6, 3, 1, 850000, 0, Load_IHas15, "I HAS15" } /* "I HAS15" */,						//4D
 	{ 6, 3, 1, 950000, 0, Load_IHas16, "I HAS16" } /* "I HAS16" */,						//4E
 	{ 2, 3, 1, 1110000, 0, Load_IHas17, "I HAS17" } /* "I HAS17" */,					//4F
 	{ 2, 3, 1, 1110000, 0, Load_IHas18, "I HAS18" } /* "I HAS18" */,					//50
 	{ 2, 2, 1, 1250000, 0, Load_BaneIwa, "BANEIWA" } /* "BANEIWA" */,					//51
-	{ 2, 5, 1, 550000, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,					//52
+	{ 2, 5, 1, 450000, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,					//52
 	{ 2, 5, 1, 1250000, 0, Load_TakoW, "TAKO W " } /* "TAKO W " */,						//53
 	{ 2, 3, 1, 1150000, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54
 	{ 2, 3, 1, 1150000, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,						//55
@@ -2449,7 +2692,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 4, 1, 1250000, 0, Load_PropeB, "PROPE B" } /* "PROPE B" */,					//59
 	{ 2, 4, 1, 1250000, 0, Load_PropeC, "PROPE C" } /* "PROPE C" */,					//5A
 	{ 6, 3, 1, 850000, 0, Load_IwaB, "IWA B  " } /* "IWA B  " */,						//5B
-	{ 2, 5, 1, 550000, 0, Load_PinkF, "PINK F " } /* "PINK F " */,						//5C
+	{ 2, 5, 1, 450000, 0, Load_PinkF, "PINK F " } /* "PINK F " */,						//5C
 	{ 6, 3, 1, 850000, 0, Load_IBou01, "I BOU01" } /* "I BOU01" */,						//5D
 	{ 6, 3, 1, 850000, 0, Load_IBou02, "I BOU02" } /* "I BOU02" */,						//5E
 	{ 6, 3, 1, 850000, 0, Load_IHah01, "I HAH01" } /* "I HAH01" */,						//5F
@@ -2474,7 +2717,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 0, 0, 0, E103Enemy_Load, "E E-103" } /* "E E-103" */,						//72
 	{ 2, 3, 0, 0, 0, ChaosEmeGoal_WValley_Main, "O KAOSE" } /* "Chaos Emerald */,		//73
 	{ 6, 3, 1, 850000, 0, Load_IDai10, "I DAI 10" } /* "I DAI 10" */,					//74
-	{ 6, 3, 1, 850000, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,						//75
+	{ 6, 3, 1, 750000, 0, Load_IBou03, "I BOU03" } /* "I BOU03" */,						//75
 	{ 6, 3, 1, 810000, 0, Load_IHas19, "I HAS19" } /* "I HAS19" */,						//76
 	{ 6, 3, 1, 40000000, 0, Load_IHah04, "I HAH04" } /* "I HAH04" */,					//77
 	{ 6, 3, 1, 40000000, 0, Load_IHah05, "I HAH05" } /* "I HAH05" */,					//78
