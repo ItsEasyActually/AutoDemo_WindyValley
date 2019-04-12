@@ -32,6 +32,9 @@
 
 //Variables
 static bool ADSetFile = true;
+static bool ADDrawD = true;
+
+
 static float SkyTrans = 1.0f;
 bool LoadedTornado = false; //Flag to set if the Transition Tornado has been loaded or not.
 SETObjData TornadoThings = {}; //Raw SET Data for the tornado stuff.
@@ -2853,12 +2856,36 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	ReplaceBINFile("SET0202S_DC", "SET0202S_AD");
 
 	const IniFile *config = new IniFile(std::string(path) + "\\config.ini");
+
 	ADSetFile = config->getBool("Options", "ADSetFile", false);
+	ADDrawD = config->getBool("Options", "ADDrawD", false);
 	if (ADSetFile)
 	{
 		ReplaceOrigFile("SET0200S", "SET0200S_Orig");
 		ReplaceOrigFile("SET0201S", "SET0201S_Orig");
 		ReplaceOrigFile("SET0202S", "SET0202S_Orig");
+	}
+	if (ADDrawD)
+	{
+		for (int i = 21; i < 40; i++)
+		{
+			WindyValleyObjectList.List[i].UseDistance = 0;
+		}
+
+		WindyValleyObjectList.List[40].Distance = 950000;
+		WindyValleyObjectList.List[41].Distance = 950000;
+		WindyValleyObjectList.List[42].Distance = 950000;
+
+		for (int j = 43; j < 109; j++)
+		{
+			WindyValleyObjectList.List[j].UseDistance = 0;
+		}
+
+		for (int k = 116; k < 119; k++)
+		{
+			WindyValleyObjectList.List[k].UseDistance = 0;
+		}
+
 	}
 	delete config;
 
