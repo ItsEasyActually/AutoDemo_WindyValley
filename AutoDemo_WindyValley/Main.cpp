@@ -2622,7 +2622,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 2, 0, 0, 0, RocketV_Main, "Rocket V" } /* "Rocket V" */,						//10
 	{ 6, 2, 0, 0, 0, RocketVS_Main, "Rocket VS" } /* "Rocket VS" */,					//11
 	{ 2, 2, 1, 4000000, 0, JumpPanel_Load, "O JPanel" } /* "O JPanel" */,				//12
-	{ 15, 3, 0, 0, 0, CheckPoint_Main, "O Save Point" } /* "O Save Point" */,			//13
+	{ 15, 6, 0, 0, 0, CheckPoint_Main, "O Save Point" } /* "O Save Point" */,			//13
 	{ 2, 3, 0, 0, 0, Wall_Main, "WALL   " } /* "WALL   " */,							//14
 	{ 3, 2, 1, 1150000, 0, Trampoline_Main, "TRAMPOL" } /* "TRAMPOL" */,				//15
 	{ 2, 2, 1, 450000, 0, BLeaf, "B LEAF " } /* "B LEAF " */,							//16
