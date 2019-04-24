@@ -19,6 +19,7 @@ void set_init()
 	WriteData((short**)0x0046BE0C, &set_table[0].Flags);
 	WriteData((short**)0x0046BF4D, &set_table[0].Flags);
 	WriteData((ObjectMaster***)0x0059222D, &set_table[0].ObjInstance);
+	WriteData((short**)0x0046C1DB, &set_table[SET_COUNT].Flags);
 
 	WriteData((PRM_Entry***)0x591D5F, &mission_set_table[0].PRMEntry);
 	WriteData((MissionSETData**)0x00591D64, &mission_set_table[0]);
@@ -38,6 +39,7 @@ void set_init()
 	WriteData((int*)0x0046BD6C, SET_COUNT);
 	WriteData((int*)0x0046BF3D, SET_COUNT);
 	WriteData((int*)0x0046BF44, SET_COUNT);
+	WriteData((int*)0x0046C1E0, (SET_COUNT + 1));
 
 	WriteData((int*)0x00591A32, MISSION_SET_COUNT);
 }
