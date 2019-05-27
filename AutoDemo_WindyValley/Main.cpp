@@ -860,7 +860,7 @@ void __cdecl Deco_Tornado_Bending()
 	{
 		if (TornadoDirection == true)
 		{
-			if (TornadoDECOFrame <= 71 && TornadoDECOFrame >= 25)
+			if (TornadoDECOFrame >= 25)
 			{
 				if (vertex_00179E64[i].x < vertex_00179E64_bendingLEFT[i].x)
 				{
@@ -951,7 +951,7 @@ void __cdecl Deco_Tornado_Bending()
 		}
 		else
 		{
-			if (TornadoDECOFrame <= 71 && TornadoDECOFrame >= 25)
+			if (TornadoDECOFrame >= 25)
 			{
 				if (vertex_00179E64[i].x > vertex_00179E64_bendingRIGHT[i].x)
 				{
@@ -1225,36 +1225,6 @@ void __cdecl Load_Tornado(void)
 			Torn->Scale.y = 0.0f;
 			Torn->Scale.z = 0.0f;
 			Torn->CharIndex = 7;
-		}
-		a1 = LoadObject((LoadObj)2, 3, Wall_Main);
-		a1->SETData.SETData = &TornadoThings;
-		if (a1)
-		{
-			Torn = a1->Data1;
-			Torn->Position.x = 473.244659f; //Loading some pushy walls in just to make sure the player can't escape the tornado by going back into the level or something.
-			Torn->Position.y = -384.367523f;
-			Torn->Position.z = -2498.39258f;
-			Torn->Rotation.x = 0;
-			Torn->Rotation.y = 0x7A2D;
-			Torn->Rotation.z = 0;
-			Torn->Scale.x = 100.0f;
-			Torn->Scale.y = 100.0f;
-			Torn->Scale.z = 25.0f;
-		}
-		a1 = LoadObject((LoadObj)2, 3, Wall_Main);
-		a1->SETData.SETData = &TornadoThings;
-		if (a1)
-		{
-			Torn = a1->Data1;
-			Torn->Position.x = 597.882935f;
-			Torn->Position.y = -395.617523f;
-			Torn->Position.z = -2558.87744f;
-			Torn->Rotation.x = 0;
-			Torn->Rotation.y = 0xA35B;
-			Torn->Rotation.z = 0;
-			Torn->Scale.x = 100.0f;
-			Torn->Scale.y = 100.0f;
-			Torn->Scale.z = 25.0f;
 		}
 	}
 	LoadedTornado = true;
