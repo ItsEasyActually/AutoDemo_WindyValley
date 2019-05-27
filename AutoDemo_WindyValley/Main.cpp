@@ -670,6 +670,9 @@ void __cdecl ShockwaveEffect_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
 	Angle v5;
+	Angle v4;
+	Angle v3;
+	Angle v6;
 
 	v1 = a1->Data1;
 
@@ -679,16 +682,31 @@ void __cdecl ShockwaveEffect_Display(ObjectMaster *a1)
 		Tornado_Texture_Load();
 		if (Camera_Data1 != nullptr)
 		{
-			a1->Data1->Position = Camera_Data1->Position; //Making the effect follow the camera.
+			a1->Data1->Position = Camera_Data1->Position; //making the effect follow the camera
 		}
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
-		njScale(0, 1.0f, 3.1f, 1.0f); //Scaling it vertically so that you can't see the edges of it by tilting the camera during the sequence.
-		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
-		if (v5)
+		v6 = Camera_Data1->Rotation.y;
+		if (v6)
 		{
-			njRotateY(0, (unsigned __int16)v5);
+			njRotateY(0, (unsigned __int16)v6);
 		}
+		v4 = Camera_Data1->Rotation.x;
+		if (v4)
+		{
+			njRotateX(0, (unsigned __int16)v4);
+		}
+		v3 = Camera_Data1->Rotation.z;
+		if (v3)
+		{
+			njRotateZ(0, (unsigned __int16)v3);
+		}
+		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+		if ((unsigned int)(unsigned __int64)v5)
+		{
+			njRotateY(0, (unsigned int)(unsigned __int64)v5);
+		}
+		njScale(0, 1.0f, 1.5f, 1.0f); //This needs to be scaled up a little bit more than the final's effect, since the beta model for it is smaller
 		sub_409E70((NJS_MODEL_SADX*)TornadoShockwave.model, 0, 1.0);
 		njPopMatrix(1u);
 		ToggleStageFog();
@@ -720,16 +738,23 @@ void __cdecl ShockWaveEffect_Main(ObjectMaster *a1)
 				{
 					if (LoadedTornado == true && CurrentLevel == 2 && CurrentAct == 0)
 					{
-						if (SonicChar != nullptr && !IsGamePaused()) //This is the code that sucks the player up into the tornado.
+						if (SonicChar != nullptr && !IsGamePaused())
 						{
 							SonicChar->Position.x = SonicChar->Position.x + squareroot((TornadoSuck.x - SonicChar->Position.x) / 5);
-							//PlayChar->Position.y = PlayChar->Position.y + squareroot((TornadoSuck.y - (PlayChar->Position.y * 1.2358869) + 220) / 40);
 							SonicChar->Position.y = TornadoSuck.y;
-							SonicChar->Position.z = SonicChar->Position.z + squareroot((TornadoSuck.z - SonicChar->Position.z) / 40);
+							SonicChar->Position.z = SonicChar->Position.z + squareroot((TornadoSuck.z - SonicChar->Position.z) / 38); //Lower this to make it suck Sonic up faster.
 
 							while (SonicChar->Position.y > -280)
 							{
 								SonicChar->Position.y -= 1;
+							}
+							while (SonicChar->Position.x > 700)
+							{
+								SonicChar->Position.x -= 1;
+							}
+							while (SonicChar->Position.x < 380)
+							{
+								SonicChar->Position.x += 1;
 							}
 							//DisablePause();
 						}
@@ -1173,6 +1198,8 @@ void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Tra
 			}
 		}
 		ToggleStageFog();
+		TornadoSuck.x = a1->Data1->Position.x;
+		TornadoSuck.z = a1->Data1->Position.z - 10;
 	}
 }
 
@@ -1684,6 +1711,8 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 			TornUVShift3 = 0;
 			TornUVShift1 = 0;
 			TornUVShift2 = 0;
+			TornadoSuck.x = 692.156555f;
+			TornadoSuck.z = -3467.09546f;
 
 			for (int h = 0; h < 252; h++)
 			{
@@ -1739,6 +1768,8 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 		TornUVShift3 = 0;
 		TornUVShift1 = 0;
 		TornUVShift2 = 0;
+		TornadoSuck.x = 692.156555f;
+		TornadoSuck.z = -3467.09546f;
 
 		for (int h = 0; h < 252; h++)
 		{
