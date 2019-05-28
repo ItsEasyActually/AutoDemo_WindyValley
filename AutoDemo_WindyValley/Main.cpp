@@ -860,7 +860,7 @@ void __cdecl Deco_Tornado_Bending()
 	{
 		if (TornadoDirection == true)
 		{
-			if (TornadoDECOFrame >= 25)
+			if (TornadoDECOFrame <= 88 && TornadoDECOFrame >= 25)
 			{
 				if (vertex_00179E64[i].x < vertex_00179E64_bendingLEFT[i].x)
 				{
@@ -951,7 +951,7 @@ void __cdecl Deco_Tornado_Bending()
 		}
 		else
 		{
-			if (TornadoDECOFrame >= 25)
+			if (TornadoDECOFrame <= 88 && TornadoDECOFrame >= 25)
 			{
 				if (vertex_00179E64[i].x > vertex_00179E64_bendingRIGHT[i].x)
 				{
