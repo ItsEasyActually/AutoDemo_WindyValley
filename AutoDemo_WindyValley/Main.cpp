@@ -748,7 +748,7 @@ void __cdecl ShockWaveEffect_Main(ObjectMaster *a1)
 							{
 								SonicChar->Position.y -= 1;
 							}
-							while (SonicChar->Position.x > 700)
+							while (SonicChar->Position.x > 780)
 							{
 								SonicChar->Position.x -= 1;
 							}
