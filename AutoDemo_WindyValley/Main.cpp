@@ -748,7 +748,7 @@ void __cdecl ShockWaveEffect_Main(ObjectMaster *a1)
 							{
 								SonicChar->Position.y -= 1;
 							}
-							while (SonicChar->Position.x > 780)
+							while (SonicChar->Position.x > 740)
 							{
 								SonicChar->Position.x -= 1;
 							}
@@ -1198,8 +1198,12 @@ void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Tra
 			}
 		}
 		ToggleStageFog();
-		TornadoSuck.x = a1->Data1->Position.x;
-		TornadoSuck.z = a1->Data1->Position.z - 10;
+
+		if (a1->Data1->Position.z > -2500)
+		{
+			TornadoSuck.x = a1->Data1->Position.x;
+			TornadoSuck.z = a1->Data1->Position.z - 10;
+		}
 	}
 }
 
