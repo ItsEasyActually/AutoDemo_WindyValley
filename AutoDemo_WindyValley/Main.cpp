@@ -221,52 +221,40 @@ static int TornUVShift1 = 0;
 static int TornUVShift2 = 0;
 static int TornUVShift3 = 0;
 
-bool Skybox1Loaded = false;
-bool Skybox2Loaded = false;
-bool Skybox3Loaded = false;
-SETObjData SkyboxThings = {};
+float SkyboxSpinSpeed1 = 0;
+float SkyboxSpinSpeed2 = 0;
+float SkyboxSpinSpeed3 = 0;
 
 bool ClassicSpringCheat = false;
 
-void __cdecl WVAct1_Display(ObjectMaster *a1)
-{
-	EntityData1 *v1; // esi@1
-	Angle v4; // eax@6
-	Angle v5; // st7@8
 
-	v1 = a1->Data1;
+void __cdecl WVAct1_Display_new()
+{
+	Angle v1; // st7@8
+
 	if (!MissedFrames)
 	{
 		DisableFog();
 		njSetTexture(&BETAWINDY_BACK_texlist);
-		//SetTextureToLevelObj();
 		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		v4 = v1->Rotation.y;
-		if (v4)
-		{
-			njRotateY(0, (unsigned __int16)v4);
-		}
 		if (Camera_Data1 != nullptr)
 		{
-			a1->Data1->Position = Camera_Data1->Position;
-			a1->Data1->Position.y = 0.0f;
+			njTranslate(0, Camera_Data1->Position.x, 0, Camera_Data1->Position.z);
 		}
+		njRotateY(0, (unsigned __int16)0);
 		njScale(0, 1.4f, 1.4f, 1.4f);
 		sub_408530(&Act1MainSkybox);
-
 		njPushMatrix(0);
 		njScale(0, 1.25f, 1.0f, 1.25f);
 		njTranslate(0, 0, (Act1CloudLayer.pos[1]), 0);
 		sub_408530(&Act1CloudLayer);
 		njPopMatrix(1u); //cloud layer
-
 		njPushMatrix(0);
 		njTranslate(0, 0, (Act1CloudRing1.pos[1]), 0);
-		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
-		if (v5)
+		v1 = SkyboxSpinSpeed1 * 65536.0 * 0.002777777777777778;
+		if (v1)
 		{
-			njRotateY(0, (unsigned __int16)v5);
+			njRotateY(0, (unsigned __int16)v1);
 		}
 		sub_408530(&Act1CloudRing1);
 		njPopMatrix(1u); //cloud ring
@@ -275,29 +263,22 @@ void __cdecl WVAct1_Display(ObjectMaster *a1)
 	}
 }
 
-void __cdecl WVAct2_Display(ObjectMaster *a1)
+void __cdecl WVAct2_Display_new()
 {
-	EntityData1 *v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // eax@6
 	Angle v6; // eax@6
 	Angle v7; // eax@6
 
-	v1 = a1->Data1;
 	if (!MissedFrames)
 	{
 		DisableFog();
 		njSetTexture(&BETAWINDY_BACK2_texlist);
-		//SetTextureToLevelObj();
 		njPushMatrix(0);
 		DrawQueueDepthBias = -28052.0;
-		njTranslateV(0, &v1->Position);
-		v4 = v1->Rotation.y;
-		if (v4)
-		{
-			njRotateY(0, (unsigned __int16)v4);
-		}
-		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
+		njTranslate(0, 650, -360, -200);
+		njRotateY(0, (unsigned __int16)0);
+		v5 = SkyboxSpinSpeed1 * 65536.0 * 0.002777777777777778;
 		if (v5)
 		{
 			njRotateY(0, (unsigned __int16)v5);
@@ -307,8 +288,8 @@ void __cdecl WVAct2_Display(ObjectMaster *a1)
 
 		njPushMatrix(0);
 		DrawQueueDepthBias = -38052.0;
-		njTranslateV(0, &v1->Position);
-		v6 = *(float*)&v1->Object * 65536.0 * 0.002777777777777778;
+		njTranslate(0, 650, -360, -200);
+		v6 = SkyboxSpinSpeed2 * 65536.0 * 0.002777777777777778;
 		if (v6)
 		{
 			njRotateY(0, (unsigned __int16)v6);
@@ -317,8 +298,8 @@ void __cdecl WVAct2_Display(ObjectMaster *a1)
 		njPopMatrix(1u); //model3
 
 		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		v7 = *(float*)&v1->LoopData * 65536.0 * 0.002777777777777778;
+		njTranslate(0, 650, -360, -200);
+		v7 = SkyboxSpinSpeed3 * 65536.0 * 0.002777777777777778;
 		if (v7)
 		{
 			njRotateY(0, (unsigned __int16)v7);
@@ -331,63 +312,51 @@ void __cdecl WVAct2_Display(ObjectMaster *a1)
 	}
 }
 
-void __cdecl WVAct3_Display(ObjectMaster *a1)
+void __cdecl WVAct3_Display_new()
 {
-	EntityData1 *v1; // esi@1
-	Angle v4; // eax@6
-	Angle v5; // st7@8
-	Angle v6; // st7@8
-	Angle v7; // st7@8
-
-	v1 = a1->Data1;
+	Angle v1;
+	Angle v2;
+	Angle v3;
 
 	if (!MissedFrames)
 	{
 		njSetTexture(&BETAWINDY_BACK3_texlist);
 		DisableFog();
-		//SetTextureToLevelObj();
+		njPushMatrix(0);
 		if (Camera_Data1 != nullptr)
 		{
-			a1->Data1->Position = Camera_Data1->Position;
-			//a1->Data1->Position.y = 0.0f;
+			njTranslateV(0, &Camera_Data1->Position);
 		}
-		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		v4 = v1->Rotation.y;
-		if (v4)
+		njRotateY(0, (unsigned __int16)0);
+
+		v1 = SkyboxSpinSpeed1 * 65536.0 * 0.002777777777777778;
+		if (v1)
 		{
-			njRotateY(0, (unsigned __int16)v4);
-		}
-		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
-		if (v5)
-		{
-			njRotateY(0, (unsigned __int16)v5);
+			njRotateY(0, (unsigned __int16)v1);
 		}
 		sub_408530(&Act3MainSkybox);
 		njPushMatrix(0);
-		v7 = *(float*)&v1->Object * 65536.0 * 0.002777777777777778;
-		if (v7)
+		v2 = SkyboxSpinSpeed2 * 65536.0 * 0.002777777777777778;
+		if (v2)
 		{
-			njRotateY(0, (unsigned __int16)v7);
+			njRotateY(0, (unsigned __int16)v2);
 		}
-		//njScale(0, 0.7f, 0.6f, 0.7f);
 		sub_408530(&Act3CloudLayer);
 		njPopMatrix(1u); //cloud layer
 		njPushMatrix(0);
-		v6 = *(float*)&v1->LoopData * 65536.0 * 0.002777777777777778;
-		if (v6)
+		v3 = SkyboxSpinSpeed3 * 65536.0 * 0.002777777777777778;
+		if (v3)
 		{
-			njRotateY(0, (unsigned __int16)v6);
+			njRotateY(0, (unsigned __int16)v3);
 		}
 		sub_408530(&Act3CloudRing2);
 		njPopMatrix(1u); //cloud ring2
 		njPushMatrix(0);
-		v7 = *(float*)&v1->Object * 65536.0 * 0.002777777777777778;
-		if (v7)
+		//v7 = *(float*)&v1->Object * 65536.0 * 0.002777777777777778;
+		if (v2)
 		{
-			njRotateY(0, (unsigned __int16)v7);
+			njRotateY(0, (unsigned __int16)v2);
 		}
-		//njScale(0, 1.1f, 1.1f, 1.1f);
 		sub_408530(&Act3CloudRing);
 		njPopMatrix(1u); //cloud ring
 		njPopMatrix(1u); //main model
@@ -395,232 +364,42 @@ void __cdecl WVAct3_Display(ObjectMaster *a1)
 	}
 }
 
-void __cdecl SkyBoxAct3_Main(ObjectMaster *a1)
+void __cdecl Display_BWVSkybox()
 {
-	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 2))
-	{
-		if (a1)
-		{
-			DeleteObjectMaster(a1);
-		}
-	}
-
-	else
-	{
-		EntityData1 *v1; // esi@1
-
-		v1 = a1->Data1;
-		if (!ClipSetObject(a1))
-		{
-			if (v1->Action)
-			{
-				if (v1->Action == 1)
-				{
-					*(float*)&v1->CharIndex = 0.01f + *(float*)&v1->CharIndex;
-					*(float*)&v1->LoopData = 0.02f + *(float*)&v1->LoopData;
-					*(float*)&v1->Object = 0.04f + *(float*)&v1->Object;
-					WVAct3_Display(a1);
-				}
-			}
-			else
-			{
-				v1->Action = 1;
-				a1->DisplaySub = WVAct3_Display;
-			}
-		}
-	}
-}
-
-void __cdecl SkyBoxAct2_Main(ObjectMaster *a1)
-{
-	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 1))
-	{
-		if (a1)
-		{
-			DeleteObjectMaster(a1);
-		}
-	}
-
-	else
-	{
-		EntityData1 *v1; // esi@1
-
-		v1 = a1->Data1;
-		if (!ClipSetObject(a1))
-		{
-			if (v1->Action)
-			{
-				if (v1->Action == 1)
-				{
-					*(float*)&v1->CharIndex = -3.5f + *(float*)&v1->CharIndex;
-					*(float*)&v1->LoopData = -5.0f + *(float*)&v1->LoopData;
-					*(float*)&v1->Object = -8.0f + *(float*)&v1->Object;
-					WVAct2_Display(a1);
-				}
-			}
-			else
-			{
-				a1->Data1->Position.x = 650.0f;
-				a1->Data1->Position.y = -360.0f;
-				a1->Data1->Position.z = -200.0f;
-				v1->Action = 1;
-				a1->DisplaySub = WVAct2_Display;
-			}
-		}
-	}
-}
-
-void __cdecl SkyBoxAct1_Main(ObjectMaster *a1)
-{
-	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 0))
-	{
-		if (a1)
-		{
-			DeleteObjectMaster(a1);
-		}
-	}
-
-	else
-	{
-		EntityData1 *v1; // esi@1
-
-		v1 = a1->Data1;
-		if (!ClipSetObject(a1))
-		{
-			if (v1->Action)
-			{
-				if (v1->Action == 1)
-				{
-					*(float*)&v1->CharIndex = -0.02f + *(float*)&v1->CharIndex;
-					WVAct1_Display(a1);
-				}
-			}
-			else
-			{
-				v1->Action = 1;
-				a1->DisplaySub = WVAct1_Display;
-			}
-		}
-	}
-}
-
-void __cdecl Act3SkyBox_Load(void)
-{
-	ObjectMaster *a1;
-	EntityData1 *boxthree;
-
-	if (Skybox3Loaded == false)
-	{
-		SkyboxThings.Distance = 40000000.0f;
-		a1 = LoadObject((LoadObj)2, 3, SkyBoxAct3_Main);
-		a1->SETData.SETData = &SkyboxThings;
-		if (a1)
-		{
-			boxthree = a1->Data1;
-			boxthree->Position.x = 0.0f;
-			boxthree->Position.y = 0.0f;
-			boxthree->Position.z = 0.0f;
-			boxthree->Rotation.x = 0;
-			boxthree->Rotation.y = 0;
-			boxthree->Rotation.z = 0;
-			boxthree->Scale.x = 1.0f;
-			boxthree->Scale.y = 1.0f;
-			boxthree->Scale.z = 1.0f;
-		}
-
-		if ((ControllerPointers[0]->HeldButtons & Buttons_X) && CurrentCharacter != 6)
-		{
-			ClassicSpringCheat = true;
-		}
-	}
-	Skybox3Loaded = true;
-}
-
-void __cdecl Act2SkyBox_Load(void)
-{
-	ObjectMaster *a1;
-	EntityData1 *boxtwo;
-
-	if (Skybox2Loaded == false)
-	{
-		SkyboxThings.Distance = 40000000.0f;
-		a1 = LoadObject((LoadObj)2, 3, SkyBoxAct2_Main);
-		a1->SETData.SETData = &SkyboxThings;
-		if (a1)
-		{
-			boxtwo = a1->Data1;
-			boxtwo->Position.x = 0.0f;
-			boxtwo->Position.y = 0.0f;
-			boxtwo->Position.z = 0.0f;
-			boxtwo->Rotation.x = 0;
-			boxtwo->Rotation.y = 0;
-			boxtwo->Rotation.z = 0;
-			boxtwo->Scale.x = 1.0f;
-			boxtwo->Scale.y = 1.0f;
-			boxtwo->Scale.z = 1.0f;
-		}
-	}
-	Skybox2Loaded = true;
-}
-
-void __cdecl Act1SkyBox_Load(void)
-{
-	ObjectMaster *a1;
-	EntityData1 *boxone;
-
-	if (Skybox1Loaded == false)
-	{
-		SkyboxThings.Distance = 40000000.0f;
-
-		a1 = LoadObject((LoadObj)2, 3, SkyBoxAct1_Main);
-		a1->SETData.SETData = &SkyboxThings;
-		if (a1)
-		{
-			boxone = a1->Data1;
-			boxone->Position.x = 0.0f;
-			boxone->Position.y = 0.0f;
-			boxone->Position.z = 0.0f;
-			boxone->Rotation.x = 0;
-			boxone->Rotation.y = 0;
-			boxone->Rotation.z = 0;
-			boxone->Scale.x = 1.0f;
-			boxone->Scale.y = 1.0f;
-			boxone->Scale.z = 1.0f;
-		}
-
-		if ((ControllerPointers[0]->HeldButtons & Buttons_X) && CurrentCharacter != 6)
-		{
-			ClassicSpringCheat = true;
-		}
-	}
-	Skybox1Loaded = true;
-}
-
-void __cdecl Load_BWVSkybox(void)
-{
-	auto CharTest = EntityData1Ptrs[0];
-	if (CurrentLevel == 2)
+	if (CurrentLevel == 2 && EntityData1Ptrs[0])
 	{
 		if (CurrentAct == 0)
 		{
-			Act1SkyBox_Load();
+			if (!IsGamePaused())
+			{
+				SkyboxSpinSpeed1 += (-0.02 * FramerateSetting);
+			}
+			WVAct1_Display_new();
 		}
 		else if (CurrentAct == 1)
 		{
-			Act2SkyBox_Load();
+			if (!IsGamePaused())
+			{
+				SkyboxSpinSpeed1 += (-3.5f * FramerateSetting);
+				SkyboxSpinSpeed2 += (-8 * FramerateSetting);
+				SkyboxSpinSpeed3 += (-5 * FramerateSetting);
+			}
+			WVAct2_Display_new();
 		}
 		else if (CurrentAct == 2)
 		{
-			Act3SkyBox_Load();
-		}
-		if (GameState == 3 || GameState == 7 || GameState == 21 || CurrentLevel != 2 || CharTest == nullptr)
-		{
-			Skybox1Loaded = false;
-			Skybox2Loaded = false;
-			Skybox3Loaded = false;
+			if (!IsGamePaused())
+			{
+				SkyboxSpinSpeed1 += (0.01 * FramerateSetting);
+				SkyboxSpinSpeed2 += (0.04 * FramerateSetting);
+				SkyboxSpinSpeed3 += (0.02 * FramerateSetting);
+			}
+			WVAct3_Display_new();
 		}
 	}
+
 }
+
 
 void TrampolineValueCorrecter() //This function is a fail-safe just in case you somehow pause and quit the level in the middle of bouncing on a trampoline and one of the values doesn't get reset to its proper value.
 {
@@ -660,7 +439,7 @@ void WindPathZoneSetting() //This changes the speed of the leaf models blowing a
 	}
 }
 
-void __cdecl Tornado_Texture_Load(void) //Sets the textures for the object to Tomado.PVM.
+void __cdecl Tornado_Texture_Load() //Sets the textures for the object to Tomado.PVM.
 {
 	//LoadPVM("Tomado", &Tomado_texlist);
 	njSetTexture(&Tomado_texlist);
@@ -1102,7 +881,7 @@ void __cdecl Deco_Tornado_Main(ObjectMaster *a2)
 	}
 }
 
-void __cdecl Load_DecoTornado(void)
+void __cdecl Load_DecoTornado()
 {
 	ObjectMaster *a1;
 	EntityData1 *Torn;
@@ -1207,7 +986,7 @@ void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Tra
 	}
 }
 
-void __cdecl Load_Tornado(void)
+void __cdecl Load_Tornado()
 {
 	if (LoadedTornado == false)
 	{
@@ -1234,7 +1013,7 @@ void __cdecl Load_Tornado(void)
 	LoadedTornado = true;
 }
 
-void __cdecl Load_Tornado_Shockwave(void)
+void __cdecl Load_Tornado_Shockwave()
 {
 	ObjectMaster *a1;
 	EntityData1 *Wave;
@@ -1632,7 +1411,7 @@ void __cdecl BridgeChildLoad(ObjectMaster *a2) //Hijacking the function used whe
 	}
 }
 
-void __cdecl Load_TBridge(void)
+void __cdecl Load_TBridge()
 {
 	ObjectMaster *a1;
 	EntityData1 *Torn;
@@ -1664,12 +1443,19 @@ void __cdecl Load_TBridge(void)
 	LoadedBridge = true;
 }
 
-void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the stage function nonsense.
+void __cdecl Tornado_Check() //This is the big one. The main chunk of the stage function nonsense.
 {
 	auto PlayChar = EntityData1Ptrs[0];
 	
 	if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 	{
+		if (CurrentLevel == 2 && PlayChar == nullptr)
+		{
+			SkyboxSpinSpeed1 = 0;
+			SkyboxSpinSpeed2 = 0;
+			SkyboxSpinSpeed3 = 0;
+		}
+
 		if (PlayChar != nullptr && PlayChar->Position.z > -1700 && (LoadedTornado == true || LoadedDECOTornado == true))
 		{
 			LoadedTornado = false; //Basically, if you reset after either tornado has been loaded, and you appear further back, reset everything. For some baffling reason, not checking for that distance away (1700), the transiton tornado won't load. Are the gamestates being changed when that thing appears?
@@ -1744,6 +1530,9 @@ void __cdecl Tornado_Check(void) //This is the big one. The main chunk of the st
 		TornUVShift2 = 0;
 		TornadoSuck.x = 692.156555f;
 		TornadoSuck.z = -3467.09546f;
+		SkyboxSpinSpeed1 = 0;
+		SkyboxSpinSpeed2 = 0;
+		SkyboxSpinSpeed3 = 0;
 
 		for (int h = 0; h < 252; h++)
 		{
@@ -2326,52 +2115,8 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 	}
 }
 
-/*void __cdecl PreHypoDebris(ObjectMaster *a1)
+void __cdecl Load_Debris()
 {
-	EntityData1 *v1; // edi@1
-	NJS_MODEL_SADX **v2; // esi@7
-	ObjectMaster *v3; // eax@8
-	EntityData1 *v4; // edi@1
-	//int v4 = 0;
-
-	v1 = a1->Data1;
-	if (v1->Action)
-	{
-		if (v1->Action == 1)
-		{
-			if (++v1->InvulnerableTime >= 0x296u)
-			{
-				DeleteChildObjects(a1);
-				CheckThingButThenDeleteObject(a1);
-			}
-			else
-			{
-				RunObjectChildren(a1);
-			}
-		}
-	}
-	else
-	{
-		v1->Action = 1;
-		*v2 = off_C66C80;
-		do
-		{
-			v3 = LoadChildObject(LoadObj_Data1, HypotheticalDebris, a1);
-			v4 = v3->Data1;
-			if (v4)
-			{
-				*(float *)v4->LoopData = (Sint32)*v2;
-				++v2;
-				v4->Position.y = v1->Position.y;
-			}
-		} while ((signed int)v2 < (signed int)stru_C66CA8);
-		SetCameraControlEnabled(1);
-	}
-}*/
-
-void __cdecl Load_Debris(void)
-{
-	//auto entityPlayer = EntityData1Ptrs[0];
 
 	if (LoadedDebris == false)
 	{
@@ -2466,7 +2211,7 @@ void __cdecl Load_Debris(void)
 	LoadedDebris = true;
 }
 
-int __cdecl WindCheck(void)
+int __cdecl WindCheck()
 {
 	return 0;
 }
@@ -3108,44 +2853,53 @@ extern "C"
 		TrampolineValueCorrecter(); //This is just to make sure that if you pause in the middle of bouncing, that the floats return to their original values for other levels.
 		//WindPathZoneSetting(); Unsure now if the wind path leaves actually moved differently in the beta.
 		Tornado_Check(); //Loads Stage Function stuff for Act 1
-		Load_BWVSkybox(); //Loads the skyboxes
+		//Load_BWVSkybox(); //Loads the skyboxes
+		Display_BWVSkybox(); //New loading routine for skyboxes
 
-		if (CurrentLevel == 2 && CurrentAct == 1 && !IsGamePaused())
+		if (CurrentLevel == 2)
 		{
-			if (LoadedDebris == false)
+			if ((ControllerPointers[0]->HeldButtons & Buttons_X) && CurrentCharacter != 6)
 			{
-				DebrisFrame++;
-				if (FramerateSetting >= 2)
+				ClassicSpringCheat = true;
+			}
+
+			if (CurrentAct == 1 && !IsGamePaused())
+			{
+				if (LoadedDebris == false)
 				{
 					DebrisFrame++;
+					if (FramerateSetting >= 2)
+					{
+						DebrisFrame++;
+					}
+				}
+
+				if (DebrisFrame >= 15)
+				{
+					Load_Debris();
+					//DebrisFrame = 0;
+				}
+
+				if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
+				{
+					LoadedDebris = false;
+					DebrisFrame = 0;
 				}
 			}
-			if (DebrisFrame >= 15)
+
+			if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 1))
 			{
-				Load_Debris();
-				//DebrisFrame = 0;
+				if (DebrisFrame != 0)
+				{
+					LoadedDebris = false;
+					DebrisFrame = 0;
+				}
 			}
 
-			if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
+			if (CurrentLevel != 2 && ClassicSpringCheat == true)
 			{
-				LoadedDebris = false;
-				DebrisFrame = 0;
+				ClassicSpringCheat = false;
 			}
-		}
-
-		if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 1))
-		{
-			if (DebrisFrame != 0)
-			{
-				LoadedDebris = false;
-				DebrisFrame = 0;
-			}
-		}
-
-		if (CurrentLevel != 2 && ClassicSpringCheat == true)
-		{
-			ClassicSpringCheat = false;
 		}
 	}
-
 }
