@@ -2858,7 +2858,7 @@ extern "C"
 
 		if (CurrentLevel == 2)
 		{
-			if ((ControllerPointers[0]->HeldButtons & Buttons_X) && CurrentCharacter != 6)
+			if ((ControllerPointers[0]->HeldButtons & Buttons_X) && CurrentCharacter != 6 && !EntityData1Ptrs[0])
 			{
 				ClassicSpringCheat = true;
 			}
