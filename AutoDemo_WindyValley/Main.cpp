@@ -1489,24 +1489,9 @@ void __cdecl Tornado_Check() //This is the big one. The main chunk of the stage 
 		{
 			Load_Tornado();
 			Load_Tornado_Shockwave();
-			//LoadedWave = true; //Giving the "shockwave" the greenlight to spawn and start spinning and scaling.
 			Load_TBridge();
 		}
-		/*if (LoadedWave == true && WaveFrame < 201) //Yes, the wave scales up to 201 times its normal size. If it's much lower than this, I just find it a bit underwhelming.
-		{
-			if (WaveFrame == 0)
-			{
-				Load_Tornado_Shockwave();
-			}
-			if (!IsGamePaused())
-			{
-				WaveFrame += 2;
-				if (FramerateSetting >= 2)
-				{
-					WaveFrame += 2; //Maintaining consistent scaling and spinning speed no matter the framerate.
-				}
-			}
-		}*/
+
 		if (PlayChar != nullptr && PlayChar->Position.z < -2000 && PlayChar->Position.y > -460) //Loading the swerving tornado
 		{
 			Load_DecoTornado();
@@ -2069,7 +2054,7 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 				v9 = *((_DWORD *)v1 + 7) - v4;
 				*((_DWORD *)v1 + 6) += v6;
 				*((_DWORD *)v1 + 7) = v9;
-				sub_4DF500(a1);
+				DebrisDisplay(a1);
 			}
 		}
 		else
@@ -2110,7 +2095,7 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 			v8 = (double)v7 * 0.000030517578;
 			*((float *)v1 + 12) = fabs(v8);
 			*((float *)v1 + 2) = (double)(signed int)(v8 * 360.0);
-			a1->DisplaySub = sub_4DF500;
+			a1->DisplaySub = DebrisDisplay;
 		}
 	}
 }
@@ -2666,7 +2651,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteJump((void *)0x4E6070, BridgeChildLoad);
 
 	WriteJump((void *)0x4DF5A0, HypotheticalDebris); //Main Debris loading function overwrite
-	WriteJump((void *)0x4DF500, DebrisDisplay); //Display routine overwrite for Debris
+	//WriteJump((void *)0x4DF500, DebrisDisplay); //Display routine overwrite for Debris
 	//WriteJump((void *)0x4DF740, PreHypoDebris); //Testing something
 	WriteData<1>((void*)0x04DF75C, 0xFFu); //Controlling how long each piece of debris is spawned for. 96u is original value.
 
