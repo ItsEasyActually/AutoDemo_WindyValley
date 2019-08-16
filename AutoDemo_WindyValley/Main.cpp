@@ -26,9 +26,8 @@
 //Functions
 #include "Functions.h"
 
-#define ReplaceBINFile(a) helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" a "_AD.BIN");
-#define ReplaceOrigFile(a) helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" a "_Orig.BIN");
-#define ReplacePVMFile(a) helperFunctions.ReplaceFile("system\\" a ".PVM", "system\\" a "_AD.PVM");
+#define ReplaceBINFile(a, b) helperFunctions.ReplaceFile("system\\" a ".BIN", "system\\" b ".BIN");
+#define ReplacePVMFile(a, b) helperFunctions.ReplaceFile("system\\" a ".PVM", "system\\" b ".PVM");
 
 //Variables
 static bool ADSetFile = true;
@@ -2596,9 +2595,9 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	ADDrawD = config->getBool("Options", "ADDrawD", false);
 	if (ADSetFile)
 	{
-		ReplaceOrigFile("SET0200S", "SET0200S_Orig");
-		ReplaceOrigFile("SET0201S", "SET0201S_Orig");
-		ReplaceOrigFile("SET0202S", "SET0202S_Orig");
+		ReplaceBINFile("SET0200S", "SET0200S_Orig");
+		ReplaceBINFile("SET0201S", "SET0201S_Orig");
+		ReplaceBINFile("SET0202S", "SET0202S_Orig");
 	}
 	if (ADDrawD)
 	{
