@@ -621,6 +621,7 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v2);
 		}*/
+		DrawQueueDepthBias = -6000.0f;
 		sub_407A00((NJS_MODEL_SADX *)Decor_Tornado1.model, 1.0);
 		njPushMatrix(0);
 		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado2.model, (QueuedModelFlagsB)0, 1.0);
@@ -629,6 +630,7 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado3.model, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
+		DrawQueueDepthBias = 0;
 	}
 }
 
@@ -930,6 +932,7 @@ void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Tra
 		{
 			njRotateY(0, (unsigned __int16)(unsigned __int64)v2);
 		}
+		DrawQueueDepthBias = -6000.0f;
 		sub_407A00((NJS_MODEL_SADX *)Transition_Tornado1.model, 1.0);
 		njPushMatrix(0);
 		njTranslate(0, Transition_Tornado2.pos[0], Transition_Tornado2.pos[1], Transition_Tornado2.pos[2]);
@@ -950,6 +953,7 @@ void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Tra
 		DrawModel_QueueVisible((NJS_MODEL_SADX *)Transition_Tornado3.model, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
+		DrawQueueDepthBias = 0;
 
 		(a3.y) = (v1->Position.y + 30);
 		(a3.z) = (v1->Position.z + 150);
