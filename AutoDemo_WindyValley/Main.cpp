@@ -1975,7 +1975,8 @@ void __cdecl DebrisDisplay(ObjectMaster *a1)
 
 		else if (v2 == &*(NJS_MODEL_SADX*)0xC2CAF8) //Rendering tree with leaves
 		{
-			ProcessModelNode_AB_Wrapper(&object_0019E788, 1.0);
+			//ProcessModelNode_AB_Wrapper(&object_0019E788, 1.0);
+			ProcessModelNode_A_WrapperB(&object_0019E788, (QueuedModelFlagsB)0); //Fixing transparency issues
 			njPopMatrix(1u);
 		}
 
@@ -1986,6 +1987,7 @@ void __cdecl DebrisDisplay(ObjectMaster *a1)
 		}
 		else
 		{
+			DrawModel_407FC0(v2, (QueuedModelFlagsB)0); //Everything else (Borrowing from PkR to render the blade of grass correctly without transparency issues)
 			sub_407A00(v2, 1.0); //Everything else
 			njPopMatrix(1u);
 		}
@@ -2661,6 +2663,8 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteData<1>((void*)0x04E362C, 0x2Cu); //Controlling how long the (normal) leaves of Pu Wind last for. 64u (100) is original value.
 	WriteData<1>((void*)0x04E362D, 0x1u); //Controlling how long the (normal) leaves of Pu Wind last for. 0u (100) is original value. These both are setting it to 300, the same as the beta effect.
 
+	WriteData<1>((void*)0x04E6297, 0x41u);//Making the bridge cloud dust sprite the same size as the AD's.
+	WriteData<1>((void*)0x04E6297, 0x40u);//Same
 
 	WriteCall((void *)0x4E379D, WindCheck); //Removing ClipSet check for the leaves of Pu Wind.
 	WriteCall((void *)0x4E354B, WindCheck);

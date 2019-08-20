@@ -82,6 +82,8 @@ FunctionPointer(void, sub_4DDC10, (ObjectMaster *a1), 0x4DDC10); //Tornado....so
 FunctionPointer(void, __ftol2, (), 0x644340);
 FunctionPointer(void, sub_4B9820, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9820);
 
+FunctionPointer(void, DrawModel_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0); //from PkR
+
 FunctionPointer(void, sub_456BF0, (void *a1, int *a2), 0x456BF0); //Sprite Particles
 
 

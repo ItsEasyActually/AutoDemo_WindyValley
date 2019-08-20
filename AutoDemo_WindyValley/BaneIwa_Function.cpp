@@ -53,7 +53,8 @@ void __cdecl BaneIwa_Display(ObjectMaster *a1)
 	{
 		njRotateZ(0, (unsigned __int16)v5);
 	}
-	sub_407A00((NJS_MODEL_SADX*)Object_BaneIwa_Prop.model, 1.0); //Propeller (NJS_MODEL)
+	//sub_407A00((NJS_MODEL_SADX*)Object_BaneIwa_Prop.model, 1.0); //Propeller (NJS_MODEL)
+	DrawModel_407FC0((NJS_MODEL_SADX*)Object_BaneIwa_Prop.model, (QueuedModelFlagsB)0); //borrowing from PkR, this fixes the transparency issue on baneiwa's fans!
 	njPopMatrix(1u);
 	njPopMatrix(1u);
 }
