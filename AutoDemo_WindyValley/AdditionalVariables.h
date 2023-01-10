@@ -15,8 +15,6 @@ struct ObjectThing
 //Additional SADX Variables
 DataArray(CollisionData, stru_C67750, 0xC67750, 1);
 DataArray(CollisionData, stru_C673B8, 0xC673B8, 7);
-DataArray(CollisionData, TuriBr2_Collision, 0x00C66FB8, 1);
-DataArray(CollisionData, TuriBr_Collision, 0x00C66F88, 1);
 DataArray(SkyboxScale, SkyboxScale_Windy1, 0x00AFE924, 3);
 DataArray(SkyboxScale, SkyboxScale_Windy3, 0x00AFE96C, 3);
 DataArray(FogData, FogData_Windy1, 0x00AFEA20, 3);

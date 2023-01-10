@@ -96,7 +96,7 @@ void __cdecl Load_BaneIwa(ObjectMaster *a1)
 			a1->DeleteSub = DeleteObject_;
 			a1->DisplaySub = BaneIwa_Display;
 			InitCollision(a1, BaneIwa_Collision, 1, 4u);
-			(v2->CollisionInfo->Flags) |= 0x40u;
+			(v2->CollisionInfo->flag) |= 0x40u;
 			*(float *)&v2->Object = 180.0f;
 			otherFloat = 0;
 			thingTest = 0.5f;
@@ -127,11 +127,11 @@ void __cdecl Load_BaneIwa(ObjectMaster *a1)
 				if ((unsigned __int8)v9 > 0xAu)
 				{
 					v10 = v2->CollisionInfo;
-					v11 = v10->Flags;
+					v11 = v10->flag;
 					if (v11 & 1)
 					{
 						v12 = 0;
-						v10->Flags = v11 & 0xFFFE;
+						v10->flag = v11 & 0xFFFE;
 						a1a = 0;
 						while (1)
 						{
@@ -221,42 +221,42 @@ void __cdecl Lauchin_Display(ObjectMaster *a1)
 			if (*(float*)&v1->LoopData >= 20.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], 1.2861709f, Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.5f, 1.0f);
 			}
 
 			else if (*(float*)&v1->LoopData >= 16.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], 1.1861709f, Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.4f, 1.0f);
 			}
 
 			else if (*(float*)&v1->LoopData >= 12.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], 1.1861709f, Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.3f, 1.0f);
 			}
 
 			else if (*(float*)&v1->LoopData >= 8.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], 1.0861709f, Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.2f, 1.0f);
 			}
 
 			else if (*(float*)&v1->LoopData >= 4.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], 1.0861709f, Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.1f, 1.0f);
 			}
 
 			else if (*(float*)&v1->LoopData == 1.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], Lauchin_Cap.pos[1], Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.0f, 1.0f);
 			}
 
@@ -308,7 +308,7 @@ void __cdecl Load_Lauchin(ObjectMaster *a1)
 			a1->DeleteSub = DeleteObject_;
 			a1->DisplaySub = Lauchin_Display;
 			InitCollision(a1, Lauchin_Collision, 1, 4u);
-			(v2->CollisionInfo->Flags) |= 0x40u;
+			(v2->CollisionInfo->flag) |= 0x40u;
 			*(float *)&v2->Object = 180.0f;
 			otherFloat = 0;
 			thingTest = 0.5f;
@@ -339,11 +339,11 @@ void __cdecl Load_Lauchin(ObjectMaster *a1)
 				if ((unsigned __int8)v9 > 0xAu)
 				{
 					v10 = v2->CollisionInfo;
-					v11 = v10->Flags;
+					v11 = v10->flag;
 					if (v11 & 1)
 					{
 						v12 = 0;
-						v10->Flags = v11 & 0xFFFE;
+						v10->flag = v11 & 0xFFFE;
 						a1a = 0;
 						while (1)
 						{
@@ -472,7 +472,7 @@ void __cdecl TSpring_Main(ObjectMaster *a1)
 			a1->DeleteSub = DeleteObject_;
 			a1->DisplaySub = TSpring_Display;
 			Collision_Init(a1, TSpring_Collision, 1, 4u);
-			(data1->CollisionInfo->Flags) |= 0x40u;
+			(data1->CollisionInfo->flag) |= 0x40u;
 			data1->Scale.x = 180.0;
 			data1->Scale.z = 0.0;
 			*(float*)&data1->LoopData = 0.5f;
@@ -507,10 +507,10 @@ void __cdecl TSpring_Main(ObjectMaster *a1)
 				if ((unsigned __int8)v8 > 0xAu)
 				{
 					v10 = data1->CollisionInfo;
-					v9 = v10->Flags;
+					v9 = v10->flag;
 					if (v9 & 1)
 					{
-						v10->Flags = v9 & 0xFFFE;
+						v10->flag = v9 & 0xFFFE;
 						i = 0;
 						while (data1->CollisionInfo->CollidingObject->Object != GetCharacterObject(i))
 						{
@@ -643,7 +643,7 @@ void __cdecl JamSpring_Main(ObjectMaster *a1)
 			a1->DeleteSub = DeleteObject_;
 			a1->DisplaySub = JamSpring_Display;
 			Collision_Init(a1, JamSpring_Collision, 1, 4u);
-			(data1->CollisionInfo->Flags) |= 0x40u;
+			(data1->CollisionInfo->flag) |= 0x40u;
 			data1->Scale.x = 180.0;
 			data1->Scale.z = 0.0;
 			*(float*)&data1->LoopData = 0.5f;
@@ -676,10 +676,10 @@ void __cdecl JamSpring_Main(ObjectMaster *a1)
 				if ((unsigned __int8)v8 > 0xAu)
 				{
 					v10 = data1->CollisionInfo;
-					v9 = v10->Flags;
+					v9 = v10->flag;
 					if (v9 & 1)
 					{
-						v10->Flags = v9 & 0xFFFE;
+						v10->flag = v9 & 0xFFFE;
 						i = 0;
 						while (data1->CollisionInfo->CollidingObject->Object != GetCharacterObject(i))
 						{

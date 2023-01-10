@@ -8305,7 +8305,7 @@ COL collist_00804360[] = {
 NJS_TEXNAME textures_windy2[25];
 NJS_TEXLIST texlist_windy2 = { arrayptrandlength(textures_windy2) };
 
-LandTable landtable_008046C0 = { LengthOfArray(collist_00804360), 0, 0xC, 3000, collist_00804360, NULL, "WINDY02", (NJS_TEXLIST *)&texlist_windy2, 0, 0 };
+LandTable landtable_008046C0 = { LengthOfArray(collist_00804360), 0, 0xC, 0, 3000.0f, collist_00804360, NULL, "WINDY02", (NJS_TEXLIST *)&texlist_windy2, 0, 0 };
 
 /*
 PVMEntry WindyValley2Textures_list[] = {

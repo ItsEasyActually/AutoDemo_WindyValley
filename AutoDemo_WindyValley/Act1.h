@@ -46533,7 +46533,20 @@ COL collist_008046E8[] = {
 NJS_TEXNAME textures_windy1[42];
 NJS_TEXLIST texlist_windy1 = { arrayptrandlength(textures_windy1) };
 
-LandTable landtable_008051E0 = { LengthOfArray(collist_008046E8), 0, 0xC, 3000, collist_008046E8, NULL, "WINDY01", (NJS_TEXLIST *)&texlist_windy1, 0, 0 };
+int16_t COLCount;
+int16_t AnimCount;
+int16_t Attrs;
+// see LandTableFlags enum
+int16_t LoadFlags;
+float ClippingDistance;
+COL* Col;
+
+const char* TexName;
+
+int BinaryNamePointer;
+int LoadFuncPointer;
+
+LandTable landtable_008051E0 = { LengthOfArray(collist_008046E8), 0, 0xC, 0, 3000.0f, collist_008046E8, NULL, "WINDY01", (NJS_TEXLIST *)&texlist_windy1, 0, 0 };
 
 /*
 PVMEntry WindyValley1Textures_list[] = {
