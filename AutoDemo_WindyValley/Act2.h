@@ -8336,7 +8336,11 @@ NJS_VECTOR normal_007FD2B8[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_007FD2E8 = { vertex_007FD288, normal_007FD2B8, LengthOfArray(vertex_007FD288), meshlist_007FD26C, NULL, LengthOfArray(meshlist_007FD26C), 0,{ -144.7797f, 156.2656f, -14.96265f }, 1283.823f, NULL };
+NJS_MATERIAL dz_dummymat1[] = {
+	{ { 0xFFFFFFFF },{ 0x00000000 }, 0, 0, NJD_FLAG_IGNORE_LIGHT }
+};
+
+NJS_MODEL_SADX attach_007FD2E8 = { vertex_007FD288, normal_007FD2B8, LengthOfArray(vertex_007FD288), meshlist_007FD26C, dz_dummymat1, LengthOfArray(meshlist_007FD26C), 0,{ -144.7797f, 156.2656f, -14.96265f }, 1283.823f, NULL };
 
 NJS_OBJECT object_007FD314 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_007FD2E8, 900, -360, -250, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
