@@ -1,8 +1,5 @@
 #include "stdafx.h"
 #include <cmath>
-#include <SADXModLoader.h>
-#include "Functions.h"
-#include "AdditionalVariables.h"
 
 #include "Raft_Objects.h"
 

@@ -1,7 +1,4 @@
 #include "stdafx.h"
-#include <SADXModLoader.h>
-#include "AdditionalVariables.h"
-#include "Functions.h"
 #include "Trampoline.h"
 #include "WindyGate.h"
 #include "SBridge.h"

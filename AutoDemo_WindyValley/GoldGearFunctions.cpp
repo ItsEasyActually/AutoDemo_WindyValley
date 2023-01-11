@@ -1,8 +1,4 @@
 #include "stdafx.h"
-#include <SADXModLoader.h>
-#include "Functions.h"
-#include "AdditionalVariables.h"
-
 #include "GoldGearandBolt.h"
 
 //Easter Egg objects

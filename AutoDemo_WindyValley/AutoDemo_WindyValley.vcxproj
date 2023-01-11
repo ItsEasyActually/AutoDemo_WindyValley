@@ -148,6 +148,7 @@
     <ClInclude Include="Act3.h" />
     <ClInclude Include="AdditionalVariables.h" />
     <ClInclude Include="GoldGearandBolt.h" />
+    <ClInclude Include="objects.h" />
     <ClInclude Include="Spring_Objects.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="Bridge_Pole.h" />

@@ -1,7 +1,4 @@
 #include "stdafx.h"
-#include <SADXModLoader.h>
-#include "AdditionalVariables.h"
-#include "Functions.h"
 #include "Wele.h"
 
 void Wele_Display(ObjectMaster *a1)

@@ -1,8 +1,4 @@
 #include "stdafx.h"
-#include <SADXModLoader.h>
-#include "Functions.h"
-#include "AdditionalVariables.h"
-
 #include "IDai_Objects.h"
 
 void __cdecl Load_IDai1(ObjectMaster *a1)

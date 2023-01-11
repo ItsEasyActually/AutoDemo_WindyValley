@@ -159,6 +159,9 @@
     <ClInclude Include="GoldGearandBolt.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="objects.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

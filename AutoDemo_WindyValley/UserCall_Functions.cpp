@@ -1,6 +1,4 @@
 #include "stdafx.h"
-#include <SADXModLoader.h>
-#include "Functions.h"
 
 
 // void __usercall(int a1@<eax>)
