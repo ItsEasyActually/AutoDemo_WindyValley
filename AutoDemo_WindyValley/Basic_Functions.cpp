@@ -1,6 +1,4 @@
 #include "stdafx.h"
-#include <SADXModLoader.h>
-#include "Functions.h"
 
 //Null Code (Used for debugging purposes)
 void __cdecl NullFunction(ObjectMaster *a1)

@@ -46533,7 +46533,20 @@ COL collist_008046E8[] = {
 NJS_TEXNAME textures_windy1[42];
 NJS_TEXLIST texlist_windy1 = { arrayptrandlength(textures_windy1) };
 
-LandTable landtable_008051E0 = { LengthOfArray(collist_008046E8), 0, 0xC, 3000, collist_008046E8, NULL, "WINDY01", (NJS_TEXLIST *)&texlist_windy1, 0, 0 };
+int16_t COLCount;
+int16_t AnimCount;
+int16_t Attrs;
+// see LandTableFlags enum
+int16_t LoadFlags;
+float ClippingDistance;
+COL* Col;
+
+const char* TexName;
+
+int BinaryNamePointer;
+int LoadFuncPointer;
+
+LandTable landtable_008051E0 = { LengthOfArray(collist_008046E8), 0, 0xC, 0, 3000.0f, collist_008046E8, NULL, "WINDY01", (NJS_TEXLIST *)&texlist_windy1, 0, 0 };
 
 /*
 PVMEntry WindyValley1Textures_list[] = {
@@ -46564,7 +46577,11 @@ NJS_VECTOR normal_007FD1C0[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_007FD1F0 = { vertex_007FD190, normal_007FD1C0, LengthOfArray(vertex_007FD190), meshlist_007FD174, NULL, LengthOfArray(meshlist_007FD174), 0,{ 1070, -779.7325f, -1955 }, 4336.773f, NULL };
+NJS_MATERIAL dz_dummymat0[] = {
+	{ { 0xFFFFFFFF },{ 0x00000000 }, 0, 0, NJD_FLAG_IGNORE_LIGHT }
+};
+
+NJS_MODEL_SADX attach_007FD1F0 = { vertex_007FD190, normal_007FD1C0, LengthOfArray(vertex_007FD190), meshlist_007FD174, dz_dummymat0, LengthOfArray(meshlist_007FD174), 0,{ 1070, -779.7325f, -1955 }, 4336.773f, NULL };
 
 NJS_OBJECT object_007FD21C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_007FD1F0, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 

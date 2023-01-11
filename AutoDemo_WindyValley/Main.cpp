@@ -1,10 +1,6 @@
 //This is a mod.
 #include "stdafx.h"
-
-#include <SADXModLoader.h>
-#include "IniFile.hpp"
 #include "set.h"
-#include "AdditionalVariables.h"
 #include "TexLists.h"
 
 //LandTable Headers
@@ -1148,7 +1144,7 @@ void __cdecl NewBreakBridgeMain(ObjectMaster *a1) //Hijacking the main routine o
 						}
 						else
 						{
-							sub_4E6200(0, (int)v1);
+							BrokenBridge(0, (task*)v1);
 							v2->Action = 1;
 							v1->DisplaySub = 0;
 						}
@@ -1173,245 +1169,188 @@ void __cdecl NewBreakBridgeMain(ObjectMaster *a1) //Hijacking the main routine o
 	}
 }
 
-void __cdecl ChildBridge_Display(ObjectMaster *a2)
+void __cdecl ChildBridge_Display(task *a2)
 {
-	EntityData1 *v1; // esi@1
-	Angle v2; // eax@1
-	Angle v3; // eax@3
-
-	v1 = a2->Data1;
+	auto data = a2->twp;
 	Debris_Texture_Load();
 	njPushMatrix(0);
-	njTranslate(0, (v1->Position.x), (v1->Position.y), (v1->Position.z));
-	v2 = v1->Rotation.x;
+	njTranslate(0, (data->pos.x), (data->pos.y), (data->pos.z));
+	auto v2 = data->ang.x;
 	if (v2)
 	{
 		njRotateX(0, (unsigned __int16)v2);
 	}
-	v3 = v1->Rotation.y;
+	auto v3 = data->ang.y;
 	if (v3)
 	{
 		njRotateY(0, (unsigned __int16)v3);
 	}
-	//ProcessModelNode_AB_Wrapper((&(TBRIDGE[(int)a2->Parent->Data1->Scale.z])), 1.0);
-	//sub_407A00((NJS_MODEL_SADX *)&(TBRIDGE[(int)a2->Parent->Data1->Scale.z]).model, 1.0);
-	DrawModel(*(NJS_MODEL_SADX **)(&(TBRIDGE[(int)a2->Parent->Data1->Scale.z]).model)); //Of all the draw routines I tried, this one is the one that works. I think maybe there's layering issues? But I can't really tell by looking at it. ....Nor do I really care, to be honest. Just happy that this works as well as it does.
+
+	DrawModel(*(NJS_MODEL_SADX **)(&(TBRIDGE[(int)a2->ptp->twp->scl.z]).model)); //Of all the draw routines I tried, this one is the one that works. I think maybe there's layering issues? But I can't really tell by looking at it. ....Nor do I really care, to be honest. Just happy that this works as well as it does.
 	njPopMatrix(1u);
 }
 
-void __cdecl ChildBridgeMain(ObjectMaster *a2)
+void __cdecl ChildBridgeMain(task *tp)
 {
-	ObjectMaster *v1; // ebp@1
-	EntityData2 *v2; // ecx@1
-	EntityData1 *v3; // esi@1
-	float *v4; // ebx@1
-	double v5; // st7@7
-	int v6; // eax@8
-	double v7; // st7@8
-	double v8; // st7@10
-	double v9; // st7@13
-	int v10; // ecx@15
-	double v11; // st7@18
-	int v12; // edx@18
-	int v13; // eax@18
-	int v14; // edi@20
-	int v15; // ebx@20
-	float v16; // [sp+10h] [bp-14h]@1
-	float v17; // [sp+14h] [bp-10h]@1
-	float v18; // [sp+18h] [bp-Ch]@1
-	float v19; // [sp+1Ch] [bp-8h]@1
-	float v20; // [sp+20h] [bp-4h]@1
-	float a2a; // [sp+28h] [bp+4h]@1
+	auto data = tp->twp;
+	auto data2 = tp->mwp;
+	NJS_VECTOR pos = data->pos;
+	NJS_VECTOR spd = data2->spd;
 
-	v1 = a2;
-	v2 = (EntityData2 *)a2->Data2;
-	v3 = a2->Data1;
-	v16 = v3->Position.x;
-	v17 = v3->Position.y;
-	v18 = v3->Position.z;
-	a2a = (v2->VelocityDirection.y);
-	v19 = v2->VelocityDirection.x;
-	v4 = &v2->VelocityDirection.x;
-	v20 = v2->VelocityDirection.z;
-	switch (*(char *)v3) //Yeah, I really don't know what all this is doing for the most part. Obviously it's what makes it swirl around the tornado, but the details are blurred to my eyes.
+	switch (data->mode)
 	{
 	case 2:
-		if (!--v3->InvulnerableTime)
+		if (!--data->wtimer)
 		{
-			v3->InvulnerableTime = 0;
-			v3->Action = 3;
+			data->wtimer = 0;
+			data->mode = 3;
 		}
-		if (v3->LoopData && v3->LoopData != (Loop *)0x1)
+		if (data->value.b[0] == 1)
 		{
-			if (*(float *)v3->LoopData == 1.0f)
-			{
-				v3->InvulnerableTime = 0;
-				v3->Action = 3;
-			}
+			data->wtimer = 0;
+			data->mode = 3;
 		}
-		ChildBridge_Display(v1);
-		goto LABEL_20;
+		tp->disp(tp);
+		break;
 	case 3:
-		v5 = v19;
-		if (v3->LoopData)
+
+		if (data->value.b[0])
 		{
-			v3->Rotation.y += v2->field_2C;
-			v16 = v5 * 3.0 + v16;
-			v3->Rotation.x += v2->field_28;
-			v17 = *(float *)&a2a * 3.0 + v17;
-			v18 = v20 * 3.0 + v18;
-			v8 = *(float *)&a2a - 0.1;
-			*(float *)&a2a = v8;
-			if (v8 < 0.0)
+			data->ang.y += data2->ang_spd.y;
+			data->ang.x += data2->ang_spd.x;
+			pos.x += spd.x * 3.0f;
+			pos.y += spd.y * 3.0f;
+			pos.z += spd.z * 3.0f;
+
+			spd.y -= 0.1f;
+			if (spd.y < 0.0f)
 			{
-				*(char *)v3 = 4;
+				data->mode = 4;
 			}
 		}
 		else
 		{
-			v6 = v3->Rotation.x;
-			v16 = v5 + v16;
-			v3->Rotation.y += v2->field_2C;
-			v3->Rotation.x = v2->field_28 + v6;
-			v17 = *(float *)&a2a + v17;
-			v18 = v20 + v18;
-			v7 = *(float *)&a2a - 0.1;
-			*(float *)&a2a = v7;
-			if (v7 < 0.0)
-			{
-				v3->Action = 5;
-				v3->CharIndex = 692;
-				ChildBridge_Display(v1);
-				goto LABEL_20;
-			}
+			data->ang.y += data2->ang_spd.y;
+			data->ang.x += data2->ang_spd.x;
+			njAddVector(&pos, &spd);
+			spd.y -= 0.1f;
 		}
-		ChildBridge_Display(v1);
-	LABEL_20:
-		v3->Position.x = v16;
-		v14 = (int)&v3->Position.y;
-		*(float *)v14 = v17;
-		*(float *)(v14 + 4) = v18;
-		*v4 = v19;
-		v15 = (int)(v4 + 1);
-		*(float *)v15 = *(float *)&a2a;
-		*(float *)(v15 + 4) = v20;
-		return;
+		break;
 	case 4:
-		v9 = *(float *)&a2a - 0.14;
-		*(float *)&a2a = v9;
-		if (v9 < -0.12)
+		spd.y -= 0.14f;
+
+		if (spd.y < -0.12f)
 		{
-			*(float *)&a2a = -0.12;
+			spd.y = -0.12f;
 		}
-		v3->Rotation.y += v2->field_2C;
-		v10 = v2->field_28 + v3->Rotation.x;
-		++v3->InvulnerableTime;
-		v16 = v19 + v19 + v16;
-		v3->Rotation.x = v10;
-		v17 = *(float *)&a2a * 7.0 + v17;
-		v18 = v20 + v20 + v18;
-		ChildBridge_Display(v1);
-		goto LABEL_20;
+		data->ang.y += data2->ang_spd.y;
+
+		++data->wtimer;
+		pos.x += spd.x + spd.x;
+		data->ang.x += data2->ang_spd.x;
+		pos.y = spd.y * 7.0f + pos.y;
+		pos.z = spd.z + spd.z + pos.z;
+		break;
 	case 5:
-		if (++v3->InvulnerableTime > 0xE1u)
+		if (++data->wtimer > 0xE1u)
 		{
-			v3->Action = 6;
+			data->mode = 6;
 		}
-		v11 = v3->CharIndex + 3.0;
-		v12 = v3->Rotation.x;
-		v3->Rotation.y += v2->field_2C;
-		v13 = v2->field_28;
-		v3->CharIndex = v11;
-		v3->Rotation.x = v13 + v12;
-		v16 = njSin((unsigned __int64)(v11 * 65536.0 * 0.002777777777777778)) * 3.4000001 + v16;
-		v17 = v17 + 0.1;
-		v18 = njCos((unsigned __int64)(v3->CharIndex * 65536.0 * 0.002777777777777778)) * 3.4000001 + v18;
-		ChildBridge_Display(v1);
-		goto LABEL_20;
+		data->ang.y += data2->ang_spd.y;
+		data->counter.f = data->counter.f + 3.0f;
+		data->ang.x += data2->ang_spd.x;
+		pos.x = njSin((unsigned __int64)(data->counter.f * 65536.0f * 0.002777777777777778f)) * 3.4000001f + pos.x;
+		pos.y = pos.y + 0.1;
+		pos.z = njCos((unsigned __int64)(data->counter.f * 65536.0f * 0.002777777777777778f)) * 3.4000001f + pos.z;
+		break;
 	case 6:
-		v1->DisplaySub = 0;
-		goto LABEL_20;
+		tp->disp = 0;
+		break;
 	default:
-		goto LABEL_20;
+		break;
+	}
+
+
+	data->pos = pos;
+	data2->spd = spd;
+
+	if (data->mode >= 2 && data->mode <= 5)
+	{
+		tp->disp(tp);
 	}
 }
 
-void __cdecl BridgeChildLoad(ObjectMaster *a2) //Hijacking the function used when loading a child object from the bridge object.
+void __cdecl BridgeChildLoad(task* a2) //Hijacking the function used when loading a child object from the bridge object.
 {
-	ObjectMaster *v1; // edi@1
-	EntityData1 *v2; // esi@1
-	EntityData2 *v3; // ebp@1
-	double v4; // st7@1
-	float *v5; // ebx@8
-	int v6; // eax@9
-	double v7; // st7@9
-	int v8; // eax@10
-	ObjectMaster *a2a; // [sp+14h] [bp+4h]@1
-	ObjectMaster *a2b; // [sp+14h] [bp+4h]@9
+	int v6 = 0;
+	float v7 = 0.0f;
+	int v8 = 0;
 
-	v1 = a2;
-	v2 = a2->Data1;
-	v3 = (EntityData2 *)a2->Data2;
-	v2->InvulnerableTime = 0;
-	a2a = (ObjectMaster *)rand();
-	*(char *)v2 = 2;
-	v4 = (double)(signed int)a2a * 0.000030517578;
-	if (v4 <= 0.60000002) //Bunch of shit I don't know what it's doing.
+	auto data = a2->twp;
+	auto data2 = a2->mwp;
+	auto parentData = a2->ptp->twp;
+
+	data->wtimer = 0;
+	data->mode = 2;
+
+	auto v4 = (float)rand() * 0.000030517578f;
+
+	if (v4 <= 0.60000002f) 
 	{
-		if (v4 <= 0.75)
+		if (v4 <= 0.75f)
 		{
-			if (v4 <= 0.94999999)
+			if (v4 <= 0.94999999f)
 			{
-				v2->InvulnerableTime = 5;
+				data->wtimer = 5;
 			}
 			else
 			{
-				v2->InvulnerableTime = 3;
+				data->wtimer = 3;
 			}
 		}
 		else
 		{
-			v2->InvulnerableTime = 2;
+			data->wtimer = 2;
 		}
 	}
 	else
 	{
-		v2->InvulnerableTime = 0;
-		v2->Action = 3;
+		data->wtimer= 0;
+		data->mode = 3;
 	}
-	v5 = (float *)v1->Parent->Data1;
-	if (v2->LoopData)
+
+	if (data->value.b[0])
 	{
-		v3->VelocityDirection.x = (double)rand() * 0.000030517578 * v5[11];
+		data2->spd.x = (float)rand() * 0.000030517578f * parentData->scl.x;
 		v8 = rand();
-		v3->VelocityDirection.y = (double)v8 * 0.000030517578 + (double)v8 * 0.000030517578;
-		v7 = (double)rand() * 0.000030517578 * v5[13];
+		data2->spd.y = v8 * 0.000030517578f + (float)v8 * 0.000030517578f;
+		v7 = rand() * 0.000030517578f * parentData->scl.z;
 	}
 	else
 	{
 		v6 = rand();
-		v3->VelocityDirection.x = (double)v6 * 0.000030517578 + (double)v6 * 0.000030517578;
-		v3->VelocityDirection.y = (double)rand() * 0.000030517578 * 1.5 + 2.5;
-		a2b = (ObjectMaster *)rand();
-		v7 = (double)(signed int)a2b * 0.000030517578 + (double)(signed int)a2b * 0.000030517578;
+		data2->spd.x = (double)v6 * 0.000030517578 + (double)v6 * 0.000030517578;
+		data2->spd.y = (double)rand() * 0.000030517578 * 1.5 + 2.5;
+		auto a2b = rand();
+		v7 = (float)(int)a2b * 0.000030517578f + (float)(int)a2b * 0.000030517578f;
 	}
-	v3->VelocityDirection.z = v7;
-	v3->field_2C = (unsigned __int64)(((double)rand() * 0.000030517578 - 0.5) * 1800.0);
-	v3->field_28 = (unsigned __int64)(((double)rand() * 0.000030517578 - 0.5) * 3000.0);
+
+	data2->spd.z = v7;
+	data2->ang_spd.y = (unsigned __int64)(((float)rand() * 0.000030517578f - 0.5f) * 1800.0f);
+	data2->ang_spd.x = (unsigned __int64)(((float)rand() * 0.000030517578f - 0.5f) * 3000.0f);
+
 	if (CurrentLevel == 2) //This is also super important. A level check, so that this function doesn't interefere with other levels. From what I've tested, anything else that uses these functions doesn't crash or crap-out with this coding, but further testing should be done throughout the game, just to make sure.
 	{
-		v1->MainSub = ChildBridgeMain;
-		v1->DisplaySub = ChildBridge_Display;
-		v1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
-		ChildBridge_Display(v1);
+		a2->exec = ChildBridgeMain;
+		a2->disp = ChildBridge_Display;
 	}
 	else //Also, for clarification, this function isn't the one that is used by other levels. The below Main and Display functions are, however.
 	{
-		v1->MainSub = sub_4E5D90;
-		v1->DisplaySub = sub_4FB2A0;
-		v1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
-		sub_4FB2A0(v1);
+		a2->exec = sub_4E5D90;
+		a2->disp = sub_4FB2A0;
 	}
+
+	a2->disp(a2);
 }
 
 void __cdecl Load_TBridge()

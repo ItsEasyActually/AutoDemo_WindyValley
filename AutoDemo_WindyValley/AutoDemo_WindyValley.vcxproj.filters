@@ -182,9 +182,6 @@
     <ClCompile Include="Basic_Functions.cpp">
       <Filter>Source Files\Functions</Filter>
     </ClCompile>
-    <ClCompile Include="UserCall_Functions.cpp">
-      <Filter>Source Files\Functions</Filter>
-    </ClCompile>
     <ClCompile Include="Rock_Functions.cpp">
       <Filter>Source Files\Functions</Filter>
     </ClCompile>

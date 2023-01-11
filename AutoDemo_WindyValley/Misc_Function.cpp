@@ -1,7 +1,4 @@
 #include "stdafx.h"
-#include <SADXModLoader.h>
-#include "AdditionalVariables.h"
-#include "Functions.h"
 #include "Trampoline.h"
 #include "WindyGate.h"
 #include "SBridge.h"
@@ -275,7 +272,7 @@ void __cdecl SBridg(ObjectMaster *a1)
 		a1->Data1->LoopData = (Loop*)&ShortBridge;
 		InitCollision(a1, (CollisionData*)&TuriBr_Collision, 1, 4u);
 	}
-	(a1->Data1->CollisionInfo->Radius) = 500.0f;
+	(a1->Data1->CollisionInfo->colli_range) = 500.0f;
 	sub_7A6440(a1);
 	a1->MainSub = (void(__cdecl *)(ObjectMaster *))sub_4E0A60;
 }
@@ -392,12 +389,12 @@ void __cdecl TakoW_Display(ObjectMaster *a1)
 		{
 			if (*(float*)&v1->LoopData <= 2.0f)
 			{
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.0f, 1.0f);
 			}
 			else if (*(float*)&v1->LoopData <= 4.0f)
 			{
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.05f, 1.0f);
 			}
 		}

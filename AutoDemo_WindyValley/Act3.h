@@ -85071,7 +85071,7 @@ COL collist_00802BC0[] = {
 NJS_TEXNAME textures_windy3[55];
 NJS_TEXLIST texlist_windy3 = { arrayptrandlength(textures_windy3) };
 
-LandTable landtable_0080433C = { LengthOfArray(collist_00802BC0), 0, 0xC, 3000, collist_00802BC0, NULL, "WINDY03", (NJS_TEXLIST *)&texlist_windy3, 0, 0 };
+LandTable landtable_0080433C = { LengthOfArray(collist_00802BC0), 0, 0xC, 0, 3000.0f, collist_00802BC0, NULL, "WINDY03", (NJS_TEXLIST *)&texlist_windy3, 0, 0 };
 
 /*
 PVMEntry WindyValley3Textures_list[] = {
@@ -85110,7 +85110,11 @@ NJS_VECTOR normal_007FD3E0[] = {
 	{ 0.226327f, 0.919479f, 0.321456f }
 };
 
-NJS_MODEL_SADX attach_007FD41C = { vertex_007FD3A4, normal_007FD3E0, LengthOfArray(vertex_007FD3A4), meshlist_007FD36C, NULL, LengthOfArray(meshlist_007FD36C), 0,{ 5350.624f, -5919.249f, -1160.364f }, 2841.484f, NULL };
+NJS_MATERIAL dz_dummymat2[] = {
+	{ { 0xFFFFFFFF },{ 0x00000000 }, 0, 0, NJD_FLAG_IGNORE_LIGHT }
+};
+
+NJS_MODEL_SADX attach_007FD41C = { vertex_007FD3A4, normal_007FD3E0, LengthOfArray(vertex_007FD3A4), meshlist_007FD36C, dz_dummymat2, LengthOfArray(meshlist_007FD36C), 0,{ 5350.624f, -5919.249f, -1160.364f }, 2841.484f, NULL };
 
 NJS_OBJECT object_007FD448 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_007FD41C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
@@ -85136,7 +85140,7 @@ NJS_VECTOR normal_007FD4E4[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_007FD514 = { vertex_007FD4B4, normal_007FD4E4, LengthOfArray(vertex_007FD4B4), meshlist_007FD498, NULL, LengthOfArray(meshlist_007FD498), 0,{ 3601.5f, -11050.33f, 468 }, 8055.443f, NULL };
+NJS_MODEL_SADX attach_007FD514 = { vertex_007FD4B4, normal_007FD4E4, LengthOfArray(vertex_007FD4B4), meshlist_007FD498, dz_dummymat2, LengthOfArray(meshlist_007FD498), 0,{ 3601.5f, -11050.33f, 468 }, 8055.443f, NULL };
 
 NJS_OBJECT object_007FD540 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_007FD514, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
@@ -85167,7 +85171,7 @@ NJS_VECTOR normal_007FD600[] = {
 	{ 0.23826f, 0.948154f, -0.210323f }
 };
 
-NJS_MODEL_SADX attach_007FD648 = { vertex_007FD5B8, normal_007FD600, LengthOfArray(vertex_007FD5B8), meshlist_007FD598, NULL, LengthOfArray(meshlist_007FD598), 0,{ 2903, -4289.249f, 216.5f }, 3105.114f, NULL };
+NJS_MODEL_SADX attach_007FD648 = { vertex_007FD5B8, normal_007FD600, LengthOfArray(vertex_007FD5B8), meshlist_007FD598, dz_dummymat2, LengthOfArray(meshlist_007FD598), 0,{ 2903, -4289.249f, 216.5f }, 3105.114f, NULL };
 
 NJS_OBJECT object_007FD674 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_007FD648, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 

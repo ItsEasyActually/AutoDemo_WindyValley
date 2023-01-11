@@ -61,7 +61,6 @@ void __cdecl BaneIwa_Display(ObjectMaster *a1)
 
 void __cdecl Load_BaneIwa(ObjectMaster *a1)
 {
-	EntityData1 *v2; // esi@1
 	unsigned int v3; // eax@4
 	double v4; // st7@7
 	char v6; // c0@7
@@ -74,71 +73,71 @@ void __cdecl Load_BaneIwa(ObjectMaster *a1)
 	ObjectMaster *v13; // edi@15
 	unsigned __int8 a1a; // [sp+Ch] [bp+4h]@14
 
-	float thingTest;
-	float fanSpeed;
-	float otherFloat;
+	float thingTest = 0.0f;
+	float fanSpeed = 0.0f;
+	float otherFloat = 0.0f;
 
-	v2 = a1->Data1;
-	fanSpeed = v2->Scale.z;
+	auto data = a1->Data1;
+	fanSpeed = data->Scale.z;
 	if (!ClipSetObject(a1))
 	{
 		if (fanSpeed != 0)
 		{
-			*(float *)&v2->LoopData = fanSpeed + *(float *)&v2->LoopData;
+			*(float *)&data->LoopData = fanSpeed + *(float *)&data->LoopData;
 		}
 		else
 		{
-			*(float *)&v2->LoopData = 2.5f + *(float *)&v2->LoopData;
+			*(float *)&data->LoopData = 2.5f + *(float *)&data->LoopData;
 		}
-		switch (v2->Action)
+		switch (data->Action)
 		{
 		case 0:
 			a1->DeleteSub = DeleteObject_;
 			a1->DisplaySub = BaneIwa_Display;
 			InitCollision(a1, BaneIwa_Collision, 1, 4u);
-			(v2->CollisionInfo->Flags) |= 0x40u;
-			*(float *)&v2->Object = 180.0f;
+			(data->CollisionInfo->flag) |= 0x40u;
+			*(float *)&data->Object = 180.0f;
 			otherFloat = 0;
 			thingTest = 0.5f;
-			v2->Index = 10;
-			v2->Action = 1;
+			data->Index = 10;
+			data->Action = 1;
 			break;
 		case 1:
-			v3 = (int)(*(float *)&v2->Object * 65536.0 * 0.002777777777777778);
-			*(float *)&v2->CharIndex = -fabs(njSin(v3) * thingTest);
+			v3 = (int)(*(float *)&data->Object * 65536.0f * 0.002777777777777778f);
+			*(float *)&data->CharIndex = -fabs(njSin(v3) * thingTest);
 			if (!GetDebugMode())
 			{
-				v4 = *(float *)&v2->Object + otherFloat;
-				*(float *)&v2->Object = v4;
+				v4 = *(float *)&data->Object + otherFloat;
+				*(float *)&data->Object = v4;
 				if (v4 < otherFloat + 290.0)
 				{
 					(otherFloat) = 15.0f;
 				}
-				v7 = (int)((*(float *)&v2->Object - 180.0) * 0.1 * 65536.0 * 0.002777777777777778);
+				v7 = (int)((*(float *)&data->Object - 180.0f) * 0.1f * 65536.0f * 0.002777777777777778f);
 				v8 = njCos(v7) * 0.60000002;
 				thingTest = v8;
 				if (v8 < 0.0)
 				{
-					*(float *)&v2->Object = 180.0f;
+					*(float *)&data->Object = 180.0f;
 					(otherFloat) = 0;
 				}
-				v9 = v2->Index + 1;
-				v2->Index = v9;
+				v9 = data->Index + 1;
+				data->Index = v9;
 				if ((unsigned __int8)v9 > 0xAu)
 				{
-					v10 = v2->CollisionInfo;
-					v11 = v10->Flags;
+					v10 = data->CollisionInfo;
+					v11 = v10->flag;
 					if (v11 & 1)
 					{
 						v12 = 0;
-						v10->Flags = v11 & 0xFFFE;
+						v10->flag = v11 & 0xFFFE;
 						a1a = 0;
 						while (1)
 						{
 							v13 = GetCharacterObject(a1a);
 							if (v13)
 							{
-								if (sub_41CBC0(v2) == v13->Data1)
+								if (sub_41CBC0(data) == v13->Data1)
 								{
 									break;
 								}
@@ -149,30 +148,30 @@ void __cdecl Load_BaneIwa(ObjectMaster *a1)
 								goto LABEL_18;
 							}
 						}
-						*(float *)&v2->CharIndex = 0.1f;
-						v2->NextAction = v12;
+						*(float *)&data->CharIndex = 0.1f;
+						data->NextAction = v12;
 						(otherFloat) = 20.0f;
-						*(float *)&v2->Object = 270.0f;
-						v2->Action = 2;
+						*(float *)&data->Object = 270.0f;
+						data->Action = 2;
 					}
 					else
 					{
 					LABEL_18:
-						if (v2->Action != 2)
+						if (data->Action != 2)
 						{
-							AddToCollisionList(v2);
+							AddToCollisionList(data);
 						}
 					}
 				}
-				if (v2->Index > 0x32u)
+				if (data->Index > 0x32u)
 				{
-					v2->Index = 50;
+					data->Index = 50;
 				}
 			}
 			BaneIwa_Display(a1);
 			break;
 		case 2:
-			v2->Index = 5;
+			data->Index = 5;
 			sub_7A46C0(a1, 1);
 			BaneIwa_Display(a1);
 			PlaySound(9, 0, 0, 0);
@@ -221,42 +220,42 @@ void __cdecl Lauchin_Display(ObjectMaster *a1)
 			if (*(float*)&v1->LoopData >= 20.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], 1.2861709f, Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.5f, 1.0f);
 			}
 
 			else if (*(float*)&v1->LoopData >= 16.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], 1.1861709f, Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.4f, 1.0f);
 			}
 
 			else if (*(float*)&v1->LoopData >= 12.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], 1.1861709f, Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.3f, 1.0f);
 			}
 
 			else if (*(float*)&v1->LoopData >= 8.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], 1.0861709f, Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.2f, 1.0f);
 			}
 
 			else if (*(float*)&v1->LoopData >= 4.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], 1.0861709f, Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.1f, 1.0f);
 			}
 
 			else if (*(float*)&v1->LoopData == 1.0f)
 			{
 				njTranslate(0, Lauchin_Cap.pos[0], Lauchin_Cap.pos[1], Lauchin_Cap.pos[2]);
-				ResetRenderFlags();
+				RenderFlags_Reset();
 				njScale(0, 1.0f, 1.0f, 1.0f);
 			}
 
@@ -283,74 +282,75 @@ void __cdecl Lauchin_Display(ObjectMaster *a1)
 
 void __cdecl Load_Lauchin(ObjectMaster *a1)
 {
-	EntityData1 *v2; // esi@1
-	unsigned int v3; // eax@4
-	double v4; // st7@7
-	char v6; // c0@7
-	unsigned int v7; // eax@10
-	double v8; // st7@10
-	char v9; // al@12
-	CollisionInfo *v10; // ecx@13
-	__int16 v11; // ax@13
-	char v12; // bl@14
-	ObjectMaster *v13; // edi@15
-	unsigned __int8 a1a; // [sp+Ch] [bp+4h]@14
 
-	float thingTest;
-	float otherFloat;
+	unsigned int v3 = 0;
+	float v4 = 0;
+	char v6 = 0;
+	unsigned int v7 = 0;
+	float v8 = 0;
+	char v9 = 0;
 
-	v2 = a1->Data1;
+	__int16 v11 = 0;
+	char v12 = 0;
+
+	unsigned __int8 a1a = 0;
+
+	float thingTest = 0.0f;
+	float otherFloat = 0.0f;
+
+	auto data = a1->Data1;
+
 	if (!ClipSetObject(a1))
 	{
-		switch (v2->Action)
+		switch (data->Action)
 		{
 		case 0:
 			a1->DeleteSub = DeleteObject_;
 			a1->DisplaySub = Lauchin_Display;
 			InitCollision(a1, Lauchin_Collision, 1, 4u);
-			(v2->CollisionInfo->Flags) |= 0x40u;
-			*(float *)&v2->Object = 180.0f;
+			(data->CollisionInfo->flag) |= 0x40u;
+			*(float *)&data->Object = 180.0f;
 			otherFloat = 0;
 			thingTest = 0.5f;
-			v2->Index = 10;
-			v2->Action = 1;
+			data->Index = 10;
+			data->Action = 1;
 			break;
 		case 1:
-			v3 = (int)(*(float *)&v2->Object * 65536.0 * 0.002777777777777778);
-			*(float *)&v2->CharIndex = -fabs(njSin(v3) * thingTest);
+			v3 = (int)(*(float *)&data->Object * 65536.0 * 0.002777777777777778);
+			*(float *)&data->CharIndex = -fabs(njSin(v3) * thingTest);
 			if (!GetDebugMode())
 			{
-				v4 = *(float *)&v2->Object + otherFloat;
-				*(float *)&v2->Object = v4;
+				v4 = *(float *)&data->Object + otherFloat;
+				*(float *)&data->Object = v4;
 				if (v4 < otherFloat + 290.0)
 				{
 					(otherFloat) = 15.0f;
 				}
-				v7 = (int)((*(float *)&v2->Object - 180.0) * 0.1 * 65536.0 * 0.002777777777777778);
+				v7 = (int)((*(float *)&data->Object - 180.0) * 0.1 * 65536.0 * 0.002777777777777778);
 				v8 = njCos(v7) * 0.60000002;
 				thingTest = v8;
 				if (v8 < 0.0)
 				{
-					*(float *)&v2->Object = 180.0f;
+					*(float *)&data->Object = 180.0f;
 					(otherFloat) = 0;
 				}
-				v9 = v2->Index + 1;
-				v2->Index = v9;
+				v9 = data->Index + 1;
+				data->Index = v9;
 				if ((unsigned __int8)v9 > 0xAu)
 				{
-					v10 = v2->CollisionInfo;
-					v11 = v10->Flags;
+					auto v10 = data->CollisionInfo;
+					v11 = v10->flag;
 					if (v11 & 1)
 					{
 						v12 = 0;
-						v10->Flags = v11 & 0xFFFE;
+						v10->flag = v11 & 0xFFFE;
 						a1a = 0;
 						while (1)
 						{
-							v13 = GetCharacterObject(a1a);
+							auto v13 = GetCharacterObject(a1a);
 							if (v13)
 							{
-								if (sub_41CBC0(v2) == v13->Data1)
+								if (sub_41CBC0(data) == v13->Data1)
 								{
 									break;
 								}
@@ -361,32 +361,32 @@ void __cdecl Load_Lauchin(ObjectMaster *a1)
 								goto LABEL_18;
 							}
 						}
-						*(float *)&v2->CharIndex = 0.1f;
-						v2->NextAction = v12;
+						*(float *)&data->CharIndex = 0.1f;
+						data->NextAction = v12;
 						(otherFloat) = 20.0f;
-						*(float *)&v2->Object = 270.0f;
-						v2->Action = 2;
+						*(float *)&data->Object = 270.0f;
+						data->Action = 2;
 					}
 					else
 					{
 					LABEL_18:
-						if (v2->Action != 2)
+						if (data->Action != 2)
 						{
-							AddToCollisionList(v2);
+							AddToCollisionList(data);
 						}
 					}
 				}
-				if (v2->Index > 0x32u)
+				if (data->Index > 0x32u)
 				{
-					v2->Index = 50;
+					data->Index = 50;
 				}
 			}
 			Lauchin_Display(a1);
 			break;
 		case 2:
-			v2->Index = 5;
+			data->Index = 5;
 			sub_7A46C0(a1, 1);
-			*(float *)&v2->LoopData = 25.0f;
+			*(float *)&data->LoopData = 25.0f;
 			Lauchin_Display(a1);
 			PlaySound(9, 0, 0, 0);
 			break;
@@ -401,14 +401,13 @@ void __cdecl Load_Lauchin(ObjectMaster *a1)
 
 void __cdecl TSpring_Display(ObjectMaster *a1)
 {
-	EntityData1 *v1; // esi
-	Angle v2; // eax
-	Angle v3; // eax
-	Angle v4; // eax
-	float YDist; // ST04_4
-	float modify; // [esp+10h] [ebp+4h]
+	Angle v2 = 0;
+	Angle v3 = 0;
+	Angle v4 = 0;
+	float YDist = 0.0f;
+	float modify = 0.0f;
 
-	v1 = a1->Data1;
+	auto v1 = a1->Data1;
 	if (!MissedFrames)
 	{
 		SetTextureToLevelObj();
@@ -452,18 +451,17 @@ void __cdecl TSpring_Display(ObjectMaster *a1)
 
 void __cdecl TSpring_Main(ObjectMaster *a1)
 {
-	ObjectMaster *v1; // edi
-	EntityData1 *data1; // esi
-	double v3; // st7
-	char v5; // c0
-	unsigned __int8 i; // bl MAPDST
-	double v7; // st7
-	char v8; // al
-	__int16 v9; // ax
-	CollisionInfo *v10; // ecx
 
-	v1 = a1;
-	data1 = a1->Data1;
+	float v3 = 0.0f; // st7
+	char v5 = 0;
+	unsigned __int8 i = 0; // bl MAPDST
+	float v7 = 0.0f;
+	char v8 = 0;
+	__int16 v9 = 0;
+
+	auto data1 = a1->Data1;
+	CollisionInfo* v10 = data1->CollisionInfo;
+
 	if (!ClipSetObject(a1))
 	{
 		switch (data1->Action)
@@ -472,7 +470,7 @@ void __cdecl TSpring_Main(ObjectMaster *a1)
 			a1->DeleteSub = DeleteObject_;
 			a1->DisplaySub = TSpring_Display;
 			Collision_Init(a1, TSpring_Collision, 1, 4u);
-			(data1->CollisionInfo->Flags) |= 0x40u;
+			(data1->CollisionInfo->flag) |= 0x40u;
 			data1->Scale.x = 180.0;
 			data1->Scale.z = 0.0;
 			*(float*)&data1->LoopData = 0.5f;
@@ -492,12 +490,12 @@ void __cdecl TSpring_Main(ObjectMaster *a1)
 				data1->Scale.x = v3;
 				if (!v5 && v3 < data1->Scale.z + 290.0)
 				{
-					data1->Scale.z = 18.0;
+					data1->Scale.z = 18.0f;
 				}
 				v7 = njCos((unsigned __int64)((data1->Scale.x - 180.0) * 0.1 * 65536.0 * 0.002777777777777778)) * 0.60000002;
 				i = 0;
 				*(float*)&data1->LoopData = v7;
-				if (v7 < 0.0)
+				if (v7 < 0.0f)
 				{
 					data1->Scale.x = 180.0;
 					data1->Scale.z = 0.0;
@@ -506,11 +504,11 @@ void __cdecl TSpring_Main(ObjectMaster *a1)
 				data1->Index = v8;
 				if ((unsigned __int8)v8 > 0xAu)
 				{
-					v10 = data1->CollisionInfo;
-					v9 = v10->Flags;
+		
+					v9 = v10->flag;
 					if (v9 & 1)
 					{
-						v10->Flags = v9 & 0xFFFE;
+						v10->flag = v9 & 0xFFFE;
 						i = 0;
 						while (data1->CollisionInfo->CollidingObject->Object != GetCharacterObject(i))
 						{
@@ -539,7 +537,7 @@ void __cdecl TSpring_Main(ObjectMaster *a1)
 					data1->Index = 50;
 				}
 			}
-			TSpring_Display(v1);
+			TSpring_Display(a1);
 			break;
 		case 2:
 			PlaySound(9, 0, 0, 0);
@@ -554,6 +552,8 @@ void __cdecl TSpring_Main(ObjectMaster *a1)
 			return;
 		}
 	}
+
+
 }
 
 void __cdecl JamSpring_Display(ObjectMaster *a1)
@@ -623,18 +623,16 @@ void __cdecl JamSpring_Display(ObjectMaster *a1)
 
 void __cdecl JamSpring_Main(ObjectMaster *a1)
 {
-	ObjectMaster *v1; // edi
-	EntityData1 *data1; // esi
-	double v3; // st7
-	char v5; // c0
-	unsigned __int8 i; // bl MAPDST
-	double v7; // st7
-	char v8; // al
-	__int16 v9; // ax
-	CollisionInfo *v10; // ecx
+	float v3 = 0.0f;
+	char v5 = 0;
+	unsigned __int8 i = 0;
+	float v7 = 0.0f;
+	char v8 = 0;
+	__int16 v9 = 0;
 
-	v1 = a1;
-	data1 = a1->Data1;
+	auto data1 = a1->Data1;
+	CollisionInfo* v10 = data1->CollisionInfo;
+
 	if (!ClipSetObject(a1))
 	{
 		switch (data1->Action)
@@ -643,7 +641,7 @@ void __cdecl JamSpring_Main(ObjectMaster *a1)
 			a1->DeleteSub = DeleteObject_;
 			a1->DisplaySub = JamSpring_Display;
 			Collision_Init(a1, JamSpring_Collision, 1, 4u);
-			(data1->CollisionInfo->Flags) |= 0x40u;
+			(data1->CollisionInfo->flag) |= 0x40u;
 			data1->Scale.x = 180.0;
 			data1->Scale.z = 0.0;
 			*(float*)&data1->LoopData = 0.5f;
@@ -675,11 +673,10 @@ void __cdecl JamSpring_Main(ObjectMaster *a1)
 				data1->Index = v8;
 				if ((unsigned __int8)v8 > 0xAu)
 				{
-					v10 = data1->CollisionInfo;
-					v9 = v10->Flags;
+					v9 = v10->flag;
 					if (v9 & 1)
 					{
-						v10->Flags = v9 & 0xFFFE;
+						v10->flag = v9 & 0xFFFE;
 						i = 0;
 						while (data1->CollisionInfo->CollidingObject->Object != GetCharacterObject(i))
 						{
@@ -708,7 +705,7 @@ void __cdecl JamSpring_Main(ObjectMaster *a1)
 					data1->Index = 50;
 				}
 			}
-			JamSpring_Display(v1);
+			JamSpring_Display(a1);
 			break;
 		case 2:
 			PlaySound(9, 0, 0, 0);

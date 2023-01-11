@@ -1,8 +1,4 @@
 #include "stdafx.h"
-#include <SADXModLoader.h>
-#include "Functions.h"
-#include "AdditionalVariables.h"
-
 #include "Grass_Objects.h"
 #include "Flower_Objects.h"
 #include "W_Ki_Objects.h"

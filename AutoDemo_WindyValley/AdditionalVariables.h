@@ -15,8 +15,6 @@ struct ObjectThing
 //Additional SADX Variables
 DataArray(CollisionData, stru_C67750, 0xC67750, 1);
 DataArray(CollisionData, stru_C673B8, 0xC673B8, 7);
-DataArray(CollisionData, TuriBr2_Collision, 0x00C66FB8, 1);
-DataArray(CollisionData, TuriBr_Collision, 0x00C66F88, 1);
 DataArray(SkyboxScale, SkyboxScale_Windy1, 0x00AFE924, 3);
 DataArray(SkyboxScale, SkyboxScale_Windy3, 0x00AFE96C, 3);
 DataArray(FogData, FogData_Windy1, 0x00AFEA20, 3);
@@ -88,24 +86,23 @@ FunctionPointer(void, sub_456BF0, (void *a1, int *a2), 0x456BF0); //Sprite Parti
 
 
 //Debris Shit
-FunctionPointer(void, sub_4DF500, (ObjectMaster *a1), 0x004DF500);
-FunctionPointer(void, sub_4DF740, (ObjectMaster *a1), 0x004DF740);
+FunctionPointer(void, sub_4DF500, (task *a1), 0x004DF500);
+FunctionPointer(void, sub_4DF740, (task *a1), 0x004DF740);
 DataArray(NJS_MODEL_SADX, off_C66C80, 0x00C66C80, 10);
 DataArray(ObjectThing, stru_C66CA8, 0x00C66CA8, 14);
 DataArray(ObjectThing, DebrisThing, 0x00C66CA8, 14);
 
-FunctionPointer(void, sub_49D530, (ObjectMaster *a1), 0x49D530);
-FunctionPointer(void, sub_49D570, (ObjectMaster *a1), 0x49D570);
-FunctionPointer(void, sub_49D5B0, (ObjectMaster *a1), 0x49D5B0);
+FunctionPointer(void, sub_49D530, (task *a1), 0x49D530);
+FunctionPointer(void, sub_49D570, (task *a1), 0x49D570);
+FunctionPointer(void, sub_49D5B0, (task *a1), 0x49D5B0);
 FunctionPointer(void, sub_49E070, (), 0x49E070);
-FunctionPointer(void, sub_49CF80, (EntityData1 *a1), 0x49CF80);
-FunctionPointer(void, sub_4E6070, (ObjectMaster *a2), 0x004E6070);
-FunctionPointer(void, sub_4FB2A0, (ObjectMaster *a2), 0x004FB2A0);
-FunctionPointer(void, sub_4E5D90, (ObjectMaster *a2), 0x004E5D90);
+FunctionPointer(void, sub_49CF80, (taskwk *a1), 0x49CF80);
+FunctionPointer(void, sub_4E6070, (task *a2), 0x004E6070);
+FunctionPointer(void, sub_4FB2A0, (task *a2), 0x004FB2A0);
+FunctionPointer(void, sub_4E5D90, (task *a2), 0x004E5D90);
 FunctionPointer(signed int, sub_4DE570, (int a1, int a2), 0x4DE570);
 FunctionPointer(void, sub_4E6370, (int a1), 0x4E6370);
-FunctionPointer(void, sub_4E6200, (int a1, int a2), 0x4E6200);
-FunctionPointer(void, sub_4E5C20, (ObjectMaster *a3), 0x4E5C20);
+FunctionPointer(void, sub_4E5C20, (task *a3), 0x4E5C20);
 
 //Usercall and Thiscall Functions
 ThiscallFunctionPointer(void, sub_4E3090, (int _this), 0x4E3090);

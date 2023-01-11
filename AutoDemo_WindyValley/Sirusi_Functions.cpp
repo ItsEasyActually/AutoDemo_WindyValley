@@ -1,7 +1,5 @@
 #include "stdafx.h"
-#include <SADXModLoader.h>
-#include "Functions.h"
-#include "AdditionalVariables.h"
+
 
 #include "Sirusi_Objects.h"
 
