@@ -222,7 +222,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Misc_Function.cpp" />
-    <ClCompile Include="UserCall_Functions.cpp" />
     <ClCompile Include="Wele_Function.cpp" />
   </ItemGroup>
   <ItemGroup>

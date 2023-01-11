@@ -1144,7 +1144,7 @@ void __cdecl NewBreakBridgeMain(ObjectMaster *a1) //Hijacking the main routine o
 						}
 						else
 						{
-							sub_4E6200(0, (int)v1);
+							BrokenBridge(0, (task*)v1);
 							v2->Action = 1;
 							v1->DisplaySub = 0;
 						}

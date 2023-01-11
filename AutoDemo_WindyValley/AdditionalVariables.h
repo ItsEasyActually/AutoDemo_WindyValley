@@ -102,7 +102,6 @@ FunctionPointer(void, sub_4FB2A0, (task *a2), 0x004FB2A0);
 FunctionPointer(void, sub_4E5D90, (task *a2), 0x004E5D90);
 FunctionPointer(signed int, sub_4DE570, (int a1, int a2), 0x4DE570);
 FunctionPointer(void, sub_4E6370, (int a1), 0x4E6370);
-FunctionPointer(void, sub_4E6200, (int a1, int a2), 0x4E6200);
 FunctionPointer(void, sub_4E5C20, (task *a3), 0x4E5C20);
 
 //Usercall and Thiscall Functions
