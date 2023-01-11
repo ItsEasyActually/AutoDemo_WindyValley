@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "set.h"
 #include "TexLists.h"
+#include "level.h"
 
 //LandTable Headers
 #include "Act1.h"
@@ -1359,7 +1360,7 @@ void __cdecl Load_TBridge()
 	EntityData1 *Torn;
 	if (LoadedBridge == false)
 	{
-		collist_008046E8[84].Flags = 0x01;	//This makes the landtable bridge invisible.
+		//collist_008046E8[84].Flags = 0x01;	//This makes the landtable bridge invisible.
 		TornadoThings.Distance = 40000000.0f;
 
 		for (BridgeFrame = 0; BridgeFrame < 335; BridgeFrame++) //Looping through the array of NJS_OBJECTS for the bridge pieces.
@@ -1403,7 +1404,7 @@ void __cdecl Tornado_Check() //This is the big one. The main chunk of the stage 
 			LoadedTornado = false; //Basically, if you reset after either tornado has been loaded, and you appear further back, reset everything. For some baffling reason, not checking for that distance away (1700), the transiton tornado won't load. Are the gamestates being changed when that thing appears?
 			LoadedWave = false;
 			WaveFrame = 0;
-			collist_008046E8[84].Flags = 0x80000001;
+			//collist_008046E8[84].Flags = 0x80000001;
 			LoadedBridge = false;
 			LoadedDECOTornado = false;
 			TornadoDECOFrame = 48;
@@ -1445,7 +1446,7 @@ void __cdecl Tornado_Check() //This is the big one. The main chunk of the stage 
 		LoadedTornado = false;
 		LoadedWave = false;
 		WaveFrame = 0;
-		collist_008046E8[84].Flags = 0x80000001;
+		//collist_008046E8[84].Flags = 0x80000001;
 		LoadedBridge = false;
 		LoadedDECOTornado = false;
 		TornadoDECOFrame = 48;
@@ -1469,7 +1470,7 @@ void __cdecl Tornado_Check() //This is the big one. The main chunk of the stage 
 		}
 	}
 
-	if (CurrentLevel == 2 && CurrentAct == 0 && CurrentCharacter == 6) //When playing as Gamma in Act 1, make the bridge invisible to simulate that it got ripped up when Sonic played the stage prior to him arriving here.
+	/**if (CurrentLevel == 2 && CurrentAct == 0 && CurrentCharacter == 6) //When playing as Gamma in Act 1, make the bridge invisible to simulate that it got ripped up when Sonic played the stage prior to him arriving here.
 	{
 		collist_008046E8[84].Flags = 0x01;
 	}
@@ -1477,7 +1478,7 @@ void __cdecl Tornado_Check() //This is the big one. The main chunk of the stage 
 	if (CurrentLevel != 2 && (collist_008046E8[84].Flags) == 0x01) //When you leave the level for whatever reason, and the bridge is invisible, make that shit visible!
 	{
 		collist_008046E8[84].Flags = 0x80000001;
-	}
+	}*/
 }
 
 void __cdecl MagatamaDebris_Display(ObjectMaster *a1)
@@ -2447,13 +2448,12 @@ TrialLevelList BigActionStages = { arrayptrandlength(BigActionStages_list) };
 */
 
 PointerInfo pointers[] = {
-	ptrdecl(0x97DA48, &landtable_008051E0),
+
 	//ptrdecl(0x90F01C, &WindyValley1Textures),
 	ptrdecl(0xBFD820, &WindyValley1DeathZones),
-	ptrdecl(0x97DA4C, &landtable_008046C0),
 	//ptrdecl(0x90F020, &WindyValley2Textures),
 	ptrdecl(0xBFD824, &WindyValley2DeathZones),
-	ptrdecl(0x97DA50, &landtable_0080433C),
+
 	//ptrdecl(0x90F024, &WindyValley3Textures),
 	ptrdecl(0xBFD828, &WindyValley3DeathZones),
 	ptrdecl(0x974B38, &WindyValleyObjectList),
@@ -2487,6 +2487,8 @@ float E103_PositionData[] = {
 	0.0
 };
 
+HelperFunctions helper = { 0 };
+
 void Init(const char *path, const HelperFunctions &helperFunctions)
 {
 	set_init();
@@ -2494,6 +2496,10 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	if (helperFunctions.Version < 6) {
 		PrintDebug("Your ModLoader is out of date.\n Please update to use this mod!");
 	};
+
+	helper = helperFunctions;
+
+	initADWV_Landtables();
 
 	ReplacePVMFile("WINDY01_DC", "WINDY01_AD");
 	ReplacePVMFile("WINDY02_DC", "WINDY02_AD");
