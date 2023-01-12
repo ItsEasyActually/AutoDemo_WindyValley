@@ -17,7 +17,7 @@ void Wele_Display(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslateV(0, (NJS_VECTOR*)a1->Data1->Object->pos); //Draw the model where the collision is
 		njRotateY(0, a1->Data1->Rotation.y);
-		sub_409E70((NJS_MODEL_SADX*)Object_Wele.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Wele.model, (LATE)0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Wele_Fan.pos[0], Wele_Fan.pos[1], Wele_Fan.pos[2]);
 		njRotateX(0, Wele_Fan.ang[0]);
@@ -26,7 +26,7 @@ void Wele_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5*-1);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Wele_Fan.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Wele_Fan.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Wele_Fan.pos[0], Wele_Fan.pos[1] - 47.0f, Wele_Fan.pos[2]);
@@ -38,11 +38,11 @@ void Wele_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5 + 0x4000);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Wele_Fan.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Wele_Fan.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Wele_Middle_Piece.pos[0], Wele_Middle_Piece.pos[1], Wele_Middle_Piece.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Wele_Middle_Piece.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Wele_Middle_Piece.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -64,7 +64,7 @@ void Wele2_Display(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslateV(0, (NJS_VECTOR*)a1->Data1->Object->pos); //Draw the model where the collision is
 		njRotateY(0, a1->Data1->Rotation.y);
-		sub_409E70((NJS_MODEL_SADX*)Object_Normal_AltDoor_Wele.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Normal_AltDoor_Wele.model, (LATE)0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Normal_AltDoor_Wele_PropBottom.pos[0], Normal_AltDoor_Wele_PropBottom.pos[1], Normal_AltDoor_Wele_PropBottom.pos[2]);
 		v5 = *(float*)&v1->LoopData * 65536.0 * 0.002777777777777778;
@@ -72,7 +72,7 @@ void Wele2_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Normal_AltDoor_Wele_PropBottom.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Normal_AltDoor_Wele_PropBottom.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Normal_AltDoor_Wele_Door.pos[0], Normal_AltDoor_Wele_Door.pos[1], Normal_AltDoor_Wele_Door.pos[2]);
@@ -80,7 +80,7 @@ void Wele2_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, 0xA000);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Normal_AltDoor_Wele_Door.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Normal_AltDoor_Wele_Door.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Normal_AltDoor_Wele_PropTop.pos[0], Normal_AltDoor_Wele_PropTop.pos[1], Normal_AltDoor_Wele_PropTop.pos[2]);
@@ -89,11 +89,11 @@ void Wele2_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5*-1);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Normal_AltDoor_Wele_PropTop.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Normal_AltDoor_Wele_PropTop.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Normal_AltDoor_Wele_Middle_Piece.pos[0], Normal_AltDoor_Wele_Middle_Piece.pos[1], Normal_AltDoor_Wele_Middle_Piece.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Normal_AltDoor_Wele_Middle_Piece.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Normal_AltDoor_Wele_Middle_Piece.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
@@ -115,7 +115,7 @@ void Wele3_Display(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslateV(0, (NJS_VECTOR*)a1->Data1->Object->pos); //Draw the model where the collision is
 		njRotateY(0, a1->Data1->Rotation.y);
-		sub_409E70((NJS_MODEL_SADX*)Object_White_Alt_Wele.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_White_Alt_Wele.model, (LATE)0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Alt_White_Wele_PropTop.pos[0], Alt_White_Wele_PropTop.pos[1], Alt_White_Wele_PropTop.pos[2]);
 		v5 = *(float*)&v1->LoopData * 65536.0 * 0.002777777777777778;
@@ -123,7 +123,7 @@ void Wele3_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Alt_White_Wele_PropTop.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Alt_White_Wele_PropTop.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Alt_White_Wele_PropBottom.pos[0], Alt_White_Wele_PropBottom.pos[1], Alt_White_Wele_PropBottom.pos[2]);
@@ -131,7 +131,7 @@ void Wele3_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Alt_White_Wele_PropBottom.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Alt_White_Wele_PropBottom.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Alt_White_Wele_Door.pos[0], Alt_White_Wele_Door.pos[1], Alt_White_Wele_Door.pos[2]);
@@ -139,7 +139,7 @@ void Wele3_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, 0xA000);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Alt_White_Wele_Door.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Alt_White_Wele_Door.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}

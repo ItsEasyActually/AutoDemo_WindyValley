@@ -45,7 +45,7 @@ void __cdecl WGear_Display(ObjectMaster *a1)
 		XScale = (1.0 + v8);
 		ZScale = (1.0 + v8);
 		njScale(0, ZScale, YScale, XScale);
-		sub_409E70((NJS_MODEL_SADX*)Object_WGEAR.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_WGEAR.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 	}
 }
@@ -118,7 +118,7 @@ void __cdecl WBolt_Display(ObjectMaster *a1)
 		XScale = (1.0 + v8);
 		ZScale = (1.0 + v8);
 		njScale(0, ZScale, YScale, XScale);
-		sub_409E70((NJS_MODEL_SADX*)Object_WBOLT.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_WBOLT.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 	}
 }

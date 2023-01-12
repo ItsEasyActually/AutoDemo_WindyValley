@@ -482,7 +482,7 @@ void __cdecl ShockwaveEffect_Display(ObjectMaster* a1)
 			njRotateY(0, (unsigned int)(unsigned __int64)v5);
 		}
 		njScale(0, 1.0f, 1.5f, 1.0f); //This needs to be scaled up a little bit more than the final's effect, since the beta model for it is smaller
-		sub_409E70((NJS_MODEL_SADX*)TornadoShockwave.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)TornadoShockwave.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		ToggleStageFog();
 	}
@@ -2322,8 +2322,8 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 4, 1, 1250000, 0, Load_Yaji01, "YAJI 01" } /* "YAJI 01" */,					//38
 	{ 2, 4, 1, 1150000, 0, Load_Pole1, "POLE 1 " } /* "POLE 1 " */,						//39
 	{ 2, 4, 1, 1150000, 0, Load_Pole2, "POLE 2 " } /* "POLE 2 " */,						//3A
-	{ 2, 3, 1, 1150000, 0, WindyGate_Main, "W GATE " } /* "W GATE " */,					//3B
-	{ 2, 3, 1, 1250000, 0, WindyGate_Main, "W GATE2" } /* "W GATE2" */,					//3C
+	{ 2, 3, 1, 1150000, 0, (ObjectFuncPtr)WindyGate_Main, "W GATE " } /* "W GATE " */,					//3B
+	{ 2, 3, 1, 1250000, 0, (ObjectFuncPtr)WindyGate_Main, "W GATE2" } /* "W GATE2" */,					//3C
 	{ 2, 3, 1, 1150000, 0, Load_Pot01, "POT01  " } /* "POT01  " */,						//3D
 	{ 2, 3, 1, 1150000, 0, Load_Pot02, "POT02  " } /* "POT02  " */,						//3E
 	{ 6, 3, 1, 850000, 0, Rock1, "ROCK 1 " } /* "ROCK 1 " */,							//3F
@@ -2346,7 +2346,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 1, 1110000, 0, Load_IHas18, "I HAS18" } /* "I HAS18" */,					//50
 	{ 2, 2, 1, 1250000, 0, Load_BaneIwa, "BANEIWA" } /* "BANEIWA" */,					//51
 	{ 2, 5, 1, 450000, 0, (ObjectFuncPtr)Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,					//52
-	{ 2, 5, 1, 1250000, 0, Load_TakoW, "TAKO W " } /* "TAKO W " */,						//53
+	{ 2, 5, 1, 1250000, 0, (ObjectFuncPtr)Load_TakoW, "TAKO W " } /* "TAKO W " */,						//53
 	{ 2, 3, 1, 1150000, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54
 	{ 2, 3, 1, 1150000, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,						//55
 	{ 2, 3, 1, 1150000, 0, Load_Dome3, "DOME 3 " } /* "DOME 3 " */,						//56
@@ -2372,7 +2372,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 1, 850000, 0, Load_SaraS2, "SARA S2" } /* "SARA S2" */,						//6A
 	{ 2, 4, 0, 0, 0, TSpring_Main, "TSPRING" } /* "TSPRING" */,							//6B
 	{ 2, 4, 0, 0, 0, Load_Lauchin, "LAUCHIN" } /* "LAUCHIN" */,							//6C
-	{ 6, 2, 1, 1000000, 0, SBridg, "S BRIDG" } /* "S BRIDG" */,							//6D
+	{ 6, 2, 1, 1000000, 0, (ObjectFuncPtr)SBridg, "S BRIDG" } /* "S BRIDG" */,							//6D
 	{ 7, 3, 1, 1000000, 0, Load_Wele, "WELE   " } /* "WELE   " */,						//6E
 	{ 2, 3, 0, 0, 0, RhinoTank_Main, "E SAITO" } /* "E SAITO" */,						//6F
 	{ 2, 3, 0, 0, 0, BoaBoa_Main, "E HEVY " } /* "E HEVY " */,							//70
@@ -2386,7 +2386,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 6, 3, 1, 40000000, 0, Load_IHah05, "I HAH05" } /* "I HAH05" */,					//78
 	{ 6, 3, 1, 40000000, 0, Load_IHah06, "I HAH06" } /* "I HAH06" */,					//79
 	{ 15, 3, 1, 160000, 0, ItemBoxAir_Main, "O ItemBoxAir" },/*O ItemboxAir*/			//7A
-	{ 6, 3, 1, 1000000, 0, Load_BrPole, "BRPOLE" } /* "BRPOLE" */,						//7B
+	{ 6, 3, 1, 1000000, 0, (ObjectFuncPtr)Load_BrPole, "BRPOLE" } /* "BRPOLE" */,						//7B
 	{ 6, 3, 1, 4000000, 0, Load_WGear, "WGEAR" } /* "WGEAR" */,							//7C
 	{ 6, 3, 1, 4000000, 0, Load_WBolt, "WBOLT" } /* "WBOLT" */,							//7D
 	{ 2, 2, 0, 0, 0, CSphere, "C SPHERE" } /* "C SPHERE" */,							//7E

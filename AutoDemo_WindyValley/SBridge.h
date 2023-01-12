@@ -1,53 +1,39 @@
 #include <SADXModLoader.h>
 
-struct BridgeThing
+
+
+struct bridge_param
 {
-	int16_t Index1;
-	int16_t Index2;
-	int16_t Index3;
-	int16_t Index4;
-	int16_t Index5;
-	int16_t Index6;
-	int16_t Index7;
-	int16_t Index8;
-	int16_t Index9;
-	int16_t Index10;
-	int16_t Index11;
-	int16_t Index12;
-	int16_t Index13;
-	int16_t Index14;
-	int16_t Index15;
-	int16_t Index16;
-	int16_t Index17;
-	int16_t Index18;
-	int16_t Index19;
-	int16_t Index20;
-	float Float1;
-	float Float2;
-	float Float3;
-	float Float4;
-	float Float5;
-	float Float6;
-	float Float7;
-	float Float8;
-	NJS_TEXLIST* Texlist;
-	NJS_MODEL_SADX* Collision;
-	NJS_MODEL_SADX* Piece1;
-	NJS_MODEL_SADX* Piece2;
-	NJS_MODEL_SADX* Piece3;
-	float* FloatArray;
+	float weight_p;
+	float weight_b;
+	float gravity;
+	float spring;
+	float rot_spring;
+	float y_friction;
+	float rot_friction;
+	float width;
+	float min_spd;
 };
 
-float BridgeFloats[] = {
-	{ 170.0f },
-	{ 2.5f },
-	{ -0.12f },
-	{ 16.0f },
-	{ 11.5f },
-	{ 0.04f },
-	{ 0.0065 },
-	{ 17.5f },
-	{ -1.3f }
+struct bridge_model_info
+{
+	__int16 first[2][4];
+	__int16 last[2][4];
+	__int16 normal[4];
+	float range[3][2];
+	float length;
+	float scale;
+	NJS_TEXLIST* tex;
+	NJS_MODEL_SADX* colli_model;
+	NJS_MODEL_SADX* tate;
+	NJS_MODEL_SADX* yoko;
+	NJS_MODEL_SADX* shita;
+	bridge_param* param;
+};
+
+
+bridge_param BridgeFloats[] = {
+	{  170.0f,  2.5f, -0.12f, 16.0f, 11.5f, 0.04f, 0.0065, 17.5f, -1.3f },
 };
 
 NJS_MATERIAL matlist_001312B0[] = {
@@ -1366,6 +1352,6 @@ NJS_VECTOR normal_00175EE8[] = {
 
 NJS_MODEL_SADX Bridge03 = { vertex_00175EA0, normal_00175EE8, LengthOfArray<Sint32>(vertex_00175EA0), meshlist_00175E88, matlist_00175E08, LengthOfArray<Uint16>(meshlist_00175E88), LengthOfArray<Uint16>(matlist_00175E08),{ 0, 0, -0.087881f }, 5.084199f, NULL };
 
-BridgeThing ShortBridge = { 2, 3, 5, 7, 1, 0, 4, 6, 0x88, 0x89, 0x8C, 0x8E, 0x8B, 0x8A, 0x8D, 0x8F, 1, 0, 2, 3, 0.0, 200.0, -50.0, 72.0, -17.699999, 17.699999, 200.0, 1.0, &OBJ_WINDY_TEXLIST, &ShortBridge_Model, &Bridge03, &Bridge02, &Bridge01, (float*)&BridgeFloats };
+bridge_model_info ShortBridge = { 2, 3, 5, 7, 1, 0, 4, 6, 0x88, 0x89, 0x8C, 0x8E, 0x8B, 0x8A, 0x8D, 0x8F, 1, 0, 2, 3, 0.0, 200.0, -50.0, 72.0, -17.699999, 17.699999, 200.0, 1.0, &OBJ_WINDY_TEXLIST, &ShortBridge_Model, &Bridge03, &Bridge02, &Bridge01, BridgeFloats };
 
-BridgeThing LongBridge = { 7, 5, 2, 3, 6, 4, 1, 0, 0xD2, 0xD0, 0xCC, 0xCD, 0xD3, 0xD1, 0xCF, 0xCE, 3, 2, 1, 0, 0.0, 300.0, -10.0, 72.0, -17.699999, 17.699999, 300.0, 1.0, &OBJ_WINDY_TEXLIST, &LongBridge_Model, &Bridge03, &Bridge02, &Bridge01, (float*)&BridgeFloats };
+bridge_model_info LongBridge = { 7, 5, 2, 3, 6, 4, 1, 0, 0xD2, 0xD0, 0xCC, 0xCD, 0xD3, 0xD1, 0xCF, 0xCE, 3, 2, 1, 0, 0.0, 300.0, -10.0, 72.0, -17.699999, 17.699999, 300.0, 1.0, &OBJ_WINDY_TEXLIST, &LongBridge_Model, &Bridge03, &Bridge02, &Bridge01, BridgeFloats };

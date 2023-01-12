@@ -213,7 +213,7 @@ void __cdecl Lauchin_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Lauchin.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Lauchin.model, (LATE)0, 1.0); //Root Model
 		njPushMatrix(0);
 		if (!ObjectSelectedDebug(a1))
 		{
@@ -274,7 +274,7 @@ void __cdecl Lauchin_Display(ObjectMaster *a1)
 				}
 			}
 		}
-		sub_409E70((NJS_MODEL_SADX*)Lauchin_Cap.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Lauchin_Cap.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}

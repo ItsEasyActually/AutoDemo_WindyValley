@@ -5,9 +5,9 @@
 #include "Propellers.h"
 #include "Dome_Objects.h"
 
-void __cdecl Prope1_Display(ObjectMaster *a1)
+void __cdecl Prope1_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 
@@ -24,7 +24,7 @@ void __cdecl Prope1_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Prope1Base.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Prope1Base.model, (LATE)0, 1.0f); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Prope1Prop.pos[0], Object_Prope1Prop.pos[1], Object_Prope1Prop.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -32,15 +32,15 @@ void __cdecl Prope1_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Prope1Prop.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Prope1Prop.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_Prope1(ObjectMaster *a1)
+void __cdecl Load_Prope1(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	if (!ClipSetObject(a1))
@@ -70,9 +70,9 @@ void __cdecl Load_Prope1(ObjectMaster *a1)
 	}
 }
 
-void __cdecl Prope2_Display(ObjectMaster *a1)
+void __cdecl Prope2_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 
@@ -89,7 +89,7 @@ void __cdecl Prope2_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Prope2Base.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Prope2Base.model, (LATE)0, 1.0f); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Prope2Prop.pos[0], Object_Prope2Prop.pos[1], Object_Prope2Prop.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -97,15 +97,15 @@ void __cdecl Prope2_Display(ObjectMaster *a1)
 		{
 			njRotateX(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Prope2Prop.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Prope2Prop.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_Prope2(ObjectMaster *a1)
+void __cdecl Load_Prope2(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	if (!ClipSetObject(a1))
@@ -135,9 +135,9 @@ void __cdecl Load_Prope2(ObjectMaster *a1)
 	}
 }
 
-void __cdecl Prope3_Display(ObjectMaster *a1)
+void __cdecl Prope3_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 
@@ -152,7 +152,7 @@ void __cdecl Prope3_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Prope3Base.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Prope3Base.model, (LATE)0, 1.0f); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Prope3Prop.pos[0], Object_Prope3Prop.pos[1], Object_Prope3Prop.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -160,15 +160,15 @@ void __cdecl Prope3_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Prope3Prop.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Prope3Prop.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_Prope3(ObjectMaster *a1)
+void __cdecl Load_Prope3(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	v1->Rotation.x = 0;
@@ -200,9 +200,9 @@ void __cdecl Load_Prope3(ObjectMaster *a1)
 	}
 }
 
-void __cdecl PropeA_Display(ObjectMaster *a1)
+void __cdecl PropeA_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 	Angle z1;
@@ -229,7 +229,7 @@ void __cdecl PropeA_Display(ObjectMaster *a1)
 		{
 			njRotateX(0, (unsigned __int16)x1);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_PropABase.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_PropABase.model, (LATE)0, 1.0f); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_PropAProp.pos[0], Object_PropAProp.pos[1], Object_PropAProp.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -237,15 +237,15 @@ void __cdecl PropeA_Display(ObjectMaster *a1)
 		{
 			njRotateX(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_PropAProp.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_PropAProp.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_PropeA(ObjectMaster *a1)
+void __cdecl Load_PropeA(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	if (!ClipSetObject(a1))
@@ -272,9 +272,9 @@ void __cdecl Load_PropeA(ObjectMaster *a1)
 	}
 }
 
-void __cdecl PropeB_Display(ObjectMaster *a1)
+void __cdecl PropeB_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 	Angle v6;
@@ -304,7 +304,7 @@ void __cdecl PropeB_Display(ObjectMaster *a1)
 		}
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeBTopPole.pos[0], (Object_PropeBTopPole.pos[1]), Object_PropeBTopPole.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Object_PropeBTopPole.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_PropeBTopPole.model, (LATE)0, 1.0f); //Root Model
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeBTopFans.pos[0], (Object_PropeBTopPole.pos[1]), Object_PropeBTopFans.pos[2]);
@@ -313,11 +313,11 @@ void __cdecl PropeB_Display(ObjectMaster *a1)
 		{
 			njRotateX(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_PropeBTopFans.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_PropeBTopFans.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeBBotPole.pos[0], (Object_PropeBBotPole.pos[1]), Object_PropeBBotPole.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Object_PropeBBotPole.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_PropeBBotPole.model, (LATE)0, 1.0f); //Root Model
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeBBotFans.pos[0], (Object_PropeBBotPole.pos[1]), Object_PropeBBotFans.pos[2]);
@@ -326,15 +326,15 @@ void __cdecl PropeB_Display(ObjectMaster *a1)
 		{
 			njRotateX(0, (unsigned __int16)v6);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_PropeBBotFans.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_PropeBBotFans.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_PropeB(ObjectMaster *a1)
+void __cdecl Load_PropeB(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	if (!ClipSetObject(a1))
@@ -364,9 +364,9 @@ void __cdecl Load_PropeB(ObjectMaster *a1)
 	}
 }
 
-void __cdecl PropeC_Display(ObjectMaster *a1)
+void __cdecl PropeC_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 	Angle v6;
@@ -395,7 +395,7 @@ void __cdecl PropeC_Display(ObjectMaster *a1)
 		}
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeCBar.pos[0], (Object_PropeCBar.pos[1]), Object_PropeCBar.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Object_PropeCBar.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_PropeCBar.model, (LATE)0, 1.0f); //Root Model
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Object_PropeCFans.pos[0], (Object_PropeCBar.pos[1]), Object_PropeCFans.pos[2]);
@@ -404,15 +404,15 @@ void __cdecl PropeC_Display(ObjectMaster *a1)
 		{
 			njRotateX(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_PropeCFans.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_PropeCFans.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_PropeC(ObjectMaster *a1)
+void __cdecl Load_PropeC(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	if (!ClipSetObject(a1))
@@ -442,9 +442,9 @@ void __cdecl Load_PropeC(ObjectMaster *a1)
 	}
 }
 
-void __cdecl Pot01_Display(ObjectMaster *a1)
+void __cdecl Pot01_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 	Angle v6;
@@ -471,7 +471,7 @@ void __cdecl Pot01_Display(ObjectMaster *a1)
 		{
 			njRotateX(0, (unsigned __int16)v7);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Pot01.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Pot01.model, (LATE)0, 1.0f); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Pot01Top.pos[0], (Object_Pot01Top.pos[1]), Object_Pot01Top.pos[2]);
 		njRotateY(0, Object_Pot01Top.ang[1]);
@@ -480,7 +480,7 @@ void __cdecl Pot01_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Pot01Top.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Pot01Top.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Object_Pot01Mid.pos[0], (Object_Pot01Mid.pos[1]), Object_Pot01Mid.pos[2]);
@@ -490,7 +490,7 @@ void __cdecl Pot01_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Pot01Mid.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Pot01Mid.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Object_Pot01Bot.pos[0], (Object_Pot01Bot.pos[1]), Object_Pot01Bot.pos[2]);
@@ -499,15 +499,15 @@ void __cdecl Pot01_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Pot01Bot.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Pot01Bot.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_Pot01(ObjectMaster *a1)
+void __cdecl Load_Pot01(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	if (!ClipSetObject(a1))
@@ -553,9 +553,9 @@ void __cdecl Load_Pot01(ObjectMaster *a1)
 	}
 }
 
-void __cdecl Pot02_Display(ObjectMaster *a1)
+void __cdecl Pot02_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 	Angle v6;
@@ -582,7 +582,7 @@ void __cdecl Pot02_Display(ObjectMaster *a1)
 		{
 			njRotateX(0, (unsigned __int16)v7);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Pot02.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Pot02.model, (LATE)0, 1.0f); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Pot02Fans.pos[0], (Object_Pot02Fans.pos[1]), Object_Pot02Fans.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -590,15 +590,15 @@ void __cdecl Pot02_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Pot02Fans.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Pot02Fans.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_Pot02(ObjectMaster *a1)
+void __cdecl Load_Pot02(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	if (!ClipSetObject(a1))
@@ -628,9 +628,9 @@ void __cdecl Load_Pot02(ObjectMaster *a1)
 	}
 }
 
-void __cdecl Prop1_Display(ObjectMaster *a1)
+void __cdecl Prop1_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 
@@ -645,7 +645,7 @@ void __cdecl Prop1_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Prop1.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Prop1.model, (LATE)0, 1.0f); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Object_Prop1Top.pos[0], (Object_Prop1Top.pos[1]), Object_Prop1Top.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -653,7 +653,7 @@ void __cdecl Prop1_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Prop1Top.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Prop1Top.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Object_Prop1Bot.pos[0], (Object_Prop1Bot.pos[1]), Object_Prop1Bot.pos[2]);
@@ -662,15 +662,15 @@ void __cdecl Prop1_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Prop1Bot.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Prop1Bot.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_Prop1(ObjectMaster *a1)
+void __cdecl Load_Prop1(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	v1->Rotation.x = 0;
@@ -710,9 +710,9 @@ void __cdecl Load_Prop1(ObjectMaster *a1)
 	}
 }
 
-void __cdecl Dome1_Display(ObjectMaster *a1)
+void __cdecl Dome1_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 
@@ -730,7 +730,7 @@ void __cdecl Dome1_Display(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslate(0, Dome_Base.pos[0], (Dome_Base.pos[1]), Dome_Base.pos[2]);
 		v4 = v1->Rotation.y;
-		sub_409E70((NJS_MODEL_SADX*)Dome_Base.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Base.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 30.0f), Dome_Fan.pos[2]);
@@ -739,20 +739,20 @@ void __cdecl Dome1_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Fan.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Cap.pos[0], (Dome_Cap.pos[1] + 44.0f), Dome_Cap.pos[2]);
 		v4 = v1->Rotation.y;
-		sub_409E70((NJS_MODEL_SADX*)Dome_Cap.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Cap.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_Dome1(ObjectMaster *a1)
+void __cdecl Load_Dome1(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	v1->Rotation.x = 0;
@@ -785,9 +785,9 @@ void __cdecl Load_Dome1(ObjectMaster *a1)
 	}
 }
 
-void __cdecl Dome2_Display(ObjectMaster *a1)
+void __cdecl Dome2_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 
@@ -804,7 +804,7 @@ void __cdecl Dome2_Display(ObjectMaster *a1)
 		}
 		njPushMatrix(0);
 		njTranslate(0, Dome_Base.pos[0], (Dome_Base.pos[1]), Dome_Base.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Dome_Base.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Base.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 30.0f), Dome_Fan.pos[2]);
@@ -813,11 +813,11 @@ void __cdecl Dome2_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Fan.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Middle.pos[0], (Dome_Middle.pos[1] + 44.0f), Dome_Middle.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Dome_Middle.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Middle.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 47.0f), Dome_Fan.pos[2]);
@@ -825,19 +825,19 @@ void __cdecl Dome2_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5 + 0x4000);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Fan.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Cap.pos[0], (Dome_Cap.pos[1] + 61.0f), Dome_Cap.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Dome_Cap.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Cap.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_Dome2(ObjectMaster *a1)
+void __cdecl Load_Dome2(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	v1->Rotation.x = 0;
@@ -870,9 +870,9 @@ void __cdecl Load_Dome2(ObjectMaster *a1)
 	}
 }
 
-void __cdecl Dome3_Display(ObjectMaster *a1)
+void __cdecl Dome3_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v4; // eax@6
 	Angle v5; // st7@8
 
@@ -889,7 +889,7 @@ void __cdecl Dome3_Display(ObjectMaster *a1)
 		}
 		njPushMatrix(0);
 		njTranslate(0, Dome_Base.pos[0], (Dome_Base.pos[1]), Dome_Base.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Dome_Base.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Base.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 30.0f), Dome_Fan.pos[2]);
@@ -898,11 +898,11 @@ void __cdecl Dome3_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Fan.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Middle.pos[0], (Dome_Middle.pos[1] + 44.0f), Dome_Middle.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Dome_Middle.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Middle.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 47.0f), Dome_Fan.pos[2]);
@@ -910,11 +910,11 @@ void __cdecl Dome3_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5 + 0x4000);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Fan.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Middle.pos[0], (Dome_Middle.pos[1] + 61.0f), Dome_Middle.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Dome_Middle.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Middle.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Fan.pos[0], (Dome_Fan.pos[1] + 64.0f), Dome_Fan.pos[2]);
@@ -922,19 +922,19 @@ void __cdecl Dome3_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Dome_Fan.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Fan.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Dome_Cap.pos[0], (Dome_Cap.pos[1] + 78.0f), Dome_Cap.pos[2]);
-		sub_409E70((NJS_MODEL_SADX*)Dome_Cap.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Dome_Cap.model, (LATE)0, 1.0f);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl Load_Dome3(ObjectMaster *a1)
+void __cdecl Load_Dome3(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	v1 = a1->Data1;
 	v1->Rotation.x = 0;

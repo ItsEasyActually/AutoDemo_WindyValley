@@ -50,7 +50,6 @@ DataPointer(float, WindPathParticleZone, 0x007E9584); //Controls the wind path l
 
 //Additional SADX Functions
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
-FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 TaskFunc(Obj_SetStatus, 0x49CD60);
 TaskFunc(ObjectColliGlobal, 0x49DF70);
 TaskFunc(MainSubDynCol_Global, 0x49E170);
@@ -59,8 +58,7 @@ FunctionPointer(void, CreateChildrenTask, (childtaskset*a1, task*a2), 0x40B9D0);
 TaskFunc(sub_4E0050, 0x4E0050);
 FunctionPointer(int, rand1, (), 0x6443BF);
 FunctionPointer(void, sub_49CE60, (EntityData1 *a1, EntityData2 *a2), 0x49CE60);
-FunctionPointer(void, sub_7A6440, (ObjectMaster *a1), 0x7A6440);
-FunctionPointer(void, sub_4E0A60, (ObjectMaster *a1), 0x4E0A60);
+TaskFunc(sub_7A6440, 0x7A6440);
 FunctionPointer(void, InitCollision, (ObjectMaster *obj, CollisionData *collisionArray, int count, unsigned __int8 list), 0x0041CAF0);
 FunctionPointer(void, DeleteDynCol, (ObjectMaster *entity), 0x005D43C0);
 FunctionPointer(void, sub_4413E0, (unsigned __int8 a1, int a2, int a3, __int16 a4), 0x4413E0);

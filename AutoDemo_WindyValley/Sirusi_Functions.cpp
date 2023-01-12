@@ -34,7 +34,7 @@ void __cdecl Sirusi1_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		sub_409E70((NJS_MODEL_SADX*)Object_Sirusi1.model, 0, 1.0); //Root Model
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Object_Sirusi1.model, (LATE)0, 1.0); //Root Model
 		njPushMatrix(0);
 		njTranslate(0, Sirusi1_Sign.pos[0], Sirusi1_Sign.pos[1], Sirusi1_Sign.pos[2]);
 		v5 = *(float*)&v1->CharIndex * 65536.0 * 0.002777777777777778;
@@ -49,7 +49,7 @@ void __cdecl Sirusi1_Display(ObjectMaster *a1)
 				njRotateX(0, (unsigned __int16)(v5 * -1) + Distance);
 			}
 		}
-		sub_409E70((NJS_MODEL_SADX*)Sirusi1_Sign.model, 0, 1.0);
+		late_DrawModelClipMesh((NJS_MODEL_SADX*)Sirusi1_Sign.model, (LATE)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 	}
