@@ -12,8 +12,13 @@
 
 // lib
 #include <SADXModLoader.h>
+#include <FunctionHook.h>
+#include <UsercallFunctionHandler.h>
+#include <ModelInfo.h>
+#include <LandTableInfo.h>
 
 // utils
+#include "gamefunctions.h"
 #include "utils/utilities.h"
 
 // act 01

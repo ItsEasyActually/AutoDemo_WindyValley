@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="gamefunctions.h" />
     <ClInclude Include="objects\o_baneiwa.h" />
     <ClInclude Include="objects\o_bridgepole.h" />
     <ClInclude Include="objects\o_dome1.h" />

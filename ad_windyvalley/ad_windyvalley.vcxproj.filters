@@ -342,6 +342,9 @@
     <ClInclude Include="utils\utilities.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="gamefunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
