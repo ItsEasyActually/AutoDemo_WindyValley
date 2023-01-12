@@ -182,6 +182,7 @@
     <ClInclude Include="TexLists.h" />
     <ClInclude Include="TorndaoBridgeParts.h" />
     <ClInclude Include="Trampoline.h" />
+    <ClInclude Include="utils.h" />
     <ClInclude Include="Wele.h" />
     <ClInclude Include="WindyGate.h" />
     <ClInclude Include="W_Ki_Objects.h" />
@@ -225,6 +226,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Misc_Function.cpp" />
+    <ClCompile Include="utils.cpp" />
     <ClCompile Include="Wele_Function.cpp" />
   </ItemGroup>
   <ItemGroup>

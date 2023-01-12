@@ -45,9 +45,9 @@ extern inline void sub_4E2EC0(taskwk* a1)
 	}
 }
 
-// void __usercall(int *a1@<eax>)
+// void __usercall(taskwk *a1@<eax>)
 static const void* const sub_4DF8B0Ptr = (void*)0x4DF8B0;
-extern inline void sub_4DF8B0(int* a1)
+extern inline void ObjectTanpopoHeadPosCalc(taskwk* a1)
 {
 	__asm
 	{

@@ -2,15 +2,16 @@
 #include <SADXModLoader.h>
 
 //Structs
-struct ObjectThing
+struct childtaskset
 {
-	ObjectFuncPtr func;
-	int16_t list;
-	int16_t field_A;
-	Rotation3 Rotation;
-	NJS_VECTOR Position;
-	NJS_OBJECT* object;
+	void(__cdecl* exec)(task*);
+	unsigned __int16 initmode;
+	__int16 flag;
+	Angle3 ang_offset;
+	NJS_POINT3 pos_offset;
+	void* ptr;
 };
+
 
 //Additional SADX Variables
 DataArray(CCL_INFO, stru_C67750, 0xC67750, 1);
@@ -48,15 +49,14 @@ DataPointer(float, Trampolineheightfourth, 0x007E0B1C);
 DataPointer(float, WindPathParticleZone, 0x007E9584); //Controls the wind path leaves
 
 //Additional SADX Functions
-FunctionPointer(void, sub_407870, (NJS_MODEL_SADX *model, char blend, float radius_scale), 0x407870);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
-FunctionPointer(void, sub_49CD60, (ObjectMaster *a1), 0x49CD60);
-FunctionPointer(void, sub_49DF70, (ObjectMaster *a1), 0x49DF70);
-FunctionPointer(void, sub_49E170, (ObjectMaster *a1), 0x49E170);
-FunctionPointer(void, sub_4DFAF0, (ObjectMaster *a1), 0x4DFAF0);
-FunctionPointer(ObjectMaster, DoObjectThing, (ObjectThing *a1, ObjectMaster *a2), 0x40B9D0);
-FunctionPointer(void, sub_4E0050, (ObjectMaster *a1), 0x4E0050);
+TaskFunc(Obj_SetStatus, 0x49CD60);
+TaskFunc(ObjectColliGlobal, 0x49DF70);
+TaskFunc(MainSubDynCol_Global, 0x49E170);
+TaskFunc(WatageSet2, 0x4DFAF0);
+FunctionPointer(void, CreateChildrenTask, (childtaskset*a1, task*a2), 0x40B9D0);
+TaskFunc(sub_4E0050, 0x4E0050);
 FunctionPointer(int, rand1, (), 0x6443BF);
 FunctionPointer(void, sub_49CE60, (EntityData1 *a1, EntityData2 *a2), 0x49CE60);
 FunctionPointer(void, sub_7A6440, (ObjectMaster *a1), 0x7A6440);
@@ -89,8 +89,8 @@ FunctionPointer(void, sub_456BF0, (void *a1, int *a2), 0x456BF0); //Sprite Parti
 FunctionPointer(void, sub_4DF500, (task *a1), 0x004DF500);
 FunctionPointer(void, sub_4DF740, (task *a1), 0x004DF740);
 DataArray(NJS_MODEL_SADX, off_C66C80, 0x00C66C80, 10);
-DataArray(ObjectThing, stru_C66CA8, 0x00C66CA8, 14);
-DataArray(ObjectThing, DebrisThing, 0x00C66CA8, 14);
+DataArray(childtaskset, stru_C66CA8, 0x00C66CA8, 14);
+DataArray(childtaskset, DebrisThing, 0x00C66CA8, 14);
 
 FunctionPointer(void, sub_49D530, (task *a1), 0x49D530);
 FunctionPointer(void, sub_49D570, (task *a1), 0x49D570);

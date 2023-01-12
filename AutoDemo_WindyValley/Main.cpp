@@ -38,7 +38,7 @@ bool LoadedDECOTornado = false; //Flag to set if the Decorational Tornado has be
 int TornadoDECOFrame = 48; //Used to get the Deco Tornado to swerve back and forth. Uses OnFrame.
 SETObjData TornadoDecoThings = {}; //More Raw SET Data for the Deco Tornado.
 bool TransTornadoDust = false; //This is really stupid. I'm trying to figure out this dust cloud animation that's playing in front of the transition tornado in the beta footage, but I can't find the animation anywhere in the final game. So, this flag is fliped on and off every other frame, and controls a dust effect that I have display in front of the transiton tornado.
-NJS_VECTOR TornadoSuck = {  692.156555f, -280.87912f, -3467.09546f  }; //Vector position for sucking the player into the tornado.
+NJS_VECTOR TornadoSuck = { 692.156555f, -280.87912f, -3467.09546f }; //Vector position for sucking the player into the tornado.
 //Length  = 128 (only use 127 on highest framerate) (including 0)
 int TornadoPosModifier[] = { //This is the array of ints that is used in translating the Deco Tornado back and forth. It's like an NJS_ACTION without being one.
 	0,
@@ -441,9 +441,9 @@ void __cdecl Tornado_Texture_Load() //Sets the textures for the object to Tomado
 	njSetTexture(&Tomado_texlist);
 }
 
-void __cdecl ShockwaveEffect_Display(ObjectMaster *a1)
+void __cdecl ShockwaveEffect_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v5;
 	Angle v4;
 	Angle v3;
@@ -488,7 +488,7 @@ void __cdecl ShockwaveEffect_Display(ObjectMaster *a1)
 	}
 }
 
-void __cdecl ShockWaveEffect_Main(ObjectMaster *a1)
+void __cdecl ShockWaveEffect_Main(ObjectMaster* a1)
 {
 	auto SonicChar = EntityData1Ptrs[0];
 
@@ -502,7 +502,7 @@ void __cdecl ShockWaveEffect_Main(ObjectMaster *a1)
 
 	else
 	{
-		EntityData1 *v1; // esi@1
+		EntityData1* v1; // esi@1
 
 		v1 = a1->Data1;
 		if (!ClipSetObject(a1))
@@ -547,9 +547,9 @@ void __cdecl ShockWaveEffect_Main(ObjectMaster *a1)
 	}
 }
 
-void __cdecl DecoTornado_Display(ObjectMaster *a1)
+void __cdecl DecoTornado_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v2;
 	NJS_VECTOR a2; //Directional vector for the dust cloud effect.
 	NJS_VECTOR a3; //Vector that controls where the dust cloud spawns.
@@ -619,12 +619,12 @@ void __cdecl DecoTornado_Display(ObjectMaster *a1)
 			njRotateY(0, (unsigned __int16)v2);
 		}*/
 		DrawQueueDepthBias = -6000.0f;
-		sub_407A00((NJS_MODEL_SADX *)Decor_Tornado1.model, 1.0);
+		sub_407A00((NJS_MODEL_SADX*)Decor_Tornado1.model, 1.0);
 		njPushMatrix(0);
-		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado2.model, (QueuedModelFlagsB)0, 1.0);
+		DrawModel_QueueVisible((NJS_MODEL_SADX*)Decor_Tornado2.model, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		DrawModel_QueueVisible((NJS_MODEL_SADX *)Decor_Tornado3.model, (QueuedModelFlagsB)0, 1.0);
+		DrawModel_QueueVisible((NJS_MODEL_SADX*)Decor_Tornado3.model, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0;
@@ -820,9 +820,9 @@ void __cdecl Deco_Tornado_Bending()
 	}
 }
 
-void __cdecl Deco_Tornado_Main(ObjectMaster *a2)
+void __cdecl Deco_Tornado_Main(ObjectMaster* a2)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 
 	if (LoadedTornado == true || (CurrentLevel == 2 && CurrentAct != 0) || CurrentLevel != 2)
 	{
@@ -881,8 +881,8 @@ void __cdecl Deco_Tornado_Main(ObjectMaster *a2)
 
 void __cdecl Load_DecoTornado()
 {
-	ObjectMaster *a1;
-	EntityData1 *Torn;
+	ObjectMaster* a1;
+	EntityData1* Torn;
 	if (LoadedDECOTornado == false)
 	{
 		TornadoDecoThings.Distance = 40000000.0f;
@@ -908,9 +908,9 @@ void __cdecl Load_DecoTornado()
 	LoadedDECOTornado = true;
 }
 
-void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Transition Tornado's display routine so I can add that additional dust cloud effect in front of it.
+void __cdecl NewTransitionTornado_Display(ObjectMaster* a1) //Overriding the Transition Tornado's display routine so I can add that additional dust cloud effect in front of it.
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	double v2; // st7@2
 	double v3; // st7@4
 	double v4; // st7@6
@@ -930,7 +930,7 @@ void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Tra
 			njRotateY(0, (unsigned __int16)(unsigned __int64)v2);
 		}
 		DrawQueueDepthBias = -6000.0f;
-		sub_407A00((NJS_MODEL_SADX *)Transition_Tornado1.model, 1.0);
+		sub_407A00((NJS_MODEL_SADX*)Transition_Tornado1.model, 1.0);
 		njPushMatrix(0);
 		njTranslate(0, Transition_Tornado2.pos[0], Transition_Tornado2.pos[1], Transition_Tornado2.pos[2]);
 		v3 = (*(float*)&v1->CharIndex + *(float*)&v1->CharIndex) * 65536.0 * -0.002777777777777778;
@@ -938,7 +938,7 @@ void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Tra
 		{
 			njRotateY(0, (unsigned __int16)(unsigned __int64)v3);
 		}
-		DrawModel_QueueVisible((NJS_MODEL_SADX *)Transition_Tornado2.model, (QueuedModelFlagsB)0, 1.0);
+		DrawModel_QueueVisible((NJS_MODEL_SADX*)Transition_Tornado2.model, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, Transition_Tornado3.pos[0], Transition_Tornado3.pos[1], Transition_Tornado3.pos[2]);
@@ -947,7 +947,7 @@ void __cdecl NewTransitionTornado_Display(ObjectMaster *a1) //Overriding the Tra
 		{
 			njRotateY(0, (unsigned __int16)(unsigned __int64)v4);
 		}
-		DrawModel_QueueVisible((NJS_MODEL_SADX *)Transition_Tornado3.model, (QueuedModelFlagsB)0, 1.0);
+		DrawModel_QueueVisible((NJS_MODEL_SADX*)Transition_Tornado3.model, (QueuedModelFlagsB)0, 1.0);
 		njPopMatrix(1u);
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0;
@@ -990,8 +990,8 @@ void __cdecl Load_Tornado()
 {
 	if (LoadedTornado == false)
 	{
-		ObjectMaster *a1;
-		EntityData1 *Torn;
+		ObjectMaster* a1;
+		EntityData1* Torn;
 		TornadoThings.Distance = tornadoLoadDistance;
 		a1 = LoadObject((LoadObj)2, 3, sub_4DE8E0);
 		a1->SETData.SETData = &TornadoThings;
@@ -1015,8 +1015,8 @@ void __cdecl Load_Tornado()
 
 void __cdecl Load_Tornado_Shockwave()
 {
-	ObjectMaster *a1;
-	EntityData1 *Wave;
+	ObjectMaster* a1;
+	EntityData1* Wave;
 
 	TornadoThings.Distance = 2250000.0f;
 	a1 = LoadObject((LoadObj)2, 3, ShockWaveEffect_Main);
@@ -1043,9 +1043,9 @@ void __cdecl Debris_Texture_Load(void) //Sets the textures of the object to Debr
 	njSetTexture(&TomadoDebris_texlist);
 }
 
-void __cdecl NewBreak_Display(ObjectMaster *a2)
+void __cdecl NewBreak_Display(ObjectMaster* a2)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v2; // eax@2
 	Angle v3; // eax@4
 	Angle v4; // eax@6
@@ -1077,17 +1077,17 @@ void __cdecl NewBreak_Display(ObjectMaster *a2)
 	}
 }
 
-void __cdecl NewBreakBridgeMain(ObjectMaster *a1) //Hijacking the main routine of the tornado bridge object.
+void __cdecl NewBreakBridgeMain(ObjectMaster* a1) //Hijacking the main routine of the tornado bridge object.
 {
-	ObjectMaster *v1; // edi@1
-	EntityData1 *v2; // esi@1
+	ObjectMaster* v1; // edi@1
+	EntityData1* v2; // esi@1
 	char v3; // al@18
 	NJS_VECTOR a2; // [sp+8h] [bp-Ch]@11
-	NJS_OBJECT *v4; // edi@1
-	ObjectMaster *v5; // edi@1
-	EntityData1 *v7; // esi@1
+	NJS_OBJECT* v4; // edi@1
+	ObjectMaster* v5; // edi@1
+	EntityData1* v7; // esi@1
 	NJS_VECTOR a3; // edi@1
-	ObjectMaster *v8; // edi@1
+	ObjectMaster* v8; // edi@1
 	auto entity = EntityData1Ptrs[0];
 
 	if (CurrentLevel != 2 || (CurrentLevel == 2 && CurrentAct != 0) || entity == nullptr) //Failsafe delete thing.
@@ -1122,9 +1122,9 @@ void __cdecl NewBreakBridgeMain(ObjectMaster *a1) //Hijacking the main routine o
 			{
 				if (sub_4DE570((int)&v2->Position, (int)&a1))
 				{
-					if (*(float *)&a1 < 190.0 || v2->NextAction)
+					if (*(float*)&a1 < 190.0 || v2->NextAction)
 					{
-						if (*(float *)&a1 < 95.0)
+						if (*(float*)&a1 < 95.0)
 						{
 							(a2.x) = 0;
 							(a2.y) = -8;
@@ -1150,7 +1150,7 @@ void __cdecl NewBreakBridgeMain(ObjectMaster *a1) //Hijacking the main routine o
 							v1->DisplaySub = 0;
 						}
 					}
-					if (v2->Scale.y >= 0.0 && *(float *)&a1 < 200.0)
+					if (v2->Scale.y >= 0.0 && *(float*)&a1 < 200.0)
 					{
 						v3 = v2->Index + 1;
 						v2->Index = v3;
@@ -1170,7 +1170,7 @@ void __cdecl NewBreakBridgeMain(ObjectMaster *a1) //Hijacking the main routine o
 	}
 }
 
-void __cdecl ChildBridge_Display(task *a2)
+void __cdecl ChildBridge_Display(task* a2)
 {
 	auto data = a2->twp;
 	Debris_Texture_Load();
@@ -1187,11 +1187,11 @@ void __cdecl ChildBridge_Display(task *a2)
 		njRotateY(0, (unsigned __int16)v3);
 	}
 
-	DrawModel(*(NJS_MODEL_SADX **)(&(TBRIDGE[(int)a2->ptp->twp->scl.z]).model)); //Of all the draw routines I tried, this one is the one that works. I think maybe there's layering issues? But I can't really tell by looking at it. ....Nor do I really care, to be honest. Just happy that this works as well as it does.
+	DrawModel(*(NJS_MODEL_SADX**)(&(TBRIDGE[(int)a2->ptp->twp->scl.z]).model)); //Of all the draw routines I tried, this one is the one that works. I think maybe there's layering issues? But I can't really tell by looking at it. ....Nor do I really care, to be honest. Just happy that this works as well as it does.
 	njPopMatrix(1u);
 }
 
-void __cdecl ChildBridgeMain(task *tp)
+void __cdecl ChildBridgeMain(task* tp)
 {
 	auto data = tp->twp;
 	auto data2 = tp->mwp;
@@ -1296,7 +1296,7 @@ void __cdecl BridgeChildLoad(task* a2) //Hijacking the function used when loadin
 
 	auto v4 = (float)rand() * 0.000030517578f;
 
-	if (v4 <= 0.60000002f) 
+	if (v4 <= 0.60000002f)
 	{
 		if (v4 <= 0.75f)
 		{
@@ -1316,7 +1316,7 @@ void __cdecl BridgeChildLoad(task* a2) //Hijacking the function used when loadin
 	}
 	else
 	{
-		data->wtimer= 0;
+		data->wtimer = 0;
 		data->mode = 3;
 	}
 
@@ -1356,8 +1356,8 @@ void __cdecl BridgeChildLoad(task* a2) //Hijacking the function used when loadin
 
 void __cdecl Load_TBridge()
 {
-	ObjectMaster *a1;
-	EntityData1 *Torn;
+	ObjectMaster* a1;
+	EntityData1* Torn;
 	if (LoadedBridge == false)
 	{
 		//collist_008046E8[84].Flags = 0x01;	//This makes the landtable bridge invisible.
@@ -1389,7 +1389,7 @@ void __cdecl Load_TBridge()
 void __cdecl Tornado_Check() //This is the big one. The main chunk of the stage function nonsense.
 {
 	auto PlayChar = EntityData1Ptrs[0];
-	
+
 	if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 	{
 		if (CurrentLevel == 2 && PlayChar == nullptr)
@@ -1474,16 +1474,16 @@ void __cdecl Tornado_Check() //This is the big one. The main chunk of the stage 
 	{
 		collist_008046E8[84].Flags = 0x01;
 	}
-	
+
 	if (CurrentLevel != 2 && (collist_008046E8[84].Flags) == 0x01) //When you leave the level for whatever reason, and the bridge is invisible, make that shit visible!
 	{
 		collist_008046E8[84].Flags = 0x80000001;
 	}*/
 }
 
-void __cdecl MagatamaDebris_Display(ObjectMaster *a1)
+void __cdecl MagatamaDebris_Display(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v3; // eax@2
 	Angle v4; // eax@4
 	Angle v5; // eax@6
@@ -1515,9 +1515,9 @@ void __cdecl MagatamaDebris_Display(ObjectMaster *a1)
 	}
 }
 
-void __cdecl MagatamaDebris(ObjectMaster *a1)
+void __cdecl MagatamaDebris(ObjectMaster* a1)
 {
-	EntityData1 *v1;
+	EntityData1* v1;
 	double v2; // st7@7
 	Angle v3; // edi@7
 	int v4; // edi@7
@@ -1526,7 +1526,7 @@ void __cdecl MagatamaDebris(ObjectMaster *a1)
 	int v9; // rax@7
 	int v7; // eax@8
 	long double v8; // st7@8
-	NJS_MODEL_SADX *v10; // ebx@1
+	NJS_MODEL_SADX* v10; // ebx@1
 
 	v1 = a1->Data1;
 
@@ -1547,28 +1547,28 @@ void __cdecl MagatamaDebris(ObjectMaster *a1)
 			{
 				if (v1->Object == &object_0016D290 || v1->Object == &object_0016E528 || v1->Object == &object_0016EA18) //Average-sized pieces
 				{
-					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 6.0) + *((float *)v1 + 2);
+					v2 = (double)(signed int)(*((float*)v1 + 12) * 1.5 + 6.0) + *((float*)v1 + 2);
 				}														// ^  This value controls how fast the debris move around. Higher makes them faster, lower makes them slower. 8.0 is original value.
 				else if (v1->Object == &object_0016C21C || v1->Object == &object_0016CF08 || v1->Object == &object_0016DF08 || v1->Object == &object_0016F8AC) //Big pieces
 				{
-					v2 = (double)(signed int)(*((float *)v1 + 12) * 3.5 + 4.5111828) + *((float *)v1 + 2);
+					v2 = (double)(signed int)(*((float*)v1 + 12) * 3.5 + 4.5111828) + *((float*)v1 + 2);
 				}
 				else //Tiny pieces
 				{
-					v2 = (double)(signed int)(*((float *)v1 + 12) * 8.0 + 5.92273662) + *((float *)v1 + 2);
+					v2 = (double)(signed int)(*((float*)v1 + 12) * 8.0 + 5.92273662) + *((float*)v1 + 2);
 				}
-				*((float *)v1 + 2) = v2;
+				*((float*)v1 + 2) = v2;
 				v3 = (v2 * 65536.0 * 0.002777777777777778);
-				*((float *)v1 + 8) = 650 + njCos(v3) * 90.0; //These fix the positioning of the debris; this one, and the one below it. (650 and -200)
-				*((float *)v1 + 10) = -200 + njSin(v3) * 90.0;
-				*((float *)v1 + 9) = fabs((double)rand() * 0.000030517578) * 3.4000001 + *((float *)v1 + 12) * 1.3 + *((float *)v1 + 9);
-				v4 = ((*((float *)v1 + 12) + *((float *)v1 + 12)) * 65536.0 * -0.002777777777777778);
-				v5 = *((float *)v1 + 12) * 5.0 * 65536.0;
-				*((_DWORD *)v1 + 5) -= v4;
+				*((float*)v1 + 8) = 650 + njCos(v3) * 90.0; //These fix the positioning of the debris; this one, and the one below it. (650 and -200)
+				*((float*)v1 + 10) = -200 + njSin(v3) * 90.0;
+				*((float*)v1 + 9) = fabs((double)rand() * 0.000030517578) * 3.4000001 + *((float*)v1 + 12) * 1.3 + *((float*)v1 + 9);
+				v4 = ((*((float*)v1 + 12) + *((float*)v1 + 12)) * 65536.0 * -0.002777777777777778);
+				v5 = *((float*)v1 + 12) * 5.0 * 65536.0;
+				*((_DWORD*)v1 + 5) -= v4;
 				v6 = (v5 * 0.002777777777777778);
-				v9 = *((_DWORD *)v1 + 7) - v4;
-				*((_DWORD *)v1 + 6) += v6;
-				*((_DWORD *)v1 + 7) = v9;
+				v9 = *((_DWORD*)v1 + 7) - v4;
+				*((_DWORD*)v1 + 6) += v6;
+				*((_DWORD*)v1 + 7) = v9;
 				MagatamaDebris_Display(a1);
 			}
 		}
@@ -1576,11 +1576,11 @@ void __cdecl MagatamaDebris(ObjectMaster *a1)
 		{
 			v1->Action = 1;
 			v7 = rand();
-			*((_DWORD *)v1 + 8) = 0;
-			*((_DWORD *)v1 + 10) = 0;
+			*((_DWORD*)v1 + 8) = 0;
+			*((_DWORD*)v1 + 10) = 0;
 			v8 = (double)v7 * 0.000030517578;
-			*((float *)v1 + 12) = fabs(v8);
-			*((float *)v1 + 2) = (double)(signed int)(v8 * 360.0);
+			*((float*)v1 + 12) = fabs(v8);
+			*((float*)v1 + 2) = (double)(signed int)(v8 * 360.0);
 			a1->DisplaySub = MagatamaDebris_Display;
 		}
 	}
@@ -1590,9 +1590,9 @@ void __cdecl MagatamaDebris(ObjectMaster *a1)
 
 void __cdecl MagatamaBreak(NJS_VECTOR SpawnPos)
 {
-	ObjectMaster *a1;
+	ObjectMaster* a1;
 	SETObjData MagatamaSetting = {};
-	EntityData1 *Stone;
+	EntityData1* Stone;
 
 	MagatamaSetting.Distance = 200000.0f;
 
@@ -1868,16 +1868,16 @@ void __cdecl MagatamaBreak(NJS_VECTOR SpawnPos)
 	}
 }
 
-void __cdecl DebrisDisplay(ObjectMaster *a1)
+void __cdecl DebrisDisplay(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
-	NJS_MODEL_SADX *v2; // ebx@1
+	EntityData1* v1; // esi@1
+	NJS_MODEL_SADX* v2; // ebx@1
 	Angle v3; // eax@2
 	Angle v4; // eax@4
 	Angle v5; // eax@6
 
 	v1 = a1->Data1;
-	v2 = (NJS_MODEL_SADX *)*((_DWORD *)v1 + 4);
+	v2 = (NJS_MODEL_SADX*)*((_DWORD*)v1 + 4);
 	if (!MissedFrames)
 	{
 		Debris_Texture_Load();
@@ -1934,9 +1934,9 @@ void __cdecl DebrisDisplay(ObjectMaster *a1)
 	}
 }
 
-void __cdecl HypotheticalDebris(ObjectMaster *a1)
+void __cdecl HypotheticalDebris(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	double v2; // st7@7
 	Angle v3; // edi@7
 	int v4; // edi@7
@@ -1945,7 +1945,7 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 	int v9; // rax@7
 	int v7; // eax@8
 	long double v8; // st7@8
-	NJS_MODEL_SADX *v10; // ebx@1
+	NJS_MODEL_SADX* v10; // ebx@1
 	int v11;
 	NJS_VECTOR a2; //used for dust for Magatama rock when it breaks.
 
@@ -1961,7 +1961,7 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 	else
 	{
 		v1 = a1->Data1;
-		v10 = (NJS_MODEL_SADX *)*((_DWORD *)v1 + 4);
+		v10 = (NJS_MODEL_SADX*)*((_DWORD*)v1 + 4);
 		if (v10 == &*(NJS_MODEL_SADX*)0xC2AF1C && v1->Scale.z != 0 && a1->Parent->Data1->InvulnerableTime == 0xFE) //Magatama destruction sequence
 		{
 			PlaySound(64, 0, 0, 0);
@@ -1977,28 +1977,28 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 			{
 				if (v10 == &*(NJS_MODEL_SADX*)0xC2AF1C && v1->Scale.z != 0)
 				{
-					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 6.0) + *((float *)v1 + 2); //Magatama rock speed
+					v2 = (double)(signed int)(*((float*)v1 + 12) * 1.5 + 6.0) + *((float*)v1 + 2); //Magatama rock speed
 				}														// ^  This value controls how fast the debris move around. Higher makes them faster, lower makes them slower. 8.0 is original value.
 				else if (v10 == &*(NJS_MODEL_SADX*)0xC2C2E8 && v1->Scale.z != 0)
 				{
-					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 5.5111828) + *((float *)v1 + 2); //Big pillar speed
+					v2 = (double)(signed int)(*((float*)v1 + 12) * 1.5 + 5.5111828) + *((float*)v1 + 2); //Big pillar speed
 				}
 				else
 				{
-					v2 = (double)(signed int)(*((float *)v1 + 12) * 1.5 + 7.0) + *((float *)v1 + 2);
+					v2 = (double)(signed int)(*((float*)v1 + 12) * 1.5 + 7.0) + *((float*)v1 + 2);
 				}
-				*((float *)v1 + 2) = v2;
+				*((float*)v1 + 2) = v2;
 				v3 = (v2 * 65536.0 * 0.002777777777777778);
-				*((float *)v1 + 8) = 650 + njCos(v3) * 90.0; //These fix the positioning of the debris; this one, and the one below it. (650 and -200)
-				*((float *)v1 + 10) = -200 + njSin(v3) * 90.0;
-				*((float *)v1 + 9) = fabs((double)rand() * 0.000030517578) * 3.4000001 + *((float *)v1 + 12) * 1.3 + *((float *)v1 + 9);
-				v4 = ((*((float *)v1 + 12) + *((float *)v1 + 12)) * 65536.0 * -0.002777777777777778);
-				v5 = *((float *)v1 + 12) * 5.0 * 65536.0;
-				*((_DWORD *)v1 + 5) -= v4;
+				*((float*)v1 + 8) = 650 + njCos(v3) * 90.0; //These fix the positioning of the debris; this one, and the one below it. (650 and -200)
+				*((float*)v1 + 10) = -200 + njSin(v3) * 90.0;
+				*((float*)v1 + 9) = fabs((double)rand() * 0.000030517578) * 3.4000001 + *((float*)v1 + 12) * 1.3 + *((float*)v1 + 9);
+				v4 = ((*((float*)v1 + 12) + *((float*)v1 + 12)) * 65536.0 * -0.002777777777777778);
+				v5 = *((float*)v1 + 12) * 5.0 * 65536.0;
+				*((_DWORD*)v1 + 5) -= v4;
 				v6 = (v5 * 0.002777777777777778);
-				v9 = *((_DWORD *)v1 + 7) - v4;
-				*((_DWORD *)v1 + 6) += v6;
-				*((_DWORD *)v1 + 7) = v9;
+				v9 = *((_DWORD*)v1 + 7) - v4;
+				*((_DWORD*)v1 + 6) += v6;
+				*((_DWORD*)v1 + 7) = v9;
 				DebrisDisplay(a1);
 			}
 		}
@@ -2035,11 +2035,11 @@ void __cdecl HypotheticalDebris(ObjectMaster *a1)
 			}
 			v1->Action = 1;
 			v7 = rand();
-			*((_DWORD *)v1 + 8) = 0;
-			*((_DWORD *)v1 + 10) = 0;
+			*((_DWORD*)v1 + 8) = 0;
+			*((_DWORD*)v1 + 10) = 0;
 			v8 = (double)v7 * 0.000030517578;
-			*((float *)v1 + 12) = fabs(v8);
-			*((float *)v1 + 2) = (double)(signed int)(v8 * 360.0);
+			*((float*)v1 + 12) = fabs(v8);
+			*((float*)v1 + 2) = (double)(signed int)(v8 * 360.0);
 			a1->DisplaySub = DebrisDisplay;
 		}
 	}
@@ -2050,8 +2050,8 @@ void __cdecl Load_Debris()
 
 	if (LoadedDebris == false)
 	{
-		ObjectMaster *a1;
-		EntityData1 *debr;
+		ObjectMaster* a1;
+		EntityData1* debr;
 		DebrisThings.Distance = debrisLoadDistance;
 		a1 = LoadObject((LoadObj)2, 3, sub_4DF7D0);
 		a1->SETData.SETData = &DebrisThings;
@@ -2146,7 +2146,7 @@ int __cdecl WindCheck()
 	return 0;
 }
 
-void __cdecl SecretSpringCheck(ObjectMaster *a1)
+void __cdecl SecretSpringCheck(ObjectMaster* a1)
 {
 	if (ClassicSpringCheat == true)
 	{
@@ -2160,7 +2160,7 @@ void __cdecl SecretSpringCheck(ObjectMaster *a1)
 }
 
 //Tanpopo (Dandelion)
-ObjectThing Tanpopo_Particles[] = {
+childtaskset Tanpopo_Particles[] = {
 	{ sub_4E0050, LoadObj_Data1, 0, 0, 0, 0, 0, 0, 0, &Particle_Tanpopo },
 	{ sub_4E0050, LoadObj_Data1, 1, 0x2000, 0, 0x2000, 0, 0, 0, &Particle_Tanpopo },
 	{ sub_4E0050, LoadObj_Data1, 2, 0x2000, 0, 0x2000, 0, 0, 0, &Particle_Tanpopo },
@@ -2177,107 +2177,87 @@ ObjectThing Tanpopo_Particles[] = {
 	{ 0 }
 };
 
-void __cdecl Tanpopo_Display(ObjectMaster *a1)
+void __cdecl Tanpopo_Display(task* a1)
 {
-	EntityData1 *v1; // esi@1
-	Angle v2; // eax@2
-	Angle v3; // eax@4
-	Angle v4; // eax@6
-			  //EntityData1 *v5; // eax@10
-			  //Angle v6; // ecx@10
-			  //Angle v7; // ecx@12
+	if (MissedFrames)
+		return;
 
-	v1 = a1->Data1;
-	if (!MissedFrames)
-	{
-		SetTextureToLevelObj();
-		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		v2 = v1->Rotation.z;
-		if (v2)
-		{
-			njRotateZ(0, (unsigned __int16)v2);
-		}
-		v3 = v1->Rotation.x;
-		if (v3)
-		{
-			njRotateX(0, (unsigned __int16)v3);
-		}
-		v4 = v1->Rotation.y;
-		if (v4)
-		{
-			njRotateY(0, (unsigned __int16)v4);
-		}
-		sub_407870(&Model_Tanpopo, 1, 1.0);
-		njPushMatrix(0);
-		njTranslate(0, Object_Tanpopostem.pos[0], Object_Tanpopostem.pos[1], Object_Tanpopostem.pos[2]);
-		sub_407870(&Model_Tanpopostem, 1, 1.0);
-		njPushMatrix(0);
-		njTranslate(0, Particle_Tanpopo.pos[0], (Particle_Tanpopo.pos[1] + 2.5f), (Particle_Tanpopo.pos[2] + 0.3f));
-		sub_407870(&attach_001398BC, 1, 1.0);
-		njPushMatrix(0);
-		njTranslate(0, Particle_Tanpopo.pos[0], (Particle_Tanpopo.pos[1]), Particle_Tanpopo.pos[2]);
-		if (v4)
-		{
-			njRotateY(0, (unsigned __int16)v4 + 0x4000);
-		}
-		sub_407870(&attach_001398BC, 1, 1.0);
-		njPopMatrix(1u);
-		njPopMatrix(1u);
-		njPopMatrix(1u);
-		njPopMatrix(1u);
-	}
+	auto data = a1->twp;
+
+	SetTextureToLevelObj();
+	njPushMatrix(0);
+	njTranslateV(0, &data->pos);
+
+	njRotateZ_(data->ang.z);
+	njRotateX_(data->ang.x);
+	njRotateY_(data->ang.y);
+
+	late_DrawModelClip(&Model_Tanpopo, (LATE)1, 1.0f);
+	njPushMatrix(0);
+	njTranslate(0, Object_Tanpopostem.pos[0], Object_Tanpopostem.pos[1], Object_Tanpopostem.pos[2]);
+	late_DrawModelClip(&Model_Tanpopostem, (LATE)1, 1.0f);
+	njPushMatrix(0);
+	njTranslate(0, Particle_Tanpopo.pos[0], (Particle_Tanpopo.pos[1] + 2.5f), (Particle_Tanpopo.pos[2] + 0.3f));
+	late_DrawModelClip(&attach_001398BC, (LATE)1, 1.0f);
+	njPushMatrix(0);
+	njTranslate(0, Particle_Tanpopo.pos[0], (Particle_Tanpopo.pos[1]), Particle_Tanpopo.pos[2]);
+
+	njRotateY_((unsigned __int16)data->ang.y + 0x4000);
+
+	late_DrawModelClip(&attach_001398BC, (LATE)1, 1.0f);
+	njPopMatrix(1u);
+	njPopMatrix(1u);
+	njPopMatrix(1u);
+	njPopMatrix(1u);
 }
 
-void __cdecl Tanpopo_Main(ObjectMaster *a1)
+void __cdecl Tanpopo_Main(task* tp)
 {
-	EntityData1 *v1; // edi@1
-	ObjectMaster *v2; // eax@10
 
-	v1 = a1->Data1;
-	if (!ClipSetObject(a1))
+	auto twp = tp->twp;
+	if (!CheckRangeOut(tp))
 	{
-		if (v1->Action)
+		if (twp->mode)
 		{
-			if (v1->Action == 1)
+			if (twp->mode == 1)
 			{
-				Tanpopo_Display(a1);
-				sub_4DF8B0((int *)v1);
-				if (!ObjectSelectedDebug(a1))
+				ObjectTanpopoHeadPosCalc(twp);
+
+				if (!ObjectSelectedDebug((ObjectMaster*)tp))
 				{
-					RunObjectChildren(a1);
+					LoopTaskC(tp);
 				}
-				if (!ObjectSelectedDebug(a1)
-					&& (double)v1->InvulnerableTime * 0.00089999998 > (double)rand1() * 0.000030517578)
+				if (!ObjectSelectedDebug((ObjectMaster*)tp)
+					&& (double)twp->wtimer * 0.00089999998f > (double)rand1() * 0.000030517578)
 				{
-					v2 = LoadChildObject(LoadObj_Data1, sub_4DFAF0, a1);
-					if (v2)
+					auto child = CreateChildTask(LoadObj_Data1, WatageSet2, tp);
+					if (child)
 					{
-						a1->Child = v2;
-						v2->Data1->Position.x = v1->Position.x;
-						v2->Data1->Position.y = (v1->Position.y - 1);
-						v2->Data1->Position.z = v1->Position.z;
+						tp->ctp = child;
+						child->twp->pos = twp->pos;
+						child->twp->pos.y = (twp->pos.y - 1);
 					}
 				}
 			}
-			else if (v1->Action == 3)
+			else if (twp->mode == 3)
 			{
-				DeleteChildObjects(a1);
+				FreeTaskC(tp);
 			}
 		}
 		else
 		{
-			a1->DisplaySub = Tanpopo_Display;
-			v1->InvulnerableTime = 13;
-			v1->CharIndex = 0;
-			if (!ObjectSelectedDebug(a1))
+			tp->disp = Tanpopo_Display;
+			twp->wtimer = 13;
+			twp->counter.w[0] = 0;
+			if (!ObjectSelectedDebug((ObjectMaster*)tp))
 			{
-				DoObjectThing(Tanpopo_Particles, a1);
+				CreateChildrenTask(Tanpopo_Particles, tp);
 			}
-			a1->DeleteSub = j_DeleteChildObjects;
-			Tanpopo_Display(a1);
-			v1->Action = 1;
+			tp->dest = (TaskFuncPtr)j_DeleteChildObjects;
+			twp->mode = 1;
 		}
+
+		tp->disp(tp);
 	}
 }
 
@@ -2365,7 +2345,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 3, 1, 1110000, 0, Load_IHas17, "I HAS17" } /* "I HAS17" */,					//4F
 	{ 2, 3, 1, 1110000, 0, Load_IHas18, "I HAS18" } /* "I HAS18" */,					//50
 	{ 2, 2, 1, 1250000, 0, Load_BaneIwa, "BANEIWA" } /* "BANEIWA" */,					//51
-	{ 2, 5, 1, 450000, 0, Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,					//52
+	{ 2, 5, 1, 450000, 0, (ObjectFuncPtr)Tanpopo_Main, "TANPOPO" } /* "TANPOPO" */,					//52
 	{ 2, 5, 1, 1250000, 0, Load_TakoW, "TAKO W " } /* "TAKO W " */,						//53
 	{ 2, 3, 1, 1150000, 0, Load_Dome1, "DOME 1 " } /* "DOME 1 " */,						//54
 	{ 2, 3, 1, 1150000, 0, Load_Dome2, "DOME 2 " } /* "DOME 2 " */,						//55
@@ -2489,7 +2469,7 @@ float E103_PositionData[] = {
 
 HelperFunctions helper = { 0 };
 
-void Init(const char *path, const HelperFunctions &helperFunctions)
+void Init(const char* path, const HelperFunctions& helperFunctions)
 {
 	set_init();
 
@@ -2540,7 +2520,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	ReplaceBINFile("SET0201S_DC", "SET0201S_AD");
 	ReplaceBINFile("SET0202S_DC", "SET0202S_AD");
 
-	const IniFile *config = new IniFile(std::string(path) + "\\config.ini");
+	const IniFile* config = new IniFile(std::string(path) + "\\config.ini");
 
 	ADSetFile = config->getBool("Options", "ADSetFile", false);
 	ADDrawD = config->getBool("Options", "ADDrawD", false);
@@ -2574,12 +2554,12 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	}
 	delete config;
 
-	*(float *)0x7E7B04 = 1420.68f; // changing the level trigger height for WV part 2
-	WriteData((float *)0x4DE8F6, 436.785f); // x component of tornado target.
-	WriteData((float *)0x4DE906, -2305.471f); // z component of tornado target.
-	WriteData((float *)0x004DE8ED, tornadoLoadDistance); // Tornado's load distance
-	WriteData((int *)0x07E1D90, (int)LengthOfArray(WV3path)); // p2 path for WV3
-	WriteCall((void *)0x4DD8D3, TornadoPosition); // setting the tornado position properly
+	*(float*)0x7E7B04 = 1420.68f; // changing the level trigger height for WV part 2
+	WriteData((float*)0x4DE8F6, 436.785f); // x component of tornado target.
+	WriteData((float*)0x4DE906, -2305.471f); // z component of tornado target.
+	WriteData((float*)0x004DE8ED, tornadoLoadDistance); // Tornado's load distance
+	WriteData((int*)0x07E1D90, (int)LengthOfArray(WV3path)); // p2 path for WV3
+	WriteCall((void*)0x4DD8D3, TornadoPosition); // setting the tornado position properly
 	//Skybox stuff
 	//WriteCall((void*)0x004DD794, RetrieveWindy1SkyTransparency);
 	//WriteCall((void*)0x004DD7D1, RenderWindy1Sky);
@@ -2587,20 +2567,20 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	//WriteData<5>((void*)0x004DD7E5, 0x90);
 	//WriteData<5>((void*)0x004DD7EF, 0x90);
 	//WriteData<5>((void*)0x004DD7F9, 0x90);
-	WriteCall((void *)0x4DD7A5, WVSkybox1Position);
+	WriteCall((void*)0x4DD7A5, WVSkybox1Position);
 
-	WriteCall((void *)0x4DE405, Tornado_Texture_Load); //Setting the tornado to use a custom PVM file.
-	WriteCall((void *)0x4DF522, Debris_Texture_Load); //Setting the tornado debris to use a custom PVM file.
-	WriteJump((void *)0x4E5C20, NewBreak_Display); //Overwriting the bridge's display function.
-	WriteCall((void *)0x4DDEB6, Debris_Texture_Load);
+	WriteCall((void*)0x4DE405, Tornado_Texture_Load); //Setting the tornado to use a custom PVM file.
+	WriteCall((void*)0x4DF522, Debris_Texture_Load); //Setting the tornado debris to use a custom PVM file.
+	WriteJump((void*)0x4E5C20, NewBreak_Display); //Overwriting the bridge's display function.
+	WriteCall((void*)0x4DDEB6, Debris_Texture_Load);
 	//WriteCall((void *)0x4FB2A8, Debris_Texture_Load);
-	WriteCall((void *)0x4E5C3A, Debris_Texture_Load);
-	WriteJump((void *)0x4DE3F0, NewTransitionTornado_Display); //overwriting the transition tornado's display routine.
+	WriteCall((void*)0x4E5C3A, Debris_Texture_Load);
+	WriteJump((void*)0x4DE3F0, NewTransitionTornado_Display); //overwriting the transition tornado's display routine.
 
-	WriteJump((void *)0x4E65C0, NewBreakBridgeMain); //overwriting the breakable bridge's main routine.
-	WriteJump((void *)0x4E6070, BridgeChildLoad);
+	WriteJump((void*)0x4E65C0, NewBreakBridgeMain); //overwriting the breakable bridge's main routine.
+	WriteJump((void*)0x4E6070, BridgeChildLoad);
 
-	WriteJump((void *)0x4DF5A0, HypotheticalDebris); //Main Debris loading function overwrite
+	WriteJump((void*)0x4DF5A0, HypotheticalDebris); //Main Debris loading function overwrite
 	//WriteJump((void *)0x4DF500, DebrisDisplay); //Display routine overwrite for Debris
 	//WriteJump((void *)0x4DF740, PreHypoDebris); //Testing something
 	WriteData<1>((void*)0x04DF75C, 0xFFu); //Controlling how long each piece of debris is spawned for. 96u is original value.
@@ -2611,11 +2591,11 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	WriteData<1>((void*)0x04E6297, 0x41u);//Making the bridge cloud dust sprite the same size as the AD's.
 	WriteData<1>((void*)0x04E6297, 0x40u);//Same
 
-	WriteCall((void *)0x4E379D, WindCheck); //Removing ClipSet check for the leaves of Pu Wind.
-	WriteCall((void *)0x4E354B, WindCheck);
-	WriteCall((void *)0x4E52AD, WindCheck); //Doing the same for BLeaf.
+	WriteCall((void*)0x4E379D, WindCheck); //Removing ClipSet check for the leaves of Pu Wind.
+	WriteCall((void*)0x4E354B, WindCheck);
+	WriteCall((void*)0x4E52AD, WindCheck); //Doing the same for BLeaf.
 
-	
+
 
 	//WriteJump((void *)0x4DDC10, sub_4DDCE0); //RHINO TANK TORNADO PARTY!!! :D
 	//WriteJump((void *)0x4DDC10, sub_4DDC10); //Setting it back to normal.
@@ -2626,7 +2606,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	//WriteData((float**)0x004E802D, E103_PositionData);
 
 	//Replacing Final's skybox models with "null" object.
-	*(NJS_OBJECT*)0xC05E10 = SkyNuller; 
+	*(NJS_OBJECT*)0xC05E10 = SkyNuller;
 	*(NJS_OBJECT*)0xC0655C = SkyNuller;
 	*(NJS_OBJECT*)0xC06A94 = SkyNuller;
 	*(NJS_OBJECT*)0xC06450 = SkyNuller;
@@ -2638,8 +2618,8 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	*(NJS_OBJECT*)0xC0A60C = SkyNuller;
 	*(NJS_OBJECT*)0xC0B07C = SkyNuller;
 	*(NJS_OBJECT*)0xC0AB44 = SkyNuller;
-	
-	
+
+
 	*(NJS_OBJECT*)0xC158E0 = Object_Leaf; //WcWind/PuWind/Bleaf
 	*(NJS_OBJECT*)0xC159FC = Object_Leaf; //WcWind/PuWind/Bleaf
 	*(NJS_OBJECT*)0xC15B2C = Object_Leaf; //WcWind/PuWind/Bleaf
@@ -2702,7 +2682,7 @@ void Init(const char *path, const HelperFunctions &helperFunctions)
 	These are the NJS_OBJECTs. Must replace the NJS_MODELs instead!
 	They are contained in the array at C66C80.
 	*/
-	*(NJS_OBJECT*)0xC2AF48 = object_0016F8E0; //Magatama Rock
+	* (NJS_OBJECT*)0xC2AF48 = object_0016F8E0; //Magatama Rock
 	*(NJS_MODEL_SADX*)0xC2AF1C = attach_0016F884;
 
 	*(NJS_OBJECT*)0xC2B08C = object_001A0250; //Small Rock

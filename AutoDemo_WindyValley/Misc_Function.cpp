@@ -27,14 +27,14 @@ void __cdecl Trampoline_Display(task *a2)
 	
 			njScale(0, Xscl, Yscl, v3);
 			njScale(0, 1.0f, 2.0f, 1.0f);		
-			sub_407870(&attach_001448A0, 1, v6); //Top Model
+			late_DrawModelClip(&attach_001448A0, (LATE)1, v6); //Top Model
 		}
 		else
 		{
 			njTranslate(0, TrampolineMesh_Bottom.pos[0], TrampolineMesh_Bottom.pos[1], TrampolineMesh_Bottom.pos[2]); //Bottom Model
 			njScale(0, data->scl.x, data->scl.y, data->scl.z);
 		
-			sub_407870(&attach_00144B74, 1, Zscl); //Bottom Model
+			late_DrawModelClip(&attach_00144B74, (LATE)1, Zscl); //Bottom Model
 		}
 		njPopMatrix(1u);
 		sub_407A00(&attach_001454A0, 1.0); //Full Model
