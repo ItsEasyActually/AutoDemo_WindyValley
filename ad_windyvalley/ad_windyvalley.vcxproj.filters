@@ -37,6 +37,12 @@
     <Filter Include="Source Files\objects">
       <UniqueIdentifier>{3ea0ec64-cf08-40eb-9835-5d4b3db57847}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{d61ec0c2-623e-44b4-a512-a6e9457070fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{230ab669-7413-498d-ada3-043a9e0751de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -332,6 +338,9 @@
     </ClInclude>
     <ClInclude Include="objects\o_yaji01.h">
       <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\utilities.h">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -631,6 +640,9 @@
     </ClCompile>
     <ClCompile Include="objects\o_windybolt.cpp">
       <Filter>Source Files\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utilities.cpp">
+      <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
