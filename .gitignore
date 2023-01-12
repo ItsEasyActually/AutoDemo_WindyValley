@@ -76,3 +76,4 @@ ipch/
 # Visual Studio cache files
 *.[Cc]ache
 !?*.[Cc]ache/
+/ad_windyvalley/h_make.bat
