@@ -6,39 +6,35 @@
 #include "Tako_W.h"
 
 //Trampoline Code
-void __cdecl Trampoline_Display(ObjectMaster *a2)
+void __cdecl Trampoline_Display(task *a2)
 {
-	EntityData1 *v1; // esi@1
-	float ZScale; // ST08_4@3
-	float v3; // ST08_4@4
-	float YScale; // ST04_4@4
-	float XScale; // ST00_4@4
-	float v6; // ST08_4@4
+	auto data = a2->twp;
+	auto v3 = -data->scl.z;
+	auto Yscl = -data->scl.y;
+	auto Xscl = -data->scl.x;
+	float v6 = VectorMaxAbs(&data->scl) * 1.8f;
+	auto Zscl = VectorMaxAbs(&data->scl);
 
-	v1 = a2->Data1;
 	if (!MissedFrames)
 	{
 		SetTextureToLevelObj();
 		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
+		njTranslateV(0, &data->pos);
 		njPushMatrix(0);
-		if (v1->Scale.y < 0.0)
+		if (data->scl.y < 0.0f)
 		{
 			njTranslate(0, TrampolineMesh_Top.pos[0], TrampolineMesh_Top.pos[1], TrampolineMesh_Top.pos[2]); //Top Model
-			v3 = -v1->Scale.z;
-			YScale = -v1->Scale.y;
-			XScale = -v1->Scale.x;
-			njScale(0, XScale, YScale, v3);
-			njScale(0, 1.0f, 2.0f, 1.0f);
-			v6 = VectorMaxAbs(&v1->Scale) * 1.8f;
+	
+			njScale(0, Xscl, Yscl, v3);
+			njScale(0, 1.0f, 2.0f, 1.0f);		
 			sub_407870(&attach_001448A0, 1, v6); //Top Model
 		}
 		else
 		{
 			njTranslate(0, TrampolineMesh_Bottom.pos[0], TrampolineMesh_Bottom.pos[1], TrampolineMesh_Bottom.pos[2]); //Bottom Model
-			njScale(0, v1->Scale.x, v1->Scale.y, v1->Scale.z);
-			ZScale = VectorMaxAbs(&v1->Scale);
-			sub_407870(&attach_00144B74, 1, ZScale); //Bottom Model
+			njScale(0, data->scl.x, data->scl.y, data->scl.z);
+		
+			sub_407870(&attach_00144B74, 1, Zscl); //Bottom Model
 		}
 		njPopMatrix(1u);
 		sub_407A00(&attach_001454A0, 1.0); //Full Model
@@ -46,48 +42,45 @@ void __cdecl Trampoline_Display(ObjectMaster *a2)
 	}
 }
 
-void __cdecl Trampoline_Main(ObjectMaster *a1)
+void __cdecl OPoline_r(task *a1)
 {
-	EntityData1 *v1; // esi@1
+	auto data = a1->twp;
 
-	v1 = a1->Data1;
-	if (!ClipSetObject(a1))
+	if (!ClipSetObject((ObjectMaster*)a1))
 	{
-		switch (v1->Action)
+		switch (data->mode)
 		{
 		case 0:
-			v1->NextAction = 0;
-			v1->Rotation.z = 0;
-			v1->Scale.x = 1.0f;
-			v1->Scale.y = 0;
-			v1->Scale.z = 1.0f;
-			v1->CharIndex = 0;
-			v1->Action = 1;
-			InitCollision(a1, stru_C67750, 1, 4u);
-			a1->DisplaySub = Trampoline_Display;
-			Trampoline_Display(a1);
+			data->smode = 0;
+			data->ang.z = 0;
+			data->scl.x = 1.0f;
+			data->scl.y = 0;
+			data->scl.z = 1.0f;
+			data->counter.b[0] = 0;
+			data->mode = 1;
+			CCL_Init(a1, stru_C67750, 1, 4u);
+			a1->disp = Trampoline_Display;
 			break;
 		case 1:
 			Trampolineheight = 10.0f;
 			Trampolineheightsecond = 11.0f;
 			Trampolineheightthird = 16.0f;
 			Trampolineheightfourth = 12.0f;
-			sub_4E2D30((int)a1);
+			sub_4E2D30(a1);
 			Trampolineheight = 19.0f;
                         Trampolineheightsecond = 20.0f;
                         Trampolineheightthird = 25.0f;
                         Trampolineheightfourth = 21.0f;
-			AddToCollisionList(v1);
-			Trampoline_Display(a1);
+			EntryColliList(data);
 			break;
 		case 3:
-			if (v1->NextAction == 1)
+			if (data->smode == 1)
 			{
 				Trampolineheight = 10.0f;
 				Trampolineheightsecond = 11.0f;
 				Trampolineheightthird = 16.0f;
 				Trampolineheightfourth = 12.0f;
-				sub_4E2CC0((int)a1);
+				sub_4E2CC0(a1);
 				Trampolineheight = 19.0f;
 				Trampolineheightsecond = 20.0f;
 				Trampolineheightthird = 25.0f;
@@ -97,21 +90,20 @@ void __cdecl Trampoline_Main(ObjectMaster *a1)
 			Trampolineheightsecond = 11.0f;
 			Trampolineheightthird = 16.0f;
 			Trampolineheightfourth = 12.0f;
-			sub_4E2DC0((int)v1);
+			sub_4E2DC0(data);
 			Trampolineheight = 19.0f;
 			Trampolineheightsecond = 20.0f;
 			Trampolineheightthird = 25.0f;
 			Trampolineheightfourth = 21.0f;
-			Trampoline_Display(a1);
 			break;
 		case 4:
-			if (v1->NextAction == 1)
+			if (data->smode == 1)
 			{
 				Trampolineheight = 10.0f;
 				Trampolineheightsecond = 11.0f;
 				Trampolineheightthird = 16.0f;
 				Trampolineheightfourth = 12.0f;
-				sub_4E2CC0((int)a1);
+				sub_4E2CC0(a1);
 				Trampolineheight = 19.0f;
 				Trampolineheightsecond = 20.0f;
 				Trampolineheightthird = 25.0f;
@@ -121,38 +113,38 @@ void __cdecl Trampoline_Main(ObjectMaster *a1)
 			Trampolineheightsecond = 11.0f;
 			Trampolineheightthird = 16.0f;
 			Trampolineheightfourth = 12.0f;
-			sub_4E2EC0((int)v1);
+			sub_4E2EC0(data);
 			Trampolineheight = 19.0f;
 			Trampolineheightsecond = 20.0f;
 			Trampolineheightthird = 25.0f;
 			Trampolineheightfourth = 21.0f;
-			Trampoline_Display(a1);
+
 			break;
 		case 5:
-			if (v1->NextAction == 1)
+			if (data->smode == 1)
 			{
-				sub_4E2CC0((int)a1);
+				sub_4E2CC0(a1);
 			}
 			Trampolineheight = 10.0f;
 			Trampolineheightsecond = 11.0f;
 			Trampolineheightthird = 16.0f;
 			Trampolineheightfourth = 12.0f;
-			sub_4E3090((int)v1);
+			sub_4E3090(data);
 			Trampolineheight = 19.0f;
 			Trampolineheightsecond = 20.0f;
 			Trampolineheightthird = 25.0f;
 			Trampolineheightfourth = 21.0f;
-			Trampoline_Display(a1);
 			break;
 		case 6:
-			DeleteObjectMaster(a1);
+			FreeTask(a1);
 			break;
 		default:
-			v1->Action = 0;
-			Trampoline_Display(a1);
+			data->mode = 0;
 			break;
 		}
 	}
+
+	a1->disp(a1);
 }
 
 //Windy Gate

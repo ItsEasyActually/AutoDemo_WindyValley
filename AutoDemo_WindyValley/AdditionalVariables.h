@@ -13,7 +13,7 @@ struct ObjectThing
 };
 
 //Additional SADX Variables
-DataArray(CollisionData, stru_C67750, 0xC67750, 1);
+DataArray(CCL_INFO, stru_C67750, 0xC67750, 1);
 DataArray(CollisionData, stru_C673B8, 0xC673B8, 7);
 DataArray(SkyboxScale, SkyboxScale_Windy1, 0x00AFE924, 3);
 DataArray(SkyboxScale, SkyboxScale_Windy3, 0x00AFE96C, 3);
@@ -105,6 +105,6 @@ FunctionPointer(void, sub_4E6370, (int a1), 0x4E6370);
 FunctionPointer(void, sub_4E5C20, (task *a3), 0x4E5C20);
 
 //Usercall and Thiscall Functions
-ThiscallFunctionPointer(void, sub_4E3090, (int _this), 0x4E3090);
+ThiscallFunctionPointer(void, sub_4E3090, (taskwk* _this), 0x4E3090);
 
 

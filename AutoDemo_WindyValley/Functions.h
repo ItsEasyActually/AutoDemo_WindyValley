@@ -1,9 +1,9 @@
 #pragma once
 
 //Usercall Functions
-// void __usercall(int a1@<eax>)
+// void __usercall(task* a1@<eax>)
 static const void* const sub_4E2CC0Ptr = (void*)0x4E2CC0;
-extern inline void sub_4E2CC0(int a1)
+extern inline void sub_4E2CC0(task* a1)
 {
 	__asm
 	{
@@ -12,9 +12,9 @@ extern inline void sub_4E2CC0(int a1)
 	}
 }
 
-// void __usercall(int a1@<eax>)
+// void __usercall(task* a1@<eax>)
 static const void* const sub_4E2D30Ptr = (void*)0x4E2D30;
-extern inline void sub_4E2D30(int a1)
+extern inline void sub_4E2D30(task* a1)
 {
 	__asm
 	{
@@ -23,9 +23,9 @@ extern inline void sub_4E2D30(int a1)
 	}
 }
 
-// void __usercall(int a1@<esi>)
+// void __usercall(taskwk* a1@<esi>)
 static const void* const sub_4E2DC0Ptr = (void*)0x4E2DC0;
-extern inline void sub_4E2DC0(int a1)
+extern inline void sub_4E2DC0(taskwk* a1)
 {
 	__asm
 	{
@@ -34,28 +34,14 @@ extern inline void sub_4E2DC0(int a1)
 	}
 }
 
-// void __usercall(int a1@<esi>)
+// void __usercall(taskwk* a1@<esi>)
 static const void* const sub_4E2EC0Ptr = (void*)0x4E2EC0;
-extern inline void sub_4E2EC0(int a1)
+extern inline void sub_4E2EC0(taskwk* a1)
 {
 	__asm
 	{
 		mov esi, [a1]
 		call sub_4E2EC0Ptr
-	}
-}
-
-// void __usercall(EntityData1 *a1@<eax>, NJS_OBJECT *a2@<ecx>, float a3)
-static const void* const sub_49CCD0Ptr = (void*)0x49CCD0;
-extern inline void sub_49CCD0(EntityData1* a1, NJS_OBJECT* a2, float a3)
-{
-	__asm
-	{
-		push[a3]
-		mov ecx, [a2]
-		mov eax, [a1]
-		call sub_49CCD0Ptr
-		add esp, 4
 	}
 }
 
@@ -116,7 +102,7 @@ void DrawObjModel(ObjectMaster *a1, NJS_MODEL_SADX *m, bool scalable);
 void deleteSub_Global(ObjectMaster *a1);
 
 //Misc Functions
-void __cdecl Trampoline_Main(ObjectMaster *a1);
+void __cdecl OPoline_r(task *a1);
 void __cdecl WindyGate_Main(ObjectMaster *a1);
 void __cdecl SBridg(ObjectMaster *a1);
 void __cdecl Load_BrPole(ObjectMaster *a1);

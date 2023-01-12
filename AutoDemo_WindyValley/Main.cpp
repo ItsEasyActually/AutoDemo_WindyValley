@@ -2304,7 +2304,7 @@ ObjectListEntry WindyValleyObjectList_list[] = {
 	{ 2, 2, 1, 4000000, 0, JumpPanel_Load, "O JPanel" } /* "O JPanel" */,				//12
 	{ 15, 6, 0, 0, 0, CheckPoint_Main, "O Save Point" } /* "O Save Point" */,			//13
 	{ 2, 3, 0, 0, 0, Wall_Main, "WALL   " } /* "WALL   " */,							//14
-	{ 3, 2, 1, 1150000, 0, Trampoline_Main, "TRAMPOL" } /* "TRAMPOL" */,				//15
+	{ 3, 2, 1, 1150000, 0, (ObjectFuncPtr)OPoline_r, "TRAMPOL" } /* "TRAMPOL" */,				//15
 	{ 2, 2, 1, 450000, 0, BLeaf, "B LEAF " } /* "B LEAF " */,							//16
 	{ 2, 2, 1, 550000, 0, WcWind, "WC WIND" } /* "WC WIND" */,							//17
 	{ 2, 2, 0, 0, 0, PuWind, "PU WIND" } /* "PU WIND" */,								//18
